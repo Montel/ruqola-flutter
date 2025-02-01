@@ -1,0 +1,174 @@
+/*
+ * SPDX-FileCopyrightText: 2024-2025 Laurent Montel <laurent.montel@kdab.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ */
+import 'package:libddpapi/libddpapi.dart';
+import 'package:libruqolacore/src/message/message.dart';
+import 'package:libruqolacore/src/ownuserpreferences.dart';
+import 'package:libruqolacore/src/room.dart';
+import 'package:libruqolacore/src/user.dart';
+import 'package:flutter/material.dart';
+
+class Rocketchataccountmodels with ChangeNotifier {
+  void parseSubscriptionGet(Messagenotificationresult map) {
+    print("parseSubscriptionGet $map");
+    final obj = map.result;
+
+    final removed = obj['remove'];
+    if (removed != null) {
+      print("removed is not empty ! implement it");
+    }
+
+    final updatedArray = obj['update'];
+    if (updatedArray != null) {
+      for (var item in updatedArray) {
+        print("updated : $item");
+        final r = Room();
+        r.parseSubscriptionRoom(item);
+        rooms.add(r);
+      }
+    } else {
+      print("update element is not found!");
+    }
+    notifyListeners();
+    print("Number of rooms ${rooms.length}");
+  }
+
+  int compare(Room a, Room b, RoomListSortOrder list) {
+    if (a == b) return 0;
+    switch (list) {
+      case RoomListSortOrder.unknown:
+        // TODO warning!!!
+        break;
+      case RoomListSortOrder.byLastMessage:
+        // TODO implement it
+        break;
+      case RoomListSortOrder.alphabetically:
+        return a.displayName().compareTo(b.displayName());
+    }
+    return a.displayName().compareTo(b.displayName());
+  }
+
+  List<Room> sortedRooms(
+      [RoomListSortOrder list = RoomListSortOrder.alphabetically]) {
+    rooms.sort((a, b) => compare(a, b, list));
+    return rooms;
+  }
+
+  void setRoomWasInitialized(String roomId, bool initialized) {
+    for (Room r in rooms) {
+      if (r.mRoomId == roomId) {
+        r.mWasInitialized = true;
+      }
+    }
+  }
+
+  bool roomWasInitialized(String roomId) {
+    for (Room r in rooms) {
+      if (r.mRoomId == roomId) {
+        return r.mWasInitialized;
+      }
+    }
+    return false;
+  }
+
+  Room? findRoomFromIdentifier(String roomId) {
+    print("Find roomId $roomId");
+    for (Room r in rooms) {
+      if (r.mRoomId == roomId) {
+        return r;
+      }
+    }
+    return null;
+  }
+
+  void processIncomingMessages(List<dynamic> json) {
+    for (var item in json) {
+      Message msg = Message.fromJson(item);
+      for (Room r in rooms) {
+        if (r.mRoomId == msg.mRoomId) {
+          r.messages.add(msg);
+        }
+      }
+
+      // FIXME
+      for (Room r in rooms) {
+        r.notify();
+      }
+    }
+  }
+
+  void insertRoom(Map<String, dynamic> roomData) {
+    Room r = Room();
+    r.parseInsertRoom(roomData);
+    addRoom(r);
+  }
+
+  void addRoom(Room room) {
+    rooms.add(room);
+    notifyListeners();
+    // TODO verify that room is not duplicated
+    /*
+    qCDebug(RUQOLA_ROOMS_LOG) << " void RoomModel::addRoom(const Room &room)" << room->name();
+    const int roomCount = mRoomsList.count();
+    for (int i = 0; i < roomCount; ++i) {
+        if (mRoomsList.at(i)->roomId() == room->roomId()) {
+            qCDebug(RUQOLA_ROOMS_LOG) << " room already exist " << room->roomId() << " A bug ? ";
+            delete room;
+            return false;
+        }
+    }
+    */
+  }
+
+  void updateRooms(Map<String, dynamic> roomData) {
+    String rId = roomData["rid"] ?? '';
+    if (rId.isEmpty) {
+      rId = roomData["_id"] ?? '';
+    }
+    if (rId.isNotEmpty) {
+      for (Room r in rooms) {
+        if (r.mRoomId == rId) {
+          r.parseUpdateRoom(roomData);
+          notifyListeners();
+          break;
+        }
+      }
+    } else {
+      print("RoomModel::updateRoom incorrect jsonobject $roomData");
+    }
+  }
+
+  void addMessage(
+      Map<String, dynamic>
+          replyObject /*, bool useRestApi, bool temporaryMessage*/) {
+    String roomId = replyObject["rid"];
+    if (roomId.isNotEmpty) {
+      for (Room r in rooms) {
+        if (r.mRoomId == roomId) {
+          Message m = Message();
+          //TODO  m.parseMessage(replyObject, useRestApi, emojiManager());
+          /*
+        m.setMessageType(Message::MessageType::Information);
+        m.setPendingMessage(temporaryMessage);
+        if (!m.threadMessageId().isEmpty()) {
+            // qDebug() << " It's a thread message id ****************************" << m.threadMessageId();
+            updateThreadMessageList(m);
+        }
+        // m.setMessageType(Message::System);
+        // TODO add special element!See roomData QJsonObject({"_id":"u9xnnzaBQoQithsxP","msg":"You have been muted and cannot speak in this
+        // room","rid":"Dic5wZD4Zu9ze5gk3","ts":{"$date":1534166745895}})
+        // Temporary => we don't add it in database
+        */
+          r.messages.add(m);
+          notifyListeners();
+          break;
+        }
+      }
+    }
+  }
+
+  List<Room> rooms = [];
+  List<User> users = [];
+}
