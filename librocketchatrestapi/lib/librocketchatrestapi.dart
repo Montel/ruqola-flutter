@@ -86,3 +86,6 @@ export 'src/settings/publicsettings.dart';
 
 // subscriptions
 export 'src/subscriptions/markroomasread.dart';
+
+// role
+export 'src/roles/addusertorole.dart';
