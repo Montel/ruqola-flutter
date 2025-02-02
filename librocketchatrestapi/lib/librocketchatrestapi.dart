@@ -35,7 +35,7 @@ export 'src/misc/roleslist.dart';
 export 'src/misc/directory.dart';
 export 'src/misc/owninfo.dart';
 
-// room
+// rooms
 export 'src/rooms/roomsimages.dart';
 export 'src/rooms/roomsdelete.dart';
 export 'src/rooms/roomsmuteuser.dart';
@@ -45,6 +45,7 @@ export 'src/rooms/roomsfavorite.dart';
 export 'src/rooms/roomsnamexists.dart';
 export 'src/rooms/roomsinfo.dart';
 export 'src/rooms/getrooms.dart';
+export 'src/rooms/roomscleanhistory.dart';
 
 // invite
 export 'src/invite/validateinvitetoken.dart';
