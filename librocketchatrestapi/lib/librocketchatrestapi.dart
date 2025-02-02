@@ -44,6 +44,7 @@ export 'src/rooms/roomsleave.dart';
 export 'src/rooms/roomsfavorite.dart';
 export 'src/rooms/roomsnamexists.dart';
 export 'src/rooms/roomsinfo.dart';
+export 'src/rooms/getrooms.dart';
 
 // invite
 export 'src/invite/validateinvitetoken.dart';
