@@ -89,3 +89,4 @@ export 'src/subscriptions/markroomasread.dart';
 
 // role
 export 'src/roles/addusertorole.dart';
+export 'src/roles/roledelete.dart';
