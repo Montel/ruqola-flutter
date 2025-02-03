@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('Rooms Favorite', () {
+  group('Add user to role', () {
     test('check default values', () {
       librocketchatrestapi.AddUserToRoleInfo info =
           librocketchatrestapi.AddUserToRoleInfo("foo", "ddd");
