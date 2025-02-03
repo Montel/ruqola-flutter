@@ -96,3 +96,6 @@ export 'src/roles/removeuserfromrole.dart';
 export 'src/teams/teaminfo.dart';
 export 'src/teams/teamleaveroom.dart';
 export 'src/teams/teamslistrooms.dart';
+export 'src/teams/teamupdateroom.dart';
+export 'src/teams/teamsautocomplete.dart';
+export 'src/teams/teamremoveroom.dart';

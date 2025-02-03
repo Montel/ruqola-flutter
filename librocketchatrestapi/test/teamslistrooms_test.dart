@@ -9,17 +9,17 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('rooms name exist info', () {
+  group('teams list rooms info', () {
     test('check default values', () {
-      final info = librocketchatrestapi.TeamInfoInfo("fff");
-      librocketchatrestapi.TeamInfo teamInfo =
-          librocketchatrestapi.TeamInfo(info);
+      final info = librocketchatrestapi.TeamsListRoomsInfo("fff");
+      librocketchatrestapi.TeamsListRooms teamsListRooms =
+          librocketchatrestapi.TeamsListRooms(info);
       expect(info.teamId, 'fff');
-      expect(teamInfo.canStart(), false);
-      expect(teamInfo.requireHttpAuthentication(), true);
+      expect(teamsListRooms.canStart(), false);
+      expect(teamsListRooms.requireHttpAuthentication(), true);
 
-      expect(teamInfo.url("https://www.kde.org"),
-          Uri.parse('https://www.kde.org/api/v1/teams.info?teamId=fff'));
+      expect(teamsListRooms.url("https://www.kde.org"),
+          Uri.parse('https://www.kde.org/api/v1/teams.listRooms?teamId=fff'));
     });
   });
 }
