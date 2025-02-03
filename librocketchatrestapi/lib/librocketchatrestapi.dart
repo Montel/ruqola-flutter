@@ -90,3 +90,9 @@ export 'src/subscriptions/markroomasread.dart';
 // role
 export 'src/roles/addusertorole.dart';
 export 'src/roles/roledelete.dart';
+export 'src/roles/removeuserfromrole.dart';
+
+// team
+export 'src/teams/teaminfo.dart';
+export 'src/teams/teamleaveroom.dart';
+export 'src/teams/teamslistrooms.dart';
