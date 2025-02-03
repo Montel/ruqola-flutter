@@ -18,6 +18,7 @@ void main() {
       expect(file.url.isEmpty, true);
       expect(file.typeGroup.isEmpty, true);
       expect(file.fileIdentifier.isEmpty, true);
+      expect(file.path.isEmpty, true);
     });
   });
 }
