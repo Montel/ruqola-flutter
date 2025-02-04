@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('search text info', () {
+  group('star message info', () {
     test('check default values', () {
       librocketchatrestapi.StarMessageInfo info =
           librocketchatrestapi.StarMessageInfo("bla", true);

@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('Rooms Favorite', () {
+  group('Rooms room as read', () {
     test('check default values', () {
       librocketchatrestapi.MarkRoomAsReadInfo info =
           librocketchatrestapi.MarkRoomAsReadInfo("foo");

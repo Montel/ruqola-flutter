@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('search text info', () {
+  group('pin message info', () {
     test('check default values', () {
       librocketchatrestapi.PinMessageInfo info =
           librocketchatrestapi.PinMessageInfo("bla", false);

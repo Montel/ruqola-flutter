@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('follow message', () {
+  group('forgot password', () {
     test('check default values', () {
       librocketchatrestapi.ForgotPasswordInfo info =
           librocketchatrestapi.ForgotPasswordInfo("foo");

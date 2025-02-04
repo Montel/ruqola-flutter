@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('rooms name exist info', () {
+  group('rooms info', () {
     test('check default values', () {
       final info = librocketchatrestapi.RoomsInfoInfo("fff");
       librocketchatrestapi.RoomsInfo roomsInfo =

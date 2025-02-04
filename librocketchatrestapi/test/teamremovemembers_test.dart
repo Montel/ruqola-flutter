@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('Team Leave Room', () {
+  group('Team remove members', () {
     test('check default values', () {
       librocketchatrestapi.TeamRemoveMembersInfo info =
           librocketchatrestapi.TeamRemoveMembersInfo(

@@ -9,7 +9,7 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart'
 import 'package:test/test.dart';
 
 void main() {
-  group('personal access token', () {
+  group('generate personal access token', () {
     test('check default values', () {
       librocketchatrestapi.GeneratePersonalAccessTokenInfo info =
           librocketchatrestapi.GeneratePersonalAccessTokenInfo("foo", true);
