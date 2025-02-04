@@ -99,3 +99,4 @@ export 'src/teams/teamslistrooms.dart';
 export 'src/teams/teamupdateroom.dart';
 export 'src/teams/teamsautocomplete.dart';
 export 'src/teams/teamremoveroom.dart';
+export 'src/teams/teamremovemembers.dart';
