@@ -14,24 +14,24 @@ enum MessageType {
 class Message {
   Message({
     this.mMessageId = "",
-    this.mText,
-    this.mAlias,
-    this.mRoomId = "",
-    this.mAvatar,
-    this.mEditedByUsername,
-    this.mRole,
-    this.mEmoji,
+    this.mText = '',
+    this.mAlias = '',
+    this.mRoomId = '',
+    this.mAvatar = '',
+    this.mEditedByUsername = '',
+    this.mRole = '',
+    this.mEmoji = '',
   });
 
   factory Message.fromJson(Map<String, dynamic> json) {
     // print("MESSAGE: $json");
-    final messageId = json['_id'];
-    final text = json['msg'];
-    final alias = json['alias'];
-    final roomId = json['rid'];
-    final avatar = json['avatar'];
-    final role = json['role'];
-    final emoji = json['emoji'];
+    final messageId = json['_id'] ?? '';
+    final text = json['msg'] ?? '';
+    final alias = json['alias'] ?? '';
+    final roomId = json['rid'] ?? '';
+    final avatar = json['avatar'] ?? '';
+    final role = json['role'] ?? '';
+    final emoji = json['emoji'] ?? '';
     final editedByUsername = ""; // FIXME
     return Message(
         mMessageId: messageId,
@@ -52,26 +52,56 @@ class Message {
   final String mMessageId;
 
   // msg
-  String? mText;
+  String mText;
 
-  String? mAlias;
+  String mAlias;
 
   // rid
   final String mRoomId;
 
   // avatar
-  String? mAvatar;
-  String? mEditedByUsername;
+  String mAvatar;
+  String mEditedByUsername;
 
   // Role
-  String? mRole;
+  String mRole;
 
-  String? mEmoji;
+  String mEmoji;
   // Message Type
   MessageType mMessageType = MessageType.normaltext;
 
   @override
   String toString() {
     return "mRoomId: $mRoomId mText: $mText mAlias: $mAlias mMessageId: $mMessageId mAvatar:$mAvatar mEditedByUsername:$mEditedByUsername mRole:$mRole mMessageType: $mMessageType";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Message &&
+        other.mMessageId == mMessageId &&
+        other.mText == mText &&
+        other.mAlias == mAlias &&
+        other.mRoomId == mRoomId &&
+        other.mAvatar == mAvatar &&
+        other.mEditedByUsername == mEditedByUsername &&
+        other.mRole == mRole &&
+        other.mEmoji == mEmoji &&
+        other.mMessageType == mMessageType;
+  }
+
+  @override
+  int get hashCode {
+    return mMessageId.hashCode ^
+        mMessageId.hashCode ^
+        mText.hashCode ^
+        mAlias.hashCode ^
+        mRoomId.hashCode ^
+        mAvatar.hashCode ^
+        mEditedByUsername.hashCode ^
+        mEmoji.hashCode ^
+        mMessageType.hashCode ^
+        mRole.hashCode;
   }
 }
