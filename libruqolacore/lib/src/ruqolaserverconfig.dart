@@ -3,22 +3,24 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
-/*
-    enum AuthMethodType {
-        Unknown = 0,
-        Twitter = 1,
-        FaceBook = 2,
-        GitHub = 4,
-        GitLab = 8,
-        Google = 16,
-        Linkedin = 32,
-        Wordpress = 64,
-        Password = 128,
-        Apple = 256,
-        NextCloud = 512,
-        PersonalAccessToken = 1024,
-    };
-  */
+enum AuthMethodType {
+  unknown(1 << 0),
+  twitter(1 << 1),
+  faceBook(1 << 2),
+  gitHub(1 << 4),
+  gitLab(1 << 8),
+  google(1 << 16),
+  linkedin(1 << 32),
+  wordpress(1 << 64),
+  password(1 << 128),
+  apple(1 << 256),
+  nextCloud(1 << 512),
+  personalAccessToken(1 << 1024);
+
+  final int value;
+  const AuthMethodType(this.value);
+}
+
 class RuqolaServerConfig {
   /*
   // Server config
