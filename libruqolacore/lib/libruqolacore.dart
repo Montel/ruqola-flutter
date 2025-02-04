@@ -27,3 +27,6 @@ export 'src/systemtray/desktop.dart';
 
 // Typing notification
 export 'src/receivertypingnotification.dart';
+
+export 'src/ruqolaserverconfigpassword.dart';
+export 'src/ruqolaserverconfig.dart';

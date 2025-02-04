@@ -5,8 +5,15 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:libruqolacore/src/rocketchataccount.dart';
 
 class Accountmanager with ChangeNotifier {
   // TODO list of account
   // Use ini format
+  void loadAccounts() {
+    // TODO add accounts
+    notifyListeners();
+  }
+
+  List<Rocketchataccount> listAccouts = [];
 }
