@@ -5,13 +5,13 @@
  */
 
 class MessageAttachmentField {
-  MessageAttachmentField({this.value, this.title});
-  String? value;
-  String? title;
+  final String value;
+  final String title;
+  MessageAttachmentField({this.value = '', this.title = ''});
 
   MessageAttachmentField.fromJson(Map<String, dynamic> json)
-      : value = json['value'],
-        title = json['title'];
+      : value = json['value'] ?? '',
+        title = json['title'] ?? '';
 
   Map<String, dynamic> toJson() => {
         "value": value,
@@ -21,5 +21,19 @@ class MessageAttachmentField {
   @override
   String toString() {
     return "value: $value title: $title";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is MessageAttachmentField &&
+        other.value == value &&
+        other.title == title;
+  }
+
+  @override
+  int get hashCode {
+    return value.hashCode ^ title.hashCode;
   }
 }
