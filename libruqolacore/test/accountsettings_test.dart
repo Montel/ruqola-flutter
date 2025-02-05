@@ -11,13 +11,13 @@ void main() {
   group('AccountSettings', () {
     test('Test Initial values', () {
       final w = AccountSettings();
-      expect(w.authToken, null);
-      expect(w.userId, null);
-      expect(w.serverUrl, null);
-      expect(w.accountName, null);
-      expect(w.displayName, null);
-      expect(w.userName, null);
-      expect(w.password, null);
+      expect(w.authToken, '');
+      expect(w.userId, '');
+      expect(w.serverUrl, '');
+      expect(w.accountName, '');
+      expect(w.displayName, '');
+      expect(w.userName, '');
+      expect(w.password, '');
     });
   });
 }
