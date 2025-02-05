@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
+import 'package:flutter/material.dart';
+
 enum PasswordSettingCheck {
   none(1 << 0),
   minLengh(1 << 1),
@@ -22,6 +24,79 @@ class RuqolaServerConfigPassword {
   bool loadSettings(String id, String value) {
     // TODO
     return false;
+  }
+
+  int validatePassword(String str) {
+    int checks = PasswordSettingCheck.none.value;
+    if (!accountsPasswordPolicyEnabled) {
+      return checks;
+    }
+    int total = str.length;
+    if (total >= accountsPasswordPolicyMinLength) {
+      checks |= PasswordSettingCheck.minLengh.value;
+    }
+    if (total <= accountsPasswordPolicyMaxLength) {
+      checks |= PasswordSettingCheck.maxLengh.value;
+    }
+    if (accountsPasswordPolicyForbidRepeatingCharacters) {
+      bool tooManyRepeatingCharatersFound = false;
+      int maxRepeatingChar =
+          accountsPasswordPolicyForbidRepeatingCharactersCount;
+      int duplicateCharFound = 0;
+      for (int i = 0; i < total; ++i) {
+        var c = str[i];
+        for (int j = i; j < total; ++j) {
+          if (str[j] == c) {
+            duplicateCharFound++;
+          } else {
+            break;
+          }
+        }
+        if (duplicateCharFound > maxRepeatingChar) {
+          tooManyRepeatingCharatersFound = true;
+          break;
+        }
+        duplicateCharFound = 0;
+      }
+      if (!tooManyRepeatingCharatersFound) {
+        checks |= PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      }
+    }
+    if (accountsPasswordPolicyAtLeastOneLowercase) {
+      for (int i = 0; i < total; ++i) {
+        if (str[i].characters.toLowerCase() == str[i].characters) {
+          checks |= PasswordSettingCheck.atLeastOneLowercase.value;
+          break;
+        }
+      }
+    }
+    if (accountsPasswordPolicyAtLeastOneUppercase) {
+      for (int i = 0; i < total; ++i) {
+        if (str[i].characters.toUpperCase() == str[i].characters) {
+          checks |= PasswordSettingCheck.atLeastOneUppercase.value;
+          break;
+        }
+      }
+    }
+    if (accountsPasswordPolicyAtLeastOneNumber) {
+      for (int i = 0; i < total; ++i) {
+        if (str[i].characters is num) {
+          checks |= PasswordSettingCheck.atLeastOneNumber.value;
+          break;
+        }
+      }
+    }
+    /*
+    if (accountsPasswordPolicyAtLeastOneSpecialCharacter) {
+      for (int i = 0; i < total; ++i) {
+            if (a.isSymbol() || a.isPunct()) {
+                checks |= PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+                break;
+            }
+        }
+    }
+    */
+    return checks;
   }
 
   @override

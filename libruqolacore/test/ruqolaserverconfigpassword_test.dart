@@ -30,6 +30,28 @@ void main() {
               .accountsPasswordPolicyForbidRepeatingCharactersCount,
           3);
     });
+
+    test('empty', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      libruqolacore.PasswordSettingCheck check =
+          libruqolacore.PasswordSettingCheck.none;
+      libruqolacore.PasswordSettingCheck passwordOk =
+          libruqolacore.PasswordSettingCheck.none;
+      /*
+        const RuqolaServerConfig::PasswordSettings::PasswordSettingChecks f = passwordSettings.validatePassword(password);
+
+        QTest::newRow("empty") << QString() << settings << check << true << passwordOk;
+ 
+
+    // qDebug() << " f " << f;
+    QCOMPARE(f, checks);
+    // qDebug() << " FGGDFGSFGSDFGS " << f;
+    const bool passwordValidValue = passwordSettings.isValidatePassword(f);
+    // qDebug() << " passwordValidValue " << passwordValidValue << " password " << password;
+    QCOMPARE(passwordValidValue, valid);
+    QCOMPARE(passwordSettings.passwordValidChecks(), passwordOk);
+    */
+    });
   });
 
   // TODO add test loading elements
