@@ -119,6 +119,11 @@ class AccountSettings {
         _password.hashCode;
   }
 
+  @override
+  String toString() {
+    return "AccountSettings(userId: $_userId authToken: $_authToken serverUrl: $_serverUrl accountName:$_accountName displayName: $_displayName userName: $_userName )";
+  }
+
   String _userId = '';
   String _authToken = '';
   String _serverUrl = '';
