@@ -6,15 +6,15 @@
 import 'package:flutter/material.dart';
 
 enum PasswordSettingCheck {
-  none(1 << 0),
-  minLengh(1 << 1),
-  maxLengh(1 << 2),
-  forbidRepeatingCharactersCount(1 << 4),
-  forbidRepeatingCharacters(1 << 8),
-  atLeastOneLowercase(1 << 16),
-  atLeastOneUppercase(1 << 32),
-  atLeastOneSpecialCharacter(1 << 64),
-  atLeastOneNumber(1 << 128);
+  none(0), // We need to have 0!
+  minLengh(1 << 0),
+  maxLengh(1 << 1),
+  forbidRepeatingCharactersCount(1 << 2),
+  forbidRepeatingCharacters(1 << 4),
+  atLeastOneLowercase(1 << 8),
+  atLeastOneUppercase(1 << 16),
+  atLeastOneSpecialCharacter(1 << 32),
+  atLeastOneNumber(1 << 64);
 
   final int value;
   const PasswordSettingCheck(this.value);
@@ -86,16 +86,17 @@ class RuqolaServerConfigPassword {
         }
       }
     }
-    /*
     if (accountsPasswordPolicyAtLeastOneSpecialCharacter) {
-      for (int i = 0; i < total; ++i) {
-            if (a.isSymbol() || a.isPunct()) {
-                checks |= PasswordSettingCheck.atLeastOneSpecialCharacter.value;
-                break;
-            }
-        }
+      bool hasPunctuation = str
+          .split('')
+          .any((char) => RegExp(r'^\p{P}$', unicode: true).hasMatch(char));
+      bool hasSymbol = str
+          .split('')
+          .any((char) => RegExp(r'^\p{S}$', unicode: true).hasMatch(char));
+      if (hasSymbol || hasPunctuation) {
+        checks |= PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      }
     }
-    */
     return checks;
   }
 

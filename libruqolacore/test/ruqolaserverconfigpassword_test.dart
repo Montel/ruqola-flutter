@@ -31,28 +31,312 @@ void main() {
           3);
     });
 
+    void testValues(libruqolacore.RuqolaServerConfigPassword settings,
+        int check, int passwordOk, String password, bool valid) {
+      int f = settings.validatePassword(password);
+      expect(f, check);
+      bool passwordValidValue = settings.isValidatePassword(f);
+      expect(passwordValidValue, valid);
+      expect(settings.passwordValidChecks(), passwordOk);
+    }
+
     test('empty', () {
       final settings = libruqolacore.RuqolaServerConfigPassword();
-      libruqolacore.PasswordSettingCheck check =
-          libruqolacore.PasswordSettingCheck.none;
-      libruqolacore.PasswordSettingCheck passwordOk =
-          libruqolacore.PasswordSettingCheck.none;
-      /*
-        const RuqolaServerConfig::PasswordSettings::PasswordSettingChecks f = passwordSettings.validatePassword(password);
+      int check = libruqolacore.PasswordSettingCheck.none.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.none.value;
+      testValues(settings, check, passwordOk, '', true);
+    });
+    test('disable', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = false;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.none.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.none.value;
+      testValues(settings, check, passwordOk, "sdfsdfDdd2", true);
+    });
+    test('test2', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
 
-        QTest::newRow("empty") << QString() << settings << check << true << passwordOk;
- 
+      testValues(settings, check, passwordOk, "AAAAA", false);
+    });
 
-    // qDebug() << " f " << f;
-    QCOMPARE(f, checks);
-    // qDebug() << " FGGDFGSFGSDFGS " << f;
-    const bool passwordValidValue = passwordSettings.isValidatePassword(f);
-    // qDebug() << " passwordValidValue " << passwordValidValue << " password " << password;
-    QCOMPARE(passwordValidValue, valid);
-    QCOMPARE(passwordSettings.passwordValidChecks(), passwordOk);
-    */
+    test('test3', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = false;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aqsdfsdfsdf", false);
+    });
+
+    test('test4', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aqsdfsdfsdf", false);
+    });
+
+    test('test5', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444", false);
+    });
+    test('test6', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444", false);
+    });
+    test('test7', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyMaxLength = 8;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+
+      testValues(settings, check, passwordOk, "Aq144444", false);
+    });
+    test('test7 (less than max)', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyMaxLength = 8;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444", false);
+    });
+
+    test('test8', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyMaxLength = 8;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444@", true);
+    });
+
+    test('test8-1', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyMaxLength = 8;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444;", true);
+    });
+    test('test8-2', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyMaxLength = 8;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444_", true);
+    });
+
+    test('test9', () {
+      final settings = libruqolacore.RuqolaServerConfigPassword();
+      settings.accountsPasswordPolicyEnabled = true;
+      settings.accountsPasswordPolicyAtLeastOneUppercase = true;
+      settings.accountsPasswordPolicyAtLeastOneLowercase = true;
+      settings.accountsPasswordPolicyAtLeastOneNumber = true;
+      settings.accountsPasswordPolicyMinLength = 6;
+      settings.accountsPasswordPolicyMaxLength = 8;
+      settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 4;
+      int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore
+              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.maxLengh.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
+          libruqolacore.PasswordSettingCheck.minLengh.value |
+          libruqolacore
+              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
+      testValues(settings, check, passwordOk, "Aq1444_", true);
     });
   });
-
-  // TODO add test loading elements
 }
