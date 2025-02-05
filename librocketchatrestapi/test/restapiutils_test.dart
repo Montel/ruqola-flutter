@@ -1244,6 +1244,11 @@ void main() {
           librocketchatrestapi.generateUrl("http://www.kde.org",
               librocketchatrestapi.RestApiUrlType.roomsImages),
           Uri.parse('http://www.kde.org/api/v1/rooms.images'));
+
+      expect(
+          librocketchatrestapi.generateUrl("http://www.kde.org",
+              librocketchatrestapi.RestApiUrlType.roomsMembersOrderedByRole),
+          Uri.parse('http://www.kde.org/api/v1/rooms.membersOrderedByRole'));
     });
   });
 }

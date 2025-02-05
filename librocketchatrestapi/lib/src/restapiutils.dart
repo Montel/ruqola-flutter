@@ -389,6 +389,8 @@ enum RestApiUrlType {
 
   // rooms.images
   roomsImages,
+  // rooms.membersOrderedByRole (7.3.0)
+  roomsMembersOrderedByRole,
 }
 
 extension RestApiUrlTypeExtension on RestApiUrlType {
@@ -990,6 +992,8 @@ extension RestApiUrlTypeExtension on RestApiUrlType {
 
       case RestApiUrlType.roomsImages:
         return "rooms.images";
+      case RestApiUrlType.roomsMembersOrderedByRole:
+        return "rooms.membersOrderedByRole";
     }
   }
 }
