@@ -34,6 +34,7 @@ export 'src/misc/methodcall.dart';
 export 'src/misc/roleslist.dart';
 export 'src/misc/directory.dart';
 export 'src/misc/owninfo.dart';
+export 'src/misc/statistics.dart';
 
 // rooms
 export 'src/rooms/roomsimages.dart';
