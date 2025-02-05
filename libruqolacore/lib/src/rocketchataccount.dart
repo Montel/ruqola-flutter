@@ -203,7 +203,7 @@ class Rocketchataccount {
     }
     if (collection == "stream-room-messages") {
       models
-          .processIncomingMessages(changedElement.message!.fields!.args!.args!);
+          .processIncomingMessages(changedElement.message.fields!.args!.args!);
       // TODO
     } else if (collection == "users") {
       print("User collection");
