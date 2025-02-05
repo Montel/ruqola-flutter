@@ -13,11 +13,11 @@ void main() {
 
     test('Test Initial Message values', () {
       expect(message.mMessageId.isEmpty, true);
-      expect(message.mText?.isEmpty, true);
-      expect(message.mAlias?.isEmpty, true);
+      expect(message.mText.isEmpty, true);
+      expect(message.mAlias.isEmpty, true);
       expect(message.mRoomId.isEmpty, true);
-      expect(message.mAvatar?.isEmpty, true);
-      expect(message.mEditedByUsername?.isEmpty, true);
+      expect(message.mAvatar.isEmpty, true);
+      expect(message.mEditedByUsername.isEmpty, true);
       expect(message.mMessageType, libruqolacore.MessageType.normaltext);
     });
   });
