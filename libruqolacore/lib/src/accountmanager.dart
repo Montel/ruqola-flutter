@@ -11,6 +11,7 @@ class Accountmanager with ChangeNotifier {
   // TODO list of account
   // Use ini format
   void loadAccounts() {
+    // Search accounts from system!
     // TODO add accounts
     notifyListeners();
   }

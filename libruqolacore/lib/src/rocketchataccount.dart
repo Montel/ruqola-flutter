@@ -258,6 +258,7 @@ class Rocketchataccount {
               roomId, typingUserName, status);
         }
       } else if (eventname.endsWith("/deleteMessageBulk")) {
+        // TODO ????
       } else {
         print("Unknown stream-notify-room $eventname");
       }
