@@ -90,11 +90,12 @@ class RuqolaServerConfig {
 
   bool mMessageAllowConvertLongMessagesToAttachment = false;
   bool mUIUseRealName = false;
+  ServerConfigFeatureType mServerConfigFeatureTypes =
+      ServerConfigFeatureType.None;
+  List<String> mMediaWhiteList = [];
+  List<String> mMediaBlackList = [];
 /*
-    ServerConfigFeatureTypes mServerConfigFeatureTypes = ServerConfigFeatureType.none;
 
-    List<String> mMediaWhiteList;
-    List<String> mMediaBlackList;
 
     ConfigWithDefaultValue mLogoUrl;
     ConfigWithDefaultValue mFaviconUrl;

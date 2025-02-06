@@ -83,7 +83,7 @@ class Room with ChangeNotifier {
     if (map.containsKey("f")) {
       mFavorite = map["f"];
     }
-    roomTypeFromString(map["t"]);
+    roomTypeFromString(map["t"] ?? '');
 
     print("$this");
     notifyListeners();
@@ -121,15 +121,13 @@ class Room with ChangeNotifier {
 
     mAutoTranslate = map["autoTranslate"];
 
+    roomTypeFromString(map["t"] ?? '');
 /*
     setAutoTranslateLanguage(json["autoTranslateLanguage"_L1].toString());
     
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), json));
     // topic/announcement/description is not part of update subscription
-    const QString roomType = json.value("t"_L1).toString();
-    setChannelType(Room::roomTypeFromString(roomType));
 
-    setReadOnly(json["ro"_L1].toBool());
     if (json.contains("userMentions"_L1)) {
         setUserMentions(json["userMentions"_L1].toInt());
     }

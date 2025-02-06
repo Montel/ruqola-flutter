@@ -30,3 +30,9 @@ export 'src/receivertypingnotification.dart';
 
 export 'src/ruqolaserverconfigpassword.dart';
 export 'src/ruqolaserverconfig.dart';
+
+export 'src/role.dart';
+export 'src/roles.dart';
+export 'src/roleinfo.dart';
+
+export 'src/licensesmanager.dart';
