@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 /*
  * SPDX-FileCopyrightText: 2025 Laurent Montel <laurent.montel@kdab.com>
  *
@@ -21,6 +23,43 @@ enum AuthMethodType {
 
   final int value;
   const AuthMethodType(this.value);
+}
+
+enum ServerConfigFeatureType {
+  None(0),
+  AllowEditingMessage(1 << 0),
+  OtrEnabled(1 << 1),
+  // NeedAdaptNewSubscriptionRC60 = 4,
+  EncryptionEnabled(1 << 2),
+  AllowMessagePinning(1 << 4),
+  AllowMessageStarring(1 << 8),
+  AllowMessageDeleting(1 << 16),
+  JitsiEnabled(1 << 32),
+  ThreadsEnabled(1 << 64),
+  DiscussionEnabled(1 << 128),
+  AutoTranslateEnabled(1 << 256),
+  UploadFileEnabled(1 << 512),
+  BroadCastEnabled(1 << 1024),
+  VideoRecorderEnabled(1 << 2048),
+  AudioRecorderEnabled(1 << 4096),
+  AllowDeleteOwnAccount(1 << 8192),
+  RegistrationFormEnabled(1 << 16384),
+  AllowPasswordReset(1 << 32768),
+  AllowEmailChange(1 << 65536),
+  AllowPasswordChange(1 << 131072),
+  AllowUsernameChange(1 << 262144),
+  AllowUserProfileChange(1 << 524288),
+  AllowUserAvatarChange(1 << 1048576),
+  LdapEnabled(1 << 2097152),
+  JitsiEnabledTeams(1 << 4194304),
+  JitsiEnabledChannels(1 << 8388608),
+  TwoFactorAuthenticationEnabled(1 << 16777216),
+  TwoFactorAuthenticationByEmailEnabled(1 << 33554432),
+  TwoFactorAuthenticationByTOTPEnabled(1 << 67108864),
+  TwoFactorAuthenticationEnforcePasswordFallback(1 << 134217728);
+
+  final int value;
+  const ServerConfigFeatureType(this.value);
 }
 
 class RuqolaServerConfig {
