@@ -92,4 +92,28 @@ class User {
         active: active,
         status: status);
   }
+  @override
+  bool operator ==(Object other) {
+    return other is User &&
+        other.userid == userid &&
+        other.name == name &&
+        other.username == username &&
+        other.statusText == statusText &&
+        other.bio == bio &&
+        other.nickname == nickname &&
+        other.active == active &&
+        other.status == status;
+  }
+
+  @override
+  int get hashCode {
+    return userid.hashCode ^
+        name.hashCode ^
+        username.hashCode ^
+        statusText.hashCode ^
+        bio.hashCode ^
+        nickname.hashCode ^
+        active.hashCode ^
+        status.hashCode;
+  }
 }
