@@ -7,6 +7,16 @@
 import 'package:libruqolacore/src/role.dart';
 
 class Roles {
-  List<Role> mRoles = [];
+  // TODO parse it.
+  List<Role> roles = [];
   // TODO
+  @override
+  bool operator ==(Object other) {
+    return other is Roles && other.roles == roles;
+  }
+
+  @override
+  int get hashCode {
+    return roles.hashCode;
+  }
 }

@@ -118,4 +118,33 @@ class RuqolaServerConfig {
   bool mAllowEmailVerification = false;
   bool mFederationEnabled = false;
   bool mAccountsManuallyApproveNewUsers = false;
+
+// TODO implement it
+/*
+    @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is RetentionInfo &&
+        other.enabled == enabled &&
+        other.overrideGlobal == overrideGlobal &&
+        other.excludePinned == excludePinned &&
+        other.filesOnly == filesOnly &&
+        other.maxAge == maxAge;
+  }
+
+  @override
+  int get hashCode {
+    return enabled.hashCode ^
+        overrideGlobal.hashCode ^
+        excludePinned.hashCode ^
+        filesOnly.hashCode ^
+        maxAge.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'RetentionInfo(enabled: $enabled, overrideGlobal: $overrideGlobal, excludePinned: $excludePinned, filesOnly: $filesOnly, maxAge: $maxAge)';
+  }
+  */
 }
