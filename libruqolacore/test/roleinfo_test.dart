@@ -4,8 +4,6 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
-import 'package:test/test.dart';
 
 void main() {
   /*

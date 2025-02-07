@@ -3,7 +3,6 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
-import 'package:libddpapi/libddpapi.dart' as libddpapi;
 import 'package:test/test.dart';
 
 void main() {

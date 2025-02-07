@@ -5,7 +5,6 @@
  */
 
 import 'package:librocketchatrestapi/librocketchatrestapi.dart';
-import 'package:http/http.dart' as http;
 
 class ChannelClose extends Restapiabstractjob {
   @override

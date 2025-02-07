@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 // Look at https://github.com/Fintasys/emoji_picker_flutter/blob/master/example/lib/main_whatsapp.dart
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
 class Messageline extends StatelessWidget {
   final Rocketchataccount account;

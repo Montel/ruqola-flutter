@@ -53,11 +53,7 @@ class MessageViewSelectionState extends State<MessageView> {
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                   child: ListTile(
-                                      title: SelectableText(messages[index]
-                                                  .mText ==
-                                              null
-                                          ? "Message Not found. Problem ?" // I18n
-                                          : messages[index].mText!),
+                                      title: SelectableText(messages[index].mText),
                                       dense: true));
                             });
                       }),
