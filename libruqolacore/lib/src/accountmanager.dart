@@ -16,5 +16,10 @@ class Accountmanager with ChangeNotifier {
     notifyListeners();
   }
 
+  void addAccount(Rocketchataccount account) {
+    listAccouts.add(account);
+    notifyListeners();
+  }
+
   List<Rocketchataccount> listAccouts = [];
 }
