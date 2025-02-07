@@ -173,10 +173,6 @@ class RuqolaServerConfigPassword {
     final currentPolicy = passwordValidChecks();
     return currentPolicy == checks;
   }
-  /*
-  // TODO reimplement it in the future.
-        [[nodiscard]] PasswordSettingChecks validatePassword(const QString &str);
-  */
 
   int accountsPasswordPolicyMinLength = 12;
   int accountsPasswordPolicyMaxLength = 24;
