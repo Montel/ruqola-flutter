@@ -19,7 +19,7 @@ export 'src/message/messageattachmentfield.dart';
 export 'src/message/messageattachment.dart';
 export 'src/message/reaction.dart';
 export 'src/retentioninfo.dart';
-export 'src/accountmanager.dart';
+export 'src/manager/accountmanager.dart';
 export 'src/notificationinfo.dart';
 
 // Systemtray
@@ -31,8 +31,10 @@ export 'src/receivertypingnotification.dart';
 export 'src/ruqolaserverconfigpassword.dart';
 export 'src/ruqolaserverconfig.dart';
 
-export 'src/role.dart';
-export 'src/roles.dart';
-export 'src/roleinfo.dart';
+export 'src/roles/role.dart';
+export 'src/roles/roles.dart';
+export 'src/roles/roleinfo.dart';
 
-export 'src/licensesmanager.dart';
+export 'src/manager/licensesmanager.dart';
+
+export 'src/managedevices/deviceinfo.dart';

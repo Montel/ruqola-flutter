@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:libruqolacore/src/role.dart';
+import 'package:libruqolacore/src/roles/role.dart';
 
 class Roles {
   // TODO parse it.
