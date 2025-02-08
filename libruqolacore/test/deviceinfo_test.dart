@@ -5,6 +5,7 @@
  */
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
+import 'libruqolacoretest.dart';
 
 void main() {
   group('Device Info', () {
@@ -20,6 +21,12 @@ void main() {
       expect(info.os.isEmpty, true);
       expect(info.loginAtDateTimeStr.isEmpty, true);
       expect(info.loginAt, -1);
+    });
+
+    test('empty json', () {
+      final data = extractJsonData("deviceinfo", "deviceinfo-empty.json");
+      final f = Deviceinfo.fromJson(data);
+      expect(f, Deviceinfo());
     });
   });
 }
