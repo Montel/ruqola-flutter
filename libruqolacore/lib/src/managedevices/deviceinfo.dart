@@ -37,8 +37,7 @@ class Deviceinfo {
     if (deviceObj) {
       var osObj = deviceObj["os"];
       if (osObj) {
-        os =
-            osObj["name"] == null ? '' : osObj["name"] + ' ' + osObj["version"];
+        os = osObj["name"] == null ? '' : '$osObj["name"]$osObj["version"]';
       }
       client = deviceObj["name"] ?? '';
     }
