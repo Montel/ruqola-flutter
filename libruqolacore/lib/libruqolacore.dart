@@ -38,3 +38,4 @@ export 'src/roles/roleinfo.dart';
 export 'src/manager/licensesmanager.dart';
 
 export 'src/managedevices/deviceinfo.dart';
+export 'src/managedevices/deviceinfos.dart';
