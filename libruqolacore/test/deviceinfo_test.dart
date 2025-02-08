@@ -37,7 +37,7 @@ void main() {
       expected.ip = "179.4.8.1";
       expected.sessionId = "iKzd";
       expected.userId = "acidH";
-      // TODO expected.setLoginAt(1660405994979);
+      expected.loginAt = 1660405994979;
       expect(f, expected);
     });
     test('test2 json', () {
@@ -52,7 +52,7 @@ void main() {
       expected.userId = "dacidH";
       expected.client = "Firefox";
       expected.os = "Linux x86_64";
-      // TODO expected.setLoginAt(1660404361954);
+      expected.loginAt = 1660404361954;
       expect(f, expected);
     });
   });

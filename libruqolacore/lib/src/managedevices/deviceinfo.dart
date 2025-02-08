@@ -42,7 +42,10 @@ class Deviceinfo {
       }
       client = deviceObj["name"] ?? '';
     }
-    // TODO setLoginAt(Utils::parseIsoDate(QStringLiteral("loginAt"), obj));
+    if (json["loginAt"] != null) {
+      loginAt =
+          DateTime.parse(json["loginAt"].toString()).millisecondsSinceEpoch;
+    }
 
     Deviceinfo info = Deviceinfo();
     info.identifier = identifier;
