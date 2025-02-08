@@ -28,5 +28,32 @@ void main() {
       final f = Deviceinfo.fromJson(data);
       expect(f, Deviceinfo());
     });
+    test('test1 json', () {
+      final data = extractJsonData("deviceinfo", "deviceinfo1.json");
+      final f = Deviceinfo.fromJson(data);
+      Deviceinfo expected = Deviceinfo();
+      expected.host = "chat.kde.org";
+      expected.identifier = "iy78NiKzd";
+      expected.ip = "179.4.8.1";
+      expected.sessionId = "iKzd";
+      expected.userId = "acidH";
+      // TODO expected.setLoginAt(1660405994979);
+      expect(f, expected);
+    });
+    test('test2 json', () {
+      final data = extractJsonData("deviceinfo", "deviceinfo2.json");
+      final f = Deviceinfo.fromJson(data);
+      Deviceinfo expected = Deviceinfo();
+      expected.host = "chat.kde.org";
+      expected.identifier = "87pMW";
+      expected.ip = "1.7.6.11";
+      expected.sessionId = "87pMW";
+
+      expected.userId = "dacidH";
+      expected.client = "Firefox";
+      expected.os = "Linux x86_64";
+      // TODO expected.setLoginAt(1660404361954);
+      expect(f, expected);
+    });
   });
 }
