@@ -34,9 +34,9 @@ class Deviceinfo {
     ip = json["ip"] ?? '';
     userId = json["userId"] ?? '';
     var deviceObj = json["device"];
-    if (deviceObj) {
+    if (deviceObj != null) {
       var osObj = deviceObj["os"];
-      if (osObj) {
+      if (osObj != null) {
         os = osObj["name"] == null ? '' : '$osObj["name"]$osObj["version"]';
       }
       client = deviceObj["name"] ?? '';
