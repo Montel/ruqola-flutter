@@ -10,8 +10,16 @@ class Deviceinfos {
   Deviceinfos();
 
   factory Deviceinfos.fromJson(Map<String, dynamic> json) {
-    // TODO
-    return Deviceinfos();
+    Deviceinfos info = Deviceinfos();
+    final deviceInfosCount = json["count"] ?? 0;
+    final offset = json["offset"] ?? 0;
+    final total = json["total"] ?? 0;
+    info.deviceInfosCount = deviceInfosCount;
+    info.offset = offset;
+    info.total = total;
+    // List<Deviceinfo> listDevices =
+    // TODO parseDeviceInfosObj
+    return info;
   }
 
   List<Deviceinfo> listDevices = [];
