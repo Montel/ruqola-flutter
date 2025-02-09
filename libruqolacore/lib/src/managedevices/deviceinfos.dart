@@ -14,11 +14,15 @@ class Deviceinfos {
     final deviceInfosCount = json["count"] ?? 0;
     final offset = json["offset"] ?? 0;
     final total = json["total"] ?? 0;
+    List<Deviceinfo> listDevices = [];
+    for (var item in json["sessions"]) {
+      var deviceInfo = Deviceinfo.fromJson(item);
+      listDevices.add(deviceInfo);
+    }
     info.deviceInfosCount = deviceInfosCount;
     info.offset = offset;
     info.total = total;
-    // List<Deviceinfo> listDevices =
-    // TODO parseDeviceInfosObj
+    info.listDevices = listDevices;
     return info;
   }
 
