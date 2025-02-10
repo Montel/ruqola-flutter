@@ -5,6 +5,7 @@
  */
 
 import 'package:libruqolacore/src/roles/role.dart';
+import 'package:collection/collection.dart';
 
 class Roles {
   // TODO parse it.
@@ -12,7 +13,10 @@ class Roles {
   // TODO
   @override
   bool operator ==(Object other) {
-    return other is Roles && other.roles == roles;
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final listEquality = ListEquality();
+    return other is Roles && listEquality.equals(other.roles, roles);
   }
 
   @override
