@@ -10,6 +10,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   # path: ^1.8.0
+  collection: ^1.19.0
   flutter:
     sdk: flutter
   ini: ^2.1.0

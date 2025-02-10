@@ -62,6 +62,7 @@ class Deviceinfo {
 
   @override
   bool operator ==(Object other) {
+    if (identical(this, other)) return true;
     return other is Deviceinfo &&
         other.identifier == identifier &&
         other.host == host &&

@@ -5,36 +5,52 @@
  */
 
 import 'package:libruqolacore/src/managedevices/deviceinfo.dart';
+import 'package:collection/collection.dart';
 
 class Deviceinfos {
-  Deviceinfos();
+  final List<Deviceinfo> listDevices;
+  final int deviceInfosCount;
+  final int offset;
+  final int total;
 
+  Deviceinfos({
+    required this.listDevices,
+    required this.deviceInfosCount,
+    required this.offset,
+    required this.total,
+  });
   factory Deviceinfos.fromJson(Map<String, dynamic> json) {
-    Deviceinfos info = Deviceinfos();
     final deviceInfosCount = json["count"] ?? 0;
     final offset = json["offset"] ?? 0;
     final total = json["total"] ?? 0;
     List<Deviceinfo> listDevices = [];
-    for (var item in json["sessions"]) {
-      var deviceInfo = Deviceinfo.fromJson(item);
-      listDevices.add(deviceInfo);
+    final sessions = json["sessions"];
+    if (sessions != null) {
+      for (var item in sessions) {
+        var deviceInfo = Deviceinfo.fromJson(item);
+        listDevices.add(deviceInfo);
+      }
     }
-    info.deviceInfosCount = deviceInfosCount;
-    info.offset = offset;
-    info.total = total;
-    info.listDevices = listDevices;
-    return info;
+    return Deviceinfos(
+      listDevices: listDevices,
+      deviceInfosCount: deviceInfosCount,
+      offset: offset,
+      total: total,
+    );
   }
-
-  List<Deviceinfo> listDevices = [];
-  int deviceInfosCount = 0;
-  int offset = 0;
-  int total = 0;
+  Deviceinfos.defaultValues()
+      : listDevices = [],
+        deviceInfosCount = 0,
+        offset = 0,
+        total = 0;
 
   @override
   bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final listEquality = ListEquality();
     return other is Deviceinfos &&
-        other.listDevices == listDevices &&
+        listEquality.equals(other.listDevices, listDevices) &&
         other.deviceInfosCount == deviceInfosCount &&
         other.offset == offset &&
         other.total == total;
