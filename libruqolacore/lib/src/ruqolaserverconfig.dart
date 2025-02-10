@@ -65,55 +65,55 @@ enum ServerConfigFeatureType {
 class RuqolaServerConfig {
   // Server config
   RuqolaServerConfigPassword mPasswordSettings = RuqolaServerConfigPassword();
-  String mUniqueId = '';
-  String mJitsiMeetUrl = '';
-  String mJitsiMeetPrefix = '';
-  String mFileUploadStorageType = '';
-  String mSiteUrl = '';
-  String mSiteName = '';
-  String mServerVersionStr = '';
-  String mAutoTranslateGoogleKey = '';
-  String mChannelNameValidation = '';
-  String mUserNameValidation = '';
-  String mAccountsDefaultUserPreferencesDesktopNotifications = '';
-  String mAccountsDefaultUserPreferencesPushNotifications = '';
+  String uniqueId = '';
+  String jitsiMeetUrl = '';
+  String jitsiMeetPrefix = '';
+  String fileUploadStorageType = '';
+  String siteUrl = '';
+  String siteName = '';
+  String serverVersionStr = '';
+  String autoTranslateGoogleKey = '';
+  String channelNameValidation = '';
+  String userNameValidation = '';
+  String accountsDefaultUserPreferencesDesktopNotifications = '';
+  String accountsDefaultUserPreferencesPushNotifications = '';
   /*
     int mServerAuthTypes = AuthMethodType.unknown.value;
     AuthenticationManager::AuthMethodTypes mRuqolaAuthMethodTypes = AuthenticationManager::AuthMethodType::Unknown;
     */
-  int mBlockEditingMessageInMinutes = 5;
-  int mBlockDeletingMessageInMinutes = 5;
-  int mServerVersionMajor = -1;
-  int mServerVersionMinor = -1;
-  int mServerVersionPatch = -1;
-  int mFileMaxFileSize = -1;
+  int blockEditingMessageInMinutes = 5;
+  int blockDeletingMessageInMinutes = 5;
+  int serverVersionMajor = -1;
+  int serverVersionMinor = -1;
+  int serverVersionPatch = -1;
+  int fileMaxFileSize = -1;
 
-  bool mMessageAllowConvertLongMessagesToAttachment = false;
-  bool mUIUseRealName = false;
-  ServerConfigFeatureType mServerConfigFeatureTypes =
+  bool messageAllowConvertLongMessagesToAttachment = false;
+  bool uIUseRealName = false;
+  ServerConfigFeatureType serverConfigFeatureTypes =
       ServerConfigFeatureType.None;
-  List<String> mMediaWhiteList = [];
-  List<String> mMediaBlackList = [];
+  List<String> mediaWhiteList = [];
+  List<String> mediaBlackList = [];
 /*
 
 
     ConfigWithDefaultValue mLogoUrl;
     ConfigWithDefaultValue mFaviconUrl;
     */
-  int mLoginExpiration = -1;
-  int mMessageMaximumAllowedSize = -1;
-  int mMessageGroupingPeriod = -1;
-  int mDirectMessageMaximumUser = -1;
-  int mMessageQuoteChainLimit = -1;
-  int mEmbedCacheExpirationDays = 30; // Default value in RC
+  int loginExpiration = -1;
+  int messageMaximumAllowedSize = -1;
+  int messageGroupingPeriod = -1;
+  int directMessageMaximumUser = -1;
+  int messageQuoteChainLimit = -1;
+  int embedCacheExpirationDays = 30; // Default value in RC
 
-  bool mHasEnterpriseSupport = false;
+  bool hasEnterpriseSupport = false;
   bool mAccountsAllowInvisibleStatusOption = true; // Default true
-  bool mUserDataDownloadEnabled = true;
-  bool mDeviceManagementEnableLoginEmails = false;
-  bool mDeviceManagementAllowLoginEmailpreference = false;
-  bool mAllowCustomStatusMessage = false;
-  bool mPreviewEmbed = false;
+  bool userDataDownloadEnabled = true;
+  bool deviceManagementEnableLoginEmails = false;
+  bool deviceManagementAllowLoginEmailpreference = false;
+  bool allowCustomStatusMessage = false;
+  bool previewEmbed = false;
   bool mAllowEmailNotifications = true; // Default true
   bool mAllowEmailVerification = false;
   bool mFederationEnabled = false;
