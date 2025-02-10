@@ -50,6 +50,14 @@ class Rocketchataccountmodels with ChangeNotifier {
     return a.displayName().compareTo(b.displayName());
   }
 
+// TODO add headers type name
+  Map<String, List<Room>> sortedRoomsWithType(
+      [RoomListSortOrder list = RoomListSortOrder.alphabetically]) {
+    Map<String, List<Room>> groupedRooms = {};
+    // TODO implment it
+    return groupedRooms;
+  }
+
   List<Room> sortedRooms(
       [RoomListSortOrder list = RoomListSortOrder.alphabetically]) {
     rooms.sort((a, b) => compare(a, b, list));
