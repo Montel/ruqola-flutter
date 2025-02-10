@@ -39,3 +39,7 @@ export 'src/manager/licensesmanager.dart';
 
 export 'src/managedevices/deviceinfo.dart';
 export 'src/managedevices/deviceinfos.dart';
+
+// Command
+export 'src/commands/command.dart';
+export 'src/commands/commands.dart';
