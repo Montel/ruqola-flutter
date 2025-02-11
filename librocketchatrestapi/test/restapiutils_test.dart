@@ -754,6 +754,26 @@ void main() {
 
       expect(
           librocketchatrestapi.generateUrl("http://www.kde.org",
+              librocketchatrestapi.RestApiUrlType.e2EAcceptSuggestedGroupKey),
+          Uri.parse('http://www.kde.org/api/v1/e2e.acceptSuggestedGroupKey'));
+      expect(
+          librocketchatrestapi.generateUrl("http://www.kde.org",
+              librocketchatrestapi.RestApiUrlType.e2ERejectSuggestedGroupKey),
+          Uri.parse('http://www.kde.org/api/v1/e2e.rejectSuggestedGroupKey'));
+      expect(
+          librocketchatrestapi.generateUrl(
+              "http://www.kde.org",
+              librocketchatrestapi
+                  .RestApiUrlType.e2EProvideUsersWithSuggestedGroupKeys),
+          Uri.parse(
+              'http://www.kde.org/api/v1/e2e.provideUsersWithSuggestedGroupKeys'));
+      expect(
+          librocketchatrestapi.generateUrl("http://www.kde.org",
+              librocketchatrestapi.RestApiUrlType.e2EResetRoomKey),
+          Uri.parse('http://www.kde.org/api/v1/e2e.resetRoomKey'));
+
+      expect(
+          librocketchatrestapi.generateUrl("http://www.kde.org",
               librocketchatrestapi.RestApiUrlType.rolesList),
           Uri.parse('http://www.kde.org/api/v1/roles.list'));
       expect(
