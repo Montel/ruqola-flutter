@@ -101,3 +101,7 @@ export 'src/teams/teamupdateroom.dart';
 export 'src/teams/teamsautocomplete.dart';
 export 'src/teams/teamremoveroom.dart';
 export 'src/teams/teamremovemembers.dart';
+
+// e2e
+export 'src/e2e/acceptsuggestedgroupkey.dart';
+export 'src/e2e/rejectsuggestedgroupkey.dart';
