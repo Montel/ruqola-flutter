@@ -42,6 +42,28 @@ class ChannelViewSelectionState extends State<ChannelView> {
                     // so that the framework knows to update the rendering.
                     final List<Room> values =
                         models.sortedRooms(); // copy the list
+
+                    // TODO use it
+                    final Map<String, List<Room>> sortedRoomsWithType =
+                        models.sortedRoomsWithType();
+
+                    // Construire la liste avec des titres de catégorie
+                    List<Widget> listWidgets = [];
+                    sortedRoomsWithType.forEach((category, categoryItems) {
+                      listWidgets.add(ListTile(
+                        title: Text(category,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        tileColor: Colors.grey[200],
+                      ));
+                      listWidgets.addAll(categoryItems.map((item) => ListTile(
+                            title: Text(item.displayName()),
+                          )));
+                    });
+
+                    return ListView(
+                      children: listWidgets,
+                    );
+
                     return Container(
                         decoration: BoxDecoration(
                           border: Border.all(

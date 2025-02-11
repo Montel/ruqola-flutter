@@ -136,7 +136,9 @@ RoomModel::Section RoomModel::section(Room *r) const
       if (!groupedRooms.containsKey(sectionName)) {
         groupedRooms[sectionName] = [];
       }
-      groupedRooms[sectionName]!.add(room);
+      if (room.mOpen) {
+        groupedRooms[sectionName]!.add(room);
+      }
     }
     return groupedRooms;
   }
