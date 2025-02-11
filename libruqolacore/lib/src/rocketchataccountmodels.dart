@@ -132,21 +132,15 @@ RoomModel::Section RoomModel::section(Room *r) const
     rooms.sort((a, b) => compare(a, b, list));
 
     for (var room in rooms) {
-      String sectionName = section(room).name;
-      if (!groupedRooms.containsKey(sectionName)) {
-        groupedRooms[sectionName] = [];
-      }
       if (room.mOpen) {
+        String sectionName = section(room).name;
+        if (!groupedRooms.containsKey(sectionName)) {
+          groupedRooms[sectionName] = [];
+        }
         groupedRooms[sectionName]!.add(room);
       }
     }
     return groupedRooms;
-  }
-
-  List<Room> sortedRooms(
-      [RoomListSortOrder list = RoomListSortOrder.alphabetically]) {
-    rooms.sort((a, b) => compare(a, b, list));
-    return rooms;
   }
 
   void setRoomWasInitialized(String roomId, bool initialized) {
