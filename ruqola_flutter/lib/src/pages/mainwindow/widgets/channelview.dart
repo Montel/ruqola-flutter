@@ -24,6 +24,7 @@ class ChannelView extends StatefulWidget {
 
 class ChannelViewSelectionState extends State<ChannelView> {
   String? roomIdSelected;
+  final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final models = Provider.of<Rocketchataccountmodels>(context);
@@ -32,6 +33,23 @@ class ChannelViewSelectionState extends State<ChannelView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Search', // I18n!
+                  suffixIcon: IconButton(
+                    onPressed: _controller.clear,
+                    icon: const Icon(Icons.clear),
+                  ),
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
+                ),
+                // onChanged: {
+                // TODO implement it
+                //}
+              ),
+            ),
             Expanded(
               child: ListenableBuilder(
                   listenable: models,
