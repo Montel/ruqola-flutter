@@ -24,7 +24,7 @@ class ChannelView extends StatefulWidget {
 
 class ChannelViewSelectionState extends State<ChannelView> {
   // Currently selected item index
-  int? selectedIndex;
+  Room? selectedIndex;
   String? roomIdSelected;
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,6 @@ class ChannelViewSelectionState extends State<ChannelView> {
                   builder: (BuildContext context, Widget? child) {
                     // We rebuild the ListView each time the list changes,
                     // so that the framework knows to update the rendering.
-                    final List<Room> values =
-                        models.sortedRooms(); // copy the list
-
                     // TODO use it
                     final Map<String, List<Room>> sortedRoomsWithType =
                         models.sortedRoomsWithType();
@@ -56,14 +53,23 @@ class ChannelViewSelectionState extends State<ChannelView> {
                         tileColor: Colors.grey[200],
                       ));
                       listWidgets.addAll(categoryItems.map((item) => ListTile(
-                            title: Text(item.displayName()),
-                          )));
+                          title: Text(item.displayName()),
+                          selected: selectedIndex == item,
+                          selectedTileColor: Colors.blue[100],
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = item;
+                            });
+                            roomIdSelected = item.mRoomId;
+                            SharedValue.currentRoomId.value = roomIdSelected!;
+                            widget.account.loadHistory(roomIdSelected!);
+                          })));
                     });
 
                     return ListView(
                       children: listWidgets,
                     );
-
+/*
                     return Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -145,6 +151,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
                                     ),
                                   ));
                             }));
+                  */
                   }),
             ),
           ],
