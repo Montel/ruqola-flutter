@@ -10,6 +10,19 @@ import 'package:libruqolacore/src/room.dart';
 import 'package:libruqolacore/src/user.dart';
 import 'package:flutter/material.dart';
 
+enum SectionName {
+  unread("Unread"), // I18n
+  favorites("Favorites"),
+  teams("Teams"),
+  rooms("Rooms"),
+  privateMessages("Private Messages"),
+  discussions("Discussions"),
+  unknown("Unknown");
+
+  final String name;
+  const SectionName(this.name);
+}
+
 class Rocketchataccountmodels with ChangeNotifier {
   void parseSubscriptionGet(Messagenotificationresult map) {
     print("parseSubscriptionGet $map");
@@ -50,11 +63,81 @@ class Rocketchataccountmodels with ChangeNotifier {
     return a.displayName().compareTo(b.displayName());
   }
 
-// TODO add headers type name
+  String sectionName(SectionName e) {
+    return e.name;
+  }
+
+  SectionName section(Room r) {
+    if (r.mFavorite) {
+      // TODO
+      return SectionName.favorites;
+    }
+    switch (r.mChannelType) {
+      case RoomType.direct:
+        return SectionName.privateMessages;
+      case RoomType.channel:
+        return SectionName.rooms;
+      case RoomType.private:
+        return SectionName.discussions;
+      case RoomType.unknown:
+        break;
+    }
+    return SectionName.unknown;
+  }
+
+/*
+RoomModel::Section RoomModel::section(Room *r) const
+{
+    const Room::RoomType roomType = r->channelType();
+    if (mRocketChatAccount && mRocketChatAccount->sortUnreadOnTop() && (r->unread() > 0 || r->alert())) {
+        if (!r->hideUnreadStatus()) {
+            return Section::Unread;
+        }
+    }
+    if (r->favorite() && mRocketChatAccount && mRocketChatAccount->sortFavoriteChannels()) {
+        return Section::Favorites;
+    } else if (r->favorite() && !mRocketChatAccount) {
+        return Section::Favorites;
+    } else if (r->teamInfo().mainTeam()) {
+        return Section::Teams;
+    }
+    switch (roomType) {
+    case Room::RoomType::Private: {
+        if (r->parentRid().isEmpty()) {
+            return Section::Rooms;
+        } else {
+            return Section::Discussions;
+        }
+    }
+    case Room::RoomType::Channel: {
+        if (r->parentRid().isEmpty()) {
+            return Section::Rooms;
+        } else {
+            return Section::Discussions;
+        }
+    }
+    case Room::RoomType::Direct: {
+        return Section::PrivateMessages;
+    }
+    case Room::RoomType::Unknown:
+        break;
+    }
+    return Section::Unknown;
+}
+*/
   Map<String, List<Room>> sortedRoomsWithType(
       [RoomListSortOrder list = RoomListSortOrder.alphabetically]) {
     Map<String, List<Room>> groupedRooms = {};
-    // TODO implment it
+
+    rooms.sort((a, b) => compare(a, b, list));
+
+    for (var room in rooms) {
+      String sectionName = section(room).name;
+      if (!groupedRooms.containsKey(sectionName)) {
+        groupedRooms[sectionName] = [];
+      }
+      groupedRooms[sectionName]!.add(room);
+    }
     return groupedRooms;
   }
 
