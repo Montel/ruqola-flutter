@@ -15,9 +15,13 @@ export 'src/accountsettings.dart';
 export 'src/rocketchataccount.dart';
 export 'src/rocketchataccountmodels.dart';
 export 'src/ownuserpreferences.dart';
+
+// Message
 export 'src/message/messageattachmentfield.dart';
 export 'src/message/messageattachment.dart';
 export 'src/message/reaction.dart';
+export 'src/message/messageurl.dart';
+
 export 'src/retentioninfo.dart';
 export 'src/manager/accountmanager.dart';
 export 'src/notificationinfo.dart';

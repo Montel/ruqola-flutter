@@ -35,6 +35,6 @@ class Reaction {
   }
   @override
   String toString() {
-    return "mReactionName: $mReactionName mUserNames: $mUserNames";
+    return "Reaction(mReactionName: $mReactionName mUserNames: $mUserNames)";
   }
 }

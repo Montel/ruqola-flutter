@@ -20,7 +20,7 @@ class MessageAttachmentField {
 
   @override
   String toString() {
-    return "value: $value title: $title";
+    return "MessageAttachmentField(value: $value title: $title)";
   }
 
   @override
