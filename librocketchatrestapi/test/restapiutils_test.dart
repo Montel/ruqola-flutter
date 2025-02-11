@@ -773,6 +773,14 @@ void main() {
           Uri.parse('http://www.kde.org/api/v1/e2e.resetRoomKey'));
 
       expect(
+          librocketchatrestapi.generateUrl(
+              "http://www.kde.org",
+              librocketchatrestapi
+                  .RestApiUrlType.e2EFetchUsersWaitingForGroupKey),
+          Uri.parse(
+              'http://www.kde.org/api/v1/e2e.provideUsersSuggestedGroupKeys'));
+
+      expect(
           librocketchatrestapi.generateUrl("http://www.kde.org",
               librocketchatrestapi.RestApiUrlType.rolesList),
           Uri.parse('http://www.kde.org/api/v1/roles.list'));

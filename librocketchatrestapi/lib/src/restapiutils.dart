@@ -232,6 +232,7 @@ enum RestApiUrlType {
   e2ERejectSuggestedGroupKey,
   e2EProvideUsersWithSuggestedGroupKeys,
   e2EResetRoomKey,
+  e2EFetchUsersWaitingForGroupKey,
 
   rolesList,
   rolesCreate,
@@ -469,6 +470,8 @@ extension RestApiUrlTypeExtension on RestApiUrlType {
         return "e2e.provideUsersWithSuggestedGroupKeys";
       case RestApiUrlType.e2EResetRoomKey:
         return "e2e.resetRoomKey";
+      case RestApiUrlType.e2EFetchUsersWaitingForGroupKey:
+        return "e2e.provideUsersSuggestedGroupKeys";
 
       case RestApiUrlType.chatDelete:
         return "chat.delete";
