@@ -30,9 +30,7 @@ class MainWindow extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                 Expanded(child: MessageView(account)),
-                Expanded(
-                  child: Messageline(account),
-                ),
+                Messageline(account),
                 Expanded(child: StatusBarMessage(account))
               ]))
         ],
