@@ -23,8 +23,6 @@ class ChannelView extends StatefulWidget {
 }
 
 class ChannelViewSelectionState extends State<ChannelView> {
-  // Currently selected item index
-  Room? selectedIndex;
   String? roomIdSelected;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,6 @@ class ChannelViewSelectionState extends State<ChannelView> {
                   builder: (BuildContext context, Widget? child) {
                     // We rebuild the ListView each time the list changes,
                     // so that the framework knows to update the rendering.
-                    // TODO use it
                     final Map<String, List<Room>> sortedRoomsWithType =
                         models.sortedRoomsWithType();
 
@@ -54,13 +51,46 @@ class ChannelViewSelectionState extends State<ChannelView> {
                       ));
                       listWidgets.addAll(categoryItems.map((item) => ListTile(
                           title: Text(item.displayName()),
-                          selected: selectedIndex == item,
-                          selectedTileColor: Colors.blue[100],
+                          selected: roomIdSelected == item.mRoomId,
+                          selectedTileColor:
+                              const Color.fromRGBO(187, 222, 251, 1),
+                          trailing: PopupMenuButton<int>(
+                            onSelected: (value) {
+                              // Handle the selection from the PopupMenuButton
+                              if (value == MenuChannelType.markAsRead.index) {
+                                // TODO
+                              } else if (value ==
+                                  MenuChannelType.closeChannel.index) {
+                                _dialogQuitChannelBuilder(
+                                    item.mRoomId, context);
+                              } else if (value ==
+                                  MenuChannelType.changeFavorite.index) {
+                                // TODO
+                              }
+                            },
+                            itemBuilder: (BuildContext context) {
+                              // Define the menu items for the PopupMenuButton
+                              return <PopupMenuEntry<int>>[
+                                PopupMenuItem<int>(
+                                  value: MenuChannelType.markAsRead.index,
+                                  child: Text("Mark As Read"),
+                                ),
+                                PopupMenuItem<int>(
+                                  value: MenuChannelType.changeFavorite.index,
+                                  child: Text(
+                                      "Add as Favorite"), // TOOD change it if it's always favorite
+                                ),
+                                PopupMenuItem<int>(
+                                  value: MenuChannelType.closeChannel.index,
+                                  child: Text("Quit Channel"),
+                                ),
+                              ];
+                            },
+                          ),
                           onTap: () {
                             setState(() {
-                              selectedIndex = item;
+                              roomIdSelected = item.mRoomId;
                             });
-                            roomIdSelected = item.mRoomId;
                             SharedValue.currentRoomId.value = roomIdSelected!;
                             widget.account.loadHistory(roomIdSelected!);
                           })));
@@ -69,89 +99,6 @@ class ChannelViewSelectionState extends State<ChannelView> {
                     return ListView(
                       children: listWidgets,
                     );
-/*
-                    return Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            style: BorderStyle.solid,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: ListView.builder(
-                            itemCount: values.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final isSelected = selectedIndex == index;
-
-                              return Visibility(
-                                  visible: values[index].mOpen,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      // Update the selected index
-                                      setState(() {
-                                        selectedIndex = index;
-                                        roomIdSelected = values[index].mRoomId;
-                                        SharedValue.currentRoomId.value =
-                                            roomIdSelected!;
-                                        widget.account
-                                            .loadHistory(roomIdSelected!);
-                                      });
-                                    },
-                                    child: Container(
-                                      color: isSelected
-                                          ? Colors.blue
-                                          : Colors.white,
-                                      child: ListTile(
-                                          trailing: PopupMenuButton<int>(
-                                            onSelected: (value) {
-                                              // Handle the selection from the PopupMenuButton
-                                              if (value ==
-                                                  MenuChannelType
-                                                      .markAsRead.index) {
-                                                // TODO
-                                              } else if (value ==
-                                                  MenuChannelType
-                                                      .closeChannel.index) {
-                                                _dialogQuitChannelBuilder(
-                                                    values[index].mRoomId,
-                                                    context);
-                                              } else if (value ==
-                                                  MenuChannelType
-                                                      .changeFavorite.index) {
-                                                // TODO
-                                              }
-                                            },
-                                            itemBuilder:
-                                                (BuildContext context) {
-                                              // Define the menu items for the PopupMenuButton
-                                              return <PopupMenuEntry<int>>[
-                                                PopupMenuItem<int>(
-                                                  value: MenuChannelType
-                                                      .markAsRead.index,
-                                                  child: Text("Mark As Read"),
-                                                ),
-                                                PopupMenuItem<int>(
-                                                  value: MenuChannelType
-                                                      .changeFavorite.index,
-                                                  child: Text(
-                                                      "Add as Favorite"), // TOOD change it if it's always favorite
-                                                ),
-                                                PopupMenuItem<int>(
-                                                  value: MenuChannelType
-                                                      .closeChannel.index,
-                                                  child: Text("Quit Channel"),
-                                                ),
-                                              ];
-                                            },
-                                          ),
-                                          title: Text(
-                                              values[index].displayName(),
-                                              style: TextStyle(
-                                                  color: Colors.green))),
-                                    ),
-                                  ));
-                            }));
-                  */
                   }),
             ),
           ],
