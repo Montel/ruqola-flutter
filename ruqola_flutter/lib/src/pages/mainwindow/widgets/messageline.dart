@@ -23,39 +23,41 @@ class Messageline extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
-                  child: TextField(
-                      contextMenuBuilder: (context, editableTextState) {
-                        final List<ContextMenuButtonItem> buttonItems =
-                            editableTextState.contextMenuButtonItems;
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                          contextMenuBuilder: (context, editableTextState) {
+                            final List<ContextMenuButtonItem> buttonItems =
+                                editableTextState.contextMenuButtonItems;
 
-                        buttonItems.insert(
-                          0,
-                          ContextMenuButtonItem(
-                            label: 'Add Quote', // I18n ?
-                            onPressed: () {
-                              // Necessary to remove menu
-                              ContextMenuController.removeAny();
-                            },
-                          ),
-                        );
-                        // buttonItems.add(PopupMenuDivider());
+                            buttonItems.insert(
+                              0,
+                              ContextMenuButtonItem(
+                                label: 'Add Quote', // I18n ?
+                                onPressed: () {
+                                  // Necessary to remove menu
+                                  ContextMenuController.removeAny();
+                                },
+                              ),
+                            );
+                            // buttonItems.add(PopupMenuDivider());
 
-                        return AdaptiveTextSelectionToolbar.buttonItems(
-                          anchors: editableTextState.contextMenuAnchors,
-                          buttonItems: buttonItems,
-                        );
-                      },
-                      keyboardType: TextInputType.multiline,
-                      minLines: 1,
-                      maxLines: 3,
-                      autocorrect: true,
-                      controller: _controller,
-                      decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            onPressed: _controller.clear,
-                            icon: const Icon(Icons.clear),
-                          ),
-                          border: const OutlineInputBorder()))),
+                            return AdaptiveTextSelectionToolbar.buttonItems(
+                              anchors: editableTextState.contextMenuAnchors,
+                              buttonItems: buttonItems,
+                            );
+                          },
+                          keyboardType: TextInputType.multiline,
+                          minLines: 1,
+                          maxLines: 3,
+                          autocorrect: true,
+                          controller: _controller,
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                onPressed: _controller.clear,
+                                icon: const Icon(Icons.clear),
+                              ),
+                              border: const OutlineInputBorder())))),
               FilledButton(
                   child: Text("Send",
                       style: TextStyle(
