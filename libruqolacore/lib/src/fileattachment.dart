@@ -26,8 +26,14 @@ class FileAttachments {
     final count = json['count'] as int?;
     final offset = json['offset'] as int?;
     final total = json['total'] as int?;
-    // TODO parse it
     final List<File> files = [];
+    final filesJson = json["files"];
+    if (filesJson != null) {
+      for (var item in filesJson) {
+        var fileInfo = File.fromJson(item);
+        files.add(fileInfo);
+      }
+    }
     return FileAttachments(
       count: count ?? 0,
       offset: offset ?? 0,
