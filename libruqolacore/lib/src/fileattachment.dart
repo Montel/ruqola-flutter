@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 import "package:libruqolacore/src/file.dart";
+import 'package:collection/collection.dart';
 
 class FileAttachments {
   FileAttachments({
@@ -33,5 +34,28 @@ class FileAttachments {
       total: total ?? 0,
       files: files,
     );
+  }
+
+  @override
+  String toString() {
+    return "FileAttachments(count: $count total: $total offset: $offset files: $files)";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final listEquality = ListEquality();
+
+    return other is FileAttachments &&
+        other.count == count &&
+        other.total == total &&
+        other.offset == offset &&
+        listEquality.equals(other.files, files);
+  }
+
+  @override
+  int get hashCode {
+    return count.hashCode ^ total.hashCode ^ offset.hashCode ^ files.hashCode;
   }
 }
