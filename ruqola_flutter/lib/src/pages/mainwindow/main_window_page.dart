@@ -35,7 +35,6 @@ class MainWindow extends StatelessWidget {
               ]))
         ],
       ),
-      //Html(data: "ddd <strong>ddd</strong bla")
     ));
   }
 }
