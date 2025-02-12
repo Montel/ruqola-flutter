@@ -20,6 +20,8 @@ class Messagenotification {
   Messagenotificationerror? error;
 
   Messagenotification.fromMap(Map<String, dynamic> json) {
+    print("MESSAGE N OTIFICATION $json");
+
     messageType = convertStringToNotificationType(json["msg"]);
     id = json["id"];
     collection = json["collection"];
@@ -31,12 +33,13 @@ class Messagenotification {
         ? null
         : Messagenotificationfields.fromMap(json["fields"]);
 
-    if (json["result"] == null) {
+    var resultJson = json["result"];
+    if (resultJson == null) {
       result = null;
     } else {
       // It can return [] => empty
-      if (json["result"].isNotEmpty) {
-        result = Messagenotificationresult.fromMap(json["result"]);
+      if (resultJson.isNotEmpty) {
+        result = Messagenotificationresult.fromMap(resultJson);
       }
     }
 

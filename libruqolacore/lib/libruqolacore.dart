@@ -44,6 +44,10 @@ export 'src/manager/licensesmanager.dart';
 export 'src/managedevices/deviceinfo.dart';
 export 'src/managedevices/deviceinfos.dart';
 
-// Command
+// Commands
 export 'src/commands/command.dart';
 export 'src/commands/commands.dart';
+
+// PersonalAccessTokens
+export 'src/personalaccesstokens/personalaccesstokeninfo.dart';
+export 'src/personalaccesstokens/personalaccesstokeninfos.dart';
