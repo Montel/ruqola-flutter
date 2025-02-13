@@ -23,7 +23,6 @@ export 'src/message/reaction.dart';
 export 'src/message/messageurl.dart';
 
 export 'src/retentioninfo.dart';
-export 'src/manager/accountmanager.dart';
 export 'src/notificationinfo.dart';
 
 // Systemtray
@@ -39,7 +38,10 @@ export 'src/roles/role.dart';
 export 'src/roles/roles.dart';
 export 'src/roles/roleinfo.dart';
 
+// Manager
 export 'src/manager/licensesmanager.dart';
+export 'src/manager/accountmanager.dart';
+export 'src/manager/permissionmanager.dart';
 
 export 'src/managedevices/deviceinfo.dart';
 export 'src/managedevices/deviceinfos.dart';
@@ -53,4 +55,5 @@ export 'src/personalaccesstokens/personalaccesstokeninfo.dart';
 export 'src/personalaccesstokens/personalaccesstokeninfos.dart';
 
 // Banner
-export 'src/bannerinfo/bannerinfo.dart';
+export 'src/bannerinfos/bannerinfo.dart';
+export 'src/bannerinfos/bannerinfos.dart';

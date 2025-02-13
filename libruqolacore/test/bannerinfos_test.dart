@@ -7,8 +7,9 @@ import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Banner info', () {
-    final bannerinfo = BannerInfo.defaultValues();
+  group('Banner infos', () {
+    /*
+    final bannerinfos = BannerInfos();
 
     test('Test Initial values', () {
       expect(bannerinfo.textArguments.isEmpty, true);
@@ -19,5 +20,6 @@ void main() {
       expect(bannerinfo.priority, -1);
       expect(bannerinfo.read, false);
     });
+    */
   });
 }

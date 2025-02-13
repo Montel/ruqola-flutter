@@ -13,6 +13,10 @@ class BannerInfo {
   final int priority;
   final bool read;
 
+  bool isValid() {
+    return text.isNotEmpty && identifier.isNotEmpty && title.isNotEmpty;
+  }
+
   BannerInfo({
     required this.textArguments,
     required this.text,
