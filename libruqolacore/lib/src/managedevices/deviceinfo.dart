@@ -42,9 +42,9 @@ class Deviceinfo {
       }
       client = deviceObj["name"] ?? '';
     }
-    if (json["loginAt"] != null) {
-      loginAt =
-          DateTime.parse(json["loginAt"].toString()).millisecondsSinceEpoch;
+    var loginAtObj = json["loginAt"];
+    if (loginAtObj != null) {
+      loginAt = DateTime.parse(loginAtObj.toString()).millisecondsSinceEpoch;
     }
 
     Deviceinfo info = Deviceinfo();
