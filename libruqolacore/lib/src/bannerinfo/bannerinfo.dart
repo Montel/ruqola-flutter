@@ -22,6 +22,14 @@ class BannerInfo {
     this.priority = -1,
     this.read = false,
   });
+  BannerInfo.defaultValues()
+      : textArguments = [],
+        text = '',
+        title = '',
+        link = '',
+        identifier = '',
+        priority = -1,
+        read = false;
 
   @override
   String toString() {
