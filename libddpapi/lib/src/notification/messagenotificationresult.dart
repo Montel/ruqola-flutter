@@ -28,6 +28,6 @@ class Messagenotificationresult {
 
   @override
   String toString() {
-    return "result: $result id: $id token:$token tokenExpires:$tokenExpires type:$type";
+    return "Messagenotificationresult(result: $result id: $id token:$token tokenExpires:$tokenExpires type:$type)";
   }
 }

@@ -20,6 +20,6 @@ class Messagenotificationfields {
 
   @override
   String toString() {
-    return "eventName: $eventName args: $args username: $userName";
+    return "Messagenotificationfields(eventName: $eventName args: $args username: $userName)";
   }
 }

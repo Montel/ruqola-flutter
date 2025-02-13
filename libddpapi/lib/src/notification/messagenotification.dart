@@ -50,6 +50,6 @@ class Messagenotification {
 
   @override
   String toString() {
-    return "messageType ${messageType.name} collection: $collection, id: $id method $methods subs: $subs fields: $fields error: $error  result: $result";
+    return "Messagenotification(messageType ${messageType.name} collection: $collection, id: $id method $methods subs: $subs fields: $fields error: $error  result: $result)";
   }
 }

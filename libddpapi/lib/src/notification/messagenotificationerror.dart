@@ -17,6 +17,6 @@ class Messagenotificationerror {
 
   @override
   String toString() {
-    return "message: $message error: $error reason: $reason";
+    return "Messagenotificationerror(message: $message error: $error reason: $reason)";
   }
 }

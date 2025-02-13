@@ -12,6 +12,6 @@ class Messagenotificationargs {
 
   @override
   String toString() {
-    return "args: $args";
+    return "Messagenotificationargs(args: $args)";
   }
 }
