@@ -23,4 +23,9 @@ class Roles {
   int get hashCode {
     return roles.hashCode;
   }
+
+  @override
+  String toString() {
+    return 'Roles(roles: $roles)';
+  }
 }
