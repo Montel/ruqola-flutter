@@ -10,8 +10,17 @@ class LicensesManager {
   }
 
   void parseLicenses(Map<String, dynamic> json) {
-    // TODO
+    final licenseObj = json["license"];
+    if (licenseObj != null) {
+      final activeModules = licenseObj["activeModules"];
+      if (activeModules != null) {
+        for (var item in activeModules) {
+          licenses.add(item);
+        }
+      }
+    }
   }
+
   // Parse license
   List<String> licenses = [];
 
@@ -22,4 +31,9 @@ class LicensesManager {
 
   @override
   int get hashCode => licenses.hashCode;
+
+  @override
+  String toString() {
+    return 'LicensesManager(licenses: $licenses)';
+  }
 }
