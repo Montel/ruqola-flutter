@@ -51,3 +51,6 @@ export 'src/commands/commands.dart';
 // PersonalAccessTokens
 export 'src/personalaccesstokens/personalaccesstokeninfo.dart';
 export 'src/personalaccesstokens/personalaccesstokeninfos.dart';
+
+// Banner
+export 'src/bannerinfo/bannerinfo.dart';
