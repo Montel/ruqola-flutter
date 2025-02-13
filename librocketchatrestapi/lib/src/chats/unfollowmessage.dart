@@ -15,6 +15,10 @@ class UnFollowMessageInfo {
   }
 
   Map<String, String> body() => {'mid': messageId};
+  @override
+  String toString() {
+    return "UnFollowMessageInfo(messageId: $messageId)";
+  }
 }
 
 class UnFollowMessage extends Restapiabstractjob {

@@ -8,16 +8,20 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class ReportMessageInfo {
-  final String mMessageId;
-  final String mDescription;
+  final String messageId;
+  final String description;
 
-  ReportMessageInfo(this.mMessageId, this.mDescription);
+  ReportMessageInfo(this.messageId, this.description);
   bool canStart() {
-    return mMessageId.isNotEmpty && mDescription.isNotEmpty;
+    return messageId.isNotEmpty && description.isNotEmpty;
   }
 
   Map<String, String> body() =>
-      {'messageId': mMessageId, 'description': mDescription};
+      {'messageId': messageId, 'description': description};
+  @override
+  String toString() {
+    return "ReportMessageInfo(messageId: $messageId, description: $description)";
+  }
 }
 
 class ReportMessage extends Restapiabstractjob {

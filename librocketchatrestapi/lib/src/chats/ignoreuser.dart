@@ -8,20 +8,25 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class IgnoreUserInfo {
-  final String mRoomId;
-  final String mIgnoreUserId;
-  final bool mIgnore;
+  final String roomId;
+  final String ignoreUserId;
+  final bool ignore;
 
-  IgnoreUserInfo(this.mIgnoreUserId, this.mRoomId, this.mIgnore);
+  IgnoreUserInfo(this.ignoreUserId, this.roomId, this.ignore);
   bool canStart() {
-    return mRoomId.isNotEmpty && mIgnoreUserId.isNotEmpty;
+    return roomId.isNotEmpty && ignoreUserId.isNotEmpty;
   }
 
   Map<String, String> queryParameters() => {
-        'rid': mRoomId,
-        'userId': mIgnoreUserId,
-        'ignore': mIgnore ? "true" : "false",
+        'rid': roomId,
+        'userId': ignoreUserId,
+        'ignore': ignore ? "true" : "false",
       };
+
+  @override
+  String toString() {
+    return "IgnoreUserInfo(rid: $roomId, userId:$ignoreUserId, ignore: $ignore)";
+  }
 }
 
 class IgnoreUser extends Restapiabstractjob {

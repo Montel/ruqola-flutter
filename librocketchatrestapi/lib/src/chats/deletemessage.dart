@@ -16,6 +16,11 @@ class DeleteMessageInfo {
   }
 
   Map<String, String> body() => {'roomId': roomId, 'msgId': messageId};
+
+  @override
+  String toString() {
+    return "DeleteMessageInfo(roomId: $roomId, messageId: $messageId)";
+  }
 }
 
 class DeleteMessage extends Restapiabstractjob {

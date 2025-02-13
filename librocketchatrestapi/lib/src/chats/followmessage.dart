@@ -15,6 +15,10 @@ class FollowMessageInfo {
   }
 
   Map<String, String> body() => {'mid': messageId};
+  @override
+  String toString() {
+    return "FollowMessageInfo(mid: $messageId)";
+  }
 }
 
 class FollowMessage extends Restapiabstractjob {

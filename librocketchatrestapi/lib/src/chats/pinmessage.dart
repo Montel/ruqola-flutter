@@ -8,15 +8,19 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class PinMessageInfo {
-  final String mMessageId;
+  final String messageId;
   final bool mPinMessage;
 
-  PinMessageInfo(this.mMessageId, [this.mPinMessage = false]);
+  PinMessageInfo(this.messageId, [this.mPinMessage = false]);
   bool canStart() {
-    return mMessageId.isNotEmpty;
+    return messageId.isNotEmpty;
   }
 
-  Map<String, String> body() => {'messageId': mMessageId};
+  Map<String, String> body() => {'messageId': messageId};
+  @override
+  String toString() {
+    return "PinMessageInfo(messageId: $messageId)";
+  }
 }
 
 class PinMessage extends Restapiabstractjob {

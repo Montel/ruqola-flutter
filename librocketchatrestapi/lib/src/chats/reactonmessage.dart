@@ -8,17 +8,17 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class ReactOnMessageInfo {
-  final String mMessageId;
-  final bool mShouldReact;
-  final String mEmoji;
+  final String messageId;
+  final bool shouldReact;
+  final String emoji;
 
-  ReactOnMessageInfo(this.mMessageId, this.mEmoji, [this.mShouldReact = true]);
+  ReactOnMessageInfo(this.messageId, this.emoji, [this.shouldReact = true]);
   bool canStart() {
-    if (mEmoji.isEmpty) {
+    if (emoji.isEmpty) {
       print("ReactOnMessageInfo: emoji is empty");
       return false;
     }
-    if (mMessageId.isEmpty) {
+    if (messageId.isEmpty) {
       print("ReactOnMessageInfo: messageId is empty");
       return false;
     }
@@ -26,10 +26,14 @@ class ReactOnMessageInfo {
   }
 
   Map<String, String> body() => {
-        'emoji': mEmoji,
-        "messageId": mMessageId,
-        "shouldReact": mShouldReact.toString()
+        'emoji': emoji,
+        "messageId": messageId,
+        "shouldReact": shouldReact.toString()
       };
+  @override
+  String toString() {
+    return "ReactOnMessageInfo(emoji: $emoji, messageId: $messageId, shouldReact: $shouldReact)";
+  }
 }
 
 class ReactOnMessage extends Restapiabstractjob {

@@ -13,8 +13,8 @@ void main() {
     test('check default values', () {
       librocketchatrestapi.ReportMessageInfo info =
           librocketchatrestapi.ReportMessageInfo("messageId1", "description");
-      expect(info.mDescription, "description");
-      expect(info.mMessageId, "messageId1");
+      expect(info.description, "description");
+      expect(info.messageId, "messageId1");
 
       librocketchatrestapi.ReportMessage reportMessage =
           librocketchatrestapi.ReportMessage(info);

@@ -8,15 +8,19 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class StarMessageInfo {
-  final String mMessageId;
-  final bool mStarMessage;
+  final String messageId;
+  final bool starMessage;
 
-  StarMessageInfo(this.mMessageId, [this.mStarMessage = false]);
+  StarMessageInfo(this.messageId, [this.starMessage = false]);
   bool canStart() {
-    return mMessageId.isNotEmpty;
+    return messageId.isNotEmpty;
   }
 
-  Map<String, String> body() => {'messageId': mMessageId};
+  Map<String, String> body() => {'messageId': messageId};
+  @override
+  String toString() {
+    return "StarMessageInfo(messageId: $messageId, starMessage: $starMessage)";
+  }
 }
 
 class StarMessage extends Restapiabstractjob {
@@ -31,7 +35,7 @@ class StarMessage extends Restapiabstractjob {
   Uri url(String url) {
     return generateUrl(
         url,
-        _info.mStarMessage
+        _info.starMessage
             ? RestApiUrlType.chatStarMessage
             : RestApiUrlType.chatUnStarMessage);
   }
