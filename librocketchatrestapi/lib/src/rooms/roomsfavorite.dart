@@ -8,15 +8,20 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class RoomsFavoriteInfo {
-  final String mRoomId;
+  final String roomId;
   final bool favorite;
-  RoomsFavoriteInfo(this.mRoomId, this.favorite);
+  RoomsFavoriteInfo(this.roomId, this.favorite);
   bool canStart() {
-    return mRoomId.isNotEmpty;
+    return roomId.isNotEmpty;
   }
 
   Map<String, String> body() =>
-      {'roomId': mRoomId, 'favorite': favorite.toString()};
+      {'roomId': roomId, 'favorite': favorite.toString()};
+
+  @override
+  String toString() {
+    return "RoomsDeleteInfo(roomId: $roomId, favorite: $favorite)";
+  }
 }
 
 class RoomsFavorite extends Restapiabstractjob {

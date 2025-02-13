@@ -8,13 +8,17 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class RoomsDeleteInfo {
-  final String mRoomId;
-  RoomsDeleteInfo(this.mRoomId);
+  final String roomId;
+  RoomsDeleteInfo(this.roomId);
   bool canStart() {
-    return mRoomId.isNotEmpty;
+    return roomId.isNotEmpty;
   }
 
-  Map<String, String> body() => {'roomId': mRoomId};
+  Map<String, String> body() => {'roomId': roomId};
+  @override
+  String toString() {
+    return "RoomsDeleteInfo(roomId: $roomId)";
+  }
 }
 
 class RoomsDelete extends Restapiabstractjob {

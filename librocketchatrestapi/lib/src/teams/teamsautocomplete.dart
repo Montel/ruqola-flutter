@@ -17,6 +17,11 @@ class TeamsAutoCompleteInfo {
         'name': name,
       };
   TeamsAutoCompleteInfo(this.name);
+
+  @override
+  String toString() {
+    return "TeamsAutoCompleteInfo(name: $name)";
+  }
 }
 
 class TeamsAutoComplete extends Restapiabstractjob {

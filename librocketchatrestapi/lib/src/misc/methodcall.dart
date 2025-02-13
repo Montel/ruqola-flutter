@@ -19,6 +19,10 @@ class MethodCallInfo {
   }
 
   Map<String, String> body() => {'message': jsonEncode(messageObj)};
+  @override
+  String toString() {
+    return "MethodCallInfo(methodName: $methodName, anonymous: $anonymous, messageObj: $messageObj)";
+  }
 }
 
 class MethodCall extends Restapiabstractjob {

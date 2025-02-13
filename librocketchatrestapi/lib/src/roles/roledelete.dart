@@ -15,6 +15,10 @@ class RoleDeleteInfo {
   }
 
   Map<String, String> body() => {'roleId': roleId};
+  @override
+  String toString() {
+    return "RoleDeleteInfo(roleId: $roleId)";
+  }
 }
 
 class RoleDelete extends Restapiabstractjob {

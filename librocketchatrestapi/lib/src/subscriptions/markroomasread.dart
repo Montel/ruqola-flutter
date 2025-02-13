@@ -19,6 +19,11 @@ class MarkRoomAsReadInfo {
   }
 
   Map<String, String> body() => {'rid': roomId};
+
+  @override
+  String toString() {
+    return "MarkRoomAsReadInfo(roomId: $roomId)";
+  }
 }
 
 class MarkRoomAsRead extends Restapiabstractjob {

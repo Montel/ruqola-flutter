@@ -15,6 +15,10 @@ class UseInviteTokenInfo {
   }
 
   Map<String, String> body() => {'token': token};
+  @override
+  String toString() {
+    return "UseInviteTokenInfo(token: $token)";
+  }
 }
 
 class UseInviteToken extends Restapiabstractjob {

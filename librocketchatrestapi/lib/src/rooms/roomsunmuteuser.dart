@@ -8,18 +8,23 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class RoomsUnMuteUserInfo {
-  final String mRoomId;
-  final String mUsername;
-  RoomsUnMuteUserInfo(this.mRoomId, this.mUsername);
+  final String roomId;
+  final String username;
+  RoomsUnMuteUserInfo(this.roomId, this.username);
   bool canStart() {
-    if (mUsername.isEmpty || mRoomId.isEmpty) {
+    if (username.isEmpty || roomId.isEmpty) {
       print("RoomsUnMuteUserInfo: mUsername or mRoomId is empty.");
       return false;
     }
     return true;
   }
 
-  Map<String, String> body() => {'roomId': mRoomId, 'username': mUsername};
+  Map<String, String> body() => {'roomId': roomId, 'username': username};
+
+  @override
+  String toString() {
+    return "RoomsUnMuteUserInfo(roomId: $roomId, username: $username)";
+  }
 }
 
 class RoomsUnMuteUser extends Restapiabstractjob {

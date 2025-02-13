@@ -19,6 +19,10 @@ class ForgotPasswordInfo {
   }
 
   Map<String, String> body() => {'email': email};
+  @override
+  String toString() {
+    return "ForgotPasswordInfo(email: $email)";
+  }
 }
 
 class ForgotPassword extends Restapiabstractjob {

@@ -19,6 +19,10 @@ class UpdateGroupKeyInfo {
   }
 
   Map<String, String> body() => {'rid': roomId};
+  @override
+  String toString() {
+    return "UpdateGroupKeyInfo(roomId: $roomId, uid: $uid, key: $key)";
+  }
 }
 
 class UpdateGroupKey extends Restapiabstractjob {

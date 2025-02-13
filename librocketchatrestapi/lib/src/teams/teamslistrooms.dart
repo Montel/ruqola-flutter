@@ -17,6 +17,10 @@ class TeamsListRoomsInfo {
         'teamId': teamId,
       };
   TeamsListRoomsInfo(this.teamId);
+  @override
+  String toString() {
+    return "TeamsListRoomsInfo(teamId: $teamId)";
+  }
 }
 
 class TeamsListRooms extends Restapiabstractjob {

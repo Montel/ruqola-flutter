@@ -15,6 +15,10 @@ class ResetTotpInfo {
   }
 
   Map<String, String> body() => {'userId': userId};
+  @override
+  String toString() {
+    return "ResetTotpInfo(userId: $userId)";
+  }
 }
 
 class ResetTotp extends Restapiabstractjob {

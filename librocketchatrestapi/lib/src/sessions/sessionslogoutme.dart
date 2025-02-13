@@ -8,17 +8,21 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
 class SessionLogoutMeInfo {
-  final String mSessionId;
-  SessionLogoutMeInfo(this.mSessionId);
+  final String sessionId;
+  SessionLogoutMeInfo(this.sessionId);
   bool canStart() {
-    if (mSessionId.isEmpty) {
+    if (sessionId.isEmpty) {
       print("SessionLogoutMeInfo: mUsermSessionId is empty.");
       return false;
     }
     return true;
   }
 
-  Map<String, String> body() => {'sessionId': mSessionId};
+  Map<String, String> body() => {'sessionId': sessionId};
+  @override
+  String toString() {
+    return "SessionLogoutMeInfo(sessionId: $sessionId)";
+  }
 }
 
 class SessionLogoutMe extends Restapiabstractjob {

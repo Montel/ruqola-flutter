@@ -14,6 +14,10 @@ class StatisticsInfo {
         'refresh': refresh.toString(),
       };
   StatisticsInfo(this.refresh);
+  @override
+  String toString() {
+    return "StatisticsInfo(refresh: $refresh)";
+  }
 }
 
 class Statistics extends Restapiabstractjob {

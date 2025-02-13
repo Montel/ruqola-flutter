@@ -13,10 +13,15 @@ class GetDiscussionsInfo {
     return roomId.isNotEmpty;
   }
 
+  GetDiscussionsInfo(this.roomId);
+
   Map<String, String> queryParameters() => {
         'roomId': roomId,
       };
-  GetDiscussionsInfo(this.roomId);
+  @override
+  String toString() {
+    return "GetDiscussionsInfo(roomId: $roomId)";
+  }
 }
 
 class GetDiscussions extends Restapiabstractjob {

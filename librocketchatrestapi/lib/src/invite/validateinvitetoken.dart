@@ -18,7 +18,7 @@ class ValidateInviteTokenResult {
 
   @override
   String toString() {
-    return "valid: $valid";
+    return "ValidateInviteTokenResult(valid: $valid)";
   }
 }
 

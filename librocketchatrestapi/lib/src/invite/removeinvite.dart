@@ -13,6 +13,11 @@ class RemoveInviteTokenInfo {
   bool canStart() {
     return identifier.isNotEmpty;
   }
+
+  @override
+  String toString() {
+    return "RemoveInviteTokenInfo(identifier: $identifier)";
+  }
 }
 
 class RemoveInviteToken extends Restapiabstractjob {

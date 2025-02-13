@@ -17,6 +17,10 @@ class RoomsInfoInfo {
         'roomId': roomId,
       };
   RoomsInfoInfo(this.roomId);
+  @override
+  String toString() {
+    return "RoomsInfoInfo(roomId: $roomId)";
+  }
 }
 
 class RoomsInfo extends Restapiabstractjob {

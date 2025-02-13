@@ -16,6 +16,10 @@ class RemoveUserFromRoleInfo {
   }
 
   Map<String, String> body() => {'roleName': roleName, 'username': username};
+  @override
+  String toString() {
+    return "RemoveUserFromRoleInfo(roleName: $roleName, username: $username)";
+  }
 }
 
 class RemoveUserFromRole extends Restapiabstractjob {

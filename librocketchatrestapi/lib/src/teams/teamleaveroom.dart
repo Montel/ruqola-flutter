@@ -16,6 +16,11 @@ class TeamLeaveRoomInfo {
   }
 
   Map<String, String> body() => {'roomId': roomId, 'teamId': teamId};
+
+  @override
+  String toString() {
+    return "TeamLeaveRoomInfo(teamId: $teamId, roomId: $roomId)";
+  }
 }
 
 class TeamLeaveRoom extends Restapiabstractjob {

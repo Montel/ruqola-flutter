@@ -18,6 +18,11 @@ class TeamRemoveMembersInfo {
   }
 
   Map<String, String> body() => {'rooms': jsonEncode(rooms), 'teamId': teamId};
+
+  @override
+  String toString() {
+    return "TeamRemoveMembersInfo(teamId: $teamId, rooms: $rooms)";
+  }
 }
 
 class TeamRemoveMembers extends Restapiabstractjob {

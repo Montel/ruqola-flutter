@@ -21,6 +21,11 @@ class DirectoryInfo {
   bool canStart() {
     return type != SearchType.unknown;
   }
+
+  @override
+  String toString() {
+    return "DirectoryInfo(pattern: $pattern, type: $type)";
+  }
 }
 
 class Directory extends Restapiabstractjob {

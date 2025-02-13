@@ -16,4 +16,9 @@ class Queryparameter {
   bool useSyntaxRc70 = false;
   int count = 0;
   int offset = 0;
+
+  @override
+  String toString() {
+    return "Queryparameter(searchString: $searchString, filter: $filter, useSyntaxRc70: $useSyntaxRc70, count: $count, offset:$offset)";
+  }
 }

@@ -17,6 +17,11 @@ class RoomsNameExistsInfo {
         'roomName': roomName,
       };
   RoomsNameExistsInfo(this.roomName);
+
+  @override
+  String toString() {
+    return "RoomsNameExistsInfo(roomName: $roomName)";
+  }
 }
 
 class RoomsNameExists extends Restapiabstractjob {

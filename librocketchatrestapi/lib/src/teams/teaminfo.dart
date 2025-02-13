@@ -17,6 +17,11 @@ class TeamInfoInfo {
         'teamId': teamId,
       };
   TeamInfoInfo(this.teamId);
+
+  @override
+  String toString() {
+    return "TeamInfoInfo(teamId: $teamId)";
+  }
 }
 
 class TeamInfo extends Restapiabstractjob {
