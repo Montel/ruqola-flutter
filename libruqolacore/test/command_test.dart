@@ -16,8 +16,6 @@ void main() {
       expect(command.params.isEmpty, true);
       expect(command.commandName.isEmpty, true);
       expect(command.description.isEmpty, true);
-      expect(command.translatedDescription.isEmpty, true);
-      expect(command.translatedParams.isEmpty, true);
       expect(command.providesPreview, false);
       expect(command.clientOnly, false);
     });

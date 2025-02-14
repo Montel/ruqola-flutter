@@ -57,3 +57,6 @@ export 'src/personalaccesstokens/personalaccesstokeninfos.dart';
 // Banner
 export 'src/bannerinfos/bannerinfo.dart';
 export 'src/bannerinfos/bannerinfos.dart';
+
+// Team
+export 'src/teams/teaminfo.dart';

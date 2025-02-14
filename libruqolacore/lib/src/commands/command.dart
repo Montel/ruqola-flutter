@@ -5,25 +5,36 @@
  */
 
 class Command {
-  Command();
+  Command(
+      {this.params = '',
+      this.commandName = '',
+      this.description = '',
+      this.providesPreview = false,
+      this.clientOnly = false,
+      this.permissions = const []});
   List<String> permissions = [];
   String params = '';
   String commandName = '';
   String description = '';
-  String translatedDescription = '';
-  String translatedParams = '';
   bool providesPreview = false;
   bool clientOnly = false;
 
   factory Command.fromJson(Map<String, dynamic> json) {
     final bool providesPreview = json["providesPreview"] ?? false;
     final bool clientOnly = json["clientOnly"] ?? false;
+    final String params = json["params"] ?? '';
     String commandResult = json["command"] ?? '';
+    final String description = json["description"] ?? '';
     if (commandResult.isNotEmpty) {
       commandResult = '/$commandResult';
     }
-    // TODO
-    return Command();
+    // TODO add params !
+    return Command(
+        params: params,
+        commandName: commandResult,
+        description: description,
+        providesPreview: providesPreview,
+        clientOnly: clientOnly);
   }
 
   @override
@@ -33,8 +44,6 @@ class Command {
         other.params == params &&
         other.commandName == commandName &&
         description == other.description &&
-        translatedDescription == other.translatedDescription &&
-        translatedParams == other.translatedParams &&
         providesPreview == other.providesPreview &&
         clientOnly == other.clientOnly;
   }
@@ -44,14 +53,12 @@ class Command {
     return params.hashCode ^
         commandName.hashCode ^
         description.hashCode ^
-        translatedDescription.hashCode ^
-        translatedParams.hashCode ^
         providesPreview.hashCode ^
         clientOnly.hashCode;
   }
 
   @override
   String toString() {
-    return 'Command(params: $params, commandName: $commandName, description: $description, translatedDescription: $translatedDescription, translatedParams: $translatedParams, providesPreview: $providesPreview, clientOnly: $clientOnly)';
+    return 'Command(params: $params, commandName: $commandName, description: $description, providesPreview: $providesPreview, clientOnly: $clientOnly)';
   }
 }

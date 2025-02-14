@@ -16,6 +16,27 @@ enum RoomType {
   // Omnichannel ?
 }
 
+// Add state
+enum RoomState {
+  none(0),
+  readOnly(1),
+  selected(2),
+  favorite(4),
+  open(8),
+  alert(16),
+  blocker(32),
+  archived(64),
+  blocked(128),
+  encrypted(256),
+  joinCodeRequired(512),
+  wasInitialized(1024),
+  broadCast(2048),
+  autoTranslate(4096);
+
+  final int value;
+  const RoomState(this.value);
+}
+
 class Room with ChangeNotifier {
   String displayName() {
     /*
