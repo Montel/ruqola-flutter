@@ -16,6 +16,13 @@ class Command {
   bool clientOnly = false;
 
   factory Command.fromJson(Map<String, dynamic> json) {
+    final bool providesPreview = json["providesPreview"] ?? false;
+    final bool clientOnly = json["clientOnly"] ?? false;
+    String commandResult = json["command"] ?? '';
+    if (commandResult.isNotEmpty) {
+      commandResult = '/$commandResult';
+    }
+    // TODO
     return Command();
   }
 
