@@ -553,7 +553,7 @@ class Room with ChangeNotifier {
   bool mAutoTranslate = false;
 
   RoomType mChannelType = RoomType.unknown;
-  TeamInfo? teamInfo;
+  TeamInfo teamInfo = TeamInfo.defaultValues();
   List<Message> messages = [];
 
   @override

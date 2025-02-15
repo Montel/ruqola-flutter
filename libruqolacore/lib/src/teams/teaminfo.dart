@@ -17,6 +17,12 @@ class TeamInfo {
     required this.autoJoin,
   });
 
+  TeamInfo.defaultValues()
+      : teamId = '',
+        roomsCount = 0,
+        mainTeam = false,
+        autoJoin = false;
+
   bool hasTeamRoom() {
     return !mainTeam && teamId.isNotEmpty;
   }
