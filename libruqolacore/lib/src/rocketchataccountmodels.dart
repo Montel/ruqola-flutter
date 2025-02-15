@@ -68,7 +68,7 @@ class Rocketchataccountmodels with ChangeNotifier {
   }
 
   SectionName section(Room r) {
-    if (r.mFavorite) {
+    if (r.favorite) {
       // TODO
       return SectionName.favorites;
     }
@@ -132,7 +132,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     rooms.sort((a, b) => compare(a, b, list));
 
     for (var room in rooms) {
-      if (room.mOpen) {
+      if (room.open) {
         String sectionName = section(room).name;
         if (!groupedRooms.containsKey(sectionName)) {
           groupedRooms[sectionName] = [];
@@ -145,7 +145,7 @@ RoomModel::Section RoomModel::section(Room *r) const
 
   void setRoomWasInitialized(String roomId, bool initialized) {
     for (Room r in rooms) {
-      if (r.mRoomId == roomId) {
+      if (r.roomId == roomId) {
         r.mWasInitialized = true;
       }
     }
@@ -153,7 +153,7 @@ RoomModel::Section RoomModel::section(Room *r) const
 
   bool roomWasInitialized(String roomId) {
     for (Room r in rooms) {
-      if (r.mRoomId == roomId) {
+      if (r.roomId == roomId) {
         return r.mWasInitialized;
       }
     }
@@ -163,7 +163,7 @@ RoomModel::Section RoomModel::section(Room *r) const
   Room? findRoomFromIdentifier(String roomId) {
     print("Find roomId $roomId");
     for (Room r in rooms) {
-      if (r.mRoomId == roomId) {
+      if (r.roomId == roomId) {
         return r;
       }
     }
@@ -174,7 +174,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     for (var item in json) {
       Message msg = Message.fromJson(item);
       for (Room r in rooms) {
-        if (r.mRoomId == msg.mRoomId) {
+        if (r.roomId == msg.mRoomId) {
           r.messages.add(msg);
         }
       }
@@ -216,7 +216,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     }
     if (rId.isNotEmpty) {
       for (Room r in rooms) {
-        if (r.mRoomId == rId) {
+        if (r.roomId == rId) {
           r.parseUpdateRoom(roomData);
           notifyListeners();
           break;
@@ -233,7 +233,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     String roomId = replyObject["rid"];
     if (roomId.isNotEmpty) {
       for (Room r in rooms) {
-        if (r.mRoomId == roomId) {
+        if (r.roomId == roomId) {
           Message m = Message();
           //TODO  m.parseMessage(replyObject, useRestApi, emojiManager());
           /*

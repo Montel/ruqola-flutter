@@ -12,19 +12,19 @@ void main() {
     final room = libruqolacore.Room();
 
     test('Test Initial Rooms values', () {
-      expect(room.mRoomId.isEmpty, true);
-      expect(room.mName.isEmpty, true);
+      expect(room.roomId.isEmpty, true);
+      expect(room.name.isEmpty, true);
       expect(room.mFName, null);
-      expect(room.mTopic.isEmpty, true);
-      expect(room.mDescription, null);
-      expect(room.mAnnouncement, null);
-      expect(room.mNumberMessages, 0);
+      expect(room.topic.isEmpty, true);
+      expect(room.description, null);
+      expect(room.announcement, null);
+      expect(room.numberMessages, 0);
       expect(room.mChannelType, libruqolacore.RoomType.unknown);
       expect(room.mRoles, null);
       expect(room.mUids, null);
       expect(room.mUserNames, null);
       expect(room.mThreadUnread, null);
-      expect(room.mFavorite, false);
+      expect(room.favorite, false);
       expect(room.mEncrypted, false);
       expect(room.mBlocked, false);
       expect(room.mBlocker, false);

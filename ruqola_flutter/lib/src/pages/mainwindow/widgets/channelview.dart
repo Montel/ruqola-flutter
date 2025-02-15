@@ -69,7 +69,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
                       ));
                       listWidgets.addAll(categoryItems.map((item) => ListTile(
                           title: Text(item.displayName()),
-                          selected: roomIdSelected == item.mRoomId,
+                          selected: roomIdSelected == item.roomId,
                           selectedTileColor:
                               const Color.fromRGBO(187, 222, 251, 1),
                           trailing: PopupMenuButton<int>(
@@ -79,8 +79,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
                                 // TODO
                               } else if (value ==
                                   MenuChannelType.closeChannel.index) {
-                                _dialogQuitChannelBuilder(
-                                    item.mRoomId, context);
+                                _dialogQuitChannelBuilder(item.roomId, context);
                               } else if (value ==
                                   MenuChannelType.changeFavorite.index) {
                                 // TODO
@@ -107,7 +106,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
                           ),
                           onTap: () {
                             setState(() {
-                              roomIdSelected = item.mRoomId;
+                              roomIdSelected = item.roomId;
                             });
                             SharedValue.currentRoomId.value = roomIdSelected!;
                             widget.account.loadHistory(roomIdSelected!);

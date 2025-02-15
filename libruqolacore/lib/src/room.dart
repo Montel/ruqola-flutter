@@ -52,7 +52,7 @@ class Room with ChangeNotifier {
     if (mFName != null && mFName!.isEmpty) {
       return mFName!;
     } else {
-      return mName;
+      return name;
     }
 /*                
                     }
@@ -76,13 +76,13 @@ class Room with ChangeNotifier {
   }
 
   void parseSubscriptionRoom(Map<String, dynamic> map) {
-    mRoomId = map["rid"].toString();
-    mName = map["name"].toString();
-    mOpen = map["open"];
-    mAlert = map["alert"];
+    roomId = map["rid"].toString();
+    name = map["name"].toString();
+    open = map["open"];
+    alert = map["alert"];
     mFName = map["fname"];
     if (map.containsKey("ro")) {
-      mReadOnly = map["ro"];
+      readOnly = map["ro"];
     }
 
     if (map.containsKey("blocker")) {
@@ -103,7 +103,7 @@ class Room with ChangeNotifier {
     }
 
     if (map.containsKey("f")) {
-      mFavorite = map["f"];
+      favorite = map["f"];
     }
     roomTypeFromString(map["t"] ?? '');
 
@@ -116,25 +116,25 @@ class Room with ChangeNotifier {
   }
 
   void parseInsertRoom(Map<String, dynamic> map) {
-    mRoomId = map["_id"].toString();
-    mName = map["name"].toString();
-    mOpen = map["open"];
-    mAlert = map["alert"];
+    roomId = map["_id"].toString();
+    name = map["name"].toString();
+    open = map["open"];
+    alert = map["alert"];
     mFName = map["fname"];
     if (map.containsKey("ro")) {
-      mReadOnly = map["ro"];
+      readOnly = map["ro"];
     }
 
     if (map.containsKey("announcement")) {
-      mAnnouncement = map["announcement"];
+      announcement = map["announcement"];
     }
     if (map.containsKey("description")) {
-      mDescription = map["description"];
+      description = map["description"];
     }
-    mUnread = map["unread"];
+    unread = map["unread"];
 
     if (map.containsKey("f")) {
-      mFavorite = map["f"];
+      favorite = map["f"];
     }
 
     if (map.containsKey("tunread")) {
@@ -200,39 +200,39 @@ class Room with ChangeNotifier {
 
   void parseUpdateRoom(Map<String, dynamic> map) {
     if (map.containsKey("alert")) {
-      mAlert = map["alert"];
+      alert = map["alert"];
     }
     if (map.containsKey("f")) {
-      mFavorite = map["f"];
+      favorite = map["f"];
     }
     if (map.containsKey("unread")) {
-      mUnread = map["unread"];
+      unread = map["unread"];
     }
     if (map.containsKey("announcement")) {
-      mAnnouncement = map["announcement"];
+      announcement = map["announcement"];
     }
 
     if (map.containsKey("open")) {
-      mOpen = map["open"];
+      open = map["open"];
     }
     if (map.containsKey("topic")) {
-      mTopic = map["topic"];
+      topic = map["topic"];
     }
     if (map.containsKey("name")) {
-      mName = map["name"];
+      name = map["name"];
     }
     if (map.containsKey("description")) {
-      mDescription = map["description"];
+      description = map["description"];
     }
     if (map.containsKey("fname")) {
       mFName = map["fname"];
     }
-    mReadOnly = map["ro"] ?? false;
+    readOnly = map["ro"] ?? false;
     if (map.containsKey("rid")) {
-      mRoomId = map["rid"];
+      roomId = map["rid"];
     }
     if (map.containsKey("msgs")) {
-      mNumberMessages = map["msgs"];
+      numberMessages = map["msgs"];
     }
     if (map.containsKey("autoTranslate")) {
       mAutoTranslate = map["autoTranslate"];
@@ -412,9 +412,9 @@ class Room with ChangeNotifier {
   }
 */
   Map<String, dynamic> toJson() => {
-        "rid": mRoomId,
+        "rid": roomId,
         //o["t"_L1] = Room::roomFromRoomType(r->channelType());
-        "name": mName,
+        "name": name,
         "fname": mFName,
         /*
     o["roomCreatorUserName"_L1] = r->roomOwnerUserName();
@@ -435,8 +435,8 @@ class Room with ChangeNotifier {
     o["updatedAt"_L1] = r->updatedAt();
     o["lastSeenAt"_L1] = r->lastSeenAt();
     */
-        "ro": mReadOnly,
-        "unread": mUnread,
+        "ro": readOnly,
+        "unread": unread,
         /*
     if (!r->announcement().isEmpty()) {
         o["announcement"_L1] = r->announcement();
@@ -521,30 +521,30 @@ class Room with ChangeNotifier {
   List<String>? mUserNames;
   List<String>? mThreadUnread;
 
-  String mRoomId = "";
+  String roomId = "";
   // name
-  String mName = "";
+  String name = "";
 
   String? mFName;
 
   // topic
-  String mTopic = "";
+  String topic = "";
 
   // Description
-  String? mDescription;
+  String? description;
 
   // Announcement
-  String? mAnnouncement;
+  String? announcement;
 
   String? mParentRid;
 
-  int mNumberMessages = 0;
+  int numberMessages = 0;
 
-  int mUnread = 0;
-  bool mOpen = true;
-  bool mAlert = false;
-  bool mReadOnly = false;
-  bool mFavorite = false;
+  int unread = 0;
+  bool open = true;
+  bool alert = false;
+  bool readOnly = false;
+  bool favorite = false;
 
   bool mWasInitialized = false;
   bool mBlocker = false;
@@ -558,6 +558,6 @@ class Room with ChangeNotifier {
 
   @override
   String toString() {
-    return "Room(mRoomId: $mRoomId  mName: $mName open: $mOpen mAnnouncement: $mAnnouncement mReadOnly: $mReadOnly mAlert: $mAlert, number of message:${messages.length}, teamInfo: $teamInfo)";
+    return "Room(mRoomId: $roomId  mName: $name open: $open mAnnouncement: $announcement mReadOnly: $readOnly mAlert: $alert, number of message:${messages.length}, teamInfo: $teamInfo)";
   }
 }
