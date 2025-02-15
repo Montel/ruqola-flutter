@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/src/message/message.dart';
+import 'package:libruqolacore/src/teams/teaminfo.dart';
 
 // t (can take values "d" , "c" or "p" or "l")
 enum RoomType {
@@ -143,6 +144,7 @@ class Room with ChangeNotifier {
     mAutoTranslate = map["autoTranslate"];
 
     roomTypeFromString(map["t"] ?? '');
+    teamInfo = TeamInfo.fromJson(map);
 /*
     setAutoTranslateLanguage(json["autoTranslateLanguage"_L1].toString());
     
@@ -191,7 +193,6 @@ class Room with ChangeNotifier {
     }
     // qDebug() << " *thus" << *this;
     mNotificationOptions.parseNotificationOptions(json);
-    parseTeamInfo(json);
 */
 
     notifyListeners();
@@ -335,9 +336,8 @@ class Room with ChangeNotifier {
     setAvatarETag(map.value("avatarETag").toLatin1());
     parseDisplaySystemMessage(map);
     parseRetentionInfo(map);
-    parseTeamInfo(map);
 */
-
+    teamInfo = TeamInfo.fromJson(map);
     notifyListeners();
   }
 
@@ -553,10 +553,11 @@ class Room with ChangeNotifier {
   bool mAutoTranslate = false;
 
   RoomType mChannelType = RoomType.unknown;
+  TeamInfo? teamInfo;
   List<Message> messages = [];
 
   @override
   String toString() {
-    return "mRoomId: $mRoomId  mName: $mName open: $mOpen mAnnouncement: $mAnnouncement mReadOnly: $mReadOnly mAlert: $mAlert, number of message:${messages.length}";
+    return "Room(mRoomId: $mRoomId  mName: $mName open: $mOpen mAnnouncement: $mAnnouncement mReadOnly: $mReadOnly mAlert: $mAlert, number of message:${messages.length}, teamInfo: $teamInfo)";
   }
 }
