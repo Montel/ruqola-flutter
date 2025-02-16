@@ -9,10 +9,36 @@ import 'libruqolacoretest.dart';
 
 void main() {
   group('Commands', () {
-    // TODO final commands = Commands();
-
     test('Test Initial values', () {
-      // TODO
+      final commands = Commands.defaultValues();
+      expect(commands.commandsCount, 0);
+      expect(commands.listCommands.isEmpty, true);
+      expect(commands.offset, 0);
+      expect(commands.total, 0);
+    });
+
+    test('command2.json', () {
+      final data = extractJsonData("commands", "command2.json");
+      final f = Commands.fromJson(data);
+      expect(f.commandsCount, 25);
+      expect(f.offset, 0);
+      expect(f.total, 25);
+    });
+
+    test('command1.json', () {
+      final data = extractJsonData("commands", "command1.json");
+      final f = Commands.fromJson(data);
+      expect(f.commandsCount, 0);
+      expect(f.offset, 0);
+      expect(f.total, 0);
+    });
+
+    test('command3.json', () {
+      final data = extractJsonData("commands", "command3.json");
+      final f = Commands.fromJson(data);
+      expect(f.commandsCount, 3);
+      expect(f.offset, 0);
+      expect(f.total, 3);
     });
   });
 }
