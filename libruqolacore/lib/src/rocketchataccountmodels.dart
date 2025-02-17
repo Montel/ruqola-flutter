@@ -174,7 +174,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     for (var item in json) {
       Message msg = Message.fromJson(item);
       for (Room r in rooms) {
-        if (r.roomId == msg.mRoomId) {
+        if (r.roomId == msg.roomId) {
           r.messages.add(msg);
         }
       }

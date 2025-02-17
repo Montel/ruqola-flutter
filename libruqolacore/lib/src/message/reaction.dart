@@ -5,36 +5,39 @@
  */
 
 class Reaction {
-  String? mReactionName;
-  List<String>? mUserNames;
+  final String reactionName;
+  final List<String> userNames;
 
-  void parseReactions(Map<String, dynamic> json) {
-    // TODO
-    /*
-    mReactions.clear();
-    const QStringList lst = reacts.keys();
-    QStringList users;
-    for (const QString &str : lst) {
-        users.clear();
-        const QJsonObject obj = reacts.value(str).toObject();
-        const QJsonValue usernames = obj.value("usernames"_L1);
-        if (!usernames.isUndefined()) {
-            const QJsonArray array = usernames.toArray();
-            for (int i = 0; i < array.count(); ++i) {
-                users.append(array.at(i).toString());
-            }
-            if (!users.isEmpty()) {
-                Reaction r;
-                r.setReactionName(str, emojiManager);
-                r.setUserNames(users);
-                mReactions.append(std::move(r));
-            }
-        }
+  Reaction({this.reactionName = "", this.userNames = const []});
+
+  factory Reaction.fromJson(Map<String, dynamic> json) {
+    // print("MESSAGE: $json");
+    final String reactionName = '';
+    final List<String> userNames = [];
+    for (var item in json['usernames']) {
+      userNames.add(item);
     }
-    */
+
+    // TODO
+    return Reaction(reactionName: reactionName, userNames: userNames);
   }
+
   @override
   String toString() {
-    return "Reaction(mReactionName: $mReactionName mUserNames: $mUserNames)";
+    return "Reaction(reactionName: $reactionName userNames: $userNames)";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Reaction &&
+        other.reactionName == reactionName &&
+        other.userNames == userNames;
+  }
+
+  @override
+  int get hashCode {
+    return reactionName.hashCode ^ userNames.hashCode;
   }
 }
