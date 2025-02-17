@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:provider/provider.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageviewitem.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 
 class MessageView extends StatefulWidget {
@@ -52,9 +53,12 @@ class MessageViewSelectionState extends State<MessageView> {
                             itemCount: messages.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
-                                  child: ListTile(
-                                      title: SelectableText(messages[index].mText),
-                                      dense: true));
+                                child: MessageViewItem(
+                                  username: messages[index].username,
+                                  htmlContent: messages[index].text,
+                                  reactions: [], // TODO get reactions
+                                ),
+                              );
                             });
                       }),
                 )),
