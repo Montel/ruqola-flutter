@@ -11,8 +11,8 @@ void main() {
     final reaction = Reaction();
 
     test('Test Initial values', () {
-      expect(reaction.mReactionName, null);
-      expect(reaction.mUserNames, null);
+      expect(reaction.reactionName.isEmpty, true);
+      expect(reaction.userNames.isEmpty, true);
     });
   });
 }
