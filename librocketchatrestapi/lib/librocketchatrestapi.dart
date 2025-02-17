@@ -13,6 +13,7 @@ export 'src/exceptions/exception.dart';
 // license
 export 'src/licenses/licensesinfo.dart';
 export 'src/licenses/licenseslist.dart';
+export 'src/licenses/licensesisenterprise.dart';
 
 // chats
 export 'src/chats/deletemessage.dart';
