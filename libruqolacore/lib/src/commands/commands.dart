@@ -24,9 +24,9 @@ class Commands {
     final offset = json["offset"] ?? 0;
     final total = json["total"] ?? 0;
     List<Command> listCommands = [];
-    final sessions = json["commands"];
-    if (sessions != null) {
-      for (var item in sessions) {
+    final commands = json["commands"];
+    if (commands != null) {
+      for (var item in commands) {
         var deviceInfo = Command.fromJson(item);
         listCommands.add(deviceInfo);
       }
