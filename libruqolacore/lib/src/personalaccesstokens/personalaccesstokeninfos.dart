@@ -31,6 +31,6 @@ class PersonalAccessTokenInfos {
 
   @override
   String toString() {
-    return 'PersonalAccessTokenInfo(personalAccessTokenInfos: $personalAccessTokenInfos)';
+    return 'PersonalAccessTokenInfos(personalAccessTokenInfos: $personalAccessTokenInfos)';
   }
 }
