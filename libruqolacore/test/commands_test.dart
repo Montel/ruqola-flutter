@@ -40,5 +40,42 @@ void main() {
       expect(f.offset, 0);
       expect(f.total, 3);
     });
+
+    test('load permissions', () {
+      final data = extractJsonData("commands", "command3.json");
+      Commands f = Commands.fromJson(data);
+      expect(f.commandsCount, 3);
+      expect(f.offset, 0);
+      expect(f.total, 3);
+      List<Command> lstCommands = [];
+      {
+        final c = Command.defaultValues();
+        c.commandName = "/slackbridge-import";
+        lstCommands.add(c);
+      }
+      {
+        final c = Command.defaultValues();
+        c.commandName = "/archive";
+        c.description = "Archive";
+        c.permissions = ["archive-room"];
+        c.params = "#channel";
+        lstCommands.add(c);
+      }
+
+      {
+        final c = Command.defaultValues();
+        c.commandName = "/leave";
+        c.description = "Leave_the_current_channel";
+        c.permissions = ["leave-c", "leave-p"];
+        lstCommands.add(c);
+      }
+      final f2 = Commands(
+        listCommands: lstCommands,
+        commandsCount: f.commandsCount,
+        offset: f.offset,
+        total: f.total,
+      );
+      expect(f, f2);
+    });
   });
 }

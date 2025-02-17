@@ -28,7 +28,6 @@ class Command {
     if (commandResult.isNotEmpty) {
       commandResult = '/$commandResult';
     }
-    // TODO add params !
     return Command(
         params: params,
         commandName: commandResult,
@@ -36,6 +35,14 @@ class Command {
         providesPreview: providesPreview,
         clientOnly: clientOnly);
   }
+
+  Command.defaultValues()
+      : params = '',
+        commandName = '',
+        description = '',
+        providesPreview = false,
+        clientOnly = false,
+        permissions = const [];
 
   @override
   bool operator ==(Object other) {
