@@ -21,6 +21,7 @@ export 'src/message/messageattachmentfield.dart';
 export 'src/message/messageattachment.dart';
 export 'src/message/reaction.dart';
 export 'src/message/messageurl.dart';
+export 'src/message/replies.dart';
 
 export 'src/retentioninfo.dart';
 export 'src/notificationinfo.dart';
