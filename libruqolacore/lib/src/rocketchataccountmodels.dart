@@ -72,7 +72,7 @@ class Rocketchataccountmodels with ChangeNotifier {
       // TODO
       return SectionName.favorites;
     }
-    switch (r.mChannelType) {
+    switch (r.channelType) {
       case RoomType.direct:
         return SectionName.privateMessages;
       case RoomType.channel:

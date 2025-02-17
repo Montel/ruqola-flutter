@@ -49,8 +49,8 @@ class Room with ChangeNotifier {
                         return mName;
                     } else {
                   */
-    if (mFName != null && mFName!.isEmpty) {
-      return mFName!;
+    if (fName != null && fName!.isEmpty) {
+      return fName!;
     } else {
       return name;
     }
@@ -65,13 +65,13 @@ class Room with ChangeNotifier {
 
   void roomTypeFromString(String type) {
     if (type == "p") {
-      mChannelType = RoomType.private;
+      channelType = RoomType.private;
     } else if (type == "c") {
-      mChannelType = RoomType.channel;
+      channelType = RoomType.channel;
     } else if (type == "d") {
-      mChannelType = RoomType.direct;
+      channelType = RoomType.direct;
     } else {
-      mChannelType = RoomType.unknown;
+      channelType = RoomType.unknown;
     }
   }
 
@@ -80,26 +80,26 @@ class Room with ChangeNotifier {
     name = map["name"].toString();
     open = map["open"];
     alert = map["alert"];
-    mFName = map["fname"];
+    fName = map["fname"];
     if (map.containsKey("ro")) {
       readOnly = map["ro"];
     }
 
     if (map.containsKey("blocker")) {
-      mBlocker = map["blocker"];
+      blocker = map["blocker"];
     } else {
-      mBlocker = false;
+      blocker = false;
     }
     if (map.containsKey("blocked")) {
-      mBlocked = map["blocked"];
+      blocked = map["blocked"];
     } else {
-      mBlocked = false;
+      blocked = false;
     }
 
     if (map.containsKey("encrypted")) {
-      mEncrypted = map["encrypted"];
+      encrypted = map["encrypted"];
     } else {
-      mEncrypted = false;
+      encrypted = false;
     }
 
     if (map.containsKey("f")) {
@@ -120,7 +120,7 @@ class Room with ChangeNotifier {
     name = map["name"].toString();
     open = map["open"];
     alert = map["alert"];
-    mFName = map["fname"];
+    fName = map["fname"];
     if (map.containsKey("ro")) {
       readOnly = map["ro"];
     }
@@ -141,13 +141,12 @@ class Room with ChangeNotifier {
       // mThreadUnread = setThreadUnread(extractStringList(json, "tunread"_L1));
     }
 
-    mAutoTranslate = map["autoTranslate"];
+    autoTranslate = map["autoTranslate"];
 
     roomTypeFromString(map["t"] ?? '');
     teamInfo = TeamInfo.fromJson(map);
+    autotranslateLanguage = map["autoTranslateLanguage"];
 /*
-    setAutoTranslateLanguage(json["autoTranslateLanguage"_L1].toString());
-    
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), json));
     // topic/announcement/description is not part of update subscription
 
@@ -225,7 +224,7 @@ class Room with ChangeNotifier {
       description = map["description"];
     }
     if (map.containsKey("fname")) {
-      mFName = map["fname"];
+      fName = map["fname"];
     }
     readOnly = map["ro"] ?? false;
     if (map.containsKey("rid")) {
@@ -235,7 +234,7 @@ class Room with ChangeNotifier {
       numberMessages = map["msgs"];
     }
     if (map.containsKey("autoTranslate")) {
-      mAutoTranslate = map["autoTranslate"];
+      autoTranslate = map["autoTranslate"];
     }
 
 /*
@@ -415,7 +414,7 @@ class Room with ChangeNotifier {
         "rid": roomId,
         //o["t"_L1] = Room::roomFromRoomType(r->channelType());
         "name": name,
-        "fname": mFName,
+        "fname": fName,
         /*
     o["roomCreatorUserName"_L1] = r->roomOwnerUserName();
     o["roomCreatorUserID"_L1] = QString::fromLatin1(r->roomCreatorUserId());
@@ -515,17 +514,17 @@ class Room with ChangeNotifier {
       };
 */
   // Roles
-  List<String>? mRoles;
+  List<String>? roles;
 
-  List<String>? mUids;
-  List<String>? mUserNames;
-  List<String>? mThreadUnread;
+  List<String>? uids;
+  List<String>? userNames;
+  List<String>? threadUnread;
 
   String roomId = "";
   // name
   String name = "";
 
-  String? mFName;
+  String? fName;
 
   // topic
   String topic = "";
@@ -536,7 +535,9 @@ class Room with ChangeNotifier {
   // Announcement
   String? announcement;
 
-  String? mParentRid;
+  String? parentRid;
+
+  String? autotranslateLanguage;
 
   int numberMessages = 0;
 
@@ -547,12 +548,12 @@ class Room with ChangeNotifier {
   bool favorite = false;
 
   bool mWasInitialized = false;
-  bool mBlocker = false;
-  bool mBlocked = false;
-  bool mEncrypted = false;
-  bool mAutoTranslate = false;
+  bool blocker = false;
+  bool blocked = false;
+  bool encrypted = false;
+  bool autoTranslate = false;
 
-  RoomType mChannelType = RoomType.unknown;
+  RoomType channelType = RoomType.unknown;
   TeamInfo teamInfo = TeamInfo.defaultValues();
   List<Message> messages = [];
 

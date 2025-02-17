@@ -14,20 +14,20 @@ void main() {
     test('Test Initial Rooms values', () {
       expect(room.roomId.isEmpty, true);
       expect(room.name.isEmpty, true);
-      expect(room.mFName, null);
+      expect(room.fName, null);
       expect(room.topic.isEmpty, true);
       expect(room.description, null);
       expect(room.announcement, null);
       expect(room.numberMessages, 0);
-      expect(room.mChannelType, libruqolacore.RoomType.unknown);
-      expect(room.mRoles, null);
-      expect(room.mUids, null);
-      expect(room.mUserNames, null);
-      expect(room.mThreadUnread, null);
+      expect(room.channelType, libruqolacore.RoomType.unknown);
+      expect(room.roles, null);
+      expect(room.uids, null);
+      expect(room.userNames, null);
+      expect(room.threadUnread, null);
       expect(room.favorite, false);
-      expect(room.mEncrypted, false);
-      expect(room.mBlocked, false);
-      expect(room.mBlocker, false);
+      expect(room.encrypted, false);
+      expect(room.blocked, false);
+      expect(room.blocker, false);
     });
   });
 }
