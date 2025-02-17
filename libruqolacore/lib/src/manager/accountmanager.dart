@@ -22,4 +22,17 @@ class Accountmanager with ChangeNotifier {
   }
 
   List<Rocketchataccount> listAccouts = [];
+
+  @override
+  bool operator ==(Object other) {
+    return other is Accountmanager && other.listAccouts == listAccouts;
+  }
+
+  @override
+  int get hashCode => listAccouts.hashCode;
+
+  @override
+  String toString() {
+    return 'Accountmanager(listAccouts: $listAccouts)';
+  }
 }
