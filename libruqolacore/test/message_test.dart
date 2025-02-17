@@ -12,12 +12,12 @@ void main() {
     final message = libruqolacore.Message();
 
     test('Test Initial Message values', () {
-      expect(message.mMessageId.isEmpty, true);
-      expect(message.mText.isEmpty, true);
-      expect(message.mAlias.isEmpty, true);
-      expect(message.mRoomId.isEmpty, true);
-      expect(message.mAvatar.isEmpty, true);
-      expect(message.mEditedByUsername.isEmpty, true);
+      expect(message.messageId.isEmpty, true);
+      expect(message.text.isEmpty, true);
+      expect(message.alias.isEmpty, true);
+      expect(message.roomId.isEmpty, true);
+      expect(message.avatar.isEmpty, true);
+      expect(message.editedByUsername.isEmpty, true);
       expect(message.mMessageType, libruqolacore.MessageType.normaltext);
     });
   });

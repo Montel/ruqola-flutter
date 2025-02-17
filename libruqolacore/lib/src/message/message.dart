@@ -13,14 +13,17 @@ enum MessageType {
 
 class Message {
   Message({
-    this.mMessageId = "",
-    this.mText = '',
-    this.mAlias = '',
-    this.mRoomId = '',
-    this.mAvatar = '',
-    this.mEditedByUsername = '',
-    this.mRole = '',
-    this.mEmoji = '',
+    this.messageId = "",
+    this.text = '',
+    this.alias = '',
+    this.roomId = '',
+    this.avatar = '',
+    this.editedByUsername = '',
+    this.role = '',
+    this.emoji = '',
+    this.username = '',
+    this.name = '',
+    this.userId = '',
   });
 
   factory Message.fromJson(Map<String, dynamic> json) {
@@ -33,15 +36,25 @@ class Message {
     final role = json['role'] ?? '';
     final emoji = json['emoji'] ?? '';
     final editedByUsername = ""; // FIXME
+
+    final userObject = json["u"];
+
+    final username = userObject["username"] ?? '';
+    final name = userObject["name"] ?? '';
+    final userId = userObject["_id"] ?? '';
+
     return Message(
-        mMessageId: messageId,
-        mText: text,
-        mAlias: alias,
-        mRoomId: roomId,
-        mAvatar: avatar,
-        mEditedByUsername: editedByUsername,
-        mRole: role,
-        mEmoji: emoji);
+        messageId: messageId,
+        text: text,
+        alias: alias,
+        roomId: roomId,
+        avatar: avatar,
+        editedByUsername: editedByUsername,
+        role: role,
+        emoji: emoji,
+        username: username,
+        name: name,
+        userId: userId);
   }
 
   Map<String, dynamic> toJson() => {
@@ -49,30 +62,34 @@ class Message {
       };
 
   // _id
-  final String mMessageId;
+  final String messageId;
+  // u
+  String username;
+  String name;
+  String userId;
 
   // msg
-  String mText;
+  String text;
 
-  String mAlias;
+  String alias;
 
   // rid
-  final String mRoomId;
+  final String roomId;
 
   // avatar
-  String mAvatar;
-  String mEditedByUsername;
+  String avatar;
+  String editedByUsername;
 
   // Role
-  String mRole;
+  String role;
 
-  String mEmoji;
+  String emoji;
   // Message Type
   MessageType mMessageType = MessageType.normaltext;
 
   @override
   String toString() {
-    return "mRoomId: $mRoomId mText: $mText mAlias: $mAlias mMessageId: $mMessageId mAvatar:$mAvatar mEditedByUsername:$mEditedByUsername mRole:$mRole mMessageType: $mMessageType";
+    return "Message(mRoomId: $roomId mText: $text mAlias: $alias mMessageId: $messageId mAvatar:$avatar mEditedByUsername:$editedByUsername mRole:$role mMessageType: $mMessageType)";
   }
 
   @override
@@ -80,28 +97,28 @@ class Message {
     if (identical(this, other)) return true;
 
     return other is Message &&
-        other.mMessageId == mMessageId &&
-        other.mText == mText &&
-        other.mAlias == mAlias &&
-        other.mRoomId == mRoomId &&
-        other.mAvatar == mAvatar &&
-        other.mEditedByUsername == mEditedByUsername &&
-        other.mRole == mRole &&
-        other.mEmoji == mEmoji &&
+        other.messageId == messageId &&
+        other.text == text &&
+        other.alias == alias &&
+        other.roomId == roomId &&
+        other.avatar == avatar &&
+        other.editedByUsername == editedByUsername &&
+        other.role == role &&
+        other.emoji == emoji &&
         other.mMessageType == mMessageType;
   }
 
   @override
   int get hashCode {
-    return mMessageId.hashCode ^
-        mMessageId.hashCode ^
-        mText.hashCode ^
-        mAlias.hashCode ^
-        mRoomId.hashCode ^
-        mAvatar.hashCode ^
-        mEditedByUsername.hashCode ^
-        mEmoji.hashCode ^
+    return messageId.hashCode ^
+        messageId.hashCode ^
+        text.hashCode ^
+        alias.hashCode ^
+        roomId.hashCode ^
+        avatar.hashCode ^
+        editedByUsername.hashCode ^
+        emoji.hashCode ^
         mMessageType.hashCode ^
-        mRole.hashCode;
+        role.hashCode;
   }
 }
