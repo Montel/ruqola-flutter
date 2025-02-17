@@ -5,19 +5,33 @@
  */
 
 import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
+import 'package:libruqolacore/src/retentioninfo.dart';
 import 'package:test/test.dart';
+import 'libruqolacoretest.dart';
 
 void main() {
-  final retentionInfo = libruqolacore.RetentionInfo();
   group('Retention Info', () {
     test('Test Initial Retention Info values', () {
+      final retentionInfo = libruqolacore.RetentionInfo();
       expect(retentionInfo.maxAge, -1);
       expect(retentionInfo.enabled, false);
       expect(retentionInfo.excludePinned, false);
       expect(retentionInfo.filesOnly, false);
       expect(retentionInfo.overrideGlobal, false);
     });
-  });
 
-  // TODO add test loading elements
+    test('retention.json', () {
+      final data = extractJsonData("retention", "retention.json");
+      final result = RetentionInfo.fromJson(data);
+
+      final expectValues = RetentionInfo(
+        maxAge: 32,
+        enabled: true,
+        excludePinned: false,
+        filesOnly: true,
+        overrideGlobal: true,
+      );
+      expect(result, expectValues);
+    });
+  });
 }
