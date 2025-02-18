@@ -8,19 +8,7 @@ class Reaction {
   final String reactionName;
   final List<String> userNames;
 
-  Reaction({this.reactionName = "", this.userNames = const []});
-
-  factory Reaction.fromJson(Map<String, dynamic> json) {
-    // print("MESSAGE: $json");
-    final String reactionName = '';
-    final List<String> userNames = [];
-    for (var item in json['usernames']) {
-      userNames.add(item);
-    }
-
-    // TODO
-    return Reaction(reactionName: reactionName, userNames: userNames);
-  }
+  Reaction({required this.reactionName, required this.userNames});
 
   @override
   String toString() {
