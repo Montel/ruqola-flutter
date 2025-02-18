@@ -10,6 +10,27 @@ class Reaction {
 
   Reaction({required this.reactionName, required this.userNames});
 
+  String convertedUsersNameAtToolTip() {
+    if (userNames.isEmpty) {
+      return '';
+    } else if (userNames.length == 1) {
+      return "${userNames[0]} reacted with $reactionName";
+    } else {
+      String notificationStr = '';
+      for (int i = 0, total = userNames.length; i < total; ++i) {
+        String user = userNames[i];
+        if (i == 0) {
+          notificationStr = user;
+        } else if (i < (total - 1)) {
+          notificationStr = "$notificationStr, $user";
+        } else {
+          notificationStr = "$notificationStr and $user";
+        }
+      }
+      return "$notificationStr reacted with $reactionName";
+    }
+  }
+
   @override
   String toString() {
     return "Reaction(reactionName: $reactionName userNames: $userNames)";

@@ -36,13 +36,15 @@ class MessageViewItemState extends State<MessageViewItem> {
               Wrap(
                 spacing: 10,
                 children: widget.message.reactions
-                    .map((emoji) => GestureDetector(
+                    .map((emoji) => Tooltip(
+                        message: emoji.convertedUsersNameAtToolTip(),
+                        child: GestureDetector(
                           child:
                               Text(EmojiParser().get(emoji.reactionName).code),
                           onTap: () => {
                             // Remove emoji or add it.
                           },
-                        ))
+                        )))
                     .toList(),
               ),
           ],
