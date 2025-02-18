@@ -47,6 +47,7 @@ class Messageline extends StatelessWidget {
                               buttonItems: buttonItems,
                             );
                           },
+                          enabled: true, // TODO update it
                           keyboardType: TextInputType.multiline,
                           minLines: 1,
                           maxLines: 3,
