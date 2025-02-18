@@ -18,7 +18,7 @@ void main() {
       expect(message.roomId.isEmpty, true);
       expect(message.avatar.isEmpty, true);
       expect(message.editedByUsername.isEmpty, true);
-      expect(message.mMessageType, libruqolacore.MessageType.normaltext);
+      expect(message.messageType, libruqolacore.MessageType.normaltext);
     });
   });
 

@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+import 'package:libruqolacore/src/message/reaction.dart';
+
 enum MessageType {
   system,
   information,
@@ -85,11 +87,13 @@ class Message {
 
   String emoji;
   // Message Type
-  MessageType mMessageType = MessageType.normaltext;
+  MessageType messageType = MessageType.normaltext;
+  //Reactions
+  List<Reaction> reactions = [];
 
   @override
   String toString() {
-    return "Message(mRoomId: $roomId mText: $text mAlias: $alias mMessageId: $messageId mAvatar:$avatar mEditedByUsername:$editedByUsername mRole:$role mMessageType: $mMessageType)";
+    return "Message(roomId: $roomId text: $text alias: $alias messageId: $messageId avatar: $avatar editedByUsername: $editedByUsername role:$role messageType: $messageType, reactions: $reactions)";
   }
 
   @override
@@ -105,7 +109,8 @@ class Message {
         other.editedByUsername == editedByUsername &&
         other.role == role &&
         other.emoji == emoji &&
-        other.mMessageType == mMessageType;
+        other.messageType == messageType &&
+        other.reactions == reactions;
   }
 
   @override
@@ -118,7 +123,8 @@ class Message {
         avatar.hashCode ^
         editedByUsername.hashCode ^
         emoji.hashCode ^
-        mMessageType.hashCode ^
-        role.hashCode;
+        messageType.hashCode ^
+        role.hashCode ^
+        reactions.hashCode;
   }
 }
