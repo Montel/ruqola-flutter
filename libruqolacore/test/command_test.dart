@@ -5,7 +5,6 @@
  */
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
-import 'libruqolacoretest.dart';
 
 void main() {
   group('Command', () {
