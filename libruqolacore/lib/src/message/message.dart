@@ -14,19 +14,19 @@ enum MessageType {
 }
 
 class Message {
-  Message({
-    this.messageId = "",
-    this.text = '',
-    this.alias = '',
-    this.roomId = '',
-    this.avatar = '',
-    this.editedByUsername = '',
-    this.role = '',
-    this.emoji = '',
-    this.username = '',
-    this.name = '',
-    this.userId = '',
-  });
+  Message(
+      {this.messageId = "",
+      this.text = '',
+      this.alias = '',
+      this.roomId = '',
+      this.avatar = '',
+      this.editedByUsername = '',
+      this.role = '',
+      this.emoji = '',
+      this.username = '',
+      this.name = '',
+      this.userId = '',
+      this.reactions = const []});
 
   factory Message.fromJson(Map<String, dynamic> json) {
     // print("MESSAGE: $json");
@@ -44,7 +44,18 @@ class Message {
     final username = userObject["username"] ?? '';
     final name = userObject["name"] ?? '';
     final userId = userObject["_id"] ?? '';
-
+    final reactionsJson = json["reactions"];
+    List<Reaction> reactions = [];
+    if (reactionsJson != null) {
+      for (var entry in reactionsJson.entries) {
+        // TODO move in reactions class ???
+        final String reactionName = entry.key;
+        final List<String> userNames =
+            List<String>.from(entry.value['usernames']);
+        final r = Reaction(reactionName: reactionName, userNames: userNames);
+        reactions.add(r);
+      }
+    }
     return Message(
         messageId: messageId,
         text: text,
@@ -56,7 +67,8 @@ class Message {
         emoji: emoji,
         username: username,
         name: name,
-        userId: userId);
+        userId: userId,
+        reactions: reactions);
   }
 
   Map<String, dynamic> toJson() => {
