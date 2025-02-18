@@ -4,22 +4,15 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 import 'package:flutter/material.dart';
-import 'package:emojis/emojis.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 
 class MessageViewItem extends StatefulWidget {
-  final String username;
-  final String avatarUrl;
-  final String htmlContent;
-  final List<Reaction> reactions;
+  final Message message;
 
   const MessageViewItem({
     super.key,
-    required this.username,
-    required this.htmlContent,
-    required this.reactions,
-    required this.avatarUrl,
+    required this.message,
   });
 
   @override
@@ -31,19 +24,21 @@ class MessageViewItemState extends State<MessageViewItem> {
   Widget build(BuildContext context) {
     return ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage(widget.avatarUrl),
+          backgroundImage: NetworkImage(widget.message.avatar),
         ),
-        title: Text('@${widget.username}',
+        title: Text('@${widget.message.username}',
             style: TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText(widget.htmlContent),
-            if (widget.reactions.isNotEmpty)
+            SelectableText(widget.message.text),
+            if (widget.message.reactions.isNotEmpty)
               Wrap(
-                children: widget.reactions
+                spacing: 10,
+                children: widget.message.reactions
                     .map((emoji) => GestureDetector(
-                          child: Text(emoji.reactionName),
+                          child:
+                              Text(EmojiParser().get(emoji.reactionName).code),
                           onTap: () => {
                             // Remove emoji or add it.
                           },
