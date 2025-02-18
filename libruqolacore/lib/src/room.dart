@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/src/message/message.dart';
 import 'package:libruqolacore/src/teams/teaminfo.dart';
@@ -138,7 +140,8 @@ class Room with ChangeNotifier {
     }
 
     if (map.containsKey("tunread")) {
-      // mThreadUnread = setThreadUnread(extractStringList(json, "tunread"_L1));
+      threadUnread =
+          (jsonDecode(map["tunread"]) as List<dynamic>).cast<String>();
     }
 
     autoTranslate = map["autoTranslate"];
@@ -237,6 +240,8 @@ class Room with ChangeNotifier {
       autoTranslate = map["autoTranslate"];
     }
 
+    encrypted = map["encrypted"] ?? false;
+
 /*
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), map));
 
@@ -264,11 +269,7 @@ class Room with ChangeNotifier {
         setBlocked(false);
     }
 
-    if (map.containsKey("encrypted")) {
-        setEncrypted(map["encrypted"].toBool());
-    } else {
-        setEncrypted(false);
-    }
+
     // TODO verify it. add autotest
     if (map.containsKey("broadcast")) {
         setBroadcast(map["broadcast"].toBool());
