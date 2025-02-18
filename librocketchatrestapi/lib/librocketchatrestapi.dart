@@ -67,12 +67,16 @@ export 'src/commands/runcommand.dart';
 
 // Channel
 export 'src/channels/channelclose.dart';
+export 'src/channels/changechannelannouncement.dart';
+export 'src/channels/changechanneldescription.dart';
+export 'src/channels/changechannelname.dart';
 
 //Banner
 export 'src/banner/bannerdismiss.dart';
 
 // 2FA
 export 'src/2fa/user2fadisableemail.dart';
+export 'src/2fa/user2faenableemail.dart';
 
 // personalaccesstoken
 export 'src/personalaccesstoken/generatepersonalaccesstoken.dart';

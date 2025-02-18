@@ -61,7 +61,7 @@ abstract class Restapiabstractjob {
     }
     /*
     if (requireTwoFactorAuthentication && mEnforcePasswordFallBack) {
-        if (mAuthMethod.isEmpty() || mAuthCode.isEmpty()) {
+        if (authMethod.isEmpty() || mAuthCode.isEmpty()) {
             qCWarning(ROCKETCHATQTRESTAPI_LOG) << "Job required two factor auth but mAuthMethod or mAuthCode is empty";
             return false;
         }
