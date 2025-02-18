@@ -27,7 +27,7 @@ class MessageViewItemState extends State<MessageViewItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text('@{widget.username}'),
+        title: Text('@${widget.username}'),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
