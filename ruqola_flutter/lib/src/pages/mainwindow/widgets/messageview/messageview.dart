@@ -7,7 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:provider/provider.dart';
-import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageviewitem.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/messageviewitem.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 
 class MessageView extends StatefulWidget {
@@ -56,7 +56,9 @@ class MessageViewSelectionState extends State<MessageView> {
                                 child: MessageViewItem(
                                   username: messages[index].username,
                                   htmlContent: messages[index].text,
-                                  reactions: [], // TODO get reactions
+                                  reactions: messages[index]
+                                      .reactions, // TODO get reactions
+                                  avatarUrl: '', // TODO add avatar url
                                 ),
                               );
                             });
