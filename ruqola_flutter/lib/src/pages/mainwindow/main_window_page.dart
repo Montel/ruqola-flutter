@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
-import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/channelview.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageline.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/messageview.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/statusbarmessage.dart';

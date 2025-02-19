@@ -30,7 +30,7 @@ class ReactionTextState extends State<ReactionText> {
           borderRadius: BorderRadius.circular(6.0), // Rayon des coins
         ),
         child: Tooltip(
-            message: widget.reaction.convertedUsersNameAtToolTip(),
+            message: widget.reaction.convertedUsersNameAsToolTip(),
             child: GestureDetector(
                 onTap: () => {
                       // Remove emoji or add it.
