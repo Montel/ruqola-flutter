@@ -24,10 +24,15 @@ class ReactionTextState extends State<ReactionText> {
     return Tooltip(
         message: widget.reaction.convertedUsersNameAtToolTip(),
         child: GestureDetector(
-          child: Text(EmojiParser().get(widget.reaction.reactionName).code),
-          onTap: () => {
-            // Remove emoji or add it.
-          },
-        ));
+            onTap: () => {
+                  // Remove emoji or add it.
+                },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(EmojiParser().get(widget.reaction.reactionName).code),
+                Text(widget.reaction.userNames.length.toString())
+              ],
+            )));
   }
 }
