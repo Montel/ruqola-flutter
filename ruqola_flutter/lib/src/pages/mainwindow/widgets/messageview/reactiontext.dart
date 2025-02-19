@@ -21,18 +21,26 @@ class ReactionText extends StatefulWidget {
 class ReactionTextState extends State<ReactionText> {
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-        message: widget.reaction.convertedUsersNameAtToolTip(),
-        child: GestureDetector(
-            onTap: () => {
-                  // Remove emoji or add it.
-                },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(EmojiParser().get(widget.reaction.reactionName).code),
-                Text(widget.reaction.userNames.length.toString())
-              ],
-            )));
+    return DecoratedBox(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 220, 244, 3), // Couleur de fond
+          border: Border.all(
+            width: 2.0, // Épaisseur de la bordure
+          ),
+          borderRadius: BorderRadius.circular(6.0), // Rayon des coins
+        ),
+        child: Tooltip(
+            message: widget.reaction.convertedUsersNameAtToolTip(),
+            child: GestureDetector(
+                onTap: () => {
+                      // Remove emoji or add it.
+                    },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(EmojiParser().get(widget.reaction.reactionName).code),
+                    Text(widget.reaction.userNames.length.toString())
+                  ],
+                ))));
   }
 }
