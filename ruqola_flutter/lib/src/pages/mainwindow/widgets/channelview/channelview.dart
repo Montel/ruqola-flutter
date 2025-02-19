@@ -7,13 +7,9 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:provider/provider.dart';
-import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
-
-enum MenuChannelType {
-  closeChannel,
-  markAsRead,
-  changeFavorite,
-}
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/searchchannelline.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/channelviewheadertile.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/channelviewitem.dart';
 
 class ChannelView extends StatefulWidget {
   final Rocketchataccount account;
@@ -23,8 +19,6 @@ class ChannelView extends StatefulWidget {
 }
 
 class ChannelViewSelectionState extends State<ChannelView> {
-  String? roomIdSelected;
-  final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final models = Provider.of<Rocketchataccountmodels>(context);
@@ -34,22 +28,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Search', // I18n!
-                  suffixIcon: IconButton(
-                    onPressed: _controller.clear,
-                    icon: const Icon(Icons.clear),
-                  ),
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
-                ),
-                // onChanged: {
-                // TODO implement it
-                //}
-              ),
-            ),
+                padding: const EdgeInsets.all(8.0), child: SearchChannelLine()),
             Expanded(
               child: ListenableBuilder(
                   listenable: models,
@@ -62,55 +41,10 @@ class ChannelViewSelectionState extends State<ChannelView> {
                     // Construire la liste avec des titres de catégorie
                     List<Widget> listWidgets = [];
                     sortedRoomsWithType.forEach((category, categoryItems) {
-                      listWidgets.add(ListTile(
-                        title: Text(category,
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        tileColor: Colors.grey[200],
-                      ));
-                      listWidgets.addAll(categoryItems.map((item) => ListTile(
-                          title: Text(item.displayName()),
-                          selected: roomIdSelected == item.roomId,
-                          selectedTileColor:
-                              const Color.fromRGBO(187, 222, 251, 1),
-                          trailing: PopupMenuButton<int>(
-                            onSelected: (value) {
-                              // Handle the selection from the PopupMenuButton
-                              if (value == MenuChannelType.markAsRead.index) {
-                                // TODO
-                              } else if (value ==
-                                  MenuChannelType.closeChannel.index) {
-                                _dialogQuitChannelBuilder(item.roomId, context);
-                              } else if (value ==
-                                  MenuChannelType.changeFavorite.index) {
-                                // TODO
-                              }
-                            },
-                            itemBuilder: (BuildContext context) {
-                              // Define the menu items for the PopupMenuButton
-                              return <PopupMenuEntry<int>>[
-                                PopupMenuItem<int>(
-                                  value: MenuChannelType.markAsRead.index,
-                                  child: Text("Mark As Read"),
-                                ),
-                                PopupMenuItem<int>(
-                                  value: MenuChannelType.changeFavorite.index,
-                                  child: Text(
-                                      "Add as Favorite"), // TOOD change it if it's always favorite
-                                ),
-                                PopupMenuItem<int>(
-                                  value: MenuChannelType.closeChannel.index,
-                                  child: Text("Quit Channel"),
-                                ),
-                              ];
-                            },
-                          ),
-                          onTap: () {
-                            setState(() {
-                              roomIdSelected = item.roomId;
-                            });
-                            SharedValue.currentRoomId.value = roomIdSelected!;
-                            widget.account.loadHistory(roomIdSelected!);
-                          })));
+                      listWidgets
+                          .add(ChannelViewHeaderTile(category: category));
+                      listWidgets.addAll(categoryItems.map(
+                          (item) => ChannelViewItem(item, widget.account)));
                     });
 
                     return ListView(
@@ -123,42 +57,6 @@ class ChannelViewSelectionState extends State<ChannelView> {
       ),
     );
   }
-
-  Future<void> _dialogQuitChannelBuilder(String roomId, BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Quit Channel'), // I18n
-          content: const Text(
-            'Do you want to quit this channel ?', // I18n
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Cancel'), //I18n
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Ok'), //I18n
-              onPressed: () {
-                Navigator.of(context).pop();
-                // Allow to close roomId
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }
-
 //Use showDialog for info.
 // https://api.flutter.dev/flutter/material/showDialog.html
