@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:libruqolacore/libruqolacore.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reactiontext.dart';
 
 class MessageViewItem extends StatefulWidget {
   final Message message;
@@ -36,15 +37,7 @@ class MessageViewItemState extends State<MessageViewItem> {
               Wrap(
                 spacing: 10,
                 children: widget.message.reactions
-                    .map((emoji) => Tooltip(
-                        message: emoji.convertedUsersNameAtToolTip(),
-                        child: GestureDetector(
-                          child:
-                              Text(EmojiParser().get(emoji.reactionName).code),
-                          onTap: () => {
-                            // Remove emoji or add it.
-                          },
-                        )))
+                    .map((emoji) => ReactionText(reaction: emoji))
                     .toList(),
               ),
           ],
