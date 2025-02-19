@@ -10,7 +10,7 @@ class Reaction {
 
   Reaction({required this.reactionName, required this.userNames});
 
-  String convertedUsersNameAtToolTip() {
+  String convertedUsersNameAsToolTip() {
     if (userNames.isEmpty) {
       return '';
     } else if (userNames.length == 1) {

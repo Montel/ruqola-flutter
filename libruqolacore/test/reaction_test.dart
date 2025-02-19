@@ -11,26 +11,26 @@ void main() {
     test('Test tooltip', () {
       {
         final reaction = Reaction(reactionName: ":foo:", userNames: []);
-        expect(reaction.convertedUsersNameAtToolTip(), "");
+        expect(reaction.convertedUsersNameAsToolTip(), "");
       }
 
       {
         final reaction = Reaction(reactionName: ":foo:", userNames: ["bla"]);
         expect(
-            reaction.convertedUsersNameAtToolTip(), "bla reacted with :foo:");
+            reaction.convertedUsersNameAsToolTip(), "bla reacted with :foo:");
       }
 
       {
         final reaction =
             Reaction(reactionName: ":foo:", userNames: ["bla", "blo"]);
-        expect(reaction.convertedUsersNameAtToolTip(),
+        expect(reaction.convertedUsersNameAsToolTip(),
             "bla and blo reacted with :foo:");
       }
 
       {
         final reaction =
             Reaction(reactionName: ":foo:", userNames: ["bla", "blo", "bli"]);
-        expect(reaction.convertedUsersNameAtToolTip(),
+        expect(reaction.convertedUsersNameAsToolTip(),
             "bla, blo and bli reacted with :foo:");
       }
     });
