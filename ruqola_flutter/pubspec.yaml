@@ -51,6 +51,7 @@ dependencies:
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
   flutter_emoji: ^2.5.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

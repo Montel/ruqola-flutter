@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 enum MenuChannelType {
   closeChannel,
@@ -30,7 +31,12 @@ class ChannelViewItemState extends State<ChannelViewItem> {
         builder: (context, value, child) {
           return ListTile(
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(""), // TODO implement it.
+                child: //NetworkImage(""), // TODO implement it.
+                    CachedNetworkImage(
+                  imageUrl: "",
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
               title: Text(widget.room.displayName()),
               selected: SharedValue.currentRoomId.value == widget.room.roomId,
