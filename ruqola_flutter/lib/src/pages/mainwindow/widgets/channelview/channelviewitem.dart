@@ -31,9 +31,11 @@ class ChannelViewItemState extends State<ChannelViewItem> {
         builder: (context, value, child) {
           return ListTile(
               leading: CircleAvatar(
-                child: //NetworkImage(""), // TODO implement it.
-                    CachedNetworkImage(
-                  imageUrl: "",
+                child: CachedNetworkImage(
+                  imageUrl: widget.room
+                      .avatarInfo(widget.account.settings.userName)
+                      .avatarUrl(widget.account.settings.serverUrl)
+                      .toString(),
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),

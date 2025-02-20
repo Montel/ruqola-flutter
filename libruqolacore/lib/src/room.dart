@@ -78,43 +78,43 @@ class Room with ChangeNotifier {
     }
   }
 
-  /*
-AvatarInfo avatarInfo()
-{
+  AvatarInfo avatarInfo(String ownUserName) {
+    /*
     if (mCurrentAvatarInfo.isValid()) {
-        return mCurrentAvatarInfo;
+      return mCurrentAvatarInfo;
     }
+    */
     // TODO direct channel or group channel
-    Utils::AvatarInfo info;
-    info.etag = QString::fromLatin1(mAvatarETag);
+    AvatarInfo info = AvatarInfo();
+    info.etag = avatarETag;
     // Group => uids >= 3
-    if (mUids.count() > 2) {
-        QString identifier;
-        for (const QString &username : mUserNames) {
-            identifier.append(username);
+    if (uids != null && uids!.length > 2) {
+      String identifier = '';
+      for (String username in userNames!) {
+        identifier += username;
+      }
+      identifier = '${uids!.length}$identifier';
+      info.avatarType = AvatarType.user;
+      info.identifier = identifier;
+    } else if (uids != null && uids!.length == 2) {
+      info.avatarType = AvatarType.user;
+      String otherUserName = '';
+      for (String userName in userNames!) {
+        if (userName != ownUserName) {
+          otherUserName = userName;
         }
-        identifier.prepend(QString::number(mUids.count()));
-        info.avatarType = Utils::AvatarType::User;
-        info.identifier = identifier;
-    } else if (mUids.count() == 2) {
-        info.avatarType = Utils::AvatarType::User;
-        if (mRocketChatAccount) {
-            QString otherUserName;
-            for (const QString &userName : mUserNames) {
-                if (userName != mRocketChatAccount->userName()) {
-                    otherUserName = userName;
-                }
-            }
-            info.identifier = otherUserName;
-        }
+      }
+      info.identifier = otherUserName;
     } else {
-        info.avatarType = Utils::AvatarType::Room;
-        info.identifier = QString::fromLatin1(mRoomId);
+      info.avatarType = AvatarType.room;
+      info.identifier = roomId;
     }
+    /*
     mCurrentAvatarInfo = info;
     return mCurrentAvatarInfo;
-}
     */
+    return info;
+  }
 
   void parseSubscriptionRoom(Map<String, dynamic> map) {
     roomId = map["rid"].toString();
@@ -195,6 +195,9 @@ AvatarInfo avatarInfo()
     if (map.containsKey("groupMentions")) {
       groupMentions = map["groupMentions"] ?? 0;
     }
+
+    encrypted = map["encrypted"] ?? false;
+
 /*
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), json));
     // topic/announcement/description is not part of update subscription
@@ -212,11 +215,7 @@ AvatarInfo avatarInfo()
     // setE2eKeyId(json["e2eKeyId"_L1].toString());
     setE2EKey(json["E2EKey"_L1].toString());
 
-    if (json.contains("encrypted"_L1)) {
-        setEncrypted(json["encrypted"_L1].toBool());
-    } else {
-        setEncrypted(false);
-    }
+
 
     parseCommonData(json);
     parseDisplaySystemMessage(json);
@@ -291,6 +290,31 @@ AvatarInfo avatarInfo()
     if (map.containsKey("autoTranslateLanguage")) {
       autotranslateLanguage = map["autoTranslateLanguage"];
     }
+
+    if (map.containsKey("prid")) {
+      parentRid = map["prid"];
+    }
+    if (map.containsKey("uids")) {
+      /*
+        const QJsonArray &uidsArray = map["uids"].toArray();
+        const auto &u0 = uidsArray[0].toLatin1();
+        const auto &u1 = uidsArray[1].toLatin1();
+        setDirectChannelUserId((u0 == mRocketChatAccount->userId()) ? u1 : u0);
+
+        QStringList lstUids;
+        lstUids.reserve(uidsArray.count());
+        for (int i = 0; i < uidsArray.count(); ++i) {
+            lstUids << uidsArray.at(i);
+        }
+        setUids(lstUids);
+        */
+    }
+
+    blocked = map["blocked"] ?? false;
+
+    // TODO verify it. add autotest
+    // TODO broadcast = map["broadcast"] ?? false;
+
 /*
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), map));
 
@@ -301,19 +325,8 @@ AvatarInfo avatarInfo()
     }
 
     parseBlockerArchived(map);
-    if (map.containsKey("blocked")) {
-        setBlocked(map["blocked"].toBool());
-    } else {
-        setBlocked(false);
-    }
 
 
-    // TODO verify it. add autotest
-    if (map.containsKey("broadcast")) {
-        setBroadcast(map["broadcast"].toBool());
-    } else {
-        setBroadcast(false);
-    }
     
     const qint64 result = Utils::parseDate(QStringLiteral("ls"), map);
     if (result != -1) {
@@ -343,22 +356,6 @@ AvatarInfo avatarInfo()
         // owner and if it's empty => we need to clear it.
         setRoomCreatorUserId(QByteArray());
         setRoomCreatorUserName(QString());
-    }
-    if (map.containsKey("prid")) {
-        setParentRid(map["prid"].toLatin1());
-    }
-    if (map.containsKey("uids")) {
-        const QJsonArray &uidsArray = map["uids"].toArray();
-        const auto &u0 = uidsArray[0].toLatin1();
-        const auto &u1 = uidsArray[1].toLatin1();
-        setDirectChannelUserId((u0 == mRocketChatAccount->userId()) ? u1 : u0);
-
-        QStringList lstUids;
-        lstUids.reserve(uidsArray.count());
-        for (int i = 0; i < uidsArray.count(); ++i) {
-            lstUids << uidsArray.at(i);
-        }
-        setUids(lstUids);
     }
 
     const QJsonArray userNamesArray = map.value("usernames").toArray();
