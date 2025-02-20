@@ -12,10 +12,9 @@ enum AvatarType {
 }
 
 class AvatarInfo {
-  AvatarInfo(
-      {required this.etag, required this.avatarType, required this.identifier});
+  AvatarInfo();
   bool isValid() {
-    return (avatarType != AvatarType.unknown) && !identifier.isNotEmpty;
+    return (avatarType != AvatarType.unknown) && identifier.isNotEmpty;
   }
 
   @override
@@ -51,7 +50,7 @@ class AvatarInfo {
       return Uri();
     }
     String serverUrl = serverRcUrl;
-    String subFolder;
+    String subFolder = '';
     switch (avatarType) {
       case AvatarType.room:
         subFolder = "/room";
@@ -61,7 +60,7 @@ class AvatarInfo {
       case AvatarType.userAndRoom:
         break;
     }
-    subFolder = '/$identifier';
+    subFolder += '/$identifier';
     subFolder += "?format=png";
     if (etag.isNotEmpty) {
       subFolder += "&etag=$etag";
@@ -73,7 +72,7 @@ class AvatarInfo {
     return Uri.parse("$serverUrl/avatar$subFolder");
   }
 
-  final String etag;
-  final String identifier;
-  final AvatarType avatarType;
+  String etag = '';
+  String identifier = '';
+  AvatarType avatarType = AvatarType.unknown;
 }
