@@ -146,7 +146,7 @@ RoomModel::Section RoomModel::section(Room *r) const
   void setRoomWasInitialized(String roomId, bool initialized) {
     for (Room r in rooms) {
       if (r.roomId == roomId) {
-        r.mWasInitialized = true;
+        r.wasInitialized = true;
       }
     }
   }
@@ -154,7 +154,7 @@ RoomModel::Section RoomModel::section(Room *r) const
   bool roomWasInitialized(String roomId) {
     for (Room r in rooms) {
       if (r.roomId == roomId) {
-        return r.mWasInitialized;
+        return r.wasInitialized;
       }
     }
     return false;

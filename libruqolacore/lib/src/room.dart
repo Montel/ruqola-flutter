@@ -7,6 +7,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:libruqolacore/src/avatarinfo.dart';
 import 'package:libruqolacore/src/message/message.dart';
 import 'package:libruqolacore/src/teams/teaminfo.dart';
 
@@ -77,6 +78,44 @@ class Room with ChangeNotifier {
     }
   }
 
+  /*
+AvatarInfo avatarInfo()
+{
+    if (mCurrentAvatarInfo.isValid()) {
+        return mCurrentAvatarInfo;
+    }
+    // TODO direct channel or group channel
+    Utils::AvatarInfo info;
+    info.etag = QString::fromLatin1(mAvatarETag);
+    // Group => uids >= 3
+    if (mUids.count() > 2) {
+        QString identifier;
+        for (const QString &username : mUserNames) {
+            identifier.append(username);
+        }
+        identifier.prepend(QString::number(mUids.count()));
+        info.avatarType = Utils::AvatarType::User;
+        info.identifier = identifier;
+    } else if (mUids.count() == 2) {
+        info.avatarType = Utils::AvatarType::User;
+        if (mRocketChatAccount) {
+            QString otherUserName;
+            for (const QString &userName : mUserNames) {
+                if (userName != mRocketChatAccount->userName()) {
+                    otherUserName = userName;
+                }
+            }
+            info.identifier = otherUserName;
+        }
+    } else {
+        info.avatarType = Utils::AvatarType::Room;
+        info.identifier = QString::fromLatin1(mRoomId);
+    }
+    mCurrentAvatarInfo = info;
+    return mCurrentAvatarInfo;
+}
+    */
+
   void parseSubscriptionRoom(Map<String, dynamic> map) {
     roomId = map["rid"].toString();
     name = map["name"].toString();
@@ -144,21 +183,21 @@ class Room with ChangeNotifier {
           (jsonDecode(map["tunread"]) as List<dynamic>).cast<String>();
     }
 
-    autoTranslate = map["autoTranslate"];
+    autoTranslate = map["autoTranslate"] ?? false;
 
     roomTypeFromString(map["t"] ?? '');
     teamInfo = TeamInfo.fromJson(map);
     autotranslateLanguage = map["autoTranslateLanguage"];
+    if (map.containsKey("userMentions")) {
+      userMentions = map["userMentions"] ?? 0;
+    }
+
+    if (map.containsKey("groupMentions")) {
+      groupMentions = map["groupMentions"] ?? 0;
+    }
 /*
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), json));
     // topic/announcement/description is not part of update subscription
-
-    if (json.contains("userMentions"_L1)) {
-        setUserMentions(json["userMentions"_L1].toInt());
-    }
-    if (json.contains("groupMentions"_L1)) {
-        setGroupMentions(json["groupMentions"_L1].toInt());
-    }
 
     if (json.contains("tunread"_L1)) {
         setThreadUnread(extractStringList(json, "tunread"_L1));
@@ -242,24 +281,23 @@ class Room with ChangeNotifier {
 
     encrypted = map["encrypted"] ?? false;
 
+    if (map.containsKey("userMentions")) {
+      userMentions = map["userMentions"] ?? 0;
+    }
+    if (map.containsKey("groupMentions")) {
+      groupMentions = map["groupMentions"] ?? 0;
+    }
+
+    if (map.containsKey("autoTranslateLanguage")) {
+      autotranslateLanguage = map["autoTranslateLanguage"];
+    }
 /*
     setJitsiTimeout(Utils::parseDate(QStringLiteral("jitsiTimeout"), map));
 
-    if (map.containsKey("userMentions")) {
-        setUserMentions(map["userMentions"].toInt());
-    }
-    if (map.containsKey("groupMentions")) {
-        setGroupMentions(map["groupMentions"].toInt());
-    }
     if (map.containsKey("joinCodeRequired")) {
         setJoinCodeRequired(map["joinCodeRequired"].toBool());
     } else {
         setJoinCodeRequired(false);
-    }
-
-
-    if (map.containsKey("autoTranslateLanguage")) {
-        setAutoTranslateLanguage(map["autoTranslateLanguage"]);
     }
 
     parseBlockerArchived(map);
@@ -333,187 +371,14 @@ class Room with ChangeNotifier {
     setUserNames(lstUserNames);
 
     setMutedUsers(extractStringList(map, "muted"));
-    setAvatarETag(map.value("avatarETag").toLatin1());
     parseDisplaySystemMessage(map);
     parseRetentionInfo(map);
 */
+    avatarETag = map["avatarETag"] ?? '';
     teamInfo = TeamInfo.fromJson(map);
     notifyListeners();
   }
 
-/*
-  Room.fromJson(Map<String, dynamic> json) {
-      r->setRoomId(o["rid"_L1].toString().toLatin1());
-    r->setChannelType(Room::roomTypeFromString(o["t"_L1].toString()));
-    r->setName(o["name"_L1].toString());
-    r->setFName(o["fname"_L1].toString());
-    r->setAutoTranslateLanguage(o["autoTranslateLanguage"_L1].toString());
-    r->setAutoTranslate(o["autoTranslate"_L1].toBool());
-    r->setRoomCreatorUserName(o["roomCreatorUserName"_L1].toString());
-    r->setRoomCreatorUserId(o["roomCreatorUserID"_L1].toString().toLatin1());
-    r->setTopic(o["topic"_L1].toString());
-    r->setJitsiTimeout(static_cast<qint64>(o["jitsiTimeout"_L1].toDouble()));
-    r->setReadOnly(o["ro"_L1].toBool());
-    r->setUnread(o["unread"_L1].toInt(0));
-    r->setUserMentions(o["userMentions"_L1].toInt(0));
-    r->setGroupMentions(o["groupMentions"_L1].toInt(0));
-    r->setAnnouncement(o["announcement"_L1].toString());
-    r->setSelected(o["selected"_L1].toBool());
-    r->setFavorite(o["favorite"_L1].toBool());
-    r->setAlert(o["alert"_L1].toBool());
-    r->setOpen(o["open"_L1].toBool());
-    r->setArchived(o["archived"_L1].toBool());
-    r->setDescription(o["description"_L1].toString());
-    r->setBlocker(o["blocker"_L1].toBool());
-    r->setBlocked(o["blocked"_L1].toBool());
-    r->setEncrypted(o["encrypted"_L1].toBool());
-    r->setBroadcast(o["broadcast"_L1].toBool());
-    r->setE2EKey(o["e2ekey"_L1].toString());
-    r->setE2eKeyId(o["e2ekeyid"_L1].toString());
-    r->setJoinCodeRequired(o["joinCodeRequired"_L1].toBool());
-    r->setUpdatedAt(static_cast<qint64>(o["updatedAt"_L1].toDouble()));
-    r->setLastSeenAt(static_cast<qint64>(o["lastSeenAt"_L1].toDouble()));
-    r->setNumberMessages(static_cast<qint64>(o["msgs"_L1].toInt()));
-
-    r->setMutedUsers(extractStringList(o, "muted"_L1));
-
-    r->setDisplaySystemMessageTypes(extractStringList(o, "systemMessages"_L1));
-
-    r->setIgnoredUsers(extractStringList(o, "ignored"_L1));
-
-    r->setHighlightsWord(extractStringList(o, "userHighlights"_L1));
-
-    r->setRoles(extractStringList(o, "roles"_L1));
-
-    r->setThreadUnread(extractStringList(o, "tunread"_L1));
-
-    const QJsonObject notificationsObj = o.value("notifications"_L1).toObject();
-    const NotificationOptions notifications = NotificationOptions::deserialize(notificationsObj);
-    r->setNotificationOptions(notifications);
-
-    r->setDirectChannelUserId(o["directChannelUserId"_L1].toString().toLatin1());
-
-    r->setAvatarETag(o["avatarETag"_L1].toString().toLatin1());
-
-    r->setUids(extractStringList(o, "uids"_L1));
-
-    const QJsonObject retentionObj = o.value("retention"_L1).toObject();
-    const RetentionInfo retention = RetentionInfo::deserialize(retentionObj);
-    r->setRetentionInfo(retention);
-    const TeamInfo teaminfo = TeamInfo::deserialize(o);
-    r->setTeamInfo(teaminfo);
-
-    if (o.contains("prid"_L1)) {
-        r->setParentRid(o["prid"_L1].toString().toLatin1());
-    }
-
-    r->setUserNames(extractStringList(o, "usernames"_L1));
-
-  }
-*/
-  Map<String, dynamic> toJson() => {
-        "rid": roomId,
-        //o["t"_L1] = Room::roomFromRoomType(r->channelType());
-        "name": name,
-        "fname": fName,
-        /*
-    o["roomCreatorUserName"_L1] = r->roomOwnerUserName();
-    o["roomCreatorUserID"_L1] = QString::fromLatin1(r->roomCreatorUserId());
-    if (r->numberMessages() > 0) {
-        o["msgs"_L1] = r->numberMessages();
-    }
-    if (!r->topic().isEmpty()) {
-        o["topic"_L1] = r->topic();
-    }
-    if (!r->autoTranslateLanguage().isEmpty()) {
-        o["autoTranslateLanguage"_L1] = r->autoTranslateLanguage();
-    }
-    if (r->autoTranslate()) {
-        o["autoTranslate"_L1] = r->autoTranslate();
-    }
-    o["jitsiTimeout"_L1] = r->jitsiTimeout();
-    o["updatedAt"_L1] = r->updatedAt();
-    o["lastSeenAt"_L1] = r->lastSeenAt();
-    */
-        "ro": readOnly,
-        "unread": unread,
-        /*
-    if (!r->announcement().isEmpty()) {
-        o["announcement"_L1] = r->announcement();
-    }
-    */
-      };
-/*
-    o["selected"_L1] = r->selected();
-    o["favorite"_L1] = r->favorite();
-    o["alert"_L1] = r->alert();
-    o["open"_L1] = r->open();
-    o["blocker"_L1] = r->blocker();
-    o["blocked"_L1] = r->blocked();
-    o["encrypted"_L1] = r->encrypted();
-    o["archived"_L1] = r->archived();
-    o["broadcast"_L1] = r->broadcast();
-    if (r->joinCodeRequired()) {
-        o["joinCodeRequired"_L1] = true;
-    }
-    if (!r->e2EKey().isEmpty()) {
-        o["e2ekey"_L1] = r->e2EKey();
-    }
-    if (!r->e2eKeyId().isEmpty()) {
-        o["e2ekeyid"_L1] = r->e2eKeyId();
-    }
-
-    if (!r->description().isEmpty()) {
-        o["description"_L1] = r->description();
-    }
-    o["userMentions"_L1] = r->userMentions();
-    if (r->groupMentions() > 0) {
-        o["groupMentions"_L1] = r->groupMentions();
-    }
-
-    serializeStringList(o, "muted"_L1, r->mutedUsers());
-
-    serializeStringList(o, "ignored"_L1, r->ignoredUsers());
-    serializeStringList(o, "tunread"_L1, r->threadUnread());
-
-    serializeStringList(o, "roles"_L1, r->roles());
-
-    o["notifications"_L1] = NotificationOptions::serialize(r->notificationOptions());
-
-    if (!r->directChannelUserId().isEmpty()) {
-        o["directChannelUserId"_L1] = QLatin1StringView(r->directChannelUserId());
-    }
-
-    serializeStringList(o, "systemMessages"_L1, r->displaySystemMessageTypes());
-
-    serializeStringList(o, "userHighlights"_L1, r->highlightsWord());
-
-    if (!r->avatarETag().isEmpty()) {
-        o["avatarETag"_L1] = QLatin1StringView(r->avatarETag());
-    }
-    if (!r->uids().isEmpty()) {
-        o["uids"_L1] = QJsonArray::fromStringList(r->uids());
-    }
-
-    if (r->retentionInfo().isNotDefault()) {
-        o["retention"_L1] = RetentionInfo::serialize(r->retentionInfo());
-    }
-    if (r->teamInfo().isValid()) {
-        TeamInfo::serialize(r->teamInfo(), o);
-    }
-    if (!r->parentRid().isEmpty()) {
-        o["prid"_L1] = QLatin1StringView(r->parentRid());
-    }
-
-    serializeStringList(o, "usernames"_L1, r->userNames());
-
-    if (toBinary) {
-        return QCborValue::fromJsonValue(o).toCbor();
-    }
-    d.setObject(o);
-    return d.toJson(QJsonDocument::Indented);
-      };
-*/
   // Roles
   List<String>? roles;
 
@@ -540,15 +405,19 @@ class Room with ChangeNotifier {
 
   String? autotranslateLanguage;
 
+  String avatarETag = "";
+
   int numberMessages = 0;
 
+  int groupMentions = 0;
+  int userMentions = 0;
   int unread = 0;
   bool open = true;
   bool alert = false;
   bool readOnly = false;
   bool favorite = false;
 
-  bool mWasInitialized = false;
+  bool wasInitialized = false;
   bool blocker = false;
   bool blocked = false;
   bool encrypted = false;
@@ -560,6 +429,73 @@ class Room with ChangeNotifier {
 
   @override
   String toString() {
-    return "Room(mRoomId: $roomId  mName: $name open: $open mAnnouncement: $announcement mReadOnly: $readOnly mAlert: $alert, number of message:${messages.length}, teamInfo: $teamInfo)";
+    return "Room(avatarETag: $avatarETag, roomId: $roomId  name: $name open: $open mAnnouncement: $announcement mReadOnly: $readOnly mAlert: $alert, number of message:${messages.length}, teamInfo: $teamInfo, groupMentions: $groupMentions, userMentions $userMentions)";
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Room &&
+        roles == other.roles &&
+        roomId == other.roomId &&
+        uids == other.uids &&
+        userNames == other.userNames &&
+        threadUnread == other.threadUnread &&
+        name == other.name &&
+        fName == other.fName &&
+        topic == other.topic &&
+        description == other.description &&
+        announcement == other.announcement &&
+        parentRid == other.parentRid &&
+        autotranslateLanguage == other.autotranslateLanguage &&
+        avatarETag == other.avatarETag &&
+        numberMessages == other.numberMessages &&
+        groupMentions == other.groupMentions &&
+        userMentions == other.userMentions &&
+        unread == other.unread &&
+        open == other.open &&
+        alert == other.alert &&
+        readOnly == other.readOnly &&
+        favorite == other.favorite &&
+        wasInitialized == other.wasInitialized &&
+        blocker == other.blocker &&
+        blocked == other.blocked &&
+        encrypted == other.encrypted &&
+        autoTranslate == other.autoTranslate &&
+        channelType == other.channelType &&
+        teamInfo == other.teamInfo &&
+        messages == other.messages;
+  }
+
+  @override
+  int get hashCode =>
+      roles.hashCode ^
+      roomId.hashCode ^
+      uids.hashCode ^
+      userNames.hashCode ^
+      threadUnread.hashCode ^
+      name.hashCode ^
+      fName.hashCode ^
+      topic.hashCode ^
+      description.hashCode ^
+      announcement.hashCode ^
+      parentRid.hashCode ^
+      autotranslateLanguage.hashCode ^
+      avatarETag.hashCode ^
+      numberMessages.hashCode ^
+      groupMentions.hashCode ^
+      userMentions.hashCode ^
+      unread.hashCode ^
+      open.hashCode ^
+      alert.hashCode ^
+      readOnly.hashCode ^
+      favorite.hashCode ^
+      wasInitialized.hashCode ^
+      blocker.hashCode ^
+      blocked.hashCode ^
+      encrypted.hashCode ^
+      autoTranslate.hashCode ^
+      channelType.hashCode ^
+      teamInfo.hashCode ^
+      messages.hashCode;
 }

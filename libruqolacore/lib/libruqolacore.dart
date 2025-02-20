@@ -61,3 +61,6 @@ export 'src/bannerinfos/bannerinfos.dart';
 
 // Team
 export 'src/teams/teaminfo.dart';
+
+// avatarutil
+export 'src/avatarinfo.dart';
