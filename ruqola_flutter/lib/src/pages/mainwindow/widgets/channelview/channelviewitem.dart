@@ -29,6 +29,9 @@ class ChannelViewItemState extends State<ChannelViewItem> {
         valueListenable: SharedValue.currentRoomId,
         builder: (context, value, child) {
           return ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(""), // TODO implement it.
+              ),
               title: Text(widget.room.displayName()),
               selected: SharedValue.currentRoomId.value == widget.room.roomId,
               selectedTileColor: const Color.fromRGBO(187, 222, 251, 1),
