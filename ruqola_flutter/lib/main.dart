@@ -23,6 +23,7 @@ Future<void> main() async {
           create: (context) => account.models,
           child: RuqolaMainApp(account),
         ),
+        Provider(create: (context) => account),
         Provider(create: (context) => SecureStorage()),
       ],
       child: RuqolaMainApp(account),
@@ -51,7 +52,7 @@ class MainWidgetState extends State<RuqolaMainApp> {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       home: Scaffold(
-        body: HomePageDesktop(widget.account),
+        body: HomePageDesktop(),
       ),
     );
   }

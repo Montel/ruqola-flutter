@@ -33,17 +33,18 @@ class Credentials {
     required this.url,
   });
 
-  bool get isValid => (username ?? '').isNotEmpty && (password ?? '').isNotEmpty && url != null;
+  bool get isValid =>
+      (username ?? '').isNotEmpty && (password ?? '').isNotEmpty && (url ?? '').isNotEmpty;
 
   Credentials copyWith({
     String? username,
     String? password,
-    String? uri,
+    String? url,
   }) {
     return Credentials(
       username: username ?? this.username,
       password: password ?? this.password,
-      url: uri ?? this.url,
+      url: url ?? this.url,
     );
   }
 
