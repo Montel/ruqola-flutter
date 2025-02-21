@@ -13,7 +13,7 @@ void main() {
     final testCredentials = Credentials(
       username: "General Kenobi",
       password: "HelloThere",
-      uri: Uri.parse("https://apps.kde.org/en-gb/ruqola/"),
+      url: "https://apps.kde.org/en-gb/ruqola/",
     );
 
     test('Write', () async {

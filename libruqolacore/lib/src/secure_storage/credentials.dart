@@ -24,25 +24,26 @@ class Credentials {
   final String? password;
 
   /// Instance url.
-  final Uri? uri;
+  /// TODO: maybe this should be a [Uri].
+  final String? url;
 
   Credentials({
     required this.username,
     required this.password,
-    required this.uri,
+    required this.url,
   });
 
-  bool get isValid => (username ?? '').isNotEmpty && (password ?? '').isNotEmpty && uri != null;
+  bool get isValid => (username ?? '').isNotEmpty && (password ?? '').isNotEmpty && url != null;
 
   Credentials copyWith({
     String? username,
     String? password,
-    Uri? uri,
+    String? uri,
   }) {
     return Credentials(
       username: username ?? this.username,
       password: password ?? this.password,
-      uri: uri ?? this.uri,
+      url: uri ?? this.url,
     );
   }
 
@@ -57,9 +58,9 @@ class Credentials {
     return other is Credentials &&
         other.username == username &&
         other.password == password &&
-        other.uri == uri;
+        other.url == url;
   }
 
   @override
-  int get hashCode => Object.hash(username, password, uri);
+  int get hashCode => Object.hash(username, password, url);
 }
