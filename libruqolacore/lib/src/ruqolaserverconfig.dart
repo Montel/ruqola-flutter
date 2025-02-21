@@ -6,6 +6,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 import 'package:libruqolacore/src/ruqolaserverconfigpassword.dart';
+import 'package:collection/collection.dart';
 
 enum AuthMethodType {
   unknown(0),
@@ -144,7 +145,7 @@ class RuqolaServerConfig {
 
   @override
   String toString() {
-    return 'RetentionInfo(enabled: $enabled, overrideGlobal: $overrideGlobal, excludePinned: $excludePinned, filesOnly: $filesOnly, maxAge: $maxAge)';
+    return 'RuqolaServerConfig()';
   }
   */
 }
