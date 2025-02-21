@@ -68,17 +68,28 @@ class Rocketchataccountmodels with ChangeNotifier {
   }
 
   SectionName section(Room r) {
+    // (r.unread > 0 || r.alert)
     if (r.favorite) {
       // TODO
       return SectionName.favorites;
+    } else if (r.teamInfo.mainTeam) {
+      return SectionName.teams;
     }
     switch (r.channelType) {
       case RoomType.direct:
         return SectionName.privateMessages;
       case RoomType.channel:
-        return SectionName.rooms;
+        if (r.parentRid != null && r.parentRid!.isEmpty) {
+          return SectionName.rooms;
+        } else {
+          return SectionName.discussions;
+        }
       case RoomType.private:
-        return SectionName.discussions;
+        if (r.parentRid != null && r.parentRid!.isEmpty) {
+          return SectionName.rooms;
+        } else {
+          return SectionName.discussions;
+        }
       case RoomType.unknown:
         break;
     }
@@ -125,6 +136,18 @@ RoomModel::Section RoomModel::section(Room *r) const
     return Section::Unknown;
 }
 */
+
+  int compareSection(String a, String b) {
+    if (a == b) return 0;
+    if (a == SectionName.favorites.name) {
+      return -1;
+    } else if (b == SectionName.favorites.name) {
+      return 1;
+    } else {
+      return a.compareTo(b);
+    }
+  }
+
   Map<String, List<Room>> sortedRoomsWithType(
       [RoomListSortOrder list = RoomListSortOrder.alphabetically]) {
     Map<String, List<Room>> groupedRooms = {};
@@ -133,18 +156,20 @@ RoomModel::Section RoomModel::section(Room *r) const
 
     for (var room in rooms) {
       if (room.open) {
-        String sectionName = section(room).name;
+        final String sectionName = section(room).name;
         if (!groupedRooms.containsKey(sectionName)) {
           groupedRooms[sectionName] = [];
         }
         groupedRooms[sectionName]!.add(room);
       }
     }
-    return groupedRooms;
+    var sortedByKeyMap = Map.fromEntries(groupedRooms.entries.toList()
+      ..sort((e1, e2) => compareSection(e1.key, e2.key)));
+    return sortedByKeyMap;
   }
 
   void setRoomWasInitialized(String roomId, bool initialized) {
-    for (Room r in rooms) {
+    for (final Room r in rooms) {
       if (r.roomId == roomId) {
         r.wasInitialized = true;
       }
@@ -152,7 +177,7 @@ RoomModel::Section RoomModel::section(Room *r) const
   }
 
   bool roomWasInitialized(String roomId) {
-    for (Room r in rooms) {
+    for (final Room r in rooms) {
       if (r.roomId == roomId) {
         return r.wasInitialized;
       }
@@ -162,7 +187,7 @@ RoomModel::Section RoomModel::section(Room *r) const
 
   Room? findRoomFromIdentifier(String roomId) {
     print("Find roomId $roomId");
-    for (Room r in rooms) {
+    for (final Room r in rooms) {
       if (r.roomId == roomId) {
         return r;
       }
@@ -180,7 +205,7 @@ RoomModel::Section RoomModel::section(Room *r) const
       }
 
       // FIXME
-      for (Room r in rooms) {
+      for (final Room r in rooms) {
         r.notify();
       }
     }

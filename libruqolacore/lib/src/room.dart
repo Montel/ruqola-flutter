@@ -79,15 +79,13 @@ class Room with ChangeNotifier {
   }
 
   AvatarInfo avatarInfo(String ownUserName) {
-    /*
-    if (mCurrentAvatarInfo.isValid()) {
-      return mCurrentAvatarInfo;
+    if (currentAvatarInfo.isValid()) {
+      return currentAvatarInfo;
     }
-    */
     // TODO direct channel or group channel
     AvatarInfo info = AvatarInfo();
     info.etag = avatarETag;
-    final int uidsCount = uids != null ? uids!.length : 0;
+    final int uidsCount = uids.length;
 
     // Group => uids >= 3
     if (uidsCount > 2) {
@@ -111,11 +109,8 @@ class Room with ChangeNotifier {
       info.avatarType = AvatarType.room;
       info.identifier = roomId;
     }
-    /*
-    mCurrentAvatarInfo = info;
-    return mCurrentAvatarInfo;
-    */
-    return info;
+    currentAvatarInfo = info;
+    return currentAvatarInfo;
   }
 
   void parseSubscriptionRoom(Map<String, dynamic> map) {
@@ -297,6 +292,15 @@ class Room with ChangeNotifier {
       parentRid = map["prid"];
     }
     if (map.containsKey("uids")) {
+      for (var uid in map["uids"]) {
+        uids.add(uid);
+      }
+      /*
+      var uidsArray = map["uids"];
+      if (uidsArray.length > 2)  {
+
+      }
+      */
       /*
         const QJsonArray &uidsArray = map["uids"].toArray();
         const auto &u0 = uidsArray[0].toLatin1();
@@ -381,7 +385,7 @@ class Room with ChangeNotifier {
   // Roles
   List<String>? roles;
 
-  List<String>? uids;
+  List<String> uids = [];
   List<String>? userNames;
   List<String>? threadUnread;
 
@@ -424,6 +428,7 @@ class Room with ChangeNotifier {
 
   RoomType channelType = RoomType.unknown;
   TeamInfo teamInfo = TeamInfo.defaultValues();
+  AvatarInfo currentAvatarInfo = AvatarInfo();
   List<Message> messages = [];
 
   @override
