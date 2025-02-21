@@ -9,10 +9,12 @@ import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reaction
 
 class MessageViewItem extends StatefulWidget {
   final Message message;
+  final Rocketchataccount account;
 
   const MessageViewItem({
     super.key,
     required this.message,
+    required this.account,
   });
 
   @override
@@ -24,7 +26,8 @@ class MessageViewItemState extends State<MessageViewItem> {
   Widget build(BuildContext context) {
     return ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage(widget.message.avatar),
+          backgroundImage: NetworkImage(
+              widget.message.avatarUrl(widget.account.settings.serverUrl)),
         ),
         title: Text('@${widget.message.username}',
             style: TextStyle(fontWeight: FontWeight.bold)),

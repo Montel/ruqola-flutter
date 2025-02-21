@@ -34,8 +34,7 @@ class ChannelViewItemState extends State<ChannelViewItem> {
                 child: CachedNetworkImage(
                   imageUrl: widget.room
                       .avatarInfo(widget.account.settings.userName)
-                      .avatarUrl(widget.account.settings.serverUrl)
-                      .toString(),
+                      .avatarUrl(widget.account.settings.serverUrl),
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),

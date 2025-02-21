@@ -53,8 +53,9 @@ class MessageViewSelectionState extends State<MessageView> {
                             itemCount: messages.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
-                                child:
-                                    MessageViewItem(message: messages[index]),
+                                child: MessageViewItem(
+                                    message: messages[index],
+                                    account: widget.account),
                               );
                             });
                       }),
