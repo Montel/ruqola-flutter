@@ -87,16 +87,18 @@ class Room with ChangeNotifier {
     // TODO direct channel or group channel
     AvatarInfo info = AvatarInfo();
     info.etag = avatarETag;
+    final int uidsCount = uids != null ? uids!.length : 0;
+
     // Group => uids >= 3
-    if (uids != null && uids!.length > 2) {
+    if (uidsCount > 2) {
       String identifier = '';
       for (String username in userNames!) {
         identifier += username;
       }
-      identifier = '${uids!.length}$identifier';
+      identifier = '$uidsCount$identifier';
       info.avatarType = AvatarType.user;
       info.identifier = identifier;
-    } else if (uids != null && uids!.length == 2) {
+    } else if (uidsCount == 2) {
       info.avatarType = AvatarType.user;
       String otherUserName = '';
       for (String userName in userNames!) {
