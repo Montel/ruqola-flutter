@@ -45,9 +45,9 @@ class AvatarInfo {
     }
   }
 
-  Uri avatarUrl(String serverRcUrl) {
+  String avatarUrl(String serverRcUrl) {
     if (serverRcUrl.isEmpty) {
-      return Uri();
+      return '';
     }
     String serverUrl = serverRcUrl;
     String subFolder = '';
@@ -69,7 +69,7 @@ class AvatarInfo {
     if (!serverUrl.startsWith("https://") && !serverUrl.startsWith("http://")) {
       serverUrl = "https:/$serverUrl";
     }
-    return Uri.parse("$serverUrl/avatar$subFolder");
+    return "$serverUrl/avatar$subFolder";
   }
 
   String etag = '';
