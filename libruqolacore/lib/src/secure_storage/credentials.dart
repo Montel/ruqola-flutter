@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Werner Scholtz <werner.scholtz@kdab.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ */
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 

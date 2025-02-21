@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Werner Scholtz <werner.scholtz@kdab.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ */
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

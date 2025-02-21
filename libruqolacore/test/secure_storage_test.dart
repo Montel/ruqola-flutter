@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Werner Scholtz <werner.scholtz@kdab.com>
+ *
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ */
 import 'package:libruqolacore/src/secure_storage/credentials.dart';
 import 'package:libruqolacore/src/secure_storage/secure_storage.dart';
 import 'package:test/test.dart';
