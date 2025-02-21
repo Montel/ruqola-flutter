@@ -13,6 +13,7 @@ enum MenuChannelType {
   closeChannel,
   markAsRead,
   changeFavorite,
+  dumpRoomInfo,
 }
 
 class ChannelViewItem extends StatefulWidget {
@@ -51,6 +52,8 @@ class ChannelViewItemState extends State<ChannelViewItem> {
                     _dialogQuitChannelBuilder(widget.room.roomId, context);
                   } else if (value == MenuChannelType.changeFavorite.index) {
                     // TODO
+                  } else if (value == MenuChannelType.dumpRoomInfo.index) {
+                    print("${widget.room}");
                   }
                 },
                 itemBuilder: (BuildContext context) {
@@ -68,6 +71,10 @@ class ChannelViewItemState extends State<ChannelViewItem> {
                     PopupMenuItem<int>(
                       value: MenuChannelType.closeChannel.index,
                       child: Text("Quit Channel"),
+                    ),
+                    PopupMenuItem<int>(
+                      value: MenuChannelType.dumpRoomInfo.index,
+                      child: Text("Dump info"),
                     ),
                   ];
                 },
