@@ -18,19 +18,33 @@ part 'credentials.g.dart';
 @immutable
 class Credentials {
   /// Username.
-  final String username;
+  final String? username;
 
   /// Password.
-  final String password;
+  final String? password;
 
   /// Instance url.
-  final Uri uri;
+  final Uri? uri;
 
   Credentials({
     required this.username,
     required this.password,
     required this.uri,
   });
+
+  bool get isValid => (username ?? '').isNotEmpty && (password ?? '').isNotEmpty && uri != null;
+
+  Credentials copyWith({
+    String? username,
+    String? password,
+    Uri? uri,
+  }) {
+    return Credentials(
+      username: username ?? this.username,
+      password: password ?? this.password,
+      uri: uri ?? this.uri,
+    );
+  }
 
   /// Create a json data from this [Credentials].
   Map<String, dynamic> toJson() => _$CredentialsToJson(this);
