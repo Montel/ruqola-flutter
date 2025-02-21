@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+import 'package:libruqolacore/src/avatarinfo.dart';
 import 'package:libruqolacore/src/message/reaction.dart';
 
 enum MessageType {
@@ -69,6 +70,23 @@ class Message {
         name: name,
         userId: userId,
         reactions: reactions);
+  }
+
+  String avatarUrl(String serverUrl) {
+    if (avatar.isNotEmpty) {
+      return avatar;
+    }
+    if (emoji.isNotEmpty) {
+      return emoji;
+    }
+    return avatarInfo().avatarUrl(serverUrl);
+  }
+
+  AvatarInfo avatarInfo() {
+    AvatarInfo info = AvatarInfo();
+    info.avatarType = AvatarType.user;
+    info.identifier = username;
+    return info;
   }
 
   Map<String, dynamic> toJson() => {
