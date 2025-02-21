@@ -23,6 +23,7 @@ Future<void> main() async {
           create: (context) => account.models,
           child: RuqolaMainApp(account),
         ),
+        Provider(create: (context) => SecureStorage()),
       ],
       child: RuqolaMainApp(account),
     ),
