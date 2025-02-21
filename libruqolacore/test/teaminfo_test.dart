@@ -9,7 +9,13 @@ import 'package:test/test.dart';
 
 void main() {
   group('Team info', () {
-    // TODO
-    test('Test Initial Rooms values', () {});
+    test('Test Initial Rooms values', () {
+      final libruqolacore.TeamInfo teaminfo =
+          libruqolacore.TeamInfo.defaultValues();
+      expect(teaminfo.autoJoin, false);
+      expect(teaminfo.roomsCount, 0);
+      expect(teaminfo.mainTeam, false);
+      expect(teaminfo.teamId.isEmpty, true);
+    });
   });
 }
