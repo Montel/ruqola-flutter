@@ -64,3 +64,7 @@ export 'src/teams/teaminfo.dart';
 
 // avatarutil
 export 'src/avatarinfo.dart';
+
+// Secure Storage
+export 'src/secure_storage/credentials.dart';
+export 'src/secure_storage/secure_storage.dart';
