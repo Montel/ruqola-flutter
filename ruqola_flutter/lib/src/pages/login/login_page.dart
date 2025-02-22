@@ -166,7 +166,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     if (empty != null) return empty;
 
     final uri = Uri.tryParse(value!);
-    if (uri == null || !uri.hasAbsolutePath) return "Can't parse url"; // TODO add i18n here
+    if (uri == null) return "Can't parse url"; // TODO add i18n here
 
     return null;
   }
