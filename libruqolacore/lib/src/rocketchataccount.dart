@@ -7,10 +7,10 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:libddpapi/libddpapi.dart' as libddpapi;
 import 'package:libruqolacore/libruqolacore.dart';
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 
 class Rocketchataccount {
   final _ddpclient = libddpapi.DdpClient();
@@ -20,6 +20,12 @@ class Rocketchataccount {
 
   final StreamController<libddpapi.AbstractEvent> _eventWebsocketController =
       StreamController<libddpapi.AbstractEvent>.broadcast();
+
+  /// Something for the UI to determine what is happening here.
+  /// 
+  /// This could be an enum with more states than just true/false
+  /// [error, connecting, connected, reloading, etc....]
+  final isConnected = ValueNotifier<bool>(false);
 
   Future<void> connect() async {
     // Add controler
@@ -81,8 +87,7 @@ class Rocketchataccount {
       switch (type) {
         case libddpapi.ResulType.login:
           {
-            print(
-                'LOGIN: result element *****************: ${resultElement.message.result}');
+            print('LOGIN: result element *****************: ${resultElement.message.result}');
             const List<Map<String, dynamic>> result = [
               {"\$date": 0}
             ];
@@ -126,8 +131,10 @@ class Rocketchataccount {
 
     // start client
     await _ddpclient.start();
-    _ddpclient
-        .sendMessage(jsonEncode(libddpapi.Authenticationutils.sendConnect()));
+    _ddpclient.sendMessage(jsonEncode(libddpapi.Authenticationutils.sendConnect()));
+
+    // Update the is connected value.
+    isConnected.value = true;
   }
 
   Future<void> close() async {
@@ -158,10 +165,8 @@ class Rocketchataccount {
               methodName, messageObj, _ddpclient.generateIdentifier());
 
       librocketchatrestapi.MethodCallInfo info =
-          librocketchatrestapi.MethodCallInfo(
-              methodName, false, generatedLoadHistory);
-      librocketchatrestapi.MethodCall loadHistory =
-          librocketchatrestapi.MethodCall(info);
+          librocketchatrestapi.MethodCallInfo(methodName, false, generatedLoadHistory);
+      librocketchatrestapi.MethodCall loadHistory = librocketchatrestapi.MethodCall(info);
       loadHistory.serverUrl = settings.serverUrl;
       loadHistory.userId = settings.userId;
       loadHistory.authToken = settings.authToken;
@@ -190,8 +195,7 @@ class Rocketchataccount {
     } else if (collection == "stream-notify-logged") {
       print("stream-notify-logged: removed ");
     } else {
-      print(
-          " Other collection type  removed $collection object ${removedElement.message.fields}");
+      print(" Other collection type  removed $collection object ${removedElement.message.fields}");
     }
   }
 
@@ -202,8 +206,7 @@ class Rocketchataccount {
       return;
     }
     if (collection == "stream-room-messages") {
-      models
-          .processIncomingMessages(changedElement.message.fields!.args!.args!);
+      models.processIncomingMessages(changedElement.message.fields!.args!.args!);
       // TODO
     } else if (collection == "users") {
       print("User collection");
@@ -241,21 +244,18 @@ class Rocketchataccount {
         // method null subs: null fields: eventName: dBWXYy4nyBHn8Q7dv/user-activity args: args: [user, true]
         // username: null error: null  result: null
 
-        final String typingUserName =
-            changedElement.message.fields!.args!.args![0].toString();
+        final String typingUserName = changedElement.message.fields!.args!.args![0].toString();
         if (typingUserName != settings.userName) {
           bool status = false;
           if (changedElement.message.fields!.args!.args![1] is bool) {
             status = changedElement.message.fields!.args!.args![1] as bool;
           } else if (changedElement.message.fields!.args!.args![1] is List) {
             var listElement = changedElement.message.fields!.args!.args![1];
-            if (listElement.isNotEmpty &&
-                listElement[0].toString() == "user-typing") {
+            if (listElement.isNotEmpty && listElement[0].toString() == "user-typing") {
               status = true;
             }
           }
-          receiverTypingNotification.insertTypingNotification(
-              roomId, typingUserName, status);
+          receiverTypingNotification.insertTypingNotification(roomId, typingUserName, status);
         }
       } else if (eventname.endsWith("/deleteMessageBulk")) {
         // TODO ????

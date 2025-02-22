@@ -15,10 +15,10 @@ include: package:lints/recommended.yaml
 
 # Uncomment the following section to specify additional rules.
 
-# linter:
-#   rules:
-#     - camel_case_types
-
+linter:
+  rules:
+    - camel_case_types
+    - file_names
 # analyzer:
 #   exclude:
 #     - path/to/excluded/files/**
@@ -28,3 +28,8 @@ include: package:lints/recommended.yaml
 
 # For additional information about configuring this file, see
 # https://dart.dev/guides/language/analysis-options
+
+# TODO: Feel free to adjust this to what you prefer, just remove this comment once it is done.
+# Format with `dart format .`
+formatter:
+  page_width: 100
