@@ -26,13 +26,7 @@ class Role {
   }
 
   @override
-  int get hashCode {
-    return userId.hashCode ^
-        userName.hashCode ^
-        isModerator.hashCode ^
-        isLeader.hashCode ^
-        isOwner.hashCode;
-  }
+  int get hashCode => Object.hash(userId, userName, isModerator, isLeader, isOwner);
 
   @override
   String toString() {
