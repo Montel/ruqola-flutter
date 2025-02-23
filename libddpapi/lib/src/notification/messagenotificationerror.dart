@@ -6,7 +6,7 @@
 
 class Messagenotificationerror {
   String? message;
-  int? error;
+  String? error;
   String? reason;
 
   Messagenotificationerror.fromMap(Map<String, dynamic> json) {
