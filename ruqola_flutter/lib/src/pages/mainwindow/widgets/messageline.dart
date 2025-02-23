@@ -61,8 +61,7 @@ class Messageline extends StatelessWidget {
                               border: const OutlineInputBorder())))),
               FilledButton(
                   child: Text("Send",
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 18)), // TODO I18n !
+                      style: TextStyle(color: Colors.white, fontSize: 18)), // TODO I18n !
                   onPressed: () {
                     if (_controller.text.isNotEmpty && value.isNotEmpty) {
                       account.sendMessage(value, _controller.text);

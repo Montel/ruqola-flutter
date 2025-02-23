@@ -39,10 +39,8 @@ void main() {
         AvatarInfo avatarInfo = AvatarInfo();
         avatarInfo.identifier = "user1";
         avatarInfo.avatarType = AvatarType.user;
-        expect(
-            avatarInfo.avatarUrl('http://www.kde.org'),
-            Uri.parse(
-                "http://www.kde.org/avatar/${avatarInfo.identifier}?format=png&size=22"));
+        expect(avatarInfo.avatarUrl('http://www.kde.org'),
+            Uri.parse("http://www.kde.org/avatar/${avatarInfo.identifier}?format=png&size=22"));
       }
       {
         AvatarInfo avatarInfo = AvatarInfo();

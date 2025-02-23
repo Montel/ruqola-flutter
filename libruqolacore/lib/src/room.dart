@@ -176,8 +176,7 @@ class Room with ChangeNotifier {
     }
 
     if (map.containsKey("tunread")) {
-      threadUnread =
-          (jsonDecode(map["tunread"]) as List<dynamic>).cast<String>();
+      threadUnread = (jsonDecode(map["tunread"]) as List<dynamic>).cast<String>();
     }
 
     autoTranslate = map["autoTranslate"] ?? false;

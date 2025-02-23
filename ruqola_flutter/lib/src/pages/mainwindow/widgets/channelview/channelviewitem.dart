@@ -65,8 +65,7 @@ class ChannelViewItemState extends State<ChannelViewItem> {
                     ),
                     PopupMenuItem<int>(
                       value: MenuChannelType.changeFavorite.index,
-                      child: Text(
-                          "Add as Favorite"), // TOOD change it if it's always favorite
+                      child: Text("Add as Favorite"), // TOOD change it if it's always favorite
                     ),
                     PopupMenuItem<int>(
                       value: MenuChannelType.closeChannel.index,

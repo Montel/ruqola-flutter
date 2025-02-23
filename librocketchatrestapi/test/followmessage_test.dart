@@ -4,19 +4,16 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('follow message', () {
     test('check default values', () {
-      librocketchatrestapi.FollowMessageInfo info =
-          librocketchatrestapi.FollowMessageInfo("foo");
+      librocketchatrestapi.FollowMessageInfo info = librocketchatrestapi.FollowMessageInfo("foo");
       expect(info.isValid(), true);
 
-      librocketchatrestapi.FollowMessage unfollow =
-          librocketchatrestapi.FollowMessage(info);
+      librocketchatrestapi.FollowMessage unfollow = librocketchatrestapi.FollowMessage(info);
       unfollow.serverUrl = "http://www.kde.org";
       expect(unfollow.canStart(), false);
       expect(unfollow.requireHttpAuthentication(), true);
@@ -29,12 +26,10 @@ void main() {
     });
 
     test('check can start', () {
-      librocketchatrestapi.FollowMessageInfo info =
-          librocketchatrestapi.FollowMessageInfo("foo");
+      librocketchatrestapi.FollowMessageInfo info = librocketchatrestapi.FollowMessageInfo("foo");
       expect(info.isValid(), true);
 
-      librocketchatrestapi.FollowMessage unfollow =
-          librocketchatrestapi.FollowMessage(info);
+      librocketchatrestapi.FollowMessage unfollow = librocketchatrestapi.FollowMessage(info);
       unfollow.userId = 'user';
       unfollow.authToken = 'token';
       unfollow.serverUrl = "http://www.kde.org";

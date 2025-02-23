@@ -52,8 +52,8 @@ class TeamLeaveRoom extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

@@ -4,17 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('pin message info', () {
     test('check default values', () {
-      librocketchatrestapi.PinMessageInfo info =
-          librocketchatrestapi.PinMessageInfo("bla", false);
-      librocketchatrestapi.PinMessage runcommand =
-          librocketchatrestapi.PinMessage(info);
+      librocketchatrestapi.PinMessageInfo info = librocketchatrestapi.PinMessageInfo("bla", false);
+      librocketchatrestapi.PinMessage runcommand = librocketchatrestapi.PinMessage(info);
       expect(runcommand.requireHttpAuthentication(), true);
       expect(runcommand.requireTwoFactorAuthentication, false);
       expect(runcommand.url("http://www.kde.org"),
@@ -22,10 +19,8 @@ void main() {
       expect(info.body(), {'messageId': 'bla'});
     });
     test('check count values', () {
-      librocketchatrestapi.PinMessageInfo info =
-          librocketchatrestapi.PinMessageInfo("bla", true);
-      librocketchatrestapi.PinMessage runcommand =
-          librocketchatrestapi.PinMessage(info);
+      librocketchatrestapi.PinMessageInfo info = librocketchatrestapi.PinMessageInfo("bla", true);
+      librocketchatrestapi.PinMessage runcommand = librocketchatrestapi.PinMessage(info);
       expect(runcommand.requireHttpAuthentication(), true);
       expect(runcommand.requireTwoFactorAuthentication, false);
       expect(runcommand.url("http://www.kde.org"),

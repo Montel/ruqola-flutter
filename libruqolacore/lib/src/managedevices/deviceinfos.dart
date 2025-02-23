@@ -58,10 +58,7 @@ class Deviceinfos {
 
   @override
   int get hashCode {
-    return listDevices.hashCode ^
-        deviceInfosCount.hashCode ^
-        offset.hashCode ^
-        total.hashCode;
+    return listDevices.hashCode ^ deviceInfosCount.hashCode ^ offset.hashCode ^ total.hashCode;
   }
 
   @override

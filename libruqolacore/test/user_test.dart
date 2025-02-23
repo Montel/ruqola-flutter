@@ -31,18 +31,14 @@ void main() {
 
     test('Test presenceStatusFromString', () {
       String b = "d";
-      expect(libruqolacore.User.presenceStatusFromString(b),
-          libruqolacore.Status.unknown);
+      expect(libruqolacore.User.presenceStatusFromString(b), libruqolacore.Status.unknown);
       b = "busy";
-      expect(libruqolacore.User.presenceStatusFromString(b),
-          libruqolacore.Status.busy);
+      expect(libruqolacore.User.presenceStatusFromString(b), libruqolacore.Status.busy);
       b = "away";
-      expect(libruqolacore.User.presenceStatusFromString(b),
-          libruqolacore.Status.away);
+      expect(libruqolacore.User.presenceStatusFromString(b), libruqolacore.Status.away);
       // It's a null string
       String? nullValue;
-      expect(libruqolacore.User.presenceStatusFromString(nullValue),
-          libruqolacore.Status.unknown);
+      expect(libruqolacore.User.presenceStatusFromString(nullValue), libruqolacore.Status.unknown);
     });
 
     test('userrestapi json', () {

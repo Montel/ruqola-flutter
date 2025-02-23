@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -15,8 +14,7 @@ void main() {
           librocketchatrestapi.TeamLeaveRoomInfo("foo", "bla");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.TeamLeaveRoom teamLeaveRoom =
-          librocketchatrestapi.TeamLeaveRoom(info);
+      librocketchatrestapi.TeamLeaveRoom teamLeaveRoom = librocketchatrestapi.TeamLeaveRoom(info);
       teamLeaveRoom.serverUrl = "http://www.kde.org";
       expect(teamLeaveRoom.canStart(), false);
       expect(teamLeaveRoom.requireHttpAuthentication(), true);

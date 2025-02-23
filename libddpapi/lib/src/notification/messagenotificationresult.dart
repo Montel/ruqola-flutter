@@ -17,8 +17,7 @@ class Messagenotificationresult {
     result = json;
     id = result['id'];
     token = result['token'];
-    tokenExpires = result['tokenExpires'] != null &&
-            result['tokenExpires']['\$date'] != null
+    tokenExpires = result['tokenExpires'] != null && result['tokenExpires']['\$date'] != null
         ? DateTime.fromMillisecondsSinceEpoch(result['tokenExpires']['\$date'])
         : DateTime.now();
 

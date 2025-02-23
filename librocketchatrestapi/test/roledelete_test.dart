@@ -4,19 +4,16 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('Role delete', () {
     test('check default values', () {
-      librocketchatrestapi.RoleDeleteInfo info =
-          librocketchatrestapi.RoleDeleteInfo("foo");
+      librocketchatrestapi.RoleDeleteInfo info = librocketchatrestapi.RoleDeleteInfo("foo");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.RoleDelete roleDelete =
-          librocketchatrestapi.RoleDelete(info);
+      librocketchatrestapi.RoleDelete roleDelete = librocketchatrestapi.RoleDelete(info);
       roleDelete.serverUrl = "http://www.kde.org";
       expect(roleDelete.canStart(), false);
       expect(roleDelete.requireHttpAuthentication(), true);

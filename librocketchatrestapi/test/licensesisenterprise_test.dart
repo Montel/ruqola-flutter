@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('license is enterprise', () {
     test('check default values', () {
-      librocketchatrestapi.LicensesIsEnterprise info =
-          librocketchatrestapi.LicensesIsEnterprise();
+      librocketchatrestapi.LicensesIsEnterprise info = librocketchatrestapi.LicensesIsEnterprise();
       expect(info.requireHttpAuthentication(), true);
       expect(info.requireTwoFactorAuthentication, false);
       expect(info.url("http://www.kde.org"),

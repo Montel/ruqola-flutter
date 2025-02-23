@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('User 2fa disable mail', () {
     test('check default values', () {
-      librocketchatrestapi.User2FADisableEmail user2fa =
-          librocketchatrestapi.User2FADisableEmail();
+      librocketchatrestapi.User2FADisableEmail user2fa = librocketchatrestapi.User2FADisableEmail();
       user2fa.serverUrl = "http://www.kde.org";
       expect(user2fa.canStart(), false);
       expect(user2fa.requireHttpAuthentication(), true);

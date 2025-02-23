@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -16,8 +15,7 @@ void main() {
       expect(info.description, "description");
       expect(info.messageId, "messageId1");
 
-      librocketchatrestapi.ReportMessage reportMessage =
-          librocketchatrestapi.ReportMessage(info);
+      librocketchatrestapi.ReportMessage reportMessage = librocketchatrestapi.ReportMessage(info);
       expect(reportMessage.canStart(), false);
       expect(reportMessage.requireHttpAuthentication(), true);
       expect(reportMessage.url("https://www.kde.org"),

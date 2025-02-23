@@ -20,18 +20,15 @@ class Messagenotification {
   Messagenotificationerror? error;
 
   Messagenotification.fromMap(Map<String, dynamic> json) {
-    print("MESSAGE N OTIFICATION $json");
+    print("MESSAGE NOTIFICATION $json");
 
     messageType = convertStringToNotificationType(json["msg"]);
     id = json["id"];
     collection = json["collection"];
-    methods =
-        json["methods"] == null ? null : List<String>.from(json["methods"]);
+    methods = json["methods"] == null ? null : List<String>.from(json["methods"]);
 
     subs = json["subs"] == null ? null : List<String>.from(json["subs"]);
-    fields = json["fields"] == null
-        ? null
-        : Messagenotificationfields.fromMap(json["fields"]);
+    fields = json["fields"] == null ? null : Messagenotificationfields.fromMap(json["fields"]);
 
     var resultJson = json["result"];
     if (resultJson == null) {
@@ -43,9 +40,7 @@ class Messagenotification {
       }
     }
 
-    error = json["error"] == null
-        ? null
-        : Messagenotificationerror.fromMap(json["error"]);
+    error = json["error"] == null ? null : Messagenotificationerror.fromMap(json["error"]);
   }
 
   @override

@@ -16,8 +16,7 @@ class ChangeChannelAnnouncementInfo {
     return roomId.isNotEmpty;
   }
 
-  Map<String, String> body() =>
-      {'roomId': roomId, 'announcement': announcement};
+  Map<String, String> body() => {'roomId': roomId, 'announcement': announcement};
 
   @override
   String toString() {
@@ -54,8 +53,8 @@ class ChangeChannelAnnouncement extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

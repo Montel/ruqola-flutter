@@ -39,10 +39,7 @@ void main() {
           'oauth': {'credentialToken': 'token1', 'credentialSecret': 'secret1'}
         }
       ];
-      expect(
-          libddpapi.Authenticationutils.loginOauth(
-              credentialToken, credentialSecret),
-          v);
+      expect(libddpapi.Authenticationutils.loginOauth(credentialToken, credentialSecret), v);
     });
 
     test('Test generate method loginLdap', () {
@@ -56,12 +53,7 @@ void main() {
         'msg': 'method',
         'method': 'login',
         'params': [
-          {
-            'ldap': true,
-            'username': 'bla',
-            'ldapPass': 'foo',
-            'ldapOptions': {}
-          }
+          {'ldap': true, 'username': 'bla', 'ldapPass': 'foo', 'ldapOptions': {}}
         ],
         'id': '1'
       };

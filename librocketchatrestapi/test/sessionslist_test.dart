@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('session list info', () {
     test('check default values', () {
-      librocketchatrestapi.SessionList runcommand =
-          librocketchatrestapi.SessionList();
+      librocketchatrestapi.SessionList runcommand = librocketchatrestapi.SessionList();
       expect(runcommand.requireHttpAuthentication(), true);
       expect(runcommand.requireTwoFactorAuthentication, false);
       expect(runcommand.url("http://www.kde.org"),

@@ -163,8 +163,8 @@ RoomModel::Section RoomModel::section(Room *r) const
         groupedRooms[sectionName]!.add(room);
       }
     }
-    var sortedByKeyMap = Map.fromEntries(groupedRooms.entries.toList()
-      ..sort((e1, e2) => compareSection(e1.key, e2.key)));
+    var sortedByKeyMap = Map.fromEntries(
+        groupedRooms.entries.toList()..sort((e1, e2) => compareSection(e1.key, e2.key)));
     return sortedByKeyMap;
   }
 
@@ -252,9 +252,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     }
   }
 
-  void addMessage(
-      Map<String, dynamic>
-          replyObject /*, bool useRestApi, bool temporaryMessage*/) {
+  void addMessage(Map<String, dynamic> replyObject /*, bool useRestApi, bool temporaryMessage*/) {
     String roomId = replyObject["rid"];
     if (roomId.isNotEmpty) {
       for (Room r in rooms) {

@@ -13,23 +13,19 @@ void main() {
       expect(libddpapi.generateWebsocketUrl(url), "");
 
       url = "http://foo.kde.org/";
-      expect(
-          libddpapi.generateWebsocketUrl(url), "ws://foo.kde.org//websocket");
+      expect(libddpapi.generateWebsocketUrl(url), "ws://foo.kde.org//websocket");
 
       url = "http://foo.kde.org";
       expect(libddpapi.generateWebsocketUrl(url), "ws://foo.kde.org/websocket");
 
       url = "foo.kde.org";
-      expect(
-          libddpapi.generateWebsocketUrl(url), "wss://foo.kde.org/websocket");
+      expect(libddpapi.generateWebsocketUrl(url), "wss://foo.kde.org/websocket");
 
       url = "foo.kde.org/websocket";
-      expect(
-          libddpapi.generateWebsocketUrl(url), "wss://foo.kde.org/websocket");
+      expect(libddpapi.generateWebsocketUrl(url), "wss://foo.kde.org/websocket");
 
       url = "wss://foo.kde.org/websocket";
-      expect(
-          libddpapi.generateWebsocketUrl(url), "wss://foo.kde.org/websocket");
+      expect(libddpapi.generateWebsocketUrl(url), "wss://foo.kde.org/websocket");
     });
   });
 }

@@ -60,8 +60,7 @@ class DdpClient {
     _socket!.messages.listen(
       (message) {
         //print('message: "$message"');
-        final messageNotification =
-            Messagenotification.fromMap(json.decode(message));
+        final messageNotification = Messagenotification.fromMap(json.decode(message));
         print("message found ${messageNotification.messageType}");
         switch (messageNotification.messageType) {
           case NotificationType.unknown:
@@ -78,8 +77,7 @@ class DdpClient {
             }
             break;
           case NotificationType.ping:
-            developer.log('Ping received',
-                name: 'ruqola.dart.ddpclient', level: 100);
+            developer.log('Ping received', name: 'ruqola.dart.ddpclient', level: 100);
             print("ping");
             sendMessage(jsonEncode(Authenticationutils.sendPong()));
             break;
@@ -102,8 +100,7 @@ class DdpClient {
             break;
 
           case NotificationType.nosub:
-            _parseNoSubInfo(
-                messageNotification.error, int.parse(messageNotification.id!));
+            _parseNoSubInfo(messageNotification.error, int.parse(messageNotification.id!));
             break;
           case NotificationType.updated:
             // TODO: Handle this case.
@@ -125,8 +122,7 @@ class DdpClient {
   }
 
   void sendTextMessage(String roomId, String message) {
-    sendMessage(
-        jsonEncode(Authenticationutils.sendTextMessage(roomId, message, _uid)));
+    sendMessage(jsonEncode(Authenticationutils.sendTextMessage(roomId, message, _uid)));
     _uid++;
   }
 
@@ -144,8 +140,7 @@ class DdpClient {
   }
 
   void method(ResulType type, List<Map<String, dynamic>> map) {
-    sendMessage(
-        jsonEncode(Authenticationutils.generateMethod(type.path, map, _uid)));
+    sendMessage(jsonEncode(Authenticationutils.generateMethod(type.path, map, _uid)));
     // Store identifier
     _mapResult[_uid] = type;
     _uid++;
@@ -159,8 +154,7 @@ class DdpClient {
       Future.delayed(Duration.zero, () {
         _mapResult.remove(id);
       });
-      print(
-          "return TYPE :::::::: $_mapResult sssssssssssssssssssssssssss $type");
+      print("return TYPE :::::::: $_mapResult sssssssssssssssssssssssssss $type");
       return type;
     }
     return null;

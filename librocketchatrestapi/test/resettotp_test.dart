@@ -4,19 +4,16 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('User reset totp', () {
     test('check default values', () {
-      librocketchatrestapi.ResetTotpInfo info =
-          librocketchatrestapi.ResetTotpInfo("foo");
+      librocketchatrestapi.ResetTotpInfo info = librocketchatrestapi.ResetTotpInfo("foo");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.ResetTotp resetTotp =
-          librocketchatrestapi.ResetTotp(info);
+      librocketchatrestapi.ResetTotp resetTotp = librocketchatrestapi.ResetTotp(info);
       resetTotp.serverUrl = "http://www.kde.org";
       expect(resetTotp.canStart(), false);
       expect(resetTotp.requireHttpAuthentication(), true);

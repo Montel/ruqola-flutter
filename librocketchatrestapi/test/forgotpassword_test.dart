@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('forgot password', () {
     test('check default values', () {
-      librocketchatrestapi.ForgotPasswordInfo info =
-          librocketchatrestapi.ForgotPasswordInfo("foo");
+      librocketchatrestapi.ForgotPasswordInfo info = librocketchatrestapi.ForgotPasswordInfo("foo");
       expect(info.canStart(), true);
 
       librocketchatrestapi.ForgotPassword forgotPassword =
@@ -29,12 +27,10 @@ void main() {
     });
 
     test('check can start', () {
-      librocketchatrestapi.ForgotPasswordInfo info =
-          librocketchatrestapi.ForgotPasswordInfo("foo");
+      librocketchatrestapi.ForgotPasswordInfo info = librocketchatrestapi.ForgotPasswordInfo("foo");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.ForgotPassword unfollow =
-          librocketchatrestapi.ForgotPassword(info);
+      librocketchatrestapi.ForgotPassword unfollow = librocketchatrestapi.ForgotPassword(info);
       unfollow.userId = 'user';
       unfollow.authToken = 'token';
       unfollow.serverUrl = "http://www.kde.org";

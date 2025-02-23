@@ -28,12 +28,9 @@ class Messageattachment {
     att.mAuthorIcon = json["authoricon"];
     att.mMimeType = json["mimetype"];
     att.mColor = json["color"];
-    att.mAttachmentSize =
-        json.containsKey("attachment_size") ? json["attachment_size"] : -1;
-    att.mImageHeight =
-        json.containsKey("image_height") ? json["image_height"] : -1;
-    att.mImageWidth =
-        json.containsKey("image_width") ? json["image_width"] : -1;
+    att.mAttachmentSize = json.containsKey("attachment_size") ? json["attachment_size"] : -1;
+    att.mImageHeight = json.containsKey("image_height") ? json["image_height"] : -1;
+    att.mImageWidth = json.containsKey("image_width") ? json["image_width"] : -1;
     att.mCollapsed = json["collapsed"];
     att.mShowAttachment = json["show_attachment"];
 /*

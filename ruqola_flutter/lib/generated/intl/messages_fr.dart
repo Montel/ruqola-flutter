@@ -23,8 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "flagCode": MessageLookupByLibrary.simpleMessage("fr"),
-        "startMessage": MessageLookupByLibrary.simpleMessage(
-            "Êtes vous prêt(e)s pour apprendre le français ?"),
+        "startMessage":
+            MessageLookupByLibrary.simpleMessage("Êtes vous prêt(e)s pour apprendre le français ?"),
         "welcomeMessage": MessageLookupByLibrary.simpleMessage("Bienvenue")
       };
 }

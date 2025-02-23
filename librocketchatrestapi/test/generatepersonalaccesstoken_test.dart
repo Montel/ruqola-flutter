@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -15,8 +14,7 @@ void main() {
           librocketchatrestapi.GeneratePersonalAccessTokenInfo("foo", true);
       expect(info.canStart(), true);
 
-      librocketchatrestapi.GeneratePersonalAccessToken
-          generatePersonalAccessToken =
+      librocketchatrestapi.GeneratePersonalAccessToken generatePersonalAccessToken =
           librocketchatrestapi.GeneratePersonalAccessToken(info);
       generatePersonalAccessToken.serverUrl = "http://www.kde.org";
       expect(generatePersonalAccessToken.canStart(), false);
@@ -25,10 +23,8 @@ void main() {
       generatePersonalAccessToken.authToken = 'token';
 
       expect(generatePersonalAccessToken.requireTwoFactorAuthentication, false);
-      expect(
-          generatePersonalAccessToken.url("http://www.kde.org"),
-          Uri.parse(
-              'http://www.kde.org/api/v1/users.generatePersonalAccessToken'));
+      expect(generatePersonalAccessToken.url("http://www.kde.org"),
+          Uri.parse('http://www.kde.org/api/v1/users.generatePersonalAccessToken'));
     });
 
     test('check can start', () {
@@ -36,8 +32,7 @@ void main() {
           librocketchatrestapi.GeneratePersonalAccessTokenInfo("foo", true);
       expect(info.canStart(), true);
 
-      librocketchatrestapi.GeneratePersonalAccessToken
-          generatePersonalAccessToken =
+      librocketchatrestapi.GeneratePersonalAccessToken generatePersonalAccessToken =
           librocketchatrestapi.GeneratePersonalAccessToken(info);
       generatePersonalAccessToken.userId = 'user';
       generatePersonalAccessToken.authToken = 'token';

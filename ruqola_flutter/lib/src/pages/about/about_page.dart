@@ -46,14 +46,11 @@ class _AboutPageState extends State<AboutPage> {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage:
-                  AssetImage('assets/logo.png'), // Replace with your logo
+              backgroundImage: AssetImage('assets/logo.png'), // Replace with your logo
             ),
             SizedBox(height: 16),
-            Text(appName,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            Text("Version: $version",
-                style: TextStyle(fontSize: 16, color: Colors.grey)), // Ii18n
+            Text(appName, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text("Version: $version", style: TextStyle(fontSize: 16, color: Colors.grey)), // Ii18n
             SizedBox(height: 16),
             Text(description, textAlign: TextAlign.center),
             SizedBox(height: 20),
@@ -67,8 +64,7 @@ class _AboutPageState extends State<AboutPage> {
               leading: Icon(Icons.email),
               title: Text("Contact"), // Ii18n
               subtitle: Text("laurent.montel@kdab.com"),
-              onTap: () =>
-                  launchUrl(Uri.parse("mailto:laurent.montel@kdab.com")),
+              onTap: () => launchUrl(Uri.parse("mailto:laurent.montel@kdab.com")),
             ),
             Spacer(),
             Text("© 2024-2025 Ruqola Flutter",

@@ -14,8 +14,7 @@ class RunCommandInfo {
   final String triggerId;
   final String params;
 
-  RunCommandInfo(this.commandName, this.roomId, this.threadMessageId,
-      this.triggerId, this.params);
+  RunCommandInfo(this.commandName, this.roomId, this.threadMessageId, this.triggerId, this.params);
   bool canStart() {
     return commandName.isNotEmpty && roomId.isNotEmpty;
   }
@@ -67,8 +66,8 @@ class RunCommand extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

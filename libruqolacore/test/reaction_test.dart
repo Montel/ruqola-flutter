@@ -16,22 +16,17 @@ void main() {
 
       {
         final reaction = Reaction(reactionName: ":foo:", userNames: ["bla"]);
-        expect(
-            reaction.convertedUsersNameAsToolTip(), "bla reacted with :foo:");
+        expect(reaction.convertedUsersNameAsToolTip(), "bla reacted with :foo:");
       }
 
       {
-        final reaction =
-            Reaction(reactionName: ":foo:", userNames: ["bla", "blo"]);
-        expect(reaction.convertedUsersNameAsToolTip(),
-            "bla and blo reacted with :foo:");
+        final reaction = Reaction(reactionName: ":foo:", userNames: ["bla", "blo"]);
+        expect(reaction.convertedUsersNameAsToolTip(), "bla and blo reacted with :foo:");
       }
 
       {
-        final reaction =
-            Reaction(reactionName: ":foo:", userNames: ["bla", "blo", "bli"]);
-        expect(reaction.convertedUsersNameAsToolTip(),
-            "bla, blo and bli reacted with :foo:");
+        final reaction = Reaction(reactionName: ":foo:", userNames: ["bla", "blo", "bli"]);
+        expect(reaction.convertedUsersNameAsToolTip(), "bla, blo and bli reacted with :foo:");
       }
     });
   });

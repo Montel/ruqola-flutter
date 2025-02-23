@@ -26,8 +26,7 @@ class MessageViewSelectionState extends State<MessageView> {
         builder: (context, value, child) {
           final models = Provider.of<Rocketchataccountmodels>(context);
           // Reference to the room you want to display messages for.
-          final room =
-              models.findRoomFromIdentifier(SharedValue.currentRoomId.value);
+          final room = models.findRoomFromIdentifier(SharedValue.currentRoomId.value);
           if (room == null) return Text("No Rooms D:");
 
           return Center(
@@ -54,8 +53,7 @@ class MessageViewSelectionState extends State<MessageView> {
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 child: MessageViewItem(
-                                    message: messages[index],
-                                    account: widget.account),
+                                    message: messages[index], account: widget.account),
                               );
                             });
                       }),

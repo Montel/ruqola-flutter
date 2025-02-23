@@ -73,8 +73,7 @@ class Ownuserpreferences {
       owner.mHighlightWords = List<String>.from(json['highlights']);
     }
 
-    owner.mRoomListSortOrder =
-        convertStringToRoomListSortOrder(json['sidebarSortby'].toString());
+    owner.mRoomListSortOrder = convertStringToRoomListSortOrder(json['sidebarSortby'].toString());
     owner.mIdleTimeLimit = json['idleTimeLimit'] as int;
     owner.mConvertAsciiEmoji = json['convertAsciiEmoji'] as bool;
     owner.mNotificationsSoundVolume = json['notificationsSoundVolume'] as int;
@@ -83,26 +82,20 @@ class Ownuserpreferences {
     owner.mPushNotifications = json['pushNotifications'];
     owner.mNewMessageNotification = json['newMessageNotification'];
     owner.mNewRoomNotification = json['newRoomNotification'];
-    owner.mRoomListDisplay =
-        convertStringToRoomListDisplay(json['sidebarViewMode'].toString());
+    owner.mRoomListDisplay = convertStringToRoomListDisplay(json['sidebarViewMode'].toString());
     owner.mUseEmojis = json['useEmojis'] as bool;
     owner.mHideRoles = json['hideRoles'] as bool;
     owner.mDisplayAvatars = json['displayAvatars'] as bool;
     owner.mEnableAutoAway = json['enableAutoAway'] as bool;
-    owner.mShowUnread =
-        json['showUnread'] != null ? json['showUnread'] as bool : false;
-    owner.mShowRoomAvatar =
-        json['showRoomAvatar'] != null ? json['showRoomAvatar'] as bool : false;
-    owner.mShowFavorite = json['sidebarShowFavorites'] != null
-        ? json['sidebarShowFavorites'] as bool
+    owner.mShowUnread = json['showUnread'] != null ? json['showUnread'] as bool : false;
+    owner.mShowRoomAvatar = json['showRoomAvatar'] != null ? json['showRoomAvatar'] as bool : false;
+    owner.mShowFavorite =
+        json['sidebarShowFavorites'] != null ? json['sidebarShowFavorites'] as bool : false;
+    owner.mReceiveLoginDetectionEmail = json['receiveLoginDetectionEmail'] != null
+        ? json['receiveLoginDetectionEmail'] as bool
         : false;
-    owner.mReceiveLoginDetectionEmail =
-        json['receiveLoginDetectionEmail'] != null
-            ? json['receiveLoginDetectionEmail'] as bool
-            : false;
-    owner.mMuteFocusedConversations = json['muteFocusedConversations'] != null
-        ? json['muteFocusedConversations'] as bool
-        : false;
+    owner.mMuteFocusedConversations =
+        json['muteFocusedConversations'] != null ? json['muteFocusedConversations'] as bool : false;
 
     return owner;
   }

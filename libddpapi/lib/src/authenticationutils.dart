@@ -14,8 +14,7 @@ class Authenticationutils {
     return digest1.toString();
   }
 
-  static Map<String, dynamic> sendTextMessage(
-      String roomId, String message, int identifier,
+  static Map<String, dynamic> sendTextMessage(String roomId, String message, int identifier,
       [String messageId = ""]) {
     List<Map<String, dynamic>> sendJson = [
       {
@@ -31,22 +30,12 @@ class Authenticationutils {
 // Generate method
   static Map<String, dynamic> generateMethod(
       String methodName, List<Map<String, dynamic>> params, int identifier) {
-    return {
-      "msg": "method",
-      "method": methodName,
-      "params": params,
-      "id": identifier.toString()
-    };
+    return {"msg": "method", "method": methodName, "params": params, "id": identifier.toString()};
   }
 
   static Map<String, dynamic> generateMethodCall(
       String methodName, List<dynamic> params, int identifier) {
-    return {
-      "msg": "method",
-      "method": methodName,
-      "params": params,
-      "id": identifier.toString()
-    };
+    return {"msg": "method", "method": methodName, "params": params, "id": identifier.toString()};
   }
 
   /// Send pong info
@@ -78,8 +67,7 @@ class Authenticationutils {
   }
 
 // https://api.flutter.dev/flutter/dart-convert/jsonDecode.html
-  static List<Map<String, dynamic>> loginOauth(
-      String credentialToken, String credentialSecret) {
+  static List<Map<String, dynamic>> loginOauth(String credentialToken, String credentialSecret) {
     return [
       {
         "oauth": {

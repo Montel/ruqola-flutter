@@ -20,8 +20,7 @@ class PersonalAccessTokenInfos {
     if (other.runtimeType != runtimeType) return false;
     final listEquality = ListEquality();
     return other is PersonalAccessTokenInfos &&
-        listEquality.equals(
-            other.personalAccessTokenInfos, personalAccessTokenInfos);
+        listEquality.equals(other.personalAccessTokenInfos, personalAccessTokenInfos);
   }
 
   @override

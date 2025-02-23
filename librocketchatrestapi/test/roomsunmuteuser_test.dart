@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -15,8 +14,7 @@ void main() {
           librocketchatrestapi.RoomsUnMuteUserInfo("foo", "user");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.RoomsUnMuteUser roomsMute =
-          librocketchatrestapi.RoomsUnMuteUser(info);
+      librocketchatrestapi.RoomsUnMuteUser roomsMute = librocketchatrestapi.RoomsUnMuteUser(info);
       roomsMute.serverUrl = "http://www.kde.org";
       expect(roomsMute.canStart(), false);
       expect(roomsMute.requireHttpAuthentication(), true);

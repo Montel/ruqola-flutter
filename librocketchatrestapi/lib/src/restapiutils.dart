@@ -1028,14 +1028,12 @@ String adaptUrl(String url) {
 }
 
 Uri generateUrl(String serverUrl, RestApiUrlType type,
-    [RestApiUrlExtensionType restApiUrlExtensionType =
-        RestApiUrlExtensionType.v1,
+    [RestApiUrlExtensionType restApiUrlExtensionType = RestApiUrlExtensionType.v1,
     String urlExtension = ""]) {
   if (serverUrl.isEmpty) {
     return Uri();
   }
-  String urlStr =
-      adaptUrl(serverUrl) + restApiUrlExtensionType.path + type.name;
+  String urlStr = adaptUrl(serverUrl) + restApiUrlExtensionType.path + type.name;
   if (urlExtension.isNotEmpty) {
     if (type.name.isNotEmpty) {
       urlStr += '/';

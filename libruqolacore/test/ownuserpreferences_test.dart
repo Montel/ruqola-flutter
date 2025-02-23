@@ -39,8 +39,7 @@ void main() {
     });
 
     test('parse ownerPreferences json', () {
-      final data =
-          extractJsonData("ownuserpreferences", "ownuserpreferences1.json");
+      final data = extractJsonData("ownuserpreferences", "ownuserpreferences1.json");
       final ownerPreferences = Ownuserpreferences.fromJson(data);
       expect(ownerPreferences.mIdleTimeLimit, 300);
       expect(ownerPreferences.mConvertAsciiEmoji, true);
@@ -56,33 +55,27 @@ void main() {
       expect(ownerPreferences.mNewMessageNotification, 'chime');
       expect(ownerPreferences.mMuteFocusedConversations, true);
 
-      expect(
-          ownerPreferences.mRoomListSortOrder, RoomListSortOrder.byLastMessage);
+      expect(ownerPreferences.mRoomListSortOrder, RoomListSortOrder.byLastMessage);
       expect(ownerPreferences.mRoomListDisplay, RoomListDisplay.medium);
     });
 
     test('parse convertStringToRoomListDisplay json', () {
-      expect(Ownuserpreferences.convertStringToRoomListDisplay(""),
-          RoomListDisplay.unknown);
-      expect(Ownuserpreferences.convertStringToRoomListDisplay("blabla"),
-          RoomListDisplay.unknown);
-      expect(Ownuserpreferences.convertStringToRoomListDisplay("medium"),
-          RoomListDisplay.medium);
+      expect(Ownuserpreferences.convertStringToRoomListDisplay(""), RoomListDisplay.unknown);
+      expect(Ownuserpreferences.convertStringToRoomListDisplay("blabla"), RoomListDisplay.unknown);
+      expect(Ownuserpreferences.convertStringToRoomListDisplay("medium"), RoomListDisplay.medium);
       expect(Ownuserpreferences.convertStringToRoomListDisplay("condensed"),
           RoomListDisplay.condensed);
-      expect(Ownuserpreferences.convertStringToRoomListDisplay("extended"),
-          RoomListDisplay.extended);
+      expect(
+          Ownuserpreferences.convertStringToRoomListDisplay("extended"), RoomListDisplay.extended);
     });
 
     test('parse convertStringToRoomListSortOrder json', () {
-      expect(Ownuserpreferences.convertStringToRoomListSortOrder(""),
-          RoomListSortOrder.unknown);
-      expect(Ownuserpreferences.convertStringToRoomListSortOrder("blabla"),
-          RoomListSortOrder.unknown);
+      expect(Ownuserpreferences.convertStringToRoomListSortOrder(""), RoomListSortOrder.unknown);
+      expect(
+          Ownuserpreferences.convertStringToRoomListSortOrder("blabla"), RoomListSortOrder.unknown);
       expect(Ownuserpreferences.convertStringToRoomListSortOrder("activity"),
           RoomListSortOrder.byLastMessage);
-      expect(
-          Ownuserpreferences.convertStringToRoomListSortOrder("alphabetical"),
+      expect(Ownuserpreferences.convertStringToRoomListSortOrder("alphabetical"),
           RoomListSortOrder.alphabetically);
     });
   });

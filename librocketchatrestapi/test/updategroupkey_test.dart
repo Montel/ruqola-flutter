@@ -4,17 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('update groupe key', () {
     test('check default values', () {
-      final info =
-          librocketchatrestapi.UpdateGroupKeyInfo("fff", "dddd", "gggg");
-      librocketchatrestapi.UpdateGroupKey validateToken =
-          librocketchatrestapi.UpdateGroupKey(info);
+      final info = librocketchatrestapi.UpdateGroupKeyInfo("fff", "dddd", "gggg");
+      librocketchatrestapi.UpdateGroupKey validateToken = librocketchatrestapi.UpdateGroupKey(info);
       expect(info.roomId, "fff");
       expect(info.body(), {'rid': 'fff'});
       expect(validateToken.canStart(), false);

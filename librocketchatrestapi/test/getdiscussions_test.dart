@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -18,10 +17,8 @@ void main() {
       expect(getDiscussions.canStart(), false);
       expect(getDiscussions.requireHttpAuthentication(), true);
 
-      expect(
-          getDiscussions.url("https://www.kde.org"),
-          Uri.parse(
-              'https://www.kde.org/api/v1/rooms.getDiscussions?roomId=fff'));
+      expect(getDiscussions.url("https://www.kde.org"),
+          Uri.parse('https://www.kde.org/api/v1/rooms.getDiscussions?roomId=fff'));
     });
   });
 }

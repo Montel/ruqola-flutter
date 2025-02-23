@@ -25,11 +25,8 @@ class ReactOnMessageInfo {
     return true;
   }
 
-  Map<String, String> body() => {
-        'emoji': emoji,
-        "messageId": messageId,
-        "shouldReact": shouldReact.toString()
-      };
+  Map<String, String> body() =>
+      {'emoji': emoji, "messageId": messageId, "shouldReact": shouldReact.toString()};
   @override
   String toString() {
     return "ReactOnMessageInfo(emoji: $emoji, messageId: $messageId, shouldReact: $shouldReact)";
@@ -64,8 +61,8 @@ class ReactOnMessage extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

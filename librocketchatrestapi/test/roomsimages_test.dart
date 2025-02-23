@@ -4,16 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('rooms images info', () {
     test('check default values', () {
       final info = librocketchatrestapi.RoomsImagesInfo("fff", "ggg", 5, 3);
-      librocketchatrestapi.RoomsImages roomsImages =
-          librocketchatrestapi.RoomsImages(info);
+      librocketchatrestapi.RoomsImages roomsImages = librocketchatrestapi.RoomsImages(info);
       expect(info.count, 3);
       expect(info.offset, 5);
       expect(info.roomId, 'fff');

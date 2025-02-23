@@ -34,10 +34,7 @@ class PinMessage extends Restapiabstractjob {
   @override
   Uri url(String url) {
     return generateUrl(
-        url,
-        _info.mPinMessage
-            ? RestApiUrlType.chatPinMessage
-            : RestApiUrlType.chatUnPinMessage);
+        url, _info.mPinMessage ? RestApiUrlType.chatPinMessage : RestApiUrlType.chatUnPinMessage);
   }
 
   @override
@@ -55,8 +52,8 @@ class PinMessage extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

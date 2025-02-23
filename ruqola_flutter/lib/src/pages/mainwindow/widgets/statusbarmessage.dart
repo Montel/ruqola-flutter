@@ -20,8 +20,7 @@ class StatusBarMessage extends StatefulWidget {
 class StatusBarMessageState extends State<StatusBarMessage> {
   @override
   Widget build(BuildContext context) {
-    final receiverTypingNotification =
-        Provider.of<Receivertypingnotification>(context);
+    final receiverTypingNotification = Provider.of<Receivertypingnotification>(context);
     return ValueListenableBuilder<String>(
         valueListenable: SharedValue.currentRoomId,
         builder: (context, value, child) {
@@ -30,8 +29,8 @@ class StatusBarMessageState extends State<StatusBarMessage> {
                   listenable: receiverTypingNotification,
                   builder: (BuildContext context, Widget? child) {
                     return Html(
-                        data: receiverTypingNotification.typingNotification(
-                            SharedValue.currentRoomId.value));
+                        data: receiverTypingNotification
+                            .typingNotification(SharedValue.currentRoomId.value));
                   }));
         });
   }

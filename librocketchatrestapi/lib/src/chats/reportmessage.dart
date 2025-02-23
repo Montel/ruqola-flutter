@@ -16,8 +16,7 @@ class ReportMessageInfo {
     return messageId.isNotEmpty && description.isNotEmpty;
   }
 
-  Map<String, String> body() =>
-      {'messageId': messageId, 'description': description};
+  Map<String, String> body() => {'messageId': messageId, 'description': description};
   @override
   String toString() {
     return "ReportMessageInfo(messageId: $messageId, description: $description)";
@@ -52,8 +51,8 @@ class ReportMessage extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

@@ -34,10 +34,7 @@ class StarMessage extends Restapiabstractjob {
   @override
   Uri url(String url) {
     return generateUrl(
-        url,
-        _info.starMessage
-            ? RestApiUrlType.chatStarMessage
-            : RestApiUrlType.chatUnStarMessage);
+        url, _info.starMessage ? RestApiUrlType.chatStarMessage : RestApiUrlType.chatUnStarMessage);
   }
 
   @override
@@ -55,8 +52,8 @@ class StarMessage extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

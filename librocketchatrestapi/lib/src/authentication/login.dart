@@ -67,8 +67,8 @@ class Login extends Restapiabstractjob {
       print("Data is not valid");
       return RestapiabstractjobResult();
     }
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

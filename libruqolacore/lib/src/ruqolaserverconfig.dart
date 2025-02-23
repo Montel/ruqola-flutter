@@ -91,8 +91,7 @@ class RuqolaServerConfig {
 
   bool messageAllowConvertLongMessagesToAttachment = false;
   bool uIUseRealName = false;
-  ServerConfigFeatureType serverConfigFeatureTypes =
-      ServerConfigFeatureType.None;
+  ServerConfigFeatureType serverConfigFeatureTypes = ServerConfigFeatureType.None;
   List<String> mediaWhiteList = [];
   List<String> mediaBlackList = [];
 /*

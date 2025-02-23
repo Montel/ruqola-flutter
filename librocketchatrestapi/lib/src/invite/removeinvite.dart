@@ -41,8 +41,8 @@ class RemoveInviteToken extends Restapiabstractjob {
 
   @override
   Uri url(String url) {
-    return generateUrl(url, RestApiUrlType.removeInvite,
-        RestApiUrlExtensionType.v1, _info.identifier);
+    return generateUrl(
+        url, RestApiUrlType.removeInvite, RestApiUrlExtensionType.v1, _info.identifier);
   }
 
   @override
@@ -50,8 +50,7 @@ class RemoveInviteToken extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response =
-        await http.delete(url(serverUrl!), headers: headers());
+    http.Response response = await http.delete(url(serverUrl!), headers: headers());
     return result(response);
   }
 }

@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('session logout me info', () {
     test('check default values', () {
-      librocketchatrestapi.SessionLogoutMeInfo info =
-          librocketchatrestapi.SessionLogoutMeInfo("");
+      librocketchatrestapi.SessionLogoutMeInfo info = librocketchatrestapi.SessionLogoutMeInfo("");
       librocketchatrestapi.SessionLogoutMe sessionLogoutMe =
           librocketchatrestapi.SessionLogoutMe(info);
       expect(sessionLogoutMe.requireHttpAuthentication(), true);

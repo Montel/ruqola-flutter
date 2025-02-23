@@ -15,9 +15,7 @@ class SearchMessagesInfo {
   final int mCount;
 
   SearchMessagesInfo(this.mRoomId, this.mSearchText,
-      [this.mUseRegularExpression = false,
-      this.mOffset = -1,
-      this.mCount = -1]);
+      [this.mUseRegularExpression = false, this.mOffset = -1, this.mCount = -1]);
   bool canStart() {
     if (mRoomId.isEmpty) {
       print("RoomId is empty");
@@ -82,8 +80,7 @@ class SearchMessages extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response =
-        await http.get(url(serverUrl!), headers: headers());
+    http.Response response = await http.get(url(serverUrl!), headers: headers());
     return result(response);
   }
 }

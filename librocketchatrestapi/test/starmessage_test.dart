@@ -4,17 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('star message info', () {
     test('check default values', () {
-      librocketchatrestapi.StarMessageInfo info =
-          librocketchatrestapi.StarMessageInfo("bla", true);
-      librocketchatrestapi.StarMessage starMessage =
-          librocketchatrestapi.StarMessage(info);
+      librocketchatrestapi.StarMessageInfo info = librocketchatrestapi.StarMessageInfo("bla", true);
+      librocketchatrestapi.StarMessage starMessage = librocketchatrestapi.StarMessage(info);
       expect(starMessage.requireHttpAuthentication(), true);
       expect(starMessage.requireTwoFactorAuthentication, false);
       expect(starMessage.url("http://www.kde.org"),
@@ -24,8 +21,7 @@ void main() {
     test('check count values', () {
       librocketchatrestapi.StarMessageInfo info =
           librocketchatrestapi.StarMessageInfo("bla", false);
-      librocketchatrestapi.StarMessage starMessage =
-          librocketchatrestapi.StarMessage(info);
+      librocketchatrestapi.StarMessage starMessage = librocketchatrestapi.StarMessage(info);
       expect(starMessage.requireHttpAuthentication(), true);
       expect(starMessage.requireTwoFactorAuthentication, false);
       expect(starMessage.url("http://www.kde.org"),

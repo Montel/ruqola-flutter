@@ -15,8 +15,7 @@ class TeamUpdateRoomInfo {
     return roomId.isNotEmpty;
   }
 
-  Map<String, String> body() =>
-      {'roomId': roomId, 'isDefault': isDefault.toString()};
+  Map<String, String> body() => {'roomId': roomId, 'isDefault': isDefault.toString()};
 }
 
 class TeamUpdateRoom extends Restapiabstractjob {
@@ -48,8 +47,8 @@ class TeamUpdateRoom extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

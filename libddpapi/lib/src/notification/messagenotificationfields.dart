@@ -13,9 +13,7 @@ class Messagenotificationfields {
   Messagenotificationfields.fromMap(Map<String, dynamic> json) {
     eventName = json["eventName"];
     userName = json["username"];
-    args = json["args"] == null
-        ? null
-        : Messagenotificationargs.fromMap(json["args"]);
+    args = json["args"] == null ? null : Messagenotificationargs.fromMap(json["args"]);
   }
 
   @override

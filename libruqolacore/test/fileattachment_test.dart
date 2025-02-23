@@ -11,8 +11,7 @@ import 'libruqolacoretest.dart';
 void main() {
   group('FileAttachment', () {
     test('empty json', () {
-      final data =
-          extractJsonData("fileattachments", "fileattachments-empty.json");
+      final data = extractJsonData("fileattachments", "fileattachments-empty.json");
       final f = libruqolacore.FileAttachments.fromJson(data);
       expect(f.count, 0);
       expect(f.total, 0);

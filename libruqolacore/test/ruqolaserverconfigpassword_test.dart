@@ -12,27 +12,18 @@ void main() {
 
     test('Test Initial RuqolaServerConfigPassword values', () {
       expect(serverConfigPassword.accountsPasswordPolicyEnabled, false);
-      expect(
-          serverConfigPassword.accountsPasswordPolicyForbidRepeatingCharacters,
-          true);
-      expect(
-          serverConfigPassword.accountsPasswordPolicyAtLeastOneLowercase, true);
-      expect(
-          serverConfigPassword.accountsPasswordPolicyAtLeastOneUppercase, true);
+      expect(serverConfigPassword.accountsPasswordPolicyForbidRepeatingCharacters, true);
+      expect(serverConfigPassword.accountsPasswordPolicyAtLeastOneLowercase, true);
+      expect(serverConfigPassword.accountsPasswordPolicyAtLeastOneUppercase, true);
       expect(serverConfigPassword.accountsPasswordPolicyAtLeastOneNumber, true);
-      expect(
-          serverConfigPassword.accountsPasswordPolicyAtLeastOneSpecialCharacter,
-          true);
+      expect(serverConfigPassword.accountsPasswordPolicyAtLeastOneSpecialCharacter, true);
       expect(serverConfigPassword.accountsPasswordPolicyMinLength, 12);
       expect(serverConfigPassword.accountsPasswordPolicyMaxLength, 24);
-      expect(
-          serverConfigPassword
-              .accountsPasswordPolicyForbidRepeatingCharactersCount,
-          3);
+      expect(serverConfigPassword.accountsPasswordPolicyForbidRepeatingCharactersCount, 3);
     });
 
-    void testValues(libruqolacore.RuqolaServerConfigPassword settings,
-        int check, int passwordOk, String password, bool valid) {
+    void testValues(libruqolacore.RuqolaServerConfigPassword settings, int check, int passwordOk,
+        String password, bool valid) {
       int f = settings.validatePassword(password);
       expect(f, check);
       bool passwordValidValue = settings.isValidatePassword(f);
@@ -62,14 +53,12 @@ void main() {
       settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
       int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
 
       testValues(settings, check, passwordOk, "AAAAA", false);
@@ -83,15 +72,12 @@ void main() {
       settings.accountsPasswordPolicyForbidRepeatingCharactersCount = 3;
       int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aqsdfsdfsdf", false);
     });
@@ -105,17 +91,14 @@ void main() {
       int check = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
 
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aqsdfsdfsdf", false);
     });
@@ -131,16 +114,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444", false);
     });
@@ -157,16 +137,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444", false);
     });
@@ -184,14 +161,12 @@ void main() {
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
 
       testValues(settings, check, passwordOk, "Aq144444", false);
@@ -210,16 +185,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444", false);
     });
@@ -239,16 +211,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444@", true);
     });
@@ -268,16 +237,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444;", true);
     });
@@ -296,16 +262,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444_", true);
     });
@@ -325,16 +288,13 @@ void main() {
           libruqolacore.PasswordSettingCheck.minLengh.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value;
-      int passwordOk = libruqolacore
-              .PasswordSettingCheck.atLeastOneUppercase.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+      int passwordOk = libruqolacore.PasswordSettingCheck.atLeastOneUppercase.value |
           libruqolacore.PasswordSettingCheck.maxLengh.value |
           libruqolacore.PasswordSettingCheck.atLeastOneLowercase.value |
           libruqolacore.PasswordSettingCheck.atLeastOneNumber.value |
           libruqolacore.PasswordSettingCheck.minLengh.value |
-          libruqolacore
-              .PasswordSettingCheck.forbidRepeatingCharactersCount.value |
+          libruqolacore.PasswordSettingCheck.forbidRepeatingCharactersCount.value |
           libruqolacore.PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       testValues(settings, check, passwordOk, "Aq1444_", true);
     });

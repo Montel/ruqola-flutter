@@ -58,10 +58,7 @@ class Commands {
 
   @override
   int get hashCode {
-    return listCommands.hashCode ^
-        commandsCount.hashCode ^
-        offset.hashCode ^
-        total.hashCode;
+    return listCommands.hashCode ^ commandsCount.hashCode ^ offset.hashCode ^ total.hashCode;
   }
 
   @override

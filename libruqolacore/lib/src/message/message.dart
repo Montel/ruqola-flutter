@@ -51,8 +51,7 @@ class Message {
       for (var entry in reactionsJson.entries) {
         // TODO move in reactions class ???
         final String reactionName = entry.key;
-        final List<String> userNames =
-            List<String>.from(entry.value['usernames']);
+        final List<String> userNames = List<String>.from(entry.value['usernames']);
         final r = Reaction(reactionName: reactionName, userNames: userNames);
         reactions.add(r);
       }

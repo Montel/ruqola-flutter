@@ -75,10 +75,7 @@ abstract class Restapiabstractjob {
   }
 
   bool hasAuthenticationValue() {
-    return authToken != null &&
-        authToken!.isNotEmpty &&
-        userId != null &&
-        userId!.isNotEmpty;
+    return authToken != null && authToken!.isNotEmpty && userId != null && userId!.isNotEmpty;
   }
 
   // Reimplement it

@@ -60,8 +60,7 @@ class GetDiscussions extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response =
-        await http.get(url(serverUrl!), headers: headers());
+    http.Response response = await http.get(url(serverUrl!), headers: headers());
     return result(response);
   }
 }

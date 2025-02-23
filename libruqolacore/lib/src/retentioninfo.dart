@@ -20,11 +20,7 @@ class RetentionInfo {
   });
 
   bool get isNotDefault {
-    return enabled ||
-        excludePinned ||
-        filesOnly ||
-        overrideGlobal ||
-        maxAge != -1;
+    return enabled || excludePinned || filesOnly || overrideGlobal || maxAge != -1;
   }
 
   factory RetentionInfo.fromJson(Map<String, dynamic> json) {

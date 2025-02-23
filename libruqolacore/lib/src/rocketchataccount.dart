@@ -22,7 +22,7 @@ class Rocketchataccount {
       StreamController<libddpapi.AbstractEvent>.broadcast();
 
   /// Something for the UI to determine what is happening here.
-  /// 
+  ///
   /// This could be an enum with more states than just true/false
   /// [error, connecting, connected, reloading, etc....]
   final isConnected = ValueNotifier<bool>(false);

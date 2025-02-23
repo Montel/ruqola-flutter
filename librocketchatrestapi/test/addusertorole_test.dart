@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -15,8 +14,7 @@ void main() {
           librocketchatrestapi.AddUserToRoleInfo("foo", "ddd");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.AddUserToRole addUserToRole =
-          librocketchatrestapi.AddUserToRole(info);
+      librocketchatrestapi.AddUserToRole addUserToRole = librocketchatrestapi.AddUserToRole(info);
       addUserToRole.serverUrl = "http://www.kde.org";
       expect(addUserToRole.canStart(), false);
       expect(addUserToRole.requireHttpAuthentication(), true);

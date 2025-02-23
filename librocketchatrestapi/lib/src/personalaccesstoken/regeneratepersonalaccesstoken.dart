@@ -42,8 +42,7 @@ class RegeneratePersonalAccessToken extends Restapiabstractjob {
 
   @override
   Uri url(String url) {
-    var generateUrl2 =
-        generateUrl(url, RestApiUrlType.usersRegeneratePersonalAccessToken);
+    var generateUrl2 = generateUrl(url, RestApiUrlType.usersRegeneratePersonalAccessToken);
     return generateUrl2;
   }
 
@@ -53,8 +52,8 @@ class RegeneratePersonalAccessToken extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

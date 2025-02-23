@@ -15,8 +15,7 @@ class RoomsFavoriteInfo {
     return roomId.isNotEmpty;
   }
 
-  Map<String, String> body() =>
-      {'roomId': roomId, 'favorite': favorite.toString()};
+  Map<String, String> body() => {'roomId': roomId, 'favorite': favorite.toString()};
 
   @override
   String toString() {
@@ -53,8 +52,8 @@ class RoomsFavorite extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

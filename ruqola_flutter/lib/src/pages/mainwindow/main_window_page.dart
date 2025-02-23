@@ -26,13 +26,11 @@ class MainWindow extends StatelessWidget {
             child: ChannelView(account),
           ),
           Expanded(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                Expanded(child: MessageView(account)),
-                Messageline(account),
-                Expanded(child: StatusBarMessage(account))
-              ]))
+              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(child: MessageView(account)),
+            Messageline(account),
+            Expanded(child: StatusBarMessage(account))
+          ]))
         ],
       ),
     ));

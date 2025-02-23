@@ -21,8 +21,7 @@ Future<void> main() async {
   await account.connect();
 
   // Create a event loop
-  await for (var line
-      in stdin.transform(utf8.decoder).transform(LineSplitter())) {
+  await for (var line in stdin.transform(utf8.decoder).transform(LineSplitter())) {
     if (line.trim().toLowerCase() == 'q') {
       print("Au revoir !");
       break;

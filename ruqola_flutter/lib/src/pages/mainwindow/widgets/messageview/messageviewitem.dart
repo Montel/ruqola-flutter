@@ -26,11 +26,10 @@ class MessageViewItemState extends State<MessageViewItem> {
   Widget build(BuildContext context) {
     return ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage(
-              widget.message.avatarUrl(widget.account.settings.serverUrl)),
+          backgroundImage:
+              NetworkImage(widget.message.avatarUrl(widget.account.settings.serverUrl)),
         ),
-        title: Text('@${widget.message.username}',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('@${widget.message.username}', style: TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -38,9 +37,8 @@ class MessageViewItemState extends State<MessageViewItem> {
             if (widget.message.reactions.isNotEmpty)
               Wrap(
                 spacing: 10,
-                children: widget.message.reactions
-                    .map((emoji) => ReactionText(reaction: emoji))
-                    .toList(),
+                children:
+                    widget.message.reactions.map((emoji) => ReactionText(reaction: emoji)).toList(),
               ),
           ],
         ));

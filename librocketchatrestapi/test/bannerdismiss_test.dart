@@ -4,19 +4,16 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('Banner dismiss', () {
     test('check default values', () {
-      librocketchatrestapi.BannerDismissInfo info =
-          librocketchatrestapi.BannerDismissInfo("foo");
+      librocketchatrestapi.BannerDismissInfo info = librocketchatrestapi.BannerDismissInfo("foo");
       expect(info.canStart(), true);
 
-      librocketchatrestapi.BannerDismiss roomsMute =
-          librocketchatrestapi.BannerDismiss(info);
+      librocketchatrestapi.BannerDismiss roomsMute = librocketchatrestapi.BannerDismiss(info);
       roomsMute.serverUrl = "http://www.kde.org";
       expect(roomsMute.canStart(), false);
       expect(roomsMute.requireHttpAuthentication(), true);

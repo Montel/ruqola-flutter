@@ -51,9 +51,7 @@ class MethodCall extends Restapiabstractjob {
   Uri url(String url) {
     var generateUrl2 = generateUrl(
         url,
-        _info.anonymous
-            ? RestApiUrlType.methodCallAnon
-            : RestApiUrlType.methodCall,
+        _info.anonymous ? RestApiUrlType.methodCallAnon : RestApiUrlType.methodCall,
         RestApiUrlExtensionType.v1,
         _info.methodName);
     return generateUrl2;
@@ -65,8 +63,8 @@ class MethodCall extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
 
-    http.Response response = await http.post(url(serverUrl!),
-        headers: headers(), body: _info.body());
+    http.Response response =
+        await http.post(url(serverUrl!), headers: headers(), body: _info.body());
     return result(response);
   }
 }

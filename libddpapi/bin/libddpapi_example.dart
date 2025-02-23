@@ -23,12 +23,10 @@ Future<void> main() async {
   webSocketClient.authenticationbase = b;
 
   await webSocketClient.start();
-  webSocketClient
-      .sendMessage(jsonEncode(libddpapi.Authenticationutils.sendConnect()));
+  webSocketClient.sendMessage(jsonEncode(libddpapi.Authenticationutils.sendConnect()));
 
   // webSocketClient.sendMessage('ping');
-  await for (var line
-      in stdin.transform(utf8.decoder).transform(LineSplitter())) {
+  await for (var line in stdin.transform(utf8.decoder).transform(LineSplitter())) {
     if (line.trim().toLowerCase() == 'q') {
       print("Au revoir !");
       break;

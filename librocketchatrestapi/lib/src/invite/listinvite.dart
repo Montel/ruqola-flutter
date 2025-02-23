@@ -32,8 +32,7 @@ class ListInvite extends Restapiabstractjob {
     if (!canStart()) {
       return RestapiabstractjobResult();
     }
-    http.Response response =
-        await http.post(url(serverUrl!), headers: headers());
+    http.Response response = await http.post(url(serverUrl!), headers: headers());
     return result(response);
   }
 }

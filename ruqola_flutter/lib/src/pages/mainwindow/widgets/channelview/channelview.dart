@@ -27,8 +27,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-                padding: const EdgeInsets.all(8.0), child: SearchChannelLine()),
+            Padding(padding: const EdgeInsets.all(8.0), child: SearchChannelLine()),
             Expanded(
               child: ListenableBuilder(
                   listenable: models,
@@ -41,10 +40,9 @@ class ChannelViewSelectionState extends State<ChannelView> {
                     // Construire la liste avec des titres de catégorie
                     List<Widget> listWidgets = [];
                     sortedRoomsWithType.forEach((category, categoryItems) {
-                      listWidgets
-                          .add(ChannelViewHeaderTile(category: category));
-                      listWidgets.addAll(categoryItems.map(
-                          (item) => ChannelViewItem(item, widget.account)));
+                      listWidgets.add(ChannelViewHeaderTile(category: category));
+                      listWidgets.addAll(
+                          categoryItems.map((item) => ChannelViewItem(item, widget.account)));
                     });
 
                     return ListView(

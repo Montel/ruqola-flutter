@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -15,8 +14,7 @@ void main() {
           librocketchatrestapi.ReactOnMessageInfo("foo", "dfdfssg", false);
       expect(info.canStart(), true);
 
-      librocketchatrestapi.ReactOnMessage unfollow =
-          librocketchatrestapi.ReactOnMessage(info);
+      librocketchatrestapi.ReactOnMessage unfollow = librocketchatrestapi.ReactOnMessage(info);
       unfollow.serverUrl = "http://www.kde.org";
       expect(unfollow.canStart(), false);
       expect(unfollow.requireHttpAuthentication(), true);
@@ -24,14 +22,10 @@ void main() {
       unfollow.authToken = 'token';
 
       expect(unfollow.requireTwoFactorAuthentication, false);
-      expect(unfollow.url("http://www.kde.org"),
-          Uri.parse('http://www.kde.org/api/v1/chat.react'));
+      expect(unfollow.url("http://www.kde.org"), Uri.parse('http://www.kde.org/api/v1/chat.react'));
 
-      expect(info.body(), {
-        'emoji': "dfdfssg",
-        "messageId": "foo",
-        "shouldReact": false.toString()
-      });
+      expect(
+          info.body(), {'emoji': "dfdfssg", "messageId": "foo", "shouldReact": false.toString()});
     });
   });
 }

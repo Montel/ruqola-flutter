@@ -12,8 +12,7 @@ Credentials _$CredentialsFromJson(Map<String, dynamic> json) => Credentials(
       url: json['url'] as String?,
     );
 
-Map<String, dynamic> _$CredentialsToJson(Credentials instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CredentialsToJson(Credentials instance) => <String, dynamic>{
       'username': instance.username,
       'password': instance.password,
       'url': instance.url,

@@ -17,37 +17,30 @@ void main() {
       expect(d.typingNotification("Foo").isEmpty, true);
 
       d.insertTypingNotification("room1", "user1", true);
-      expect(
-          d.typingNotification("room1"), "<strong>user1</strong> is typing...");
+      expect(d.typingNotification("room1"), "<strong>user1</strong> is typing...");
       d.insertTypingNotification("room1", "user1", true);
-      expect(
-          d.typingNotification("room1"), "<strong>user1</strong> is typing...");
+      expect(d.typingNotification("room1"), "<strong>user1</strong> is typing...");
 
       // Add different user.
       d.insertTypingNotification("room2", "user2", true);
-      expect(
-          d.typingNotification("room2"), "<strong>user2</strong> is typing...");
+      expect(d.typingNotification("room2"), "<strong>user2</strong> is typing...");
 
       d.insertTypingNotification("room2", "user3", true);
-      expect(d.typingNotification("room2"),
-          "<strong>user2 and user3</strong> are typing...");
+      expect(d.typingNotification("room2"), "<strong>user2 and user3</strong> are typing...");
 
       d.insertTypingNotification("room2", "user1", true);
-      expect(d.typingNotification("room2"),
-          "<strong>user2, user3 and user1</strong> are typing...");
+      expect(
+          d.typingNotification("room2"), "<strong>user2, user3 and user1</strong> are typing...");
 
       // Remove typing
       d.insertTypingNotification("room2", "user3", false);
-      expect(d.typingNotification("room2"),
-          "<strong>user2 and user1</strong> are typing...");
+      expect(d.typingNotification("room2"), "<strong>user2 and user1</strong> are typing...");
 
       d.insertTypingNotification("room2", "user1", false);
-      expect(
-          d.typingNotification("room2"), "<strong>user2</strong> is typing...");
+      expect(d.typingNotification("room2"), "<strong>user2</strong> is typing...");
 
       d.insertTypingNotification("room2", "user3", false);
-      expect(
-          d.typingNotification("room2"), "<strong>user2</strong> is typing...");
+      expect(d.typingNotification("room2"), "<strong>user2</strong> is typing...");
 
       d.insertTypingNotification("room2", "user2", false);
       expect(d.typingNotification("room2").isEmpty, true);

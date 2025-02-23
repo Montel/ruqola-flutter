@@ -40,8 +40,7 @@ class RuqolaServerConfigPassword {
     }
     if (accountsPasswordPolicyForbidRepeatingCharacters) {
       bool tooManyRepeatingCharatersFound = false;
-      int maxRepeatingChar =
-          accountsPasswordPolicyForbidRepeatingCharactersCount;
+      int maxRepeatingChar = accountsPasswordPolicyForbidRepeatingCharactersCount;
       int duplicateCharFound = 0;
       for (int i = 0; i < total; ++i) {
         var c = str[i];
@@ -87,12 +86,10 @@ class RuqolaServerConfigPassword {
       }
     }
     if (accountsPasswordPolicyAtLeastOneSpecialCharacter) {
-      bool hasPunctuation = str
-          .split('')
-          .any((char) => RegExp(r'^\p{P}$', unicode: true).hasMatch(char));
-      bool hasSymbol = str
-          .split('')
-          .any((char) => RegExp(r'^\p{S}$', unicode: true).hasMatch(char));
+      bool hasPunctuation =
+          str.split('').any((char) => RegExp(r'^\p{P}$', unicode: true).hasMatch(char));
+      bool hasSymbol =
+          str.split('').any((char) => RegExp(r'^\p{S}$', unicode: true).hasMatch(char));
       if (hasSymbol || hasPunctuation) {
         checks |= PasswordSettingCheck.atLeastOneSpecialCharacter.value;
       }
@@ -103,10 +100,8 @@ class RuqolaServerConfigPassword {
   @override
   bool operator ==(Object other) {
     return other is RuqolaServerConfigPassword &&
-        other.accountsPasswordPolicyMinLength ==
-            accountsPasswordPolicyMinLength &&
-        other.accountsPasswordPolicyMaxLength ==
-            accountsPasswordPolicyMaxLength &&
+        other.accountsPasswordPolicyMinLength == accountsPasswordPolicyMinLength &&
+        other.accountsPasswordPolicyMaxLength == accountsPasswordPolicyMaxLength &&
         other.accountsPasswordPolicyForbidRepeatingCharactersCount ==
             accountsPasswordPolicyForbidRepeatingCharactersCount &&
         other.accountsPasswordPolicyEnabled == accountsPasswordPolicyEnabled &&
@@ -116,8 +111,7 @@ class RuqolaServerConfigPassword {
             accountsPasswordPolicyAtLeastOneLowercase &&
         other.accountsPasswordPolicyAtLeastOneUppercase ==
             accountsPasswordPolicyAtLeastOneUppercase &&
-        other.accountsPasswordPolicyAtLeastOneNumber ==
-            accountsPasswordPolicyAtLeastOneNumber &&
+        other.accountsPasswordPolicyAtLeastOneNumber == accountsPasswordPolicyAtLeastOneNumber &&
         other.accountsPasswordPolicyAtLeastOneSpecialCharacter ==
             accountsPasswordPolicyAtLeastOneSpecialCharacter;
   }
@@ -139,8 +133,7 @@ class RuqolaServerConfigPassword {
     int currentPolicy = PasswordSettingCheck.none.value;
     if (accountsPasswordPolicyEnabled) {
       if (accountsPasswordPolicyForbidRepeatingCharacters) {
-        currentPolicy |=
-            PasswordSettingCheck.forbidRepeatingCharactersCount.value;
+        currentPolicy |= PasswordSettingCheck.forbidRepeatingCharactersCount.value;
       }
       if (accountsPasswordPolicyAtLeastOneLowercase) {
         currentPolicy |= PasswordSettingCheck.atLeastOneLowercase.value;

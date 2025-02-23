@@ -52,10 +52,7 @@ class TeamInfo {
 
   @override
   int get hashCode {
-    return teamId.hashCode ^
-        roomsCount.hashCode ^
-        mainTeam.hashCode ^
-        autoJoin.hashCode;
+    return teamId.hashCode ^ roomsCount.hashCode ^ mainTeam.hashCode ^ autoJoin.hashCode;
   }
 
   @override

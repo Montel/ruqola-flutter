@@ -27,9 +27,7 @@ class MessageAttachmentField {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is MessageAttachmentField &&
-        other.value == value &&
-        other.title == title;
+    return other is MessageAttachmentField && other.value == value && other.title == title;
   }
 
   @override

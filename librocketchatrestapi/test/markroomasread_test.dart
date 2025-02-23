@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
   group('Rooms room as read', () {
     test('check default values', () {
-      librocketchatrestapi.MarkRoomAsReadInfo info =
-          librocketchatrestapi.MarkRoomAsReadInfo("foo");
+      librocketchatrestapi.MarkRoomAsReadInfo info = librocketchatrestapi.MarkRoomAsReadInfo("foo");
       expect(info.canStart(), true);
 
       librocketchatrestapi.MarkRoomAsRead markRoomAsRead =

@@ -22,8 +22,7 @@ class PersonalAccessTokenInfo {
     final lastTokenPart = json["lastTokenPart"] ?? '';
     final bypassTwoFactor = json["bypassTwoFactor"] ?? false;
 
-    final createdAt =
-        DateTime.parse(json["createdAt"].toString()).millisecondsSinceEpoch;
+    final createdAt = DateTime.parse(json["createdAt"].toString()).millisecondsSinceEpoch;
 
     return PersonalAccessTokenInfo(
       name: name,
@@ -45,10 +44,7 @@ class PersonalAccessTokenInfo {
 
   @override
   int get hashCode {
-    return lastTokenPart.hashCode ^
-        name.hashCode ^
-        bypassTwoFactor.hashCode ^
-        createdAt.hashCode;
+    return lastTokenPart.hashCode ^ name.hashCode ^ bypassTwoFactor.hashCode ^ createdAt.hashCode;
   }
 
   @override

@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:librocketchatrestapi/librocketchatrestapi.dart'
-    as librocketchatrestapi;
+import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 import 'package:test/test.dart';
 
 void main() {
@@ -15,8 +14,7 @@ void main() {
           librocketchatrestapi.RoomsFavoriteInfo("foo", false);
       expect(info.canStart(), true);
 
-      librocketchatrestapi.RoomsFavorite roomsFavorite =
-          librocketchatrestapi.RoomsFavorite(info);
+      librocketchatrestapi.RoomsFavorite roomsFavorite = librocketchatrestapi.RoomsFavorite(info);
       roomsFavorite.serverUrl = "http://www.kde.org";
       expect(roomsFavorite.canStart(), false);
       expect(roomsFavorite.requireHttpAuthentication(), true);

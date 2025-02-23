@@ -40,9 +40,7 @@ class Reaction {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Reaction &&
-        other.reactionName == reactionName &&
-        other.userNames == userNames;
+    return other is Reaction && other.reactionName == reactionName && other.userNames == userNames;
   }
 
   @override

@@ -20,8 +20,7 @@ class Logout extends Restapiabstractjob {
 
   @override
   Future<RestapiabstractjobResult> start() async {
-    http.Response response =
-        await http.post(url(serverUrl!), headers: headers());
+    http.Response response = await http.post(url(serverUrl!), headers: headers());
     return result(response);
   }
 }
