@@ -213,8 +213,6 @@ class Room with ChangeNotifier {
 
 
 
-    parseCommonData(json);
-    parseDisplaySystemMessage(json);
 
     const QJsonValue ownerValue = json.value("u"_L1);
     if (!ownerValue.isUndefined()) {
@@ -231,7 +229,28 @@ class Room with ChangeNotifier {
     mNotificationOptions.parseNotificationOptions(json);
 */
 
+    parseDisplaySystemMessage(map);
+    parseCommonData(map);
+
     notifyListeners();
+  }
+
+  void parseDisplaySystemMessage(Map<String, dynamic> map) {
+    // TODO
+  }
+  void parseCommonData(Map<String, dynamic> map) {
+    var muted = map["muted"];
+    if (muted != null) {
+      mutedUsers = muted.map((e) => e.toString()).toList();
+    }
+    /*
+
+    setIgnoredUsers(extractStringList(json, "ignored"_L1));
+    setHighlightsWord(extractStringList(json, "userHighlights"_L1));
+    
+    setRoles(extractStringList(json, "roles"_L1));
+    setThreadUnread(extractStringList(json, "tunread"_L1));
+    */
   }
 
   void parseUpdateRoom(Map<String, dynamic> map) {
@@ -373,9 +392,9 @@ class Room with ChangeNotifier {
     setUserNames(lstUserNames);
 
     setMutedUsers(extractStringList(map, "muted"));
-    parseDisplaySystemMessage(map);
     parseRetentionInfo(map);
 */
+    parseDisplaySystemMessage(map);
     avatarETag = map["avatarETag"] ?? '';
     teamInfo = TeamInfo.fromJson(map);
     notifyListeners();
@@ -383,10 +402,15 @@ class Room with ChangeNotifier {
 
   // Roles
   List<String>? roles;
+  List<String>? mutedUsers;
 
   List<String> uids = [];
   List<String>? userNames;
   List<String>? threadUnread;
+  List<String>? displaySystemMessageType;
+
+  List<String>? ignoredUsers;
+  List<String>? highlightsWord;
 
   String roomId = "";
   // name
@@ -432,7 +456,7 @@ class Room with ChangeNotifier {
 
   @override
   String toString() {
-    return "Room(avatarETag: $avatarETag, roomId: $roomId  name: $name open: $open mAnnouncement: $announcement mReadOnly: $readOnly mAlert: $alert, number of message:${messages.length}, teamInfo: $teamInfo, groupMentions: $groupMentions, userMentions $userMentions)";
+    return "Room(avatarETag: $avatarETag, roomId: $roomId  name: $name open: $open mAnnouncement: $announcement mReadOnly: $readOnly mAlert: $alert, number of message:${messages.length}, teamInfo: $teamInfo, groupMentions: $groupMentions, userMentions $userMentions, displaySystemMessageType: $displaySystemMessageType)";
   }
 
   @override
@@ -467,7 +491,10 @@ class Room with ChangeNotifier {
         autoTranslate == other.autoTranslate &&
         channelType == other.channelType &&
         teamInfo == other.teamInfo &&
-        messages == other.messages;
+        messages == other.messages &&
+        displaySystemMessageType == other.displaySystemMessageType &&
+        ignoredUsers == other.ignoredUsers &&
+        highlightsWord == other.highlightsWord;
   }
 
   @override
@@ -500,5 +527,8 @@ class Room with ChangeNotifier {
       autoTranslate.hashCode ^
       channelType.hashCode ^
       teamInfo.hashCode ^
-      messages.hashCode;
+      messages.hashCode ^
+      displaySystemMessageType.hashCode ^
+      ignoredUsers.hashCode ^
+      highlightsWord.hashCode;
 }
