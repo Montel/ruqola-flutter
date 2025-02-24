@@ -71,6 +71,7 @@ class ChannelViewItemState extends State<ChannelViewItem> {
                       value: MenuChannelType.closeChannel.index,
                       child: Text("Quit Channel"),
                     ),
+                    PopupMenuDivider(),
                     PopupMenuItem<int>(
                       value: MenuChannelType.dumpRoomInfo.index,
                       child: Text("Dump info"),
