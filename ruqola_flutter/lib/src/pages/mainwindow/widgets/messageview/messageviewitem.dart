@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reactiontext.dart';
 
+enum MenuMessageType {
+  dumpMessageInfo,
+}
+
 class MessageViewItem extends StatefulWidget {
   final Message message;
   final Rocketchataccount account;
@@ -25,6 +29,20 @@ class MessageViewItemState extends State<MessageViewItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+        trailing: PopupMenuButton<int>(onSelected: (value) {
+          // Handle the selection from the PopupMenuButton
+          if (value == MenuMessageType.dumpMessageInfo.index) {
+            print("${widget.message}");
+          }
+        }, itemBuilder: (BuildContext context) {
+          // Define the menu items for the PopupMenuButton
+          return <PopupMenuEntry<int>>[
+            PopupMenuItem<int>(
+              value: MenuMessageType.dumpMessageInfo.index,
+              child: Text("Dump message"),
+            ),
+          ];
+        }),
         leading: CircleAvatar(
           backgroundImage:
               NetworkImage(widget.message.avatarUrl(widget.account.settings.serverUrl)),
