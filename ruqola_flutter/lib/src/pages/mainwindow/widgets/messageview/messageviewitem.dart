@@ -9,6 +9,7 @@ import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reaction
 
 enum MenuMessageType {
   dumpMessageInfo,
+  markAsFavorite,
 }
 
 class MessageViewItem extends StatefulWidget {
@@ -33,10 +34,17 @@ class MessageViewItemState extends State<MessageViewItem> {
           // Handle the selection from the PopupMenuButton
           if (value == MenuMessageType.dumpMessageInfo.index) {
             print("${widget.message}");
+          } else if (value == MenuMessageType.markAsFavorite.index) {
+            // TODO
           }
         }, itemBuilder: (BuildContext context) {
           // Define the menu items for the PopupMenuButton
           return <PopupMenuEntry<int>>[
+            PopupMenuItem<int>(
+              value: MenuMessageType.markAsFavorite.index,
+              child: Text("Mark as Favorite"),
+            ),
+            PopupMenuDivider(),
             PopupMenuItem<int>(
               value: MenuMessageType.dumpMessageInfo.index,
               child: Text("Dump message"),
