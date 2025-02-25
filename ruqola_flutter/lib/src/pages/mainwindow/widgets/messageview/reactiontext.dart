@@ -25,7 +25,7 @@ class ReactionTextState extends State<ReactionText> {
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 220, 244, 3), // Couleur de fond
           border: Border.all(
-            width: 2.0, // Épaisseur de la bordure
+            width: 1.0, // Épaisseur de la bordure
           ),
           borderRadius: BorderRadius.circular(6.0), // Rayon des coins
         ),
@@ -34,6 +34,7 @@ class ReactionTextState extends State<ReactionText> {
             child: GestureDetector(
                 onTap: () => {
                       // Remove emoji or add it.
+                      print("click on it")
                     },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
