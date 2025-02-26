@@ -10,6 +10,7 @@ import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reaction
 enum MenuMessageType {
   dumpMessageInfo,
   markAsFavorite,
+  followMessage,
 }
 
 class MessageViewItem extends StatefulWidget {
@@ -42,7 +43,11 @@ class MessageViewItemState extends State<MessageViewItem> {
           return <PopupMenuEntry<int>>[
             PopupMenuItem<int>(
               value: MenuMessageType.markAsFavorite.index,
-              child: Text("Mark as Favorite"),
+              child: Text("Mark as Favorite"), //I18n
+            ),
+            PopupMenuItem<int>(
+              value: MenuMessageType.followMessage.index,
+              child: Text("Follow message"), //I18n
             ),
             PopupMenuDivider(),
             PopupMenuItem<int>(
