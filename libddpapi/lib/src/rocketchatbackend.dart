@@ -57,6 +57,11 @@ class Rocketchatbackend {
       "otr",
       "message",
       "subscriptions-changed",
+      "video-conference",
+      "userData",
+      "banners",
+      "force_logout",
+      "uiInteraction",
     };
     for (final notifier in listStreamNotifyUser) {
       _ddclient.subscribe("stream-notify-user", '$userId/$notifier');
