@@ -12,6 +12,14 @@ class BlockAction {
   final String value;
   final String url;
 
+  BlockAction.defaultValues()
+      : actionId = '',
+        text = '',
+        type = '',
+        blockId = '',
+        value = '',
+        url = '';
+
   BlockAction({
     required this.actionId,
     required this.text,
