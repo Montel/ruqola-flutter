@@ -64,6 +64,7 @@ export 'src/users/resettotp.dart';
 // Command
 export 'src/commands/listcommands.dart';
 export 'src/commands/runcommand.dart';
+export 'src/commands/previewscommand.dart';
 
 // Channel
 export 'src/channels/channelclose.dart';
