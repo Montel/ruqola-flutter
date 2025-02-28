@@ -17,6 +17,8 @@ class PreviewsCommandInfo {
     return commandName.isNotEmpty && roomId.isNotEmpty;
   }
 
+// TODO add support get/post support !
+
   Map<String, String> body() {
     Map<String, String> json = {};
     json['command'] = commandName;
