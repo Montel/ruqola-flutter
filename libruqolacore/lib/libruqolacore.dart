@@ -52,6 +52,7 @@ export 'src/managedevices/deviceinfos.dart';
 export 'src/commands/command.dart';
 export 'src/commands/commands.dart';
 export 'src/commands/previewcommand.dart';
+export 'src/commands/previewcommandutil.dart';
 
 // PersonalAccessTokens
 export 'src/personalaccesstokens/personalaccesstokeninfo.dart';

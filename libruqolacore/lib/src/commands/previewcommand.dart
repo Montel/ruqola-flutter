@@ -42,6 +42,11 @@ class PreviewCommand {
     return PreviewCommand(id: json["id"] ?? '', value: json["value"] ?? '', type: type);
   }
 
+  PreviewCommand.defaultValues()
+      : id = '',
+        value = '',
+        type = TypePreview.unknown;
+
   bool isValid() {
     return id.isNotEmpty && value.isNotEmpty && type != TypePreview.unknown;
   }

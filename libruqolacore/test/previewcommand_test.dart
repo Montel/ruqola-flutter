@@ -9,7 +9,10 @@ import 'package:test/test.dart';
 void main() {
   group('Preview Command', () {
     test('Test default Values', () {
-      // TODO
+      PreviewCommand previewCommand = PreviewCommand.defaultValues();
+      expect(previewCommand.id, '');
+      expect(previewCommand.value, '');
+      expect(previewCommand.type, TypePreview.unknown);
     });
   });
 }
