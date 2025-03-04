@@ -8,5 +8,32 @@ class Channel {
   String fname = '';
   String name = '';
   String identifier = '';
-  // TODO
+
+  Channel({required this.fname, required this.name, required this.identifier});
+  factory Channel.fromJson(Map<String, dynamic> json) {
+    final String name = json["name"] ?? '';
+    final String fname = json["fname"] ?? '';
+    final String identifier = json["_id"] ?? '';
+    return Channel(name: name, fname: fname, identifier: identifier);
+  }
+
+  @override
+  String toString() {
+    return "Channel(fname: $fname, name: $name, identifier: $identifier)";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Channel &&
+        other.fname == fname &&
+        other.name == name &&
+        other.identifier == identifier;
+  }
+
+  @override
+  int get hashCode {
+    return fname.hashCode ^ name.hashCode ^ identifier.hashCode;
+  }
 }
