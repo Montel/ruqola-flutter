@@ -5,7 +5,15 @@
  */
 
 class DownloadAppsLanguagesInfo {
-  final Map<String, Map<String, String>> languageMap = <String, Map<String, String>>{};
+  final Map<String, Map<String, String>> languageMap;
+
+  DownloadAppsLanguagesInfo({required this.languageMap});
+
+  factory DownloadAppsLanguagesInfo.fromJson(Map<String, dynamic> json) {
+    // TODO
+    final Map<String, Map<String, String>> languageMap = <String, Map<String, String>>{};
+    return DownloadAppsLanguagesInfo(languageMap: languageMap);
+  }
 
   @override
   String toString() {
