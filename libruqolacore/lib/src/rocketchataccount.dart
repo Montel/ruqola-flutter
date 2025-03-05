@@ -318,7 +318,10 @@ class Rocketchataccount {
 
   void _parseStreamNotifyUser(libddpapi.ChangedElements changedElement) {
     final String eventname = changedElement.message.fields!.eventName!;
-    if (eventname.endsWith("subscriptions-changed")) {
+
+    if (eventname.endsWith("/uiInteraction")) {
+      // TODO interaction!
+    } else if (eventname.endsWith("subscriptions-changed")) {
       /*
             RoomModel *model = mRocketChatAccount->roomModel();
             model->updateSubscription(contents);

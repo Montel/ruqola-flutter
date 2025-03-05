@@ -13,6 +13,7 @@ void main() {
       expect(previewCommand.id, '');
       expect(previewCommand.value, '');
       expect(previewCommand.type, TypePreview.unknown);
+      expect(previewCommand.isValid(), false);
     });
   });
 }

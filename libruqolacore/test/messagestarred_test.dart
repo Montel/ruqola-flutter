@@ -8,7 +8,7 @@ import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
 import 'package:test/test.dart';
 
 void main() {
-  group('MessagePinned', () {
-    test('Test Initial MessagePinned values', () {});
+  group('MessageStarred', () {
+    test('Test Initial MessageStarred values', () {});
   });
 }
