@@ -6,19 +6,21 @@
 
 import 'package:libruqolacore/src/commands/previewcommand.dart';
 
-List<PreviewCommand> fromJson(Map<String, dynamic> json) {
-  List<PreviewCommand> commands = [];
-  var previewObj = json["preview"];
-  if (previewObj != null) {
-    var items = previewObj["items"];
-    if (items != null) {
-      for (var i in items) {
-        var command = PreviewCommand.fromJson(i);
-        if (command.isValid()) {
-          commands.add(command);
+class PreviewCommandUtil {
+  static List<PreviewCommand> fromJson(Map<String, dynamic> json) {
+    List<PreviewCommand> commands = [];
+    var previewObj = json["preview"];
+    if (previewObj != null) {
+      var items = previewObj["items"];
+      if (items != null) {
+        for (var i in items) {
+          var command = PreviewCommand.fromJson(i);
+          if (command.isValid()) {
+            commands.add(command);
+          }
         }
       }
     }
+    return commands;
   }
-  return commands;
 }
