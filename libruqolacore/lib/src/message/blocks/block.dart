@@ -21,12 +21,12 @@ class Block {
   String appId = '';
   String blockStr = '';
   String sectionText = '';
-  BlockType mBlockType = BlockType.unknown;
+  BlockType blockType = BlockType.unknown;
   // VideoConferenceInfo mVideoConferenceInfo;
 
   @override
   String toString() {
-    return "Block(blockActions: $blockActions blockId: $blockId callId: $callId appId: $appId blockStr: $blockStr sectionText: $sectionText mBlockType: $mBlockType)";
+    return "Block(blockActions: $blockActions blockId: $blockId callId: $callId appId: $appId blockStr: $blockStr sectionText: $sectionText mBlockType: $blockType)";
   }
 
   @override
@@ -42,7 +42,7 @@ class Block {
         other.appId == appId &&
         other.blockStr == blockStr &&
         other.sectionText == sectionText &&
-        other.mBlockType == mBlockType;
+        other.blockType == blockType;
   }
 
   @override
@@ -53,6 +53,6 @@ class Block {
         appId.hashCode ^
         blockStr.hashCode ^
         sectionText.hashCode ^
-        mBlockType.hashCode;
+        blockType.hashCode;
   }
 }

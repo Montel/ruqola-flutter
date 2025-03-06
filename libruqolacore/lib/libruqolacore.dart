@@ -22,6 +22,7 @@ export 'src/message/messageattachment.dart';
 export 'src/message/reaction.dart';
 export 'src/message/messageurl.dart';
 export 'src/message/replies.dart';
+export 'src/message/blocks/block.dart';
 export 'src/message/blocks/blockaction.dart';
 export 'src/message/messagepinned.dart';
 export 'src/message/messagestarred.dart';
