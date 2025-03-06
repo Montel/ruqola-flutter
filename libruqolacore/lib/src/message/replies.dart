@@ -8,6 +8,15 @@ class Replies {
   final List<String> replies;
   Replies({this.replies = const []});
 
+  factory Replies.fromJson(Map<String, dynamic> json) {
+    var repliesJson = json["replies"];
+    if (repliesJson != null) {
+      final List<String> replies = List<String>.from(repliesJson);
+      return Replies(replies: replies);
+    }
+    return Replies();
+  }
+
   @override
   String toString() {
     return "Replies(replies: $replies)";
