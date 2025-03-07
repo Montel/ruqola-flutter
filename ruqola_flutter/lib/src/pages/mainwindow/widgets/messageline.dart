@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 // Look at https://github.com/Fintasys/emoji_picker_flutter/blob/master/example/lib/main_whatsapp.dart
 
 class Messageline extends StatelessWidget {
@@ -16,6 +17,36 @@ class Messageline extends StatelessWidget {
   final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    void insertEmoji(String emoji) {
+      final text = _controller.text;
+      final selection = _controller.selection;
+      final newText = text.replaceRange(
+        selection.start,
+        selection.end,
+        emoji,
+      );
+      final newSelection = TextSelection.collapsed(offset: selection.start + emoji.length);
+      _controller.text = newText;
+      _controller.selection = newSelection;
+    }
+
+    void showEmojiPicker() {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return EmojiPicker(
+              //onEmojiSelected: {
+              /*
+              (Category category, Emoji emoji) {
+              insertEmoji(emoji.emoji);
+            }
+            */
+              //},
+              );
+        },
+      );
+    }
+
     return ValueListenableBuilder<String>(
         valueListenable: SharedValue.currentRoomId,
         builder: (context, value, child) {
@@ -54,6 +85,8 @@ class Messageline extends StatelessWidget {
                           autocorrect: true,
                           controller: _controller,
                           decoration: InputDecoration(
+                              prefixIcon: IconButton(
+                                  onPressed: showEmojiPicker, icon: Icon(Icons.emoji_emotions)),
                               suffixIcon: IconButton(
                                 onPressed: _controller.clear,
                                 icon: const Icon(Icons.clear),
