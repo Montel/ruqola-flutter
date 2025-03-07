@@ -22,7 +22,7 @@ class Block {
   String blockStr = '';
   String sectionText = '';
   BlockType blockType = BlockType.unknown;
-  // VideoConferenceInfo mVideoConferenceInfo;
+  // VideoConferenceInfo videoConferenceInfo;
 
   @override
   String toString() {
