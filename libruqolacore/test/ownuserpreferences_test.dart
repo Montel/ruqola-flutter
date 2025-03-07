@@ -13,50 +13,50 @@ void main() {
   group('ownuserpreferences', () {
     test('Test Initial OwnUserPreferences', () {
       Ownuserpreferences owner = Ownuserpreferences();
-      expect(owner.mHighlightWords, null);
-      expect(owner.mEmailNotificationMode, null);
-      expect(owner.mDesktopNotifications, null);
-      expect(owner.mPushNotifications, null);
-      expect(owner.mNewRoomNotification, null);
-      expect(owner.mNewMessageNotification, null);
+      expect(owner.highlightWords, null);
+      expect(owner.emailNotificationMode, null);
+      expect(owner.desktopNotifications, null);
+      expect(owner.pushNotifications, null);
+      expect(owner.newRoomNotification, null);
+      expect(owner.newMessageNotification, null);
 
-      expect(owner.mRoomListSortOrder, RoomListSortOrder.unknown);
-      expect(owner.mRoomListDisplay, RoomListDisplay.unknown);
+      expect(owner.roomListSortOrder, RoomListSortOrder.unknown);
+      expect(owner.roomListDisplay, RoomListDisplay.unknown);
 
-      expect(owner.mIdleTimeLimit, -1);
-      expect(owner.mNotificationsSoundVolume, -1);
+      expect(owner.idleTimeLimit, -1);
+      expect(owner.notificationsSoundVolume, -1);
 
-      expect(owner.mConvertAsciiEmoji, true);
-      expect(owner.mUseEmojis, true);
-      expect(owner.mHideRoles, false);
-      expect(owner.mDisplayAvatars, true);
-      expect(owner.mEnableAutoAway, false);
-      expect(owner.mShowUnread, false);
-      expect(owner.mShowRoomAvatar, false);
-      expect(owner.mShowFavorite, true);
-      expect(owner.mReceiveLoginDetectionEmail, false);
-      expect(owner.mMuteFocusedConversations, false);
+      expect(owner.convertAsciiEmoji, true);
+      expect(owner.useEmojis, true);
+      expect(owner.hideRoles, false);
+      expect(owner.displayAvatars, true);
+      expect(owner.enableAutoAway, false);
+      expect(owner.showUnread, false);
+      expect(owner.showRoomAvatar, false);
+      expect(owner.showFavorite, true);
+      expect(owner.receiveLoginDetectionEmail, false);
+      expect(owner.muteFocusedConversations, false);
     });
 
     test('parse ownerPreferences json', () {
       final data = extractJsonData("ownuserpreferences", "ownuserpreferences1.json");
       final ownerPreferences = Ownuserpreferences.fromJson(data);
-      expect(ownerPreferences.mIdleTimeLimit, 300);
-      expect(ownerPreferences.mConvertAsciiEmoji, true);
-      expect(ownerPreferences.mNotificationsSoundVolume, 100);
-      expect(ownerPreferences.mEmailNotificationMode, "mentions");
-      expect(ownerPreferences.mDesktopNotifications, "mentions");
-      expect(ownerPreferences.mUseEmojis, false);
-      expect(ownerPreferences.mDisplayAvatars, true);
-      expect(ownerPreferences.mShowFavorite, true);
-      expect(ownerPreferences.mReceiveLoginDetectionEmail, false);
+      expect(ownerPreferences.idleTimeLimit, 300);
+      expect(ownerPreferences.convertAsciiEmoji, true);
+      expect(ownerPreferences.notificationsSoundVolume, 100);
+      expect(ownerPreferences.emailNotificationMode, "mentions");
+      expect(ownerPreferences.desktopNotifications, "mentions");
+      expect(ownerPreferences.useEmojis, false);
+      expect(ownerPreferences.displayAvatars, true);
+      expect(ownerPreferences.showFavorite, true);
+      expect(ownerPreferences.receiveLoginDetectionEmail, false);
 
-      expect(ownerPreferences.mNewRoomNotification, 'door');
-      expect(ownerPreferences.mNewMessageNotification, 'chime');
-      expect(ownerPreferences.mMuteFocusedConversations, true);
+      expect(ownerPreferences.newRoomNotification, 'door');
+      expect(ownerPreferences.newMessageNotification, 'chime');
+      expect(ownerPreferences.muteFocusedConversations, true);
 
-      expect(ownerPreferences.mRoomListSortOrder, RoomListSortOrder.byLastMessage);
-      expect(ownerPreferences.mRoomListDisplay, RoomListDisplay.medium);
+      expect(ownerPreferences.roomListSortOrder, RoomListSortOrder.byLastMessage);
+      expect(ownerPreferences.roomListDisplay, RoomListDisplay.medium);
     });
 
     test('parse convertStringToRoomListDisplay json', () {
