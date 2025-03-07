@@ -177,6 +177,7 @@ class Rocketchataccount {
         final result = resultHistory.result!['result'];
         if (result != null) {
           final messagesArray = result['messages'];
+          // TODO fix string as utf8
           models.processIncomingMessages(messagesArray);
         }
       }
