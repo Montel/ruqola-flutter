@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:libruqolacore/libruqolacore.dart';
+import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 
 class ReactionText extends StatefulWidget {
   final Reaction reaction;
