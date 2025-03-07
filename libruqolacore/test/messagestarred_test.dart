@@ -9,6 +9,9 @@ import 'package:test/test.dart';
 
 void main() {
   group('MessageStarred', () {
-    test('Test Initial MessageStarred values', () {});
+    test('Test Initial MessageStarred values', () {
+      final starred = libruqolacore.MessageStarred();
+      expect(starred.isStarred, false);
+    });
   });
 }

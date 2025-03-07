@@ -5,6 +5,12 @@
  */
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
-import 'libruqolacoretest.dart';
 
-// TODO
+void main() {
+  group('DownloadAppsLanguagesInfo Infos', () {
+    test('Test Initial values', () {
+      final info = DownloadAppsLanguagesInfo.defaultValues();
+      expect(info.languageMap.isEmpty, true);
+    });
+  });
+}

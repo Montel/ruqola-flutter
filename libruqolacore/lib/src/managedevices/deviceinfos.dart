@@ -19,6 +19,7 @@ class Deviceinfos {
     required this.offset,
     required this.total,
   });
+
   factory Deviceinfos.fromJson(Map<String, dynamic> json) {
     final deviceInfosCount = json["count"] ?? 0;
     final offset = json["offset"] ?? 0;
@@ -38,6 +39,7 @@ class Deviceinfos {
       total: total,
     );
   }
+
   Deviceinfos.defaultValues()
       : listDevices = [],
         deviceInfosCount = 0,

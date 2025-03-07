@@ -9,9 +9,28 @@ class DownloadAppsLanguagesInfo {
 
   DownloadAppsLanguagesInfo({required this.languageMap});
 
-  factory DownloadAppsLanguagesInfo.fromJson(Map<String, dynamic> json) {
-    // TODO
-    final Map<String, Map<String, String>> languageMap = <String, Map<String, String>>{};
+  DownloadAppsLanguagesInfo.defaultValues() : languageMap = {};
+
+  factory DownloadAppsLanguagesInfo.fromJson(Map<String, dynamic> json, String id) {
+    Map<String, Map<String, String>> languageMap = <String, Map<String, String>>{};
+
+    final languagesObj = json["languages"];
+    if (languagesObj != null) {
+      final keys = languagesObj.keys;
+      for (final lang in keys) {
+        final map = languagesObj[lang];
+        if (map is Map<String, dynamic>) {
+          final translatedMap = <String, String>{};
+          map.forEach((key, value) {
+            if (value is String) {
+              translatedMap['app-$id.$key'] = value;
+            }
+          });
+          languageMap[lang] = translatedMap;
+        }
+      }
+    }
+
     return DownloadAppsLanguagesInfo(languageMap: languageMap);
   }
 

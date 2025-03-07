@@ -27,6 +27,38 @@ extension StatusExt on Status {
         return 'unknown';
     }
   }
+
+  String get translatedName {
+    // TODO i18n ?
+    switch (this) {
+      case Status.online:
+        return 'Online';
+      case Status.busy:
+        return 'Busy';
+      case Status.away:
+        return 'Away';
+      case Status.offline:
+        return 'Offline';
+      default:
+        return '';
+    }
+  }
+
+  String get iconName {
+    // Fix me
+    switch (this) {
+      case Status.online:
+        return 'Online';
+      case Status.busy:
+        return 'Busy';
+      case Status.away:
+        return 'Away';
+      case Status.offline:
+        return 'Offline';
+      default:
+        return '';
+    }
+  }
 }
 
 class User {
@@ -115,5 +147,10 @@ class User {
         nickname.hashCode ^
         active.hashCode ^
         status.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'User(userid :$userid, name: $name, username: $username, statusText: $statusText, bio: $bio, nickname: $nickname, active: $active, status: $status)';
   }
 }
