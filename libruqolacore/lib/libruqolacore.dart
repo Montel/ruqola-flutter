@@ -24,6 +24,8 @@ export 'src/message/messageurl.dart';
 export 'src/message/replies.dart';
 export 'src/message/blocks/block.dart';
 export 'src/message/blocks/blockaction.dart';
+export 'src/message/blocks/blockaccessory.dart';
+export 'src/message/blocks/blockaccessoryoption.dart';
 export 'src/message/messagepinned.dart';
 export 'src/message/messagestarred.dart';
 

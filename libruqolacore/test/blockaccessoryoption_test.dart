@@ -9,7 +9,9 @@ import 'package:test/test.dart';
 void main() {
   group('Block Accessory Option infos', () {
     test('Test Initial values', () {
-      // TODO
+      BlockAccessoryOption opt = BlockAccessoryOption.defaultValues();
+      expect(opt.text.isEmpty, true);
+      expect(opt.value.isEmpty, true);
     });
   });
 }
