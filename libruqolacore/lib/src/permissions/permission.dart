@@ -9,6 +9,25 @@ class Permission {
   String identifier = '';
   int updatedAt = -1;
 
+  @override
+  String toString() {
+    return 'Permission(roles: $roles, identifier: $identifier, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Permission &&
+        other.roles == roles &&
+        other.identifier == identifier &&
+        updatedAt == other.updatedAt;
+  }
+
+  @override
+  int get hashCode {
+    return roles.hashCode ^ identifier.hashCode ^ updatedAt.hashCode;
+  }
+
   /*
   int mUpdatedAt = -1;
   List<String> mRolesStr;
@@ -30,33 +49,8 @@ class Permission {
     return Command();
   }
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is Permission &&
-        other.params == params &&
-        other.commandName == commandName &&
-        description == other.description &&
-        translatedDescription == other.translatedDescription &&
-        translatedParams == other.translatedParams &&
-        providesPreview == other.providesPreview &&
-        clientOnly == other.clientOnly;
-  }
 
-  @override
-  int get hashCode {
-    return params.hashCode ^
-        commandName.hashCode ^
-        description.hashCode ^
-        translatedDescription.hashCode ^
-        translatedParams.hashCode ^
-        providesPreview.hashCode ^
-        clientOnly.hashCode;
-  }
 
-  @override
-  String toString() {
-    return 'Permission(params: $params, commandName: $commandName, description: $description, translatedDescription: $translatedDescription, translatedParams: $translatedParams, providesPreview: $providesPreview, clientOnly: $clientOnly)';
-  }
+
   */
 }
