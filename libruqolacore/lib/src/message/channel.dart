@@ -5,10 +5,14 @@
  */
 
 class Channel {
-  String fname = '';
-  String name = '';
-  String identifier = '';
+  final String fname;
+  final String name;
+  final String identifier;
 
+  Channel.defaultValues()
+      : fname = '',
+        name = '',
+        identifier = '';
   Channel({required this.fname, required this.name, required this.identifier});
   factory Channel.fromJson(Map<String, dynamic> json) {
     final String name = json["name"] ?? '';
