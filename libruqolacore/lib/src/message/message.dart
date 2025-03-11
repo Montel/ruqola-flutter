@@ -60,7 +60,18 @@ class Message {
         reactions.add(r);
       }
     }
-    // TODO load channels
+
+    final channelsJson = json["channels"];
+    List<Channel> channels = [];
+    if (channelsJson != null) {
+      // print("CHANNEL $channelsJson");
+      if (channelsJson.isNotEmpty) {
+        for (var entry in channelsJson) {
+          Channel c = Channel.fromJson(entry);
+          channels.add(c);
+        }
+      }
+    }
 
     return Message(
         messageId: messageId,
@@ -74,7 +85,8 @@ class Message {
         username: username,
         name: name,
         userId: userId,
-        reactions: reactions);
+        reactions: reactions,
+        channels: channels);
   }
 
   String avatarUrl(String serverUrl) {
