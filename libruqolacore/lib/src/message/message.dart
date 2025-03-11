@@ -6,6 +6,8 @@
 
 import 'package:libruqolacore/src/avatarinfo.dart';
 import 'package:libruqolacore/src/message/reaction.dart';
+import 'package:libruqolacore/src/message/channel.dart';
+import 'package:collection/collection.dart';
 
 enum MessageType {
   system,
@@ -15,19 +17,21 @@ enum MessageType {
 }
 
 class Message {
-  Message(
-      {this.messageId = "",
-      this.text = '',
-      this.alias = '',
-      this.roomId = '',
-      this.avatar = '',
-      this.editedByUsername = '',
-      this.role = '',
-      this.emoji = '',
-      this.username = '',
-      this.name = '',
-      this.userId = '',
-      this.reactions = const []});
+  Message({
+    this.messageId = "",
+    this.text = '',
+    this.alias = '',
+    this.roomId = '',
+    this.avatar = '',
+    this.editedByUsername = '',
+    this.role = '',
+    this.emoji = '',
+    this.username = '',
+    this.name = '',
+    this.userId = '',
+    this.reactions = const [],
+    this.channels = const [],
+  });
 
   factory Message.fromJson(Map<String, dynamic> json) {
     // print("MESSAGE: $json");
@@ -56,6 +60,8 @@ class Message {
         reactions.add(r);
       }
     }
+    // TODO load channels
+
     return Message(
         messageId: messageId,
         text: text,
@@ -120,15 +126,19 @@ class Message {
   //Reactions
   List<Reaction> reactions = [];
 
+  // Channels
+  List<Channel> channels = [];
+
   @override
   String toString() {
-    return "Message(roomId: $roomId text: $text alias: $alias messageId: $messageId avatar: $avatar editedByUsername: $editedByUsername role:$role messageType: $messageType, reactions: $reactions)";
+    return "Message(roomId: $roomId text: $text alias: $alias messageId: $messageId avatar: $avatar editedByUsername: $editedByUsername role:$role messageType: $messageType, reactions: $reactions, channels: $channels)";
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
+    final listEquality = ListEquality();
     return other is Message &&
         other.messageId == messageId &&
         other.text == text &&
@@ -139,7 +149,8 @@ class Message {
         other.role == role &&
         other.emoji == emoji &&
         other.messageType == messageType &&
-        other.reactions == reactions;
+        listEquality.equals(other.reactions, reactions) &&
+        listEquality.equals(other.channels, channels);
   }
 
   @override
@@ -154,6 +165,7 @@ class Message {
         emoji.hashCode ^
         messageType.hashCode ^
         role.hashCode ^
-        reactions.hashCode;
+        reactions.hashCode ^
+        channels.hashCode;
   }
 }

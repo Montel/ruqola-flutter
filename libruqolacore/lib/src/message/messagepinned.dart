@@ -8,6 +8,10 @@ class MessagePinned {
   final String pinnedBy;
   final bool pinned;
 
+  MessagePinned.defaultValues()
+      : pinned = false,
+        pinnedBy = '';
+
   MessagePinned({this.pinnedBy = '', this.pinned = false});
 
   factory MessagePinned.fromJson(Map<String, dynamic> json) {
