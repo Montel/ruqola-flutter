@@ -5,3 +5,14 @@
  */
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
+
+void main() {
+  group('Channel infos', () {
+    test('Test Initial values', () {
+      final Channel b = Channel.defaultValues();
+      expect(b.fname, '');
+      expect(b.identifier, '');
+      expect(b.name, '');
+    });
+  });
+}

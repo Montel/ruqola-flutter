@@ -4,11 +4,15 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
+import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('MessagePinned', () {
-    test('Test Initial MessagePinned values', () {});
+    test('Test Initial MessagePinned values', () {
+      MessagePinned pinned = MessagePinned.defaultValues();
+      expect(pinned.pinned, false);
+      expect(pinned.pinnedBy.isEmpty, true);
+    });
   });
 }
