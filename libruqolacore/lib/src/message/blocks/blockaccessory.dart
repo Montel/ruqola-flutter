@@ -36,4 +36,9 @@ class BlockAccessory {
   int get hashCode {
     return value.hashCode ^ text.hashCode ^ actionId.hashCode ^ type.hashCode;
   }
+
+  @override
+  String toString() {
+    return "BlockAccessory(text: $text, value: $value, actionId: $actionId, type: $type, options: $options)";
+  }
 }
