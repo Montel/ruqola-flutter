@@ -14,6 +14,17 @@ class PersonalAccessTokenInfos {
     required this.personalAccessTokenInfos,
   });
 
+/*
+  factory PersonalAccessTokenInfos.fromJson(Map<String, dynamic> json) {
+    var repliesJson = json["replies"];
+    if (repliesJson != null) {
+      final List<String> replies = List<String>.from(repliesJson);
+      return Replies(replies: replies);
+    }
+    return PersonalAccessTokenInfos();
+  }
+*/
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
