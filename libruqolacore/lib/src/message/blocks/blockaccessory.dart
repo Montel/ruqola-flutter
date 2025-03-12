@@ -20,6 +20,13 @@ class BlockAccessory {
   AccessoryType type = AccessoryType.unknown;
   List<BlockAccessoryOption> options = [];
 
+  BlockAccessory(
+      {required this.actionId,
+      required this.value,
+      required this.text,
+      required this.type,
+      required this.options});
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -29,12 +36,28 @@ class BlockAccessory {
         other.text == text &&
         other.value == value &&
         other.actionId == actionId &&
-        other.type == type;
+        other.type == type &&
+        other.options == options;
   }
 
   @override
   int get hashCode {
-    return value.hashCode ^ text.hashCode ^ actionId.hashCode ^ type.hashCode;
+    return value.hashCode ^ text.hashCode ^ actionId.hashCode ^ type.hashCode ^ options.hashCode;
+  }
+
+  factory BlockAccessory.fromJson(Map<String, dynamic> json) {
+    String value = json["value"] ?? '';
+    String actionId = json["actionId"] ?? '';
+    String text = '';
+    if (json["text"] != null) {
+      text = json["text"]["text"] ?? '';
+    }
+    AccessoryType type =
+        AccessoryType.unknown; // = convertAccessoryTypeToEnum(o["type"_L1].toString());
+
+    List<BlockAccessoryOption> options = List<BlockAccessoryOption>.from(json["options"]);
+    return BlockAccessory(
+        value: value, actionId: actionId, text: text, options: options, type: type);
   }
 
   @override

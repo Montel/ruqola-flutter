@@ -257,7 +257,7 @@ RoomModel::Section RoomModel::section(Room *r) const
     if (roomId.isNotEmpty) {
       for (Room r in rooms) {
         if (r.roomId == roomId) {
-          Message m = Message();
+          //Message m = Message();
           //TODO  m.parseMessage(replyObject, useRestApi, emojiManager());
           /*
         m.setMessageType(Message::MessageType::Information);
@@ -271,7 +271,7 @@ RoomModel::Section RoomModel::section(Room *r) const
         // room","rid":"Dic5wZD4Zu9ze5gk3","ts":{"$date":1534166745895}})
         // Temporary => we don't add it in database
         */
-          r.messages.add(m);
+          //r.messages.add(m);
           notifyListeners();
           break;
         }

@@ -28,6 +28,22 @@ class Block {
   String toString() {
     return "Block(blockActions: $blockActions blockId: $blockId callId: $callId appId: $appId blockStr: $blockStr sectionText: $sectionText mBlockType: $blockType)";
   }
+  /*
+    factory Block.fromJson(Map<String, dynamic> json) {
+    String value = json["value"] ?? '';
+    String actionId = json["actionId"] ?? '';
+    String text = '';
+    if (json["text"] != null) {
+      text = json["text"]["text"] ?? '';
+    }
+    AccessoryType type =
+        AccessoryType.unknown; // = convertAccessoryTypeToEnum(o["type"_L1].toString());
+
+    List<BlockAccessoryOption> options = List<BlockAccessoryOption>.from(json["options"]);
+    return Block(
+        value: value, actionId: actionId, text: text, options: options, type: type);
+  }
+  */
 
   @override
   bool operator ==(Object other) {

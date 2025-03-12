@@ -8,6 +8,8 @@ class Replies {
   final List<String> replies;
   Replies({this.replies = const []});
 
+  Replies.defaultValues() : replies = const [];
+
   factory Replies.fromJson(Map<String, dynamic> json) {
     var repliesJson = json["replies"];
     if (repliesJson != null) {

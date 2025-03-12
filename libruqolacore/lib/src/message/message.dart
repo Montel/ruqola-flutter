@@ -7,7 +7,9 @@
 import 'package:libruqolacore/src/avatarinfo.dart';
 import 'package:libruqolacore/src/message/reaction.dart';
 import 'package:libruqolacore/src/message/channel.dart';
+import 'package:libruqolacore/src/message/blocks/block.dart';
 import 'package:collection/collection.dart';
+import 'package:libruqolacore/src/message/replies.dart';
 
 enum MessageType {
   system,
@@ -18,19 +20,20 @@ enum MessageType {
 
 class Message {
   Message({
-    this.messageId = "",
-    this.text = '',
-    this.alias = '',
-    this.roomId = '',
-    this.avatar = '',
-    this.editedByUsername = '',
-    this.role = '',
-    this.emoji = '',
-    this.username = '',
-    this.name = '',
-    this.userId = '',
-    this.reactions = const [],
-    this.channels = const [],
+    required this.messageId,
+    required this.text,
+    required this.alias,
+    required this.roomId,
+    required this.avatar,
+    required this.editedByUsername,
+    required this.role,
+    required this.emoji,
+    required this.username,
+    required this.name,
+    required this.userId,
+    required this.reactions,
+    required this.channels,
+    required this.replies,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) {
@@ -73,6 +76,23 @@ class Message {
       }
     }
 
+    // Block
+    final blocksJson = json["blocks"];
+    List<Block> blocks = [];
+    if (blocksJson != null) {
+      // print("Block $channelsJson");
+      if (blocksJson.isNotEmpty) {
+        for (var entry in blocksJson) {
+          // TOOD implement
+          //Block c = Block.fromJson(entry);
+          // channels.add(c);
+        }
+      }
+    }
+
+    // Replies
+    final Replies replies = Replies.fromJson(json);
+
     return Message(
         messageId: messageId,
         text: text,
@@ -86,7 +106,8 @@ class Message {
         name: name,
         userId: userId,
         reactions: reactions,
-        channels: channels);
+        channels: channels,
+        replies: replies);
   }
 
   String avatarUrl(String serverUrl) {
@@ -140,6 +161,8 @@ class Message {
 
   // Channels
   List<Channel> channels = [];
+
+  Replies replies = Replies.defaultValues();
 
   @override
   String toString() {

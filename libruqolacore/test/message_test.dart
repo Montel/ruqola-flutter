@@ -9,6 +9,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Message', () {
+    /*
     final message = libruqolacore.Message();
 
     test('Test Initial Message values', () {
@@ -20,6 +21,7 @@ void main() {
       expect(message.editedByUsername.isEmpty, true);
       expect(message.messageType, libruqolacore.MessageType.normaltext);
     });
+    */
   });
 
   // TODO add test loading elements
