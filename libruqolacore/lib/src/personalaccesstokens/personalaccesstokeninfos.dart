@@ -14,16 +14,18 @@ class PersonalAccessTokenInfos {
     required this.personalAccessTokenInfos,
   });
 
-/*
   factory PersonalAccessTokenInfos.fromJson(Map<String, dynamic> json) {
-    var repliesJson = json["replies"];
-    if (repliesJson != null) {
-      final List<String> replies = List<String>.from(repliesJson);
-      return Replies(replies: replies);
+    var tokensArray = json["tokens"];
+    if (tokensArray != null) {
+      List<PersonalAccessTokenInfo> listTokenInfos = [];
+      for (var item in tokensArray) {
+        var personnalTokenInfo = PersonalAccessTokenInfo.fromJson(item);
+        listTokenInfos.add(personnalTokenInfo);
+      }
+      return PersonalAccessTokenInfos(personalAccessTokenInfos: listTokenInfos);
     }
-    return PersonalAccessTokenInfos();
+    return PersonalAccessTokenInfos(personalAccessTokenInfos: []);
   }
-*/
 
   @override
   bool operator ==(Object other) {
