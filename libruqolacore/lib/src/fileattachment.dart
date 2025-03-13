@@ -19,13 +19,10 @@ class FileAttachments {
   final int total;
   final List<File> files;
 
-  // Add getter
-  int get getTotal => total;
-
   factory FileAttachments.fromJson(Map<String, dynamic> json) {
-    final count = json['count'] as int?;
-    final offset = json['offset'] as int?;
-    final total = json['total'] as int?;
+    final count = json['count'] ?? 0;
+    final offset = json['offset'] ?? 0;
+    final total = json['total'] ?? 0;
     final List<File> files = [];
     final filesJson = json["files"];
     if (filesJson != null) {
@@ -35,9 +32,9 @@ class FileAttachments {
       }
     }
     return FileAttachments(
-      count: count ?? 0,
-      offset: offset ?? 0,
-      total: total ?? 0,
+      count: count,
+      offset: offset,
+      total: total,
       files: files,
     );
   }

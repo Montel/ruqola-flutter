@@ -73,7 +73,6 @@ class NotificationInfo {
   String channelType = '';
   String tmId = '';
   String dateTime = '';
-  // TODO QPixmap mPixmap;
   NotificationType notificationType = NotificationType.standardMessage;
 
   @override
