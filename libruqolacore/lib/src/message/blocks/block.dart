@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+import 'package:libruqolacore/src/message/blocks/blockaccessory.dart';
 import 'package:libruqolacore/src/message/blocks/blockaction.dart';
 import 'package:collection/collection.dart';
 
@@ -12,6 +13,66 @@ enum BlockType {
   videoConf,
   actions,
   section,
+  context,
+  divider,
+  overflow,
+  image,
+  preview,
+  callout,
+}
+
+extension BlockTypeExt on BlockType {
+  String get name {
+    switch (this) {
+      case BlockType.unknown:
+        return '';
+      case BlockType.videoConf:
+        return 'video_conf';
+      case BlockType.actions:
+        return 'actions';
+      case BlockType.section:
+        return 'section';
+      case BlockType.context:
+        return 'context';
+      case BlockType.divider:
+        return 'divider';
+      case BlockType.overflow:
+        return 'overflow';
+      case BlockType.image:
+        return 'image';
+      case BlockType.preview:
+        return 'preview';
+      case BlockType.callout:
+        return 'callout';
+    }
+  }
+
+  static BlockType fromName(String name) {
+    switch (name) {
+      case '':
+        return BlockType.unknown;
+      case 'video_conf':
+        return BlockType.videoConf;
+      case 'actions':
+        return BlockType.actions;
+      case 'section':
+        return BlockType.section;
+      case 'context':
+        return BlockType.context;
+      case 'divider':
+        return BlockType.divider;
+      case 'overflow':
+        return BlockType.overflow;
+      case 'image':
+        return BlockType.image;
+      case 'preview':
+        return BlockType.preview;
+      case 'callout':
+        return BlockType.callout;
+      default:
+        throw ArgumentError('Invalid BlockType name: $name');
+    }
+  }
 }
 
 class Block {
@@ -19,31 +80,47 @@ class Block {
   String blockId = '';
   String callId = '';
   String appId = '';
-  String blockStr = '';
   String sectionText = '';
   BlockType blockType = BlockType.unknown;
+  BlockAccessory blockAccessory;
   // VideoConferenceInfo videoConferenceInfo;
 
   @override
   String toString() {
-    return "Block(blockActions: $blockActions blockId: $blockId callId: $callId appId: $appId blockStr: $blockStr sectionText: $sectionText mBlockType: $blockType)";
+    return "Block(blockActions: $blockActions blockId: $blockId callId: $callId appId: $appId, sectionText: $sectionText blockType: $blockType, blockAccessory: $blockAccessory)";
   }
-  /*
-    factory Block.fromJson(Map<String, dynamic> json) {
-    String value = json["value"] ?? '';
-    String actionId = json["actionId"] ?? '';
-    String text = '';
-    if (json["text"] != null) {
-      text = json["text"]["text"] ?? '';
-    }
-    AccessoryType type =
-        AccessoryType.unknown; // = convertAccessoryTypeToEnum(o["type"_L1].toString());
 
-    List<BlockAccessoryOption> options = List<BlockAccessoryOption>.from(json["options"]);
+  Block({
+    required this.blockActions,
+    required this.blockId,
+    required this.callId,
+    required this.appId,
+    required this.sectionText,
+    required this.blockType,
+    required this.blockAccessory,
+  });
+
+  factory Block.fromJson(Map<String, dynamic> json) {
+    final String blockId = json["blockId"] ?? '';
+    final String callId = json["callId"] ?? '';
+    final String appId = json["appId"] ?? '';
+    final BlockType blockType = BlockTypeExt.fromName(json["type"] ?? '');
+
+    String sectionText = '';
+    // Verify
+    //if (json.containsKey("elements")) {
+    List<BlockAction> blockActions = List<BlockAction>.from(json["elements"]);
+    // }
+    BlockAccessory blockAccessory = BlockAccessory.fromJson(json["accessory"]);
     return Block(
-        value: value, actionId: actionId, text: text, options: options, type: type);
+        blockId: blockId,
+        callId: callId,
+        appId: appId,
+        blockActions: blockActions,
+        blockAccessory: blockAccessory,
+        sectionText: sectionText,
+        blockType: blockType);
   }
-  */
 
   @override
   bool operator ==(Object other) {
@@ -56,9 +133,9 @@ class Block {
         other.blockId == blockId &&
         other.callId == callId &&
         other.appId == appId &&
-        other.blockStr == blockStr &&
         other.sectionText == sectionText &&
-        other.blockType == blockType;
+        other.blockType == blockType &&
+        other.blockAccessory == blockAccessory;
   }
 
   @override
@@ -67,8 +144,8 @@ class Block {
         blockId.hashCode ^
         callId.hashCode ^
         appId.hashCode ^
-        blockStr.hashCode ^
         sectionText.hashCode ^
-        blockType.hashCode;
+        blockType.hashCode ^
+        blockAccessory.hashCode;
   }
 }
