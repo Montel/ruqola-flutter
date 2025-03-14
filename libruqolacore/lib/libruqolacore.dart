@@ -29,6 +29,7 @@ export 'src/message/blocks/blockaccessoryoption.dart';
 export 'src/message/messagepinned.dart';
 export 'src/message/messagestarred.dart';
 export 'src/message/channel.dart';
+export 'src/message/messagetranslations.dart';
 
 export 'src/retentioninfo.dart';
 export 'src/notificationinfo.dart';
