@@ -13,6 +13,32 @@ enum AccessoryType {
   // TODO add more
 }
 
+extension AccessoryTypeExt on AccessoryType {
+  String get name {
+    switch (this) {
+      case AccessoryType.unknown:
+        return '';
+      case AccessoryType.button:
+        return 'button';
+      case AccessoryType.overflow:
+        return 'overflow';
+    }
+  }
+
+  static AccessoryType fromName(String name) {
+    switch (name) {
+      case '':
+        return AccessoryType.unknown;
+      case 'button':
+        return AccessoryType.button;
+      case 'overflow':
+        return AccessoryType.overflow;
+      default:
+        throw ArgumentError('Invalid AccessoryType name: $name');
+    }
+  }
+}
+
 class BlockAccessory {
   String actionId = '';
   String value = '';
@@ -46,16 +72,15 @@ class BlockAccessory {
   }
 
   factory BlockAccessory.fromJson(Map<String, dynamic> json) {
-    String value = json["value"] ?? '';
-    String actionId = json["actionId"] ?? '';
+    final String value = json["value"] ?? '';
+    final String actionId = json["actionId"] ?? '';
     String text = '';
     if (json["text"] != null) {
       text = json["text"]["text"] ?? '';
     }
-    AccessoryType type =
-        AccessoryType.unknown; // = convertAccessoryTypeToEnum(o["type"_L1].toString());
+    final AccessoryType type = AccessoryTypeExt.fromName(json["type"] ?? '');
 
-    List<BlockAccessoryOption> options = List<BlockAccessoryOption>.from(json["options"]);
+    final List<BlockAccessoryOption> options = List<BlockAccessoryOption>.from(json["options"]);
     return BlockAccessory(
         value: value, actionId: actionId, text: text, options: options, type: type);
   }
