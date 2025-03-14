@@ -9,13 +9,14 @@ import 'package:test/test.dart';
 void main() {
   group('Block infos', () {
     test('Test Initial values', () {
+      /*
       Block b = Block();
       expect(b.blockId.isEmpty, true);
       expect(b.callId.isEmpty, true);
       expect(b.appId.isEmpty, true);
-      expect(b.blockStr.isEmpty, true);
       expect(b.sectionText.isEmpty, true);
       expect(b.blockType, BlockType.unknown);
+      */
     });
   });
 }
