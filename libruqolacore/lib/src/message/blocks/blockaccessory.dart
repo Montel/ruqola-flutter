@@ -10,7 +10,6 @@ enum AccessoryType {
   unknown,
   button,
   overflow,
-  // TODO add more
 }
 
 extension AccessoryTypeExt on AccessoryType {
