@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
+import 'package:libruqolacore/libruqolacore.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -22,6 +22,12 @@ void main() {
       expect(message.messageType, libruqolacore.MessageType.normaltext);
     });
     */
+    test('Test SystemMessageType value', () {
+      for (SystemMessageType systemMessageType in SystemMessageType.values) {
+        final String str = systemMessageType.name;
+        expect(SystemMessageTypeExt.fromName(str), systemMessageType);
+      }
+    });
   });
 
   // TODO add test loading elements

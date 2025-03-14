@@ -18,6 +18,247 @@ enum MessageType {
   videoconference,
 }
 
+enum SystemMessageType {
+  unknown,
+  userJoined,
+  userLeft,
+  userLeftTeam,
+  roomTopicChanged,
+  userAdded,
+  roomNameChanged,
+  userRemoved,
+  roomDescriptionChanged,
+  roomAnnoucementChanged,
+  roomPrivacyChanged,
+  jitsiCallStarted,
+  messageDeleted,
+  pinned,
+  encryptedMessage,
+  userMuted,
+  userUnmuted,
+  subscriptionRoleAdded,
+  subscriptionRoleRemoved,
+  messageE2E,
+  discussionCreated,
+  userJoinedConversation,
+  roomArchived,
+  roomUnarchived,
+  rtc,
+  welcome,
+  roomAvatarChanged,
+  roomE2eEnabled,
+  roomE2eDisabled,
+  roomSetReadOnly,
+  roomRemoveReadOnly,
+  addedUserToTeam,
+  removedUserFromTeam,
+  userConvertedToTeam,
+  userConvertedToChannel,
+  userRemovedRoomFromTeam,
+  userDeletedRoomFromTeam,
+  userAddedRoomToTeam,
+  roomAllowedReacting,
+  roomDisallowedReacting,
+  userJoinedTeam,
+  userJoinedOtr,
+  userKeyRefreshedSuccessfully,
+  userRequesterOtrKeyRefresh,
+  videoConf,
+}
+
+extension SystemMessageTypeExt on SystemMessageType {
+  String get name {
+    switch (this) {
+      case SystemMessageType.unknown:
+        return '';
+      case SystemMessageType.userJoined:
+        return 'uj';
+      case SystemMessageType.userLeft:
+        return 'ul';
+      case SystemMessageType.userLeftTeam:
+        return 'ult';
+      case SystemMessageType.roomTopicChanged:
+        return 'room_changed_topic';
+      case SystemMessageType.userAdded:
+        return 'au';
+      case SystemMessageType.roomNameChanged:
+        return 'r';
+      case SystemMessageType.userRemoved:
+        return 'ru';
+      case SystemMessageType.roomDescriptionChanged:
+        return 'room_changed_description';
+      case SystemMessageType.roomAnnoucementChanged:
+        return 'room_changed_announcement';
+      case SystemMessageType.roomPrivacyChanged:
+        return 'room_changed_privacy';
+      case SystemMessageType.jitsiCallStarted:
+        return 'jitsi_call_started';
+      case SystemMessageType.messageDeleted:
+        return 'rm';
+      case SystemMessageType.pinned:
+        return 'message_pinned';
+      case SystemMessageType.encryptedMessage:
+        return 'otr';
+      case SystemMessageType.userMuted:
+        return 'user-muted';
+      case SystemMessageType.userUnmuted:
+        return 'user-unmuted';
+      case SystemMessageType.subscriptionRoleAdded:
+        return 'subscription-role-added';
+      case SystemMessageType.subscriptionRoleRemoved:
+        return 'subscription-role-removed';
+      case SystemMessageType.messageE2E:
+        return 'e2e';
+      case SystemMessageType.discussionCreated:
+        return 'discussion-created';
+      case SystemMessageType.userJoinedConversation:
+        return 'ut';
+      case SystemMessageType.roomArchived:
+        return 'room-archived';
+      case SystemMessageType.roomUnarchived:
+        return 'room-unarchived';
+      case SystemMessageType.rtc:
+        return 'rtc';
+      case SystemMessageType.welcome:
+        return 'wm';
+      case SystemMessageType.roomAvatarChanged:
+        return 'room_changed_avatar';
+      case SystemMessageType.roomE2eEnabled:
+        return 'room_e2e_enabled';
+      case SystemMessageType.roomE2eDisabled:
+        return 'room_e2e_disabled';
+      case SystemMessageType.roomSetReadOnly:
+        return 'room-set-read-only';
+      case SystemMessageType.roomRemoveReadOnly:
+        return 'room-removed-read-only';
+      case SystemMessageType.addedUserToTeam:
+        return 'added-user-to-team';
+      case SystemMessageType.removedUserFromTeam:
+        return 'removed-user-from-team';
+      case SystemMessageType.userConvertedToTeam:
+        return 'user-converted-to-team';
+      case SystemMessageType.userConvertedToChannel:
+        return 'user-converted-to-channel';
+      case SystemMessageType.userRemovedRoomFromTeam:
+        return 'user-removed-room-from-team';
+      case SystemMessageType.userDeletedRoomFromTeam:
+        return 'user-deleted-room-from-team';
+      case SystemMessageType.userAddedRoomToTeam:
+        return 'user-added-room-to-team';
+      case SystemMessageType.roomAllowedReacting:
+        return 'room-allowed-reacting';
+      case SystemMessageType.roomDisallowedReacting:
+        return 'room-disallowed-reacting';
+      case SystemMessageType.userJoinedTeam:
+        return 'ujt';
+      case SystemMessageType.userJoinedOtr:
+        return 'user_joined_otr';
+      case SystemMessageType.userKeyRefreshedSuccessfully:
+        return 'user_key_refreshed_successfully';
+      case SystemMessageType.userRequesterOtrKeyRefresh:
+        return 'user_requested_otr_key_refresh';
+      case SystemMessageType.videoConf:
+        return 'videoconf';
+    }
+  }
+
+  static SystemMessageType fromName(String str) {
+    switch (str) {
+      case 'uj':
+        return SystemMessageType.userJoined;
+      case 'ul':
+        return SystemMessageType.userLeft;
+      case 'ult':
+        return SystemMessageType.userLeftTeam;
+      case 'room_changed_topic':
+        return SystemMessageType.roomTopicChanged;
+      case 'au':
+        return SystemMessageType.userAdded;
+      case 'r':
+        return SystemMessageType.roomNameChanged;
+      case 'ru':
+        return SystemMessageType.userRemoved;
+      case 'room_changed_description':
+        return SystemMessageType.roomDescriptionChanged;
+      case 'room_changed_announcement':
+        return SystemMessageType.roomAnnoucementChanged;
+      case 'room_changed_privacy':
+        return SystemMessageType.roomPrivacyChanged;
+      case 'jitsi_call_started':
+        return SystemMessageType.jitsiCallStarted;
+      case 'rm':
+        return SystemMessageType.messageDeleted;
+      case 'message_pinned':
+        return SystemMessageType.pinned;
+      case 'otr':
+        return SystemMessageType.encryptedMessage;
+      case 'user-unmuted':
+        return SystemMessageType.userUnmuted;
+      case 'user-muted':
+        return SystemMessageType.userMuted;
+      case 'subscription-role-added':
+        return SystemMessageType.subscriptionRoleAdded;
+      case 'subscription-role-removed':
+        return SystemMessageType.subscriptionRoleRemoved;
+      case 'e2e':
+        return SystemMessageType.messageE2E;
+      case 'discussion-created':
+        return SystemMessageType.discussionCreated;
+      case 'ut':
+        return SystemMessageType.userJoinedConversation;
+      case 'room-archived':
+        return SystemMessageType.roomArchived;
+      case 'room-unarchived':
+        return SystemMessageType.roomUnarchived;
+      case 'rtc':
+        return SystemMessageType.rtc;
+      case 'wm':
+        return SystemMessageType.welcome;
+      case 'room_changed_avatar':
+        return SystemMessageType.roomAvatarChanged;
+      case 'room_e2e_enabled':
+        return SystemMessageType.roomE2eEnabled;
+      case 'room_e2e_disabled':
+        return SystemMessageType.roomE2eDisabled;
+      case 'room-set-read-only':
+        return SystemMessageType.roomSetReadOnly;
+      case 'room-removed-read-only':
+        return SystemMessageType.roomRemoveReadOnly;
+      case 'added-user-to-team':
+        return SystemMessageType.addedUserToTeam;
+      case 'removed-user-from-team':
+        return SystemMessageType.removedUserFromTeam;
+      case 'user-converted-to-team':
+        return SystemMessageType.userConvertedToTeam;
+      case 'user-converted-to-channel':
+        return SystemMessageType.userConvertedToChannel;
+      case 'user-removed-room-from-team':
+        return SystemMessageType.userRemovedRoomFromTeam;
+      case 'user-deleted-room-from-team':
+        return SystemMessageType.userDeletedRoomFromTeam;
+      case 'user-added-room-to-team':
+        return SystemMessageType.userAddedRoomToTeam;
+      case 'room-allowed-reacting':
+        return SystemMessageType.roomAllowedReacting;
+      case 'room-disallowed-reacting':
+        return SystemMessageType.roomDisallowedReacting;
+      case 'ujt':
+        return SystemMessageType.userJoinedTeam;
+      case 'user_joined_otr':
+        return SystemMessageType.userJoinedOtr;
+      case 'user_key_refreshed_successfully':
+        return SystemMessageType.userKeyRefreshedSuccessfully;
+      case 'user_requested_otr_key_refresh':
+        return SystemMessageType.userRequesterOtrKeyRefresh;
+      case 'videoconf':
+        return SystemMessageType.videoConf;
+      default:
+        print('Unknown message type: $str');
+        return SystemMessageType.unknown;
+    }
+  }
+}
+
 class Message {
   Message({
     required this.messageId,
@@ -34,6 +275,7 @@ class Message {
     required this.reactions,
     required this.channels,
     required this.replies,
+    required this.blocks,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) {
@@ -80,12 +322,11 @@ class Message {
     final blocksJson = json["blocks"];
     List<Block> blocks = [];
     if (blocksJson != null) {
-      // print("Block $channelsJson");
+      // print("Block $blocksJson");
       if (blocksJson.isNotEmpty) {
         for (var entry in blocksJson) {
-          // TOOD implement
-          //Block c = Block.fromJson(entry);
-          // channels.add(c);
+          Block c = Block.fromJson(entry);
+          blocks.add(c);
         }
       }
     }
@@ -107,7 +348,8 @@ class Message {
         userId: userId,
         reactions: reactions,
         channels: channels,
-        replies: replies);
+        replies: replies,
+        blocks: blocks);
   }
 
   String avatarUrl(String serverUrl) {
@@ -161,6 +403,9 @@ class Message {
 
   // Channels
   List<Channel> channels = [];
+
+  // Blocks
+  List<Block> blocks = [];
 
   Replies replies = Replies.defaultValues();
 
