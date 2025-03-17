@@ -82,4 +82,6 @@ export 'src/secure_storage/secure_storage.dart';
 // downloadappslanguages
 export 'src/downloadappslanguages/downloadappslanguagesinfo.dart';
 
-export 'src/statusmodel.dart';
+// status
+export 'src/status/statusmodel.dart';
+export 'src/status/customuserstatus.dart';
