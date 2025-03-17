@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 import 'package:libruqolacore/src/user.dart';
+import 'package:libruqolacore/src/status/customuserstatus.dart';
 
 class DisplayStatusInfo {
   String displayText = '';
@@ -38,6 +39,8 @@ class DisplayStatusInfo {
 
 class StatusModel {
   List<DisplayStatusInfo> listStatus = [];
+
+// TODO add custom status
 
   StatusModel() {
     fillModel();
