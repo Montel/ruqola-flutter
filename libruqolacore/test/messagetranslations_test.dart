@@ -4,15 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
+import 'package:libruqolacore/src/message/messagetranslations.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('MessageTranslations', () {
     test('Test Initial values', () {
-      // TODO
-      // final starred = libruqolacore.MessageStarred();
-      // expect(starred.isStarred, false);
+      final MessageTranslations translations = MessageTranslations();
+      expect(translations.translatedString.isEmpty, true);
     });
   });
 }
