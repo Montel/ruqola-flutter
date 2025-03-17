@@ -6,12 +6,23 @@
 import 'package:libruqolacore/src/user.dart';
 
 class CustomUserStatus {
-  final String identifier = '';
-  Status statusType = Status.unknown;
-  final String name = '';
+  final String identifier;
+  final Status statusType;
+  final String name;
   // TODO parse it
-  final int updatedAt = -1;
+  final int updatedAt;
 
+  CustomUserStatus(
+      {required this.identifier,
+      required this.statusType,
+      required this.name,
+      required this.updatedAt});
+
+  CustomUserStatus.defaultValues()
+      : identifier = '',
+        statusType = Status.unknown,
+        name = '',
+        updatedAt = -1;
 /*
   factory CustomUserStatus.fromJson(Map<String, dynamic> json) {
     // TODO
@@ -32,10 +43,4 @@ class CustomUserStatus {
   String toString() {
     return 'CustomUserStatus(identifier: $identifier, statusType: $statusType, name: $name)';
   }
-
-  // TODO
-
-  /*
-    qint64 updatedAt = -1;
-  */
 }

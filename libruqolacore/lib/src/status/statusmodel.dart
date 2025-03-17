@@ -40,13 +40,12 @@ class DisplayStatusInfo {
 class StatusModel {
   List<DisplayStatusInfo> listStatus = [];
 
-// TODO add custom status
-
   StatusModel() {
     fillModel();
   }
 
   void fillModel() {
+    listStatus.clear();
     {
       final statusInfo = createStatusInfo(Status.online, 20);
       listStatus.add(statusInfo);
@@ -77,6 +76,20 @@ class StatusModel {
     statusInfo.order = order;
     statusInfo.statusStr = status.name;
     return statusInfo;
+  }
+
+  void updateCustomStatus(List<CustomUserStatus> lst) {
+    // TODO
+    fillModel();
+    for (final CustomUserStatus s in lst) {
+      DisplayStatusInfo statusInfo = DisplayStatusInfo();
+      statusInfo.status = s.statusType;
+      statusInfo.displayText = s.name;
+      // TODO statusInfo.iconName = iconFromPresenceStatus(statusInfo.status);
+      statusInfo.order = 5;
+      statusInfo.statusStr = s.name;
+      listStatus.add(statusInfo);
+    }
   }
 
   @override
