@@ -79,13 +79,12 @@ class StatusModel {
   }
 
   void updateCustomStatus(List<CustomUserStatus> lst) {
-    // TODO
     fillModel();
     for (final CustomUserStatus s in lst) {
       DisplayStatusInfo statusInfo = DisplayStatusInfo();
       statusInfo.status = s.statusType;
       statusInfo.displayText = s.name;
-      // TODO statusInfo.iconName = iconFromPresenceStatus(statusInfo.status);
+      statusInfo.iconName = statusInfo.status.iconName;
       statusInfo.order = 5;
       statusInfo.statusStr = s.name;
       listStatus.add(statusInfo);

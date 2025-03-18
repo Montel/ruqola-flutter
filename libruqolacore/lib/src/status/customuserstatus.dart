@@ -23,11 +23,17 @@ class CustomUserStatus {
         statusType = Status.unknown,
         name = '',
         updatedAt = -1;
-/*
+
   factory CustomUserStatus.fromJson(Map<String, dynamic> json) {
-    // TODO
+    final String identifier = json["_id"] ?? '';
+    final String name = json["name"] ?? '';
+    final Status statusType = StatusExt.statusFromString(json["statusType"] ?? '');
+    final int updatedAt = -1;
+
+    return CustomUserStatus(
+        identifier: identifier, name: name, statusType: statusType, updatedAt: updatedAt);
   }
-*/
+
   @override
   bool operator ==(Object other) {
     return other is CustomUserStatus &&

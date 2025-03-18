@@ -29,18 +29,6 @@ void main() {
       expect(libruqolacore.Status.unknown.name, "unknown");
     });
 
-    test('Test presenceStatusFromString', () {
-      String b = "d";
-      expect(libruqolacore.User.presenceStatusFromString(b), libruqolacore.Status.unknown);
-      b = "busy";
-      expect(libruqolacore.User.presenceStatusFromString(b), libruqolacore.Status.busy);
-      b = "away";
-      expect(libruqolacore.User.presenceStatusFromString(b), libruqolacore.Status.away);
-      // It's a null string
-      String? nullValue;
-      expect(libruqolacore.User.presenceStatusFromString(nullValue), libruqolacore.Status.unknown);
-    });
-
     test('userrestapi json', () {
       final data = extractJsonData("users", "userrestapi.json");
 
@@ -60,6 +48,15 @@ void main() {
       expect(user.username, "steffen");
       expect(user.userid, "XQZAk3998f9hSNwh");
       expect(user.status, libruqolacore.Status.online);
+    });
+
+    test('Compare enum Status from string', () {
+      expect(libruqolacore.StatusExt.statusFromString("away"), libruqolacore.Status.away);
+      expect(libruqolacore.StatusExt.statusFromString("offline"), libruqolacore.Status.offline);
+      expect(libruqolacore.StatusExt.statusFromString("online"), libruqolacore.Status.online);
+      expect(libruqolacore.StatusExt.statusFromString("busy"), libruqolacore.Status.busy);
+      expect(libruqolacore.StatusExt.statusFromString(""), libruqolacore.Status.unknown);
+      expect(libruqolacore.StatusExt.statusFromString("bla away"), libruqolacore.Status.unknown);
     });
   });
 }
