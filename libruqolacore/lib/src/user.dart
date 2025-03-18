@@ -13,6 +13,20 @@ enum Status {
 }
 
 extension StatusExt on Status {
+  static Status statusFromString(String str) {
+    if (str == "online") {
+      return Status.online;
+    } else if (str == "busy") {
+      return Status.busy;
+    } else if (str == "away") {
+      return Status.away;
+    } else if (str == "offline") {
+      return Status.offline;
+    } else {
+      return Status.unknown;
+    }
+  }
+
   String get name {
     switch (this) {
       case Status.online:
@@ -73,23 +87,6 @@ class User {
     this.status = Status.unknown,
   });
 
-  static Status presenceStatusFromString(String? status) {
-    if (status?.isEmpty ?? true) {
-      return Status.unknown;
-    }
-    if (status == "online") {
-      return Status.online;
-    } else if (status == "busy") {
-      return Status.busy;
-    } else if (status == "away") {
-      return Status.away;
-    } else if (status == "offline") {
-      return Status.offline;
-    } else {
-      return Status.unknown;
-    }
-  }
-
   bool isValid() {
     return userid.isNotEmpty;
   }
@@ -102,7 +99,7 @@ class User {
   final String? bio;
   final String? nickname;
   final bool? active;
-  final Status? status;
+  final Status status;
   // TODO add more
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -112,8 +109,8 @@ class User {
     final statusText = json['statusText'] as String?;
     final bio = json['bio'] as String?;
     final active = json['active'] as bool;
-    final statusStr = json['status'] as String?;
-    final Status status = User.presenceStatusFromString(statusStr);
+    final statusStr = json['status'] ?? '';
+    final Status status = StatusExt.statusFromString(statusStr);
 
     return User(
         userid: userid,
