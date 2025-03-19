@@ -68,8 +68,10 @@ class MessageViewItemState extends State<MessageViewItem> {
             if (widget.message.reactions.isNotEmpty)
               Wrap(
                 spacing: 10,
-                children:
-                    widget.message.reactions.map((emoji) => ReactionText(reaction: emoji)).toList(),
+                children: widget.message.reactions
+                    .map((emoji) =>
+                        ReactionText(reaction: emoji, messageId: widget.message.messageId))
+                    .toList(),
               ),
           ],
         ));

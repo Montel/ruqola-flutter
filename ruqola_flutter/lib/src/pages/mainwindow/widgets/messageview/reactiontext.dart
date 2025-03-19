@@ -10,9 +10,11 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 
 class ReactionText extends StatefulWidget {
   final Reaction reaction;
+  final String messageId;
   const ReactionText({
     super.key,
     required this.reaction,
+    required this.messageId,
   });
 
   @override
@@ -24,11 +26,11 @@ class ReactionTextState extends State<ReactionText> {
   Widget build(BuildContext context) {
     return DecoratedBox(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 220, 244, 3), // Couleur de fond
+          color: const Color.fromARGB(255, 220, 244, 3),
           border: Border.all(
-            width: 1.0, // Épaisseur de la bordure
+            width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(6.0), // Rayon des coins
+          borderRadius: BorderRadius.circular(6.0),
         ),
         child: Tooltip(
             message: widget.reaction.convertedUsersNameAsToolTip(),
