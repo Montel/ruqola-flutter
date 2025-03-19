@@ -88,3 +88,4 @@ export 'src/status/customuserstatus.dart';
 
 // Invitation
 export 'src/invitations/invitation.dart';
+export 'src/invitations/invitations.dart';

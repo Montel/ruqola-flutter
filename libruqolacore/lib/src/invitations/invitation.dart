@@ -13,6 +13,30 @@ class Invitation {
   int uses = 0;
   int maxUses = 0;
 
+  Invitation(
+      {required this.identifier,
+      required this.userIdentifier,
+      required this.roomId,
+      required this.uses,
+      required this.maxUses});
+
+// Verify it
+  factory Invitation.fromJson(Map<String, dynamic> json) {
+    final String identifier = json["_id"] ?? '';
+    final String userIdentifier = json["userId"] ?? '';
+    final String roomId = json["rid"] ?? '';
+    final int uses = json["uses"] ?? 0;
+    final int maxUses = json["maxUses"] ?? 0;
+
+    return Invitation(
+      identifier: identifier,
+      userIdentifier: userIdentifier,
+      roomId: roomId,
+      uses: uses,
+      maxUses: maxUses,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
