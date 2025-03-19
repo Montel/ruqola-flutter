@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
+import 'package:flutter/material.dart';
 import 'package:libruqolacore/src/user.dart';
 import 'package:libruqolacore/src/status/customuserstatus.dart';
 
@@ -37,11 +38,12 @@ class DisplayStatusInfo {
   }
 }
 
-class StatusModel {
+class StatusModel with ChangeNotifier {
   List<DisplayStatusInfo> listStatus = [];
 
   StatusModel() {
     fillModel();
+    notifyListeners();
   }
 
   void fillModel() {
@@ -89,6 +91,7 @@ class StatusModel {
       statusInfo.statusStr = s.name;
       listStatus.add(statusInfo);
     }
+    notifyListeners();
   }
 
   @override
