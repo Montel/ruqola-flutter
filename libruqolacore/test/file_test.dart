@@ -8,9 +8,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('File', () {
-    final file = File();
-
     test('Test Initial values', () {
+      final file = File();
       expect(file.description.isEmpty, true);
       expect(file.userid.isEmpty, true);
       expect(file.filename.isEmpty, true);
