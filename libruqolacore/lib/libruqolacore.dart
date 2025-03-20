@@ -85,6 +85,7 @@ export 'src/downloadappslanguages/downloadappslanguagesinfo.dart';
 // status
 export 'src/status/statusmodel.dart';
 export 'src/status/customuserstatus.dart';
+export 'src/status/customuserstatusmodel.dart';
 
 // Invitation
 export 'src/invitations/invitation.dart';
