@@ -37,6 +37,13 @@ class CustomUserStatusModel {
         total: total,
         customUserStatusList: customUserStatusList);
   }
+  void deleteCustomUserStatuses() {
+    // TODO
+  }
+
+  void updateCustomUserStatues() {
+    //TODO
+  }
 
   @override
   bool operator ==(Object other) {
