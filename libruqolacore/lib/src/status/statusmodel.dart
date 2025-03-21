@@ -41,6 +41,12 @@ class DisplayStatusInfo {
 class StatusModel with ChangeNotifier {
   List<DisplayStatusInfo> listStatus = [];
 
+  List<DisplayStatusInfo> sortedList() {
+    List<DisplayStatusInfo> list = List.from(listStatus);
+    list.sort((a, b) => a.order.compareTo(b.order));
+    return list;
+  }
+
   StatusModel() {
     fillModel();
     notifyListeners();
@@ -80,9 +86,9 @@ class StatusModel with ChangeNotifier {
     return statusInfo;
   }
 
-  void updateCustomStatus(List<CustomUserStatus> lst) {
+  void updateCustomStatus(List<CustomUserStatus> lstStatus) {
     fillModel();
-    for (final CustomUserStatus s in lst) {
+    for (final CustomUserStatus s in lstStatus) {
       DisplayStatusInfo statusInfo = DisplayStatusInfo();
       statusInfo.status = s.statusType;
       statusInfo.displayText = s.name;
