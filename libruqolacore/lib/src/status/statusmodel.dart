@@ -39,6 +39,7 @@ class DisplayStatusInfo {
 }
 
 class StatusModel with ChangeNotifier {
+  Status currentStatus = Status.unknown;
   List<DisplayStatusInfo> listStatus = [];
 
   List<DisplayStatusInfo> sortedList() {

@@ -12,6 +12,7 @@ void main() {
     test('Test Initial Status Model values', () {
       libruqolacore.StatusModel model = libruqolacore.StatusModel();
       expect(model.listStatus.length, 5);
+      expect(model.currentStatus, libruqolacore.Status.unknown);
     });
   });
 
