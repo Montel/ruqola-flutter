@@ -54,7 +54,7 @@ extension StatusExt on Status {
       case Status.offline:
         return 'Offline';
       default:
-        return '';
+        return 'Modify Status...';
     }
   }
 
