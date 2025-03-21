@@ -60,6 +60,7 @@ export 'src/invite/removeinvite.dart';
 export 'src/users/userinfo.dart';
 export 'src/users/forgotpassword.dart';
 export 'src/users/resettotp.dart';
+export 'src/users/setstatus.dart';
 
 // Command
 export 'src/commands/listcommands.dart';
