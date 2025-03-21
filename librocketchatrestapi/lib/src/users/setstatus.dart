@@ -34,15 +34,18 @@ extension StatusTypeExt on StatusType {
 
 class SetStatusInfo {
   final String userId;
-  SetStatusInfo(this.userId);
+  final String statusMessage;
+  final StatusType statusType;
+  SetStatusInfo({required this.userId, required this.statusType, this.statusMessage = ''});
   bool canStart() {
-    return userId.isNotEmpty;
+    return userId.isNotEmpty && statusType != StatusType.unknown;
   }
 
-  Map<String, String> body() => {'userId': userId};
+  Map<String, String> body() =>
+      {'userId': userId, 'message': statusMessage, 'status': statusType.name};
   @override
   String toString() {
-    return "SetStatusInfo(userId: $userId)";
+    return "SetStatusInfo(userId: $userId, message: $statusMessage, status: $statusType)";
   }
 }
 

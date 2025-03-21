@@ -10,21 +10,22 @@ import 'package:test/test.dart';
 void main() {
   group('User Set Status', () {
     test('check default values', () {
-      librocketchatrestapi.SetStatusInfo info = librocketchatrestapi.SetStatusInfo("foo");
+      librocketchatrestapi.SetStatusInfo info = librocketchatrestapi.SetStatusInfo(
+          userId: "foo", statusType: librocketchatrestapi.StatusType.away);
       expect(info.canStart(), true);
 
-      librocketchatrestapi.SetStatus SetStatus = librocketchatrestapi.SetStatus(info);
-      SetStatus.serverUrl = "http://www.kde.org";
-      expect(SetStatus.canStart(), false);
-      expect(SetStatus.requireHttpAuthentication(), true);
-      SetStatus.userId = 'user';
-      SetStatus.authToken = 'token';
+      librocketchatrestapi.SetStatus setStatus = librocketchatrestapi.SetStatus(info);
+      setStatus.serverUrl = "http://www.kde.org";
+      expect(setStatus.canStart(), false);
+      expect(setStatus.requireHttpAuthentication(), true);
+      setStatus.userId = 'user';
+      setStatus.authToken = 'token';
 
-      expect(SetStatus.requireTwoFactorAuthentication, false);
-      expect(SetStatus.url("http://www.kde.org"),
-          Uri.parse('http://www.kde.org/api/v1/users.SetStatus'));
+      expect(setStatus.requireTwoFactorAuthentication, false);
+      expect(setStatus.url("http://www.kde.org"),
+          Uri.parse('http://www.kde.org/api/v1/users.setStatus'));
 
-      expect(info.body(), {'userId': "foo"});
+      expect(info.body(), {'userId': 'foo', 'message': '', 'status': 'away'});
     });
   });
 }
