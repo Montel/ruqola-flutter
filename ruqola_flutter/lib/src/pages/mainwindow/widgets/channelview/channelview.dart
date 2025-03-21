@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/searchchannelline.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/channelviewheadertile.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/channelview/channelviewitem.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/statuscombobox.dart';
 
 class ChannelView extends StatefulWidget {
   final Rocketchataccount account;
@@ -50,6 +51,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
                     );
                   }),
             ),
+            Padding(padding: const EdgeInsets.all(8.0), child: StatusCombobox()),
           ],
         ),
       ),
