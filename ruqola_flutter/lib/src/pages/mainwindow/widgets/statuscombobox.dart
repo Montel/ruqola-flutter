@@ -6,6 +6,7 @@
 
 import 'dart:collection';
 import 'package:libruqolacore/libruqolacore.dart';
+import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
