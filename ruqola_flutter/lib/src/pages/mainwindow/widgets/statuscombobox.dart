@@ -4,12 +4,11 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-// TODO
-
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
+// TODO use statusmodel
 const List<String> list = <String>['Online', 'Busy', 'Away', 'Offline'];
 
 class StatusCombobox extends StatefulWidget {
@@ -27,15 +26,29 @@ class StatusComboboxState extends State<StatusCombobox> {
   String dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
-    return DropdownMenu<String>(
-      initialSelection: list.first,
-      onSelected: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      dropdownMenuEntries: menuEntries,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownMenu<String>(
+              initialSelection: list.first,
+              onSelected: (String? value) {
+                // This is called when the user selects an item.
+                setState(() {
+                  dropdownValue = value!;
+                });
+              },
+              dropdownMenuEntries: menuEntries,
+              // Ensure the dropdown menu takes up the full width of the row
+              inputDecorationTheme: InputDecorationTheme(
+                constraints: BoxConstraints.expand(width: double.infinity),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
