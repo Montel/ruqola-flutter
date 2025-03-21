@@ -38,7 +38,7 @@ class StatusComboboxState extends State<StatusCombobox> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownMenu<Status>(
-                    // initialSelection: list.first,
+                    initialSelection: sortedList.first.status,
                     onSelected: (Status? value) {
                       // This is called when the user selects an item.
                       setState(() {
