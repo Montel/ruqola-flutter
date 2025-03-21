@@ -13,6 +13,7 @@ import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 class StatusBarMessage extends StatefulWidget {
   final Rocketchataccount account;
   const StatusBarMessage(this.account, {super.key});
+
   @override
   StatusBarMessageState createState() => StatusBarMessageState();
 }
@@ -22,16 +23,17 @@ class StatusBarMessageState extends State<StatusBarMessage> {
   Widget build(BuildContext context) {
     final receiverTypingNotification = Provider.of<Receivertypingnotification>(context);
     return ValueListenableBuilder<String>(
-        valueListenable: SharedValue.currentRoomId,
-        builder: (context, value, child) {
-          return Scaffold(
-              body: ListenableBuilder(
-                  listenable: receiverTypingNotification,
-                  builder: (BuildContext context, Widget? child) {
-                    return Html(
-                        data: receiverTypingNotification
-                            .typingNotification(SharedValue.currentRoomId.value));
-                  }));
-        });
+      valueListenable: SharedValue.currentRoomId,
+      builder: (context, value, child) {
+        return ListenableBuilder(
+          listenable: receiverTypingNotification,
+          builder: (BuildContext context, Widget? child) {
+            return Html(
+              data: receiverTypingNotification.typingNotification(SharedValue.currentRoomId.value),
+            );
+          },
+        );
+      },
+    );
   }
 }

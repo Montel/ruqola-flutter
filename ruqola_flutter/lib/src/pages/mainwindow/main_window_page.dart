@@ -18,21 +18,31 @@ class MainWindow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Expanded(
-            child: ChannelView(account),
-          ),
-          Expanded(
-              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(child: MessageView(account)),
-            Messageline(account),
-            Expanded(child: StatusBarMessage(account))
-          ]))
-        ],
+      body: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Expanded(
+              child: ChannelView(account),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: MessageView(account),
+                  ),
+                  Messageline(account),
+                  Flexible(
+                    flex: 0,
+                    child: StatusBarMessage(account),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
