@@ -15,17 +15,17 @@ class StatusCombobox extends StatefulWidget {
   StatusComboboxState createState() => StatusComboboxState();
 }
 
-typedef MenuEntry = DropdownMenuEntry<String>;
+typedef MenuEntry = DropdownMenuEntry<Status>;
 
 class StatusComboboxState extends State<StatusCombobox> {
-  //String dropdownValue = list.first;
+  Status dropdownValue = Status.online;
   @override
   Widget build(BuildContext context) {
     final statusModel = Provider.of<StatusModel>(context);
     List<DisplayStatusInfo> sortedList = statusModel.sortedList();
     final List<MenuEntry> menuEntries = UnmodifiableListView<MenuEntry>(
       sortedList.map<MenuEntry>((DisplayStatusInfo info) =>
-          MenuEntry(value: info.displayText, label: info.displayText)), // TODO add icons
+          MenuEntry(value: info.status, label: info.displayText)), // TODO add icons
     );
 
     return Row(
@@ -37,12 +37,12 @@ class StatusComboboxState extends State<StatusCombobox> {
               builder: (BuildContext context, Widget? child) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: DropdownMenu<String>(
+                  child: DropdownMenu<Status>(
                     // initialSelection: list.first,
-                    onSelected: (String? value) {
+                    onSelected: (Status? value) {
                       // This is called when the user selects an item.
                       setState(() {
-                        //dropdownValue = value!;
+                        dropdownValue = value!;
                       });
                     },
                     dropdownMenuEntries: menuEntries,

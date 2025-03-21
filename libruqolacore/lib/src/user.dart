@@ -59,7 +59,7 @@ extension StatusExt on Status {
   }
 
   String get iconName {
-    // Fix me
+    // Fix me icon name
     switch (this) {
       case Status.online:
         return 'Online';
