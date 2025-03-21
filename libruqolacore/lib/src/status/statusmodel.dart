@@ -44,7 +44,8 @@ class StatusModel with ChangeNotifier {
   List<DisplayStatusInfo> sortedList() {
     List<DisplayStatusInfo> list = List.from(listStatus);
     list.sort((a, b) => a.order.compareTo(b.order));
-    return list;
+    final List<DisplayStatusInfo> reverted = list.reversed.toList();
+    return reverted;
   }
 
   StatusModel() {

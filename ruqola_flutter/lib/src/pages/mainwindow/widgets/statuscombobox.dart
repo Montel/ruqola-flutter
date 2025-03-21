@@ -5,11 +5,9 @@
  */
 
 import 'dart:collection';
-
+import 'package:libruqolacore/libruqolacore.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
-// TODO use statusmodel
-const List<String> list = <String>['Online', 'Busy', 'Away', 'Offline'];
 
 class StatusCombobox extends StatefulWidget {
   const StatusCombobox({super.key});
@@ -20,33 +18,41 @@ class StatusCombobox extends StatefulWidget {
 typedef MenuEntry = DropdownMenuEntry<String>;
 
 class StatusComboboxState extends State<StatusCombobox> {
-  static final List<MenuEntry> menuEntries = UnmodifiableListView<MenuEntry>(
-    list.map<MenuEntry>((String name) => MenuEntry(value: name, label: name)),
-  );
-  String dropdownValue = list.first;
+  //String dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
+    final statusModel = Provider.of<StatusModel>(context);
+    List<DisplayStatusInfo> sortedList = statusModel.sortedList();
+    final List<MenuEntry> menuEntries = UnmodifiableListView<MenuEntry>(
+      sortedList.map<MenuEntry>((DisplayStatusInfo info) =>
+          MenuEntry(value: info.displayText, label: info.displayText)), // TODO add icons
+    );
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: DropdownMenu<String>(
-              initialSelection: list.first,
-              onSelected: (String? value) {
-                // This is called when the user selects an item.
-                setState(() {
-                  dropdownValue = value!;
-                });
-              },
-              dropdownMenuEntries: menuEntries,
-              // Ensure the dropdown menu takes up the full width of the row
-              inputDecorationTheme: InputDecorationTheme(
-                constraints: BoxConstraints.expand(width: double.infinity),
-              ),
-            ),
-          ),
+          child: ListenableBuilder(
+              listenable: statusModel,
+              builder: (BuildContext context, Widget? child) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownMenu<String>(
+                    // initialSelection: list.first,
+                    onSelected: (String? value) {
+                      // This is called when the user selects an item.
+                      setState(() {
+                        //dropdownValue = value!;
+                      });
+                    },
+                    dropdownMenuEntries: menuEntries,
+                    // Ensure the dropdown menu takes up the full width of the row
+                    inputDecorationTheme: InputDecorationTheme(
+                      constraints: BoxConstraints.expand(width: double.infinity),
+                    ),
+                  ),
+                );
+              }),
         ),
       ],
     );

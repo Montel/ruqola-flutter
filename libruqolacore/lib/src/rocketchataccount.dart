@@ -13,9 +13,10 @@ import 'package:libruqolacore/libruqolacore.dart';
 import 'package:librocketchatrestapi/librocketchatrestapi.dart' as librocketchatrestapi;
 
 class Rocketchataccount {
-  final _ddpclient = libddpapi.DdpClient();
+  final libddpapi.DdpClient _ddpclient = libddpapi.DdpClient();
   final AccountSettings settings = AccountSettings();
-  final models = Rocketchataccountmodels();
+  final Rocketchataccountmodels models = Rocketchataccountmodels();
+  final StatusModel statusModel = StatusModel();
   final receiverTypingNotification = Receivertypingnotification();
 
   final StreamController<libddpapi.AbstractEvent> _eventWebsocketController =
