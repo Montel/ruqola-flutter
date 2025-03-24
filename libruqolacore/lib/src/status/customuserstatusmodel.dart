@@ -37,11 +37,11 @@ class CustomUserStatusModel {
         total: total,
         customUserStatusList: customUserStatusList);
   }
-  void deleteCustomUserStatuses() {
+  void deleteCustomUserStatuses(Map<String, dynamic> json) {
     // TODO
   }
 
-  void updateCustomUserStatues() {
+  void updateCustomUserStatues(Map<String, dynamic> json) {
     //TODO
   }
 

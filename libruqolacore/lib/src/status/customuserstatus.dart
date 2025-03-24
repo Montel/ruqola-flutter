@@ -9,7 +9,6 @@ class CustomUserStatus {
   final String identifier;
   final Status statusType;
   final String name;
-  // TODO parse it
   final int updatedAt;
 
   CustomUserStatus(
@@ -28,7 +27,7 @@ class CustomUserStatus {
     final String identifier = json["_id"] ?? '';
     final String name = json["name"] ?? '';
     final Status statusType = StatusExt.statusFromString(json["statusType"] ?? '');
-    final int updatedAt = -1;
+    final int updatedAt = DateTime.parse(json['_updatedAt'] ?? '').millisecondsSinceEpoch;
 
     return CustomUserStatus(
         identifier: identifier, name: name, statusType: statusType, updatedAt: updatedAt);
@@ -39,14 +38,16 @@ class CustomUserStatus {
     return other is CustomUserStatus &&
         other.identifier == identifier &&
         other.statusType == statusType &&
-        other.name == name;
+        other.name == name &&
+        other.updatedAt == updatedAt;
   }
 
   @override
-  int get hashCode => identifier.hashCode ^ statusType.hashCode ^ name.hashCode;
+  int get hashCode =>
+      identifier.hashCode ^ statusType.hashCode ^ name.hashCode ^ updatedAt.hashCode;
 
   @override
   String toString() {
-    return 'CustomUserStatus(identifier: $identifier, statusType: $statusType, name: $name)';
+    return 'CustomUserStatus(identifier: $identifier, statusType: $statusType, name: $name, updatedAt: $updatedAt)';
   }
 }
