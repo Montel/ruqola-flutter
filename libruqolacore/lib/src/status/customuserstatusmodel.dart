@@ -28,9 +28,9 @@ class CustomUserStatusModel {
     final int count = json["count"] ?? 0;
     final int offset = json["offset"] ?? 0;
     final int total = json["offset"] ?? 0;
-    // Verify ??
-    List<CustomUserStatus> customUserStatusList = List<CustomUserStatus>.from(json["statuses"]);
-
+    final List<CustomUserStatus> customUserStatusList = (json["statuses"] as List)
+        .map((statusJson) => CustomUserStatus.fromJson(statusJson))
+        .toList();
     return CustomUserStatusModel(
         customUserCount: count,
         offset: offset,
