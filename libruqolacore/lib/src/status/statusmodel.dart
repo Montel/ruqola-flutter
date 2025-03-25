@@ -40,6 +40,7 @@ class DisplayStatusInfo {
 
 class StatusModel with ChangeNotifier {
   Status currentStatus = Status.unknown;
+  String customText = '';
   List<DisplayStatusInfo> listStatus = [];
 
   void setCurrentStatus(Status status) {
@@ -109,6 +110,6 @@ class StatusModel with ChangeNotifier {
 
   @override
   String toString() {
-    return 'StatusModel(listStatus: $listStatus)';
+    return 'StatusModel(listStatus: $listStatus, currentStatus: $currentStatus, customText: $customText)';
   }
 }
