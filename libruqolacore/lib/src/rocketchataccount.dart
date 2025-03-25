@@ -115,6 +115,7 @@ class Rocketchataccount {
               {"\$date": 0}
             ];
             _ddpclient.method(libddpapi.ResulType.getRooms, result);
+            _initializeAccount();
             break;
           }
         case libddpapi.ResulType.getRooms:
@@ -173,11 +174,12 @@ class Rocketchataccount {
       loadHistory.userId = settings.userId;
       loadHistory.authToken = settings.authToken;
       var resultHistory = await loadHistory.start();
-      // print("result history $resultHistory");
+      print("result history $resultHistory");
       if (resultHistory.success != null) {
         // Decode message from result
-        final result = resultHistory.result!['result'];
-        if (result != null) {
+        final resultMessage = jsonDecode(resultHistory.result!['message']);
+        if (resultMessage != null) {
+          final result = resultMessage!['result'];
           final messagesArray = result['messages'];
           // TODO fix string as utf8
           models.processIncomingMessages(messagesArray);
@@ -317,6 +319,21 @@ class Rocketchataccount {
     } else {
       print("Unknow and implemented $collection");
     }
+  }
+
+  void _initializeAccount() {
+    _customUserStatus();
+  }
+
+  Future<void> _customUserStatus() async {
+    librocketchatrestapi.CustomUserStatusList customUserStatusList =
+        librocketchatrestapi.CustomUserStatusList();
+    customUserStatusList.serverUrl = settings.serverUrl;
+    customUserStatusList.userId = settings.userId;
+    customUserStatusList.authToken = settings.authToken;
+    var resultHistory = await customUserStatusList.start();
+
+    // TODO load customStatus
   }
 
   void _parseStreamNotifyUser(libddpapi.ChangedElements changedElement) {

@@ -20,7 +20,7 @@ class RestapiabstractjobResult {
 
   RestapiabstractjobResult.fromJson(Map<String, dynamic>? json) {
     if (json != null) {
-      result = jsonDecode(json['message']);
+      result = json;
       success = json['success'];
     }
   }

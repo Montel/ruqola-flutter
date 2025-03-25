@@ -26,6 +26,7 @@ class CustomUserStatusList extends Restapiabstractjob {
       return RestapiabstractjobResult();
     }
     http.Response response = await http.get(url(serverUrl!), headers: headers());
+    print("response : ${response.body}");
     return result(response);
   }
 }
