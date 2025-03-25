@@ -116,3 +116,6 @@ export 'src/e2e/updategroupkey.dart';
 
 // Custom
 export 'src/custom/customuserstatuslist.dart';
+
+// emoji
+export 'src/emoji/loademojicustom.dart';
