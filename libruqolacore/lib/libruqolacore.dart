@@ -90,3 +90,6 @@ export 'src/status/customuserstatusmodel.dart';
 // Invitation
 export 'src/invitations/invitation.dart';
 export 'src/invitations/invitations.dart';
+
+// Emoji
+export 'src/emoticons/customemoji.dart';
