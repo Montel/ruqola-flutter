@@ -19,10 +19,10 @@ class StatusCombobox extends StatefulWidget {
 typedef MenuEntry = DropdownMenuEntry<Status>;
 
 class StatusComboboxState extends State<StatusCombobox> {
-  Status dropdownValue = Status.online;
   @override
   Widget build(BuildContext context) {
     final statusModel = Provider.of<StatusModel>(context);
+    Status dropdownValue = statusModel.currentStatus;
     List<DisplayStatusInfo> sortedList = statusModel.sortedList();
     final List<MenuEntry> menuEntries = UnmodifiableListView<MenuEntry>(
       sortedList.map<MenuEntry>((DisplayStatusInfo info) =>
@@ -39,7 +39,7 @@ class StatusComboboxState extends State<StatusCombobox> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownMenu<Status>(
-                    initialSelection: sortedList.first.status,
+                    initialSelection: dropdownValue,
                     onSelected: (Status? value) {
                       // This is called when the user selects an item.
                       setState(() {
