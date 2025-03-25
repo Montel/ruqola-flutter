@@ -321,7 +321,17 @@ class Rocketchataccount {
   }
 
   void _initializeAccount() {
+    _listEmojiCustom();
     _customUserStatus();
+  }
+
+  Future<void> _listEmojiCustom() async {
+    librocketchatrestapi.LoadEmojiCustom loadEmojiCustom = librocketchatrestapi.LoadEmojiCustom();
+    loadEmojiCustom.serverUrl = settings.serverUrl;
+    loadEmojiCustom.userId = settings.userId;
+    loadEmojiCustom.authToken = settings.authToken;
+    var resultLoadEmojiCustom = await loadEmojiCustom.start();
+    print("resultLoadEmojiCustom: $resultLoadEmojiCustom");
   }
 
   Future<void> _customUserStatus() async {
