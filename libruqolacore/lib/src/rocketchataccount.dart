@@ -17,7 +17,8 @@ class Rocketchataccount {
   final AccountSettings settings = AccountSettings();
   final Rocketchataccountmodels models = Rocketchataccountmodels();
   final StatusModel statusModel = StatusModel();
-  final receiverTypingNotification = Receivertypingnotification();
+  final Receivertypingnotification receiverTypingNotification = Receivertypingnotification();
+  final CustomUserStatusModel customUserStatusModel = CustomUserStatusModel.defaultValues();
 
   final StreamController<libddpapi.AbstractEvent> _eventWebsocketController =
       StreamController<libddpapi.AbstractEvent>.broadcast();
