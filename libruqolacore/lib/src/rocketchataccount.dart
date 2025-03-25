@@ -18,7 +18,7 @@ class Rocketchataccount {
   final Rocketchataccountmodels models = Rocketchataccountmodels();
   final StatusModel statusModel = StatusModel();
   final Receivertypingnotification receiverTypingNotification = Receivertypingnotification();
-  final CustomUserStatusModel customUserStatusModel = CustomUserStatusModel.defaultValues();
+  CustomUserStatusModel customUserStatusModel = CustomUserStatusModel.defaultValues();
 
   final StreamController<libddpapi.AbstractEvent> _eventWebsocketController =
       StreamController<libddpapi.AbstractEvent>.broadcast();
@@ -174,7 +174,6 @@ class Rocketchataccount {
       loadHistory.userId = settings.userId;
       loadHistory.authToken = settings.authToken;
       var resultHistory = await loadHistory.start();
-      print("result history $resultHistory");
       if (resultHistory.success != null) {
         // Decode message from result
         final resultMessage = jsonDecode(resultHistory.result!['message']);
@@ -331,7 +330,9 @@ class Rocketchataccount {
     customUserStatusList.serverUrl = settings.serverUrl;
     customUserStatusList.userId = settings.userId;
     customUserStatusList.authToken = settings.authToken;
-    var resultHistory = await customUserStatusList.start();
+    var resultCustomUserStatus = await customUserStatusList.start();
+    customUserStatusModel = CustomUserStatusModel.fromJson(resultCustomUserStatus.result!);
+    print("customUserStatusModel $customUserStatusModel");
 
     // TODO load customStatus
   }
