@@ -38,11 +38,11 @@ class CustomUserStatusModel {
         customUserStatusList: customUserStatusList);
   }
   void deleteCustomUserStatuses(Map<String, dynamic> json) {
-    // TODO
+    print("deleteCustomUserStatuses not implemented yet");
   }
 
   void updateCustomUserStatues(Map<String, dynamic> json) {
-    //TODO
+    print("updateCustomUserStatues not implemented yet");
   }
 
   @override
