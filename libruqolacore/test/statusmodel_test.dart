@@ -14,6 +14,14 @@ void main() {
       expect(model.listStatus.length, 5);
       expect(model.currentStatus, libruqolacore.Status.unknown);
     });
+
+    test('Test sortedList', () {
+      libruqolacore.StatusModel model = libruqolacore.StatusModel();
+
+      final List<libruqolacore.DisplayStatusInfo> lstInfo = model.sortedList();
+      expect(lstInfo.first.order, 20);
+      expect(lstInfo.elementAt(4).order, -1);
+    });
   });
 
   group('DisplayStatusInfo', () {
