@@ -42,6 +42,11 @@ class StatusModel with ChangeNotifier {
   Status currentStatus = Status.unknown;
   List<DisplayStatusInfo> listStatus = [];
 
+  void setCurrentStatus(Status status) {
+    currentStatus = status;
+    notifyListeners();
+  }
+
   List<DisplayStatusInfo> sortedList() {
     List<DisplayStatusInfo> list = List.from(listStatus);
     list.sort((a, b) => a.order.compareTo(b.order));
