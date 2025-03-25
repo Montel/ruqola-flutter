@@ -333,6 +333,7 @@ class Rocketchataccount {
     var resultCustomUserStatus = await customUserStatusList.start();
     customUserStatusModel = CustomUserStatusModel.fromJson(resultCustomUserStatus.result!);
     print("customUserStatusModel $customUserStatusModel");
+    statusModel.updateCustomStatus(customUserStatusModel.customUserStatusList);
 
     // TODO load customStatus
   }
