@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/src/user.dart';
 import 'package:libruqolacore/src/status/customuserstatus.dart';
+import 'package:collection/collection.dart';
 
 class DisplayStatusInfo {
   String displayText = '';
@@ -107,6 +108,18 @@ class StatusModel with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  @override
+  bool operator ==(Object other) {
+    final listEquality = ListEquality();
+    return other is StatusModel &&
+        other.currentStatus == currentStatus &&
+        other.customText == customText &&
+        listEquality.equals(other.listStatus, listStatus);
+  }
+
+  @override
+  int get hashCode => currentStatus.hashCode ^ customText.hashCode ^ listStatus.hashCode;
 
   @override
   String toString() {
