@@ -11,7 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class StatusCombobox extends StatefulWidget {
-  const StatusCombobox({super.key});
+  final Rocketchataccount account;
+  const StatusCombobox(this.account, {super.key});
   @override
   StatusComboboxState createState() => StatusComboboxState();
 }
@@ -53,6 +54,7 @@ class StatusComboboxState extends State<StatusCombobox> {
                       // This is called when the user selects an item.
                       setState(() {
                         dropdownValue = value!;
+                        // TODO use setStatus RESTAPI
                       });
                     },
                     dropdownMenuEntries: menuEntries,

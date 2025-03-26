@@ -51,7 +51,7 @@ class ChannelViewSelectionState extends State<ChannelView> {
                     );
                   }),
             ),
-            Padding(padding: const EdgeInsets.all(8.0), child: StatusCombobox()),
+            Padding(padding: const EdgeInsets.all(8.0), child: StatusCombobox(widget.account)),
           ],
         ),
       ),
