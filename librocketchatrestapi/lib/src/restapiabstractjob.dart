@@ -17,6 +17,7 @@ class RestapiabstractjobResult {
   RestapiabstractjobResult({
     this.result,
     this.success = false,
+    this.errorMessage = '',
   });
 
   RestapiabstractjobResult.fromJson(Map<String, dynamic>? json) {
@@ -54,7 +55,7 @@ abstract class Restapiabstractjob {
       }
       throw RocketChatException(response.body);
     } on RocketChatException catch (e) {
-      return RestapiabstractjobResult(result: null);
+      return RestapiabstractjobResult(errorMessage: e.message);
     } catch (e) {
       // TODO ???
       return RestapiabstractjobResult(result: null);
