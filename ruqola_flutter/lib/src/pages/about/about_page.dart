@@ -45,8 +45,8 @@ class _AboutPageState extends State<AboutPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/icons/png/ruqola_icon.png'), 
+              radius: 20,
+              backgroundImage: AssetImage('assets/icons/png/ruqola_icon.png'),
             ),
             SizedBox(height: 16),
             Text(appName, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
