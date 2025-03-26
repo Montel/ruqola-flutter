@@ -76,13 +76,13 @@ extension BlockTypeExt on BlockType {
 }
 
 class Block {
-  List<BlockAction> blockActions = [];
+  List<BlockAction>? blockActions;
   String blockId = '';
   String callId = '';
   String appId = '';
   String sectionText = '';
   BlockType blockType = BlockType.unknown;
-  BlockAccessory blockAccessory;
+  BlockAccessory? blockAccessory;
   // VideoConferenceInfo videoConferenceInfo;
 
   @override
@@ -108,10 +108,16 @@ class Block {
 
     String sectionText = '';
     // Verify
-    //if (json.containsKey("elements")) {
-    List<BlockAction> blockActions = List<BlockAction>.from(json["elements"]);
-    // }
-    BlockAccessory blockAccessory = BlockAccessory.fromJson(json["accessory"]);
+    List<BlockAction>? blockActions;
+    if (json.containsKey("elements")) {
+      blockActions = List<BlockAction>.from(json["elements"]);
+      // TODO
+    }
+    BlockAccessory? blockAccessory;
+    if (json.containsKey("accessory")) {
+      blockAccessory = BlockAccessory.fromJson(json["accessory"]);
+      // TODO
+    }
     return Block(
         blockId: blockId,
         callId: callId,
