@@ -111,12 +111,10 @@ class Block {
     List<BlockAction>? blockActions;
     if (json.containsKey("elements")) {
       blockActions = List<BlockAction>.from(json["elements"]);
-      // TODO
     }
     BlockAccessory? blockAccessory;
     if (json.containsKey("accessory")) {
       blockAccessory = BlockAccessory.fromJson(json["accessory"]);
-      // TODO
     }
     return Block(
         blockId: blockId,
