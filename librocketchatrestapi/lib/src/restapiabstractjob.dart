@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 class RestapiabstractjobResult {
   Map<String, dynamic>? result;
   bool? success;
+  String? errorMessage;
 
   RestapiabstractjobResult({
     this.result,
@@ -27,7 +28,7 @@ class RestapiabstractjobResult {
 
   @override
   String toString() {
-    return "success $success result $result";
+    return "RestapiabstractjobResult(success $success, result $result, errorMessage: $errorMessage)";
   }
 }
 
@@ -47,10 +48,17 @@ abstract class Restapiabstractjob {
   Uri url(String url);
 
   RestapiabstractjobResult result(http.Response response) {
-    if (response.statusCode == 200 && response.body.isNotEmpty == true) {
-      return RestapiabstractjobResult.fromJson(jsonDecode(response.body));
+    try {
+      if (response.statusCode == 200 && response.body.isNotEmpty == true) {
+        return RestapiabstractjobResult.fromJson(jsonDecode(response.body));
+      }
+      throw RocketChatException(response.body);
+    } on RocketChatException catch (e) {
+      return RestapiabstractjobResult(result: null);
+    } catch (e) {
+      // TODO ???
+      return RestapiabstractjobResult(result: null);
     }
-    throw RocketChatException(response.body);
   }
 
   // Reimplement it
