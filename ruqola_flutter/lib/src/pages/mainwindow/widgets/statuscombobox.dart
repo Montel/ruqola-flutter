@@ -19,8 +19,7 @@ Future<void> _changeStatus(Rocketchataccount account, Status status,
     Status.offline: StatusType.offline,
   };
 
-  // TODO
-  SetStatusInfo info = SetStatusInfo(
+  final SetStatusInfo info = SetStatusInfo(
       userId: account.settings.userId,
       statusType: convertStatusEnum[status] ?? StatusType.online,
       statusMessage: statusMessage);
@@ -29,7 +28,9 @@ Future<void> _changeStatus(Rocketchataccount account, Status status,
   changeStatus.userId = account.settings.userId;
   changeStatus.authToken = account.settings.authToken;
   var resultChangeStatus = await changeStatus.start();
-  print("result change status $resultChangeStatus");
+  if (!(resultChangeStatus.success ?? false)) {
+    print("Error during change status $resultChangeStatus");
+  }
 }
 
 class StatusCombobox extends StatefulWidget {
