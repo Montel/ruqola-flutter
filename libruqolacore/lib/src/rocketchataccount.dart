@@ -332,6 +332,7 @@ class Rocketchataccount {
     loadEmojiCustom.authToken = settings.authToken;
     var resultLoadEmojiCustom = await loadEmojiCustom.start();
     print("resultLoadEmojiCustom: $resultLoadEmojiCustom");
+    // TODO load custom emoji
   }
 
   Future<void> _customUserStatus() async {
