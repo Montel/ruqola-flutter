@@ -10,6 +10,28 @@ import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
+Future<void> _changeStatus(Rocketchataccount account, Status status,
+    [String statusMessage = '']) async {
+  final Map<Status, StatusType> convertStatusEnum = {
+    Status.online: StatusType.online,
+    Status.away: StatusType.away,
+    Status.busy: StatusType.busy,
+    Status.offline: StatusType.offline,
+  };
+
+  // TODO
+  SetStatusInfo info = SetStatusInfo(
+      userId: account.settings.userId,
+      statusType: convertStatusEnum[status] ?? StatusType.online,
+      statusMessage: statusMessage);
+  final SetStatus changeStatus = SetStatus(info);
+  changeStatus.serverUrl = account.settings.serverUrl;
+  changeStatus.userId = account.settings.userId;
+  changeStatus.authToken = account.settings.authToken;
+  var resultChangeStatus = await changeStatus.start();
+  print("result change status $resultChangeStatus");
+}
+
 class StatusCombobox extends StatefulWidget {
   final Rocketchataccount account;
   const StatusCombobox(this.account, {super.key});
@@ -54,7 +76,7 @@ class StatusComboboxState extends State<StatusCombobox> {
                       // This is called when the user selects an item.
                       setState(() {
                         dropdownValue = value!;
-                        // TODO use setStatus RESTAPI
+                        _changeStatus(widget.account, dropdownValue);
                       });
                     },
                     dropdownMenuEntries: menuEntries,
