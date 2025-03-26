@@ -79,7 +79,14 @@ class BlockAccessory {
     }
     final AccessoryType type = AccessoryTypeExt.fromName(json["type"] ?? '');
 
-    final List<BlockAccessoryOption> options = List<BlockAccessoryOption>.from(json["options"]);
+    final optionsJson = json["options"];
+    List<BlockAccessoryOption> options = [];
+    if (optionsJson != null) {
+      for (var entry in optionsJson) {
+        BlockAccessoryOption opt = BlockAccessoryOption.fromJson(entry);
+        options.add(opt);
+      }
+    }
     return BlockAccessory(
         value: value, actionId: actionId, text: text, options: options, type: type);
   }
