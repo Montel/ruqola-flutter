@@ -109,9 +109,15 @@ class Block {
     String sectionText = '';
     // Verify
     List<BlockAction>? blockActions;
-    if (json.containsKey("elements")) {
-      blockActions = List<BlockAction>.from(json["elements"]);
+
+    final blockActionsJson = json["elements"];
+    if (blockActionsJson != null) {
+      for (var entry in blockActionsJson) {
+        // TODO
+      }
+      // blockActions = List<BlockAction>.from(json["elements"]);
     }
+
     BlockAccessory? blockAccessory;
     if (json.containsKey("accessory")) {
       blockAccessory = BlockAccessory.fromJson(json["accessory"]);
