@@ -11,7 +11,6 @@ import 'package:collection/collection.dart';
 class DisplayStatusInfo {
   String displayText = '';
   String statusStr = '';
-  String iconName = '';
   Status status = Status.unknown;
   int order = 0;
 
@@ -20,22 +19,16 @@ class DisplayStatusInfo {
     return other is DisplayStatusInfo &&
         other.displayText == displayText &&
         other.statusStr == statusStr &&
-        other.iconName == iconName &&
         other.status == status &&
         other.order == order;
   }
 
   @override
-  int get hashCode =>
-      displayText.hashCode ^
-      statusStr.hashCode ^
-      iconName.hashCode ^
-      status.hashCode ^
-      order.hashCode;
+  int get hashCode => displayText.hashCode ^ statusStr.hashCode ^ status.hashCode ^ order.hashCode;
 
   @override
   String toString() {
-    return 'DisplayStatusInfo(displayText: $displayText, statusStr: $statusStr, iconName: $iconName, status: $status, order: $order)';
+    return 'DisplayStatusInfo(displayText: $displayText, statusStr: $statusStr, status: $status, order: $order)';
   }
 }
 
@@ -89,7 +82,6 @@ class StatusModel with ChangeNotifier {
     DisplayStatusInfo statusInfo = DisplayStatusInfo();
     statusInfo.status = status;
     statusInfo.displayText = status.translatedName;
-    statusInfo.iconName = status.iconName;
     statusInfo.order = order;
     statusInfo.statusStr = status.name;
     return statusInfo;
@@ -101,7 +93,6 @@ class StatusModel with ChangeNotifier {
       DisplayStatusInfo statusInfo = DisplayStatusInfo();
       statusInfo.status = s.statusType;
       statusInfo.displayText = s.name;
-      statusInfo.iconName = statusInfo.status.iconName;
       statusInfo.order = 5;
       statusInfo.statusStr = s.name;
       listStatus.add(statusInfo);

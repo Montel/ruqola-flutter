@@ -57,22 +57,6 @@ extension StatusExt on Status {
         return 'Modify Status...';
     }
   }
-
-  String get iconName {
-    // Fix me icon name
-    switch (this) {
-      case Status.online:
-        return 'Online';
-      case Status.busy:
-        return 'Busy';
-      case Status.away:
-        return 'Away';
-      case Status.offline:
-        return 'Offline';
-      default:
-        return '';
-    }
-  }
 }
 
 class User {

@@ -29,7 +29,6 @@ void main() {
       libruqolacore.DisplayStatusInfo info = libruqolacore.DisplayStatusInfo();
       expect(info.displayText.isEmpty, true);
       expect(info.statusStr.isEmpty, true);
-      expect(info.iconName.isEmpty, true);
       expect(info.status, libruqolacore.Status.unknown);
       expect(info.order, 0);
     });

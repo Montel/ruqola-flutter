@@ -19,14 +19,23 @@ class StatusCombobox extends StatefulWidget {
 typedef MenuEntry = DropdownMenuEntry<Status>;
 
 class StatusComboboxState extends State<StatusCombobox> {
+  // Define map icon. We can't add directly in StatusModel as it's core not UI
+  final Map<Status, IconData> statusIcons = {
+    Status.online: Icons.check_circle,
+    Status.away: Icons.do_not_disturb,
+    Status.busy: Icons.access_time,
+    Status.offline: Icons.cancel,
+  };
   @override
   Widget build(BuildContext context) {
     final statusModel = Provider.of<StatusModel>(context);
     Status dropdownValue = statusModel.currentStatus;
     List<DisplayStatusInfo> sortedList = statusModel.sortedList();
     final List<MenuEntry> menuEntries = UnmodifiableListView<MenuEntry>(
-      sortedList.map<MenuEntry>((DisplayStatusInfo info) =>
-          MenuEntry(value: info.status, label: info.displayText)), // TODO add icons
+      sortedList.map<MenuEntry>((DisplayStatusInfo info) => MenuEntry(
+          value: info.status,
+          label: info.displayText,
+          leadingIcon: Icon(statusIcons[info.status] ?? Icons.help_outline))),
     );
 
     return Row(
