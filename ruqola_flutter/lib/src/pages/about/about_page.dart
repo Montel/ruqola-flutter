@@ -46,7 +46,7 @@ class _AboutPageState extends State<AboutPage> {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/logo.png'), // Replace with your logo
+              backgroundImage: AssetImage('assets/icons/png/ruqola_icon.png'), 
             ),
             SizedBox(height: 16),
             Text(appName, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
