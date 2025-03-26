@@ -9,7 +9,14 @@ import 'package:test/test.dart';
 void main() {
   group('CustomEmoji infos', () {
     test('Test Initial values', () {
-      // TODO
+      final CustomEmoji emoji = CustomEmoji.defaultValues();
+      expect(emoji.aliases.isEmpty, true);
+      expect(emoji.emojiIdentifier.isEmpty, true);
+      expect(emoji.identifier.isEmpty, true);
+      expect(emoji.extension.isEmpty, true);
+      expect(emoji.name.isEmpty, true);
+      expect(emoji.cachedHtml.isEmpty, true);
+      expect(emoji.updatedAt, 0);
     });
   });
 }

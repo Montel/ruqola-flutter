@@ -13,6 +13,37 @@ class CustomEmoji {
   List<String> aliases = [];
   int updatedAt = 0;
 
+  CustomEmoji.defaultValues()
+      : emojiIdentifier = '',
+        identifier = '',
+        extension = '',
+        name = '',
+        cachedHtml = '',
+        aliases = [],
+        updatedAt = 0;
+
+  CustomEmoji(
+      {required this.emojiIdentifier,
+      required this.extension,
+      required this.name,
+      required this.identifier});
+
+  factory CustomEmoji.fromJson(Map<String, dynamic> json) {
+    final String identifier = json["_id"] ?? '';
+    final String extension = json["extension"] ?? '';
+    final String name = json["name"] ?? '';
+    final String emojiIdentifier = ':$name:';
+    if (json.containsKey("aliases")) {
+      var alias = json["aliases"];
+      // TODO
+    }
+
+    // TODO updateAt + aliases
+
+    return CustomEmoji(
+        emojiIdentifier: emojiIdentifier, extension: extension, name: name, identifier: identifier);
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
