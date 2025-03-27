@@ -3,6 +3,7 @@ import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/services.dart'; // Pour ContextMenuController
+import 'package:provider/provider.dart';
 
 class Messageline extends StatefulWidget {
   final Rocketchataccount account;
@@ -14,32 +15,6 @@ class Messageline extends StatefulWidget {
 
 class MessagelineState extends State<Messageline> {
   final _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.addListener(_onTextChanged);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _onTextChanged() {
-    setState(() {});
-  }
-
-  final List<String> _suggestions = [
-    'Flutter',
-    'Dart',
-    'Widget',
-    'Stateful',
-    'Stateless',
-    'Builder',
-    'Context',
-  ];
 
   void insertEmoji(String emoji) {
     final text = _controller.text;
@@ -65,6 +40,9 @@ class MessagelineState extends State<Messageline> {
 
   @override
   Widget build(BuildContext context) {
+    final commandModel = Provider.of<CommandModel>(context);
+    final List<String> suggestions = commandModel.listOfCommands();
+
     return ValueListenableBuilder<String>(
       valueListenable: SharedValue.currentRoomId,
       builder: (context, value, child) {
@@ -88,16 +66,14 @@ class MessagelineState extends State<Messageline> {
                           if (!textEditingValue.text.startsWith('/')) {
                             return const Iterable<String>.empty();
                           }
-                          return _suggestions.where((String option) {
+                          return suggestions.where((String option) {
                             return option
                                 .toLowerCase()
                                 .contains(textEditingValue.text.toLowerCase());
                           });
                         },
-                        fieldViewBuilder: (BuildContext context,
-                            TextEditingController fieldTextEditingController,
-                            FocusNode fieldFocusNode,
-                            VoidCallback onFieldSubmitted) {
+                        fieldViewBuilder: (BuildContext context, TextEditingController notUsed,
+                            FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
                           return TextField(
                             controller: _controller,
                             focusNode: fieldFocusNode,
@@ -144,12 +120,8 @@ class MessagelineState extends State<Messageline> {
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   onPressed: () {
-                    print(
-                        "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd ${SharedValue.currentRoomId.value}");
                     if (SharedValue.currentRoomId.value.isNotEmpty) {
-                      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDd ${_controller.text}");
                       if (_controller.text.isNotEmpty && value.isNotEmpty) {
-                        print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDd6666666666666666666666");
                         widget.account.sendMessage(value, _controller.text);
                         _controller.text = "";
                       }

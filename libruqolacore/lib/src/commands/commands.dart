@@ -21,8 +21,11 @@ class Commands {
   });
 
   List<String> listOfCommands() {
-    // TODO
-    return [];
+    List<String> lst = [];
+    for (var a in listCommands) {
+      lst.add(a.commandName);
+    }
+    return lst;
   }
 
   factory Commands.fromJson(Map<String, dynamic> json) {
