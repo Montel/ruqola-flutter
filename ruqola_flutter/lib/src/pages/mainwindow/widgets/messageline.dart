@@ -10,10 +10,14 @@ import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 // Look at https://github.com/Fintasys/emoji_picker_flutter/blob/master/example/lib/main_whatsapp.dart
 
-class Messageline extends StatelessWidget {
+class Messageline extends StatefulWidget {
   final Rocketchataccount account;
-  Messageline(this.account, {super.key});
+  const Messageline(this.account, {super.key});
+  @override
+  MessagelineState createState() => MessagelineState();
+}
 
+class MessagelineState extends State<Messageline> {
   final _controller = TextEditingController();
 
   // _controller.addListener(_onTextChanged);
@@ -101,7 +105,7 @@ class Messageline extends StatelessWidget {
                   onPressed: () {
                     if (SharedValue.currentRoomId.value.isNotEmpty) {
                       if (_controller.text.isNotEmpty && value.isNotEmpty) {
-                        account.sendMessage(value, _controller.text);
+                        widget.account.sendMessage(value, _controller.text);
                         _controller.text = "";
                       }
                     }
