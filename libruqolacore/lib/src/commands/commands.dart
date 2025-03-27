@@ -19,6 +19,12 @@ class Commands {
     required this.offset,
     required this.total,
   });
+
+  List<String> listOfCommands() {
+    // TODO
+    return [];
+  }
+
   factory Commands.fromJson(Map<String, dynamic> json) {
     final deviceInfosCount = json["count"] ?? 0;
     final offset = json["offset"] ?? 0;
@@ -38,6 +44,7 @@ class Commands {
       total: total,
     );
   }
+
   Commands.defaultValues()
       : listCommands = [],
         commandsCount = 0,

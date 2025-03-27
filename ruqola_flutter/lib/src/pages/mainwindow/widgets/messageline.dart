@@ -15,6 +15,22 @@ class Messageline extends StatefulWidget {
 class MessagelineState extends State<Messageline> {
   final _controller = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    setState(() {});
+  }
+
   final List<String> _suggestions = [
     'Flutter',
     'Dart',
@@ -62,6 +78,9 @@ class MessagelineState extends State<Messageline> {
                       padding: const EdgeInsets.all(8.0),
                       child: Autocomplete<String>(
                         optionsViewOpenDirection: OptionsViewOpenDirection.up,
+                        onSelected: (String selection) {
+                          _controller.text = selection;
+                        },
                         optionsBuilder: (TextEditingValue textEditingValue) {
                           if (textEditingValue.text == '') {
                             return const Iterable<String>.empty();
@@ -74,9 +93,6 @@ class MessagelineState extends State<Messageline> {
                                 .toLowerCase()
                                 .contains(textEditingValue.text.toLowerCase());
                           });
-                        },
-                        onSelected: (String selection) {
-                          debugPrint('You just selected $selection');
                         },
                         fieldViewBuilder: (BuildContext context,
                             TextEditingController fieldTextEditingController,
@@ -128,8 +144,12 @@ class MessagelineState extends State<Messageline> {
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   onPressed: () {
+                    print(
+                        "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd ${SharedValue.currentRoomId.value}");
                     if (SharedValue.currentRoomId.value.isNotEmpty) {
+                      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDd ${_controller.text}");
                       if (_controller.text.isNotEmpty && value.isNotEmpty) {
+                        print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDd6666666666666666666666");
                         widget.account.sendMessage(value, _controller.text);
                         _controller.text = "";
                       }

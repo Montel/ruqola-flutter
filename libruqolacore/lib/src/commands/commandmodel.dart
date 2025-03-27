@@ -9,8 +9,13 @@ import 'package:libruqolacore/libruqolacore.dart';
 class CommandModel with ChangeNotifier {
   Commands commands = Commands.defaultValues();
 
-  parseCommands(Map<String, dynamic> json) {
+  void parseCommands(Map<String, dynamic> json) {
     commands = Commands.fromJson(json);
+    notifyListeners();
+  }
+
+  List<String> listOfCommands() {
+    return commands.listOfCommands();
   }
 
   @override
