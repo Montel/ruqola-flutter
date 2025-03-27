@@ -20,6 +20,37 @@ class Messageline extends StatefulWidget {
 class MessagelineState extends State<Messageline> {
   final _controller = TextEditingController();
 
+  final List<String> _suggestions = [
+    'Flutter',
+    'Dart',
+    'Widget',
+    'Stateful',
+    'Stateless',
+    'Builder',
+    'Context',
+  ];
+  List<String> _filteredSuggestions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    setState(() {
+      _filteredSuggestions = _suggestions
+          .where((suggestion) => suggestion.toLowerCase().contains(_controller.text.toLowerCase()))
+          .toList();
+    });
+  }
+
   // _controller.addListener(_onTextChanged);
 
   @override
