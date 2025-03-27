@@ -73,6 +73,7 @@ export 'src/bannerinfos/bannerinfos.dart';
 export 'src/teams/teaminfo.dart';
 export 'src/teams/teamroom.dart';
 export 'src/teams/teamcompleter.dart';
+export 'src/teams/teamroomcompleter.dart';
 
 // avatarutil
 export 'src/avatarinfo.dart';
