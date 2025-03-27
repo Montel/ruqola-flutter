@@ -60,6 +60,7 @@ export 'src/commands/command.dart';
 export 'src/commands/commands.dart';
 export 'src/commands/previewcommand.dart';
 export 'src/commands/previewcommandutil.dart';
+export 'src/commands/commandmodel.dart';
 
 // PersonalAccessTokens
 export 'src/personalaccesstokens/personalaccesstokeninfo.dart';
