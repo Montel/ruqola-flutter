@@ -7,6 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 
 class CommandModel with ChangeNotifier {
-  // TODO
   Commands commands = Commands.defaultValues();
+
+  parseCommands(Map<String, dynamic> json) {
+    commands = Commands.fromJson(json);
+  }
+
+  @override
+  String toString() {
+    return 'CommandModel(commands: $commands)';
+  }
 }

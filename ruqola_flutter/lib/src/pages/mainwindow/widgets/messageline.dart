@@ -67,7 +67,9 @@ class MessagelineState extends State<Messageline> {
                             return const Iterable<String>.empty();
                           }
                           return _suggestions.where((String option) {
-                            return option.contains(textEditingValue.text.toLowerCase());
+                            return option
+                                .toLowerCase()
+                                .contains(textEditingValue.text.toLowerCase());
                           });
                         },
                         onSelected: (String selection) {
