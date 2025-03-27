@@ -99,7 +99,7 @@ class MessagelineState extends State<Messageline> {
                             FocusNode fieldFocusNode,
                             VoidCallback onFieldSubmitted) {
                           return TextField(
-                            controller: fieldTextEditingController,
+                            controller: _controller,
                             focusNode: fieldFocusNode,
                             contextMenuBuilder: (context, editableTextState) {
                               final List<ContextMenuButtonItem> buttonItems =
@@ -129,7 +129,7 @@ class MessagelineState extends State<Messageline> {
                                 icon: Icon(Icons.emoji_emotions),
                               ),
                               suffixIcon: IconButton(
-                                onPressed: fieldTextEditingController.clear,
+                                onPressed: _controller.clear,
                                 icon: const Icon(Icons.clear),
                               ),
                               border: const OutlineInputBorder(),
