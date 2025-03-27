@@ -15,6 +15,9 @@ class Messageline extends StatelessWidget {
   Messageline(this.account, {super.key});
 
   final _controller = TextEditingController();
+
+  // _controller.addListener(_onTextChanged);
+
   @override
   Widget build(BuildContext context) {
     void insertEmoji(String emoji) {
