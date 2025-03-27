@@ -11,10 +11,12 @@ class CommandModel with ChangeNotifier {
 
   void parseCommands(Map<String, dynamic> json) {
     commands = Commands.fromJson(json);
+    print("RESULT $commands");
     notifyListeners();
   }
 
   List<String> listOfCommands() {
+    print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS ${commands.listOfCommands()}");
     return commands.listOfCommands();
   }
 

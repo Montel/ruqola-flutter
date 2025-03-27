@@ -326,6 +326,17 @@ class Rocketchataccount {
   void _initializeAccount() {
     _listEmojiCustom();
     _customUserStatus();
+    _loadCommands();
+  }
+
+  Future<void> _loadCommands() async {
+    librocketchatrestapi.ListCommands listCommands = librocketchatrestapi.ListCommands();
+    listCommands.serverUrl = settings.serverUrl;
+    listCommands.userId = settings.userId;
+    listCommands.authToken = settings.authToken;
+    var resultLoadCommands = await listCommands.start();
+    print("resultLoadCommands: $resultLoadCommands");
+    commandModel.parseCommands(resultLoadCommands.result!);
   }
 
   Future<void> _listEmojiCustom() async {
