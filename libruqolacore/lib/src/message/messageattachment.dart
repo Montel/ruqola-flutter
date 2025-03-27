@@ -137,13 +137,13 @@ class Messageattachment {
   @override
   String toString() {
     return """
-mAttachmentFields: $mAttachmentFields mAttachmentType: $mAttachmentType mColor: $mColor 
+Messageattachment(mAttachmentFields: $mAttachmentFields mAttachmentType: $mAttachmentType mColor: $mColor 
 mDescription: $mDescription mTitle:$mTitle mLink: $mLink mAuthorName:$mAuthorName
 mMimeType: $mMimeType mText:$mText mAttachmentId:$mAttachmentId mAuthorIcon:$mAuthorIcon
 mAttachmentFieldsText: $mAttachmentFieldsText mImageUrlPreview:$mImageUrlPreview
 mAttachmentGeneratedTitle: $mAttachmentGeneratedTitle mAttachmentSize:$mAttachmentSize
 mImageHeight: $mImageHeight mImageWidth:$mImageWidth mIsAnimatedImage:$mIsAnimatedImage
-mCollapsed: $mCollapsed mShowAttachment:$mShowAttachment
+mCollapsed: $mCollapsed mShowAttachment:$mShowAttachment)
 """;
   }
 }
