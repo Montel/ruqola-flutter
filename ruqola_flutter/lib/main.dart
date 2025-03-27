@@ -27,6 +27,10 @@ Future<void> main() async {
           create: (context) => account.statusModel,
           child: RuqolaMainApp(account),
         ),
+        ChangeNotifierProvider(
+          create: (context) => account.commandModel,
+          child: RuqolaMainApp(account),
+        ),
         Provider(create: (context) => account),
         Provider(create: (context) => SecureStorage()),
       ],

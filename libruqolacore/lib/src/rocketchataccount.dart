@@ -20,6 +20,9 @@ class Rocketchataccount {
   final Receivertypingnotification receiverTypingNotification = Receivertypingnotification();
   CustomUserStatusModel customUserStatusModel = CustomUserStatusModel.defaultValues();
 
+// Add command model
+  CommandModel commandModel = CommandModel();
+
   final StreamController<libddpapi.AbstractEvent> _eventWebsocketController =
       StreamController<libddpapi.AbstractEvent>.broadcast();
 
