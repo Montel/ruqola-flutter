@@ -78,7 +78,7 @@ class Messageline extends StatelessWidget {
                               buttonItems: buttonItems,
                             );
                           },
-                          enabled: true, // TODO update it
+                          enabled: SharedValue.currentRoomId.value.isNotEmpty,
                           keyboardType: TextInputType.multiline,
                           minLines: 1,
                           maxLines: 3,
@@ -96,11 +96,13 @@ class Messageline extends StatelessWidget {
                   child: Text("Send",
                       style: TextStyle(color: Colors.white, fontSize: 18)), // TODO I18n !
                   onPressed: () {
-                    if (_controller.text.isNotEmpty && value.isNotEmpty) {
-                      account.sendMessage(value, _controller.text);
-                      _controller.text = "";
+                    if (SharedValue.currentRoomId.value.isNotEmpty) {
+                      if (_controller.text.isNotEmpty && value.isNotEmpty) {
+                        account.sendMessage(value, _controller.text);
+                        _controller.text = "";
+                      }
                     }
-                  })
+                  }),
             ],
           );
         });
