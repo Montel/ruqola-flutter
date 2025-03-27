@@ -66,6 +66,9 @@ class MessagelineState extends State<Messageline> {
                           if (textEditingValue.text == '') {
                             return const Iterable<String>.empty();
                           }
+                          if (!textEditingValue.text.startsWith('/')) {
+                            return const Iterable<String>.empty();
+                          }
                           return _suggestions.where((String option) {
                             return option
                                 .toLowerCase()
