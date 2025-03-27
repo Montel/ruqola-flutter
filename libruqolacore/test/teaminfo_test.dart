@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Team info', () {
-    test('Test Initial Rooms values', () {
+    test('Test Initial TeamInfo values', () {
       final libruqolacore.TeamInfo teaminfo = libruqolacore.TeamInfo.defaultValues();
       expect(teaminfo.autoJoin, false);
       expect(teaminfo.roomsCount, 0);
