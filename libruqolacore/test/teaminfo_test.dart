@@ -16,5 +16,19 @@ void main() {
       expect(teaminfo.mainTeam, false);
       expect(teaminfo.teamId.isEmpty, true);
     });
+
+    test('Test verify if has team room', () {
+      libruqolacore.TeamInfo teaminfo = libruqolacore.TeamInfo.defaultValues();
+      expect(teaminfo.hasTeamRoom(), false);
+      teaminfo.mainTeam = true;
+      teaminfo.teamId = 'ff';
+      expect(teaminfo.hasTeamRoom(), false);
+
+      teaminfo.mainTeam = false;
+      expect(teaminfo.hasTeamRoom(), true);
+
+      teaminfo.teamId = '';
+      expect(teaminfo.hasTeamRoom(), false);
+    });
   });
 }

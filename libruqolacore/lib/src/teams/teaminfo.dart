@@ -5,10 +5,10 @@
  */
 
 class TeamInfo {
-  final String teamId;
-  final int roomsCount;
-  final bool mainTeam;
-  final bool autoJoin;
+  String teamId;
+  int roomsCount;
+  bool mainTeam;
+  bool autoJoin;
 
   TeamInfo({
     required this.teamId,
