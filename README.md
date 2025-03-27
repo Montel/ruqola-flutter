@@ -4,6 +4,8 @@ Ruqola-flutter is a [Rocket.Chat](https://www.rocket.chat/) client based on flut
 
 ## Features
 - Load rooms + messages
+- Add status support
+- Add commands support
 
 
 ## Maintainer
