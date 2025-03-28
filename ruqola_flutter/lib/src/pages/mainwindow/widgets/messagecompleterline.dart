@@ -66,6 +66,8 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
           },
           fieldViewBuilder: (BuildContext context, TextEditingController textEditingController,
               FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+            textEditingController = widget.controller;
+
             return ListenableBuilder(
                 listenable: commandModel,
                 builder: (BuildContext context, Widget? child) {
