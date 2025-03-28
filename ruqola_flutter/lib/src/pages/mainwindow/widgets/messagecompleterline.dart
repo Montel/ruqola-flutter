@@ -84,6 +84,13 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
                         buttonItems: buttonItems,
                       );
                     },
+                    onSubmitted: (String value) {
+                      // TODO fix me
+                      // Custom behavior when the return key is pressed
+                      print('Return key pressed. Text: $value');
+                      // You can add more custom behavior here
+                      textEditingController.clear(); // Clear the text field after submission
+                    },
                     enabled: SharedValue.currentRoomId.value.isNotEmpty,
                     keyboardType: TextInputType.multiline,
                     minLines: 1,

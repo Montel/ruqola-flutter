@@ -7,6 +7,8 @@
 import 'package:librocketchatrestapi/librocketchatrestapi.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:uuid/uuid.dart';
+
 class RunCommandInfo {
   final String commandName;
   final String roomId;
@@ -14,9 +16,64 @@ class RunCommandInfo {
   final String triggerId;
   final String params;
 
-  RunCommandInfo(this.commandName, this.roomId, this.threadMessageId, this.triggerId, this.params);
+  static RunCommandInfo parseString(String str, String roomId,
+      [String tmid = '', String forceTriggerValue = '']) {
+    String commandName = '';
+    String params = "";
+    String triggedId = '';
+    if (str.length > 1) {
+      final String newStr = str.substring(1);
+      List<String> lst = newStr.split(' ');
+      commandName = lst[0];
+      lst.removeAt(0);
+      if (lst.isNotEmpty) {
+        params = lst.join(' ');
+      }
+      if (forceTriggerValue.isEmpty) {
+        var uuid = Uuid();
+        triggedId = uuid.v4();
+      } else {
+        triggedId = forceTriggerValue;
+      }
+    }
+
+    return RunCommandInfo(
+        commandName: commandName,
+        roomId: roomId,
+        threadMessageId: tmid,
+        params: params,
+        triggerId: triggedId);
+  }
+
+  RunCommandInfo(
+      {required this.commandName,
+      required this.roomId,
+      required this.threadMessageId,
+      required this.triggerId,
+      required this.params});
+
   bool canStart() {
     return commandName.isNotEmpty && roomId.isNotEmpty;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is RunCommandInfo &&
+        other.params == params &&
+        other.commandName == commandName &&
+        threadMessageId == other.threadMessageId &&
+        triggerId == other.triggerId;
+  }
+
+  @override
+  int get hashCode {
+    return params.hashCode ^ commandName.hashCode ^ threadMessageId.hashCode ^ triggerId.hashCode;
+  }
+
+  @override
+  String toString() {
+    return "RunCommandInfo(commandName: $commandName, roomId: $roomId, threadMessageId: $threadMessageId, triggerId: $triggerId, params: $params)";
   }
 
   Map<String, String> body() {

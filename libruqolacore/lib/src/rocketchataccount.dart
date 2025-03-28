@@ -148,7 +148,23 @@ class Rocketchataccount {
   }
 
   Future<void> sendMessage(String roomId, String message) async {
-    _ddpclient.sendTextMessage(roomId, message);
+    if (message.startsWith('/')) {
+      _runCommand(roomId, message /* threadid*/);
+    } else {
+      _ddpclient.sendTextMessage(roomId, message);
+    }
+  }
+
+  Future<void> _runCommand(String roomId, String message) async {
+    /*
+    librocketchatrestapi.RunCommandInfo(commandName, roomId, threadMessageId, triggerId, params)
+    librocketchatrestapi.RunCommand loadEmojiCustom = librocketchatrestapi.RunCommand();
+    loadEmojiCustom.serverUrl = settings.serverUrl;
+    loadEmojiCustom.userId = settings.userId;
+    loadEmojiCustom.authToken = settings.authToken;
+    var resultLoadEmojiCustom = await loadEmojiCustom.start();
+    print("resultLoadEmojiCustom: $resultLoadEmojiCustom");
+    */
   }
 
   Future<void> loadHistory(String roomId) async {
