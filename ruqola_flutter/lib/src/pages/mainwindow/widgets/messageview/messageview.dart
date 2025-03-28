@@ -27,7 +27,7 @@ class MessageViewSelectionState extends State<MessageView> {
           final models = Provider.of<Rocketchataccountmodels>(context);
           // Reference to the room you want to display messages for.
           final room = models.findRoomFromIdentifier(SharedValue.currentRoomId.value);
-          if (room == null) return Text("No Rooms D:");
+          if (room == null) return Text("No room seelected");
 
           return Center(
             child: Column(
