@@ -7,9 +7,9 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messagecompleterline.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/services.dart'; // Pour ContextMenuController
-import 'package:provider/provider.dart';
 
 class MessagelineWidget extends StatefulWidget {
   final Rocketchataccount account;
@@ -46,9 +46,6 @@ class MessagelineWidgetState extends State<MessagelineWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final commandModel = Provider.of<CommandModel>(context);
-    final List<String> suggestions = commandModel.listOfCommands();
-
     return ValueListenableBuilder<String>(
       valueListenable: SharedValue.currentRoomId,
       builder: (context, value, child) {
@@ -57,72 +54,10 @@ class MessagelineWidgetState extends State<MessagelineWidget> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Autocomplete<String>(
-                        optionsViewOpenDirection: OptionsViewOpenDirection.up,
-                        onSelected: (String selection) {
-                          _controller.text = selection;
-                        },
-                        optionsBuilder: (TextEditingValue textEditingValue) {
-                          if (textEditingValue.text == '') {
-                            return const Iterable<String>.empty();
-                          }
-                          if (!textEditingValue.text.startsWith('/')) {
-                            return const Iterable<String>.empty();
-                          }
-                          return suggestions.where((String option) {
-                            return option
-                                .toLowerCase()
-                                .contains(textEditingValue.text.toLowerCase());
-                          });
-                        },
-                        fieldViewBuilder: (BuildContext context, TextEditingController notUsed,
-                            FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
-                          return TextField(
-                            controller: _controller,
-                            focusNode: fieldFocusNode,
-                            contextMenuBuilder: (context, editableTextState) {
-                              final List<ContextMenuButtonItem> buttonItems =
-                                  editableTextState.contextMenuButtonItems;
-                              buttonItems.insert(
-                                0,
-                                ContextMenuButtonItem(
-                                  label: 'Add Quote',
-                                  onPressed: () {
-                                    ContextMenuController.removeAny();
-                                  },
-                                ),
-                              );
-                              return AdaptiveTextSelectionToolbar.buttonItems(
-                                anchors: editableTextState.contextMenuAnchors,
-                                buttonItems: buttonItems,
-                              );
-                            },
-                            enabled: SharedValue.currentRoomId.value.isNotEmpty,
-                            keyboardType: TextInputType.multiline,
-                            minLines: 1,
-                            maxLines: 3,
-                            autocorrect: true,
-                            decoration: InputDecoration(
-                              prefixIcon: IconButton(
-                                onPressed: showEmojiPicker,
-                                icon: Icon(Icons.emoji_emotions),
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: _controller.clear,
-                                icon: const Icon(Icons.clear),
-                              ),
-                              border: const OutlineInputBorder(),
-                            ),
-                          );
-                        },
-                      )),
-                ),
+                Expanded(child: MessageCompleterLine(widget.account, _controller)),
                 FilledButton(
                   child: Text(
-                    "Send",
+                    "Send", // I18n + icon ?
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   onPressed: () {

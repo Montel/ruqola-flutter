@@ -6,26 +6,25 @@ import 'package:provider/provider.dart';
 
 class MessageCompleterLine extends StatefulWidget {
   final Rocketchataccount account;
-  const MessageCompleterLine(this.account, {super.key});
+  final TextEditingController _controller;
+  const MessageCompleterLine(this.account, this._controller, {super.key});
 
   @override
   MessageCompleterLineState createState() => MessageCompleterLineState();
 }
 
 class MessageCompleterLineState extends State<MessageCompleterLine> {
-  final _controller = TextEditingController();
-
   void insertEmoji(String emoji) {
-    final text = _controller.text;
-    final selection = _controller.selection;
+    final text = widget._controller.text;
+    final selection = widget._controller.selection;
     final newText = text.replaceRange(
       selection.start,
       selection.end,
       emoji,
     );
     final newSelection = TextSelection.collapsed(offset: selection.start + emoji.length);
-    _controller.text = newText;
-    _controller.selection = newSelection;
+    widget._controller.text = newText;
+    widget._controller.selection = newSelection;
   }
 
   void showEmojiPicker() {
@@ -50,7 +49,7 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
             child: Autocomplete<String>(
               optionsViewOpenDirection: OptionsViewOpenDirection.up,
               onSelected: (String selection) {
-                _controller.text = selection;
+                widget._controller.text = selection;
               },
               optionsBuilder: (TextEditingValue textEditingValue) {
                 if (textEditingValue.text == '') {
@@ -66,7 +65,7 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
               fieldViewBuilder: (BuildContext context, TextEditingController notUsed,
                   FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
                 return TextField(
-                  controller: _controller,
+                  controller: widget._controller,
                   focusNode: fieldFocusNode,
                   contextMenuBuilder: (context, editableTextState) {
                     final List<ContextMenuButtonItem> buttonItems =
@@ -96,7 +95,7 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
                       icon: Icon(Icons.emoji_emotions),
                     ),
                     suffixIcon: IconButton(
-                      onPressed: _controller.clear,
+                      onPressed: widget._controller.clear,
                       icon: const Icon(Icons.clear),
                     ),
                     border: const OutlineInputBorder(),
