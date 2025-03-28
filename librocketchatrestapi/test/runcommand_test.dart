@@ -25,6 +25,61 @@ void main() {
             commandName: "", roomId: "", threadMessageId: "", triggerId: "", params: "");
         expect(librocketchatrestapi.RunCommandInfo.parseString('', '', '', ''), info);
       }
+
+      {
+        librocketchatrestapi.RunCommandInfo info = librocketchatrestapi.RunCommandInfo(
+            commandName: "poll",
+            roomId: "bla",
+            threadMessageId: "bli",
+            triggerId: "AUTOTEST",
+            params: "");
+        final librocketchatrestapi.RunCommandInfo resultInfo =
+            librocketchatrestapi.RunCommandInfo.parseString('/poll', 'bla', 'bli', 'AUTOTEST');
+        expect(resultInfo.canStart(), true);
+        expect(resultInfo, info);
+      }
+
+      {
+        librocketchatrestapi.RunCommandInfo info = librocketchatrestapi.RunCommandInfo(
+            commandName: "poll",
+            roomId: "bla",
+            threadMessageId: "bli",
+            triggerId: "AUTOTEST",
+            params: "test1");
+        final librocketchatrestapi.RunCommandInfo resultInfo =
+            librocketchatrestapi.RunCommandInfo.parseString(
+                '/poll test1', 'bla', 'bli', 'AUTOTEST');
+        expect(resultInfo.canStart(), true);
+        expect(resultInfo, info);
+      }
+
+      {
+        librocketchatrestapi.RunCommandInfo info = librocketchatrestapi.RunCommandInfo(
+            commandName: "poll",
+            roomId: "bla",
+            threadMessageId: "bli",
+            triggerId: "AUTOTEST",
+            params: "test1 voiture");
+        final librocketchatrestapi.RunCommandInfo resultInfo =
+            librocketchatrestapi.RunCommandInfo.parseString(
+                '/poll test1 voiture', 'bla', 'bli', 'AUTOTEST');
+        expect(resultInfo.canStart(), true);
+        expect(resultInfo, info);
+      }
+
+      {
+        librocketchatrestapi.RunCommandInfo info = librocketchatrestapi.RunCommandInfo(
+            commandName: "poll",
+            roomId: "bla",
+            threadMessageId: "bli",
+            triggerId: "AUTOTEST",
+            params: "test1 voiture");
+        final librocketchatrestapi.RunCommandInfo resultInfo =
+            librocketchatrestapi.RunCommandInfo.parseString(
+                '/poll test1 voiture    ', 'bla', 'bli', 'AUTOTEST');
+        expect(resultInfo.canStart(), true);
+        expect(resultInfo, info);
+      }
     });
   });
 }

@@ -21,6 +21,7 @@ class RunCommandInfo {
     String commandName = '';
     String params = "";
     String triggedId = '';
+    str = str.trim();
     if (str.length > 1) {
       final String newStr = str.substring(1);
       List<String> lst = newStr.split(' ');
