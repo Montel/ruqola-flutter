@@ -148,6 +148,7 @@ class Rocketchataccount {
   }
 
   Future<void> sendMessage(String roomId, String message) async {
+    print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD sen message");
     if (message.startsWith('/')) {
       _runCommand(roomId, message /* threadid*/);
     } else {
@@ -156,15 +157,14 @@ class Rocketchataccount {
   }
 
   Future<void> _runCommand(String roomId, String message) async {
-    /*
-    librocketchatrestapi.RunCommandInfo(commandName, roomId, threadMessageId, triggerId, params)
-    librocketchatrestapi.RunCommand loadEmojiCustom = librocketchatrestapi.RunCommand();
-    loadEmojiCustom.serverUrl = settings.serverUrl;
-    loadEmojiCustom.userId = settings.userId;
-    loadEmojiCustom.authToken = settings.authToken;
-    var resultLoadEmojiCustom = await loadEmojiCustom.start();
-    print("resultLoadEmojiCustom: $resultLoadEmojiCustom");
-    */
+    librocketchatrestapi.RunCommandInfo runcommandInfo =
+        librocketchatrestapi.RunCommandInfo.parseString(message, roomId);
+    librocketchatrestapi.RunCommand runCommand = librocketchatrestapi.RunCommand(runcommandInfo);
+    runCommand.serverUrl = settings.serverUrl;
+    runCommand.userId = settings.userId;
+    runCommand.authToken = settings.authToken;
+    var runCommandResult = await runCommand.start();
+    print("runCommandResult: $runCommandResult");
   }
 
   Future<void> loadHistory(String roomId) async {

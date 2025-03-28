@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 class MessageCompleterLine extends StatefulWidget {
   final Rocketchataccount account;
-  final TextEditingController _controller;
-  const MessageCompleterLine(this.account, this._controller, {super.key});
+  final TextEditingController controller;
+  const MessageCompleterLine(this.account, this.controller, {super.key});
 
   @override
   MessageCompleterLineState createState() => MessageCompleterLineState();
@@ -15,16 +15,16 @@ class MessageCompleterLine extends StatefulWidget {
 
 class MessageCompleterLineState extends State<MessageCompleterLine> {
   void insertEmoji(String emoji) {
-    final text = widget._controller.text;
-    final selection = widget._controller.selection;
+    final text = widget.controller.text;
+    final selection = widget.controller.selection;
     final newText = text.replaceRange(
       selection.start,
       selection.end,
       emoji,
     );
     final newSelection = TextSelection.collapsed(offset: selection.start + emoji.length);
-    widget._controller.text = newText;
-    widget._controller.selection = newSelection;
+    widget.controller.text = newText;
+    widget.controller.selection = newSelection;
   }
 
   void showEmojiPicker() {
@@ -46,7 +46,7 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
         child: Autocomplete<String>(
           optionsViewOpenDirection: OptionsViewOpenDirection.up,
           onSelected: (String selection) {
-            widget._controller.text = selection;
+            widget.controller.text = selection;
           },
           optionsBuilder: (TextEditingValue textEditingValue) {
             if (textEditingValue.text.isEmpty) {
@@ -65,7 +65,7 @@ class MessageCompleterLineState extends State<MessageCompleterLine> {
                 listenable: commandModel,
                 builder: (BuildContext context, Widget? child) {
                   return TextField(
-                    controller: textEditingController,
+                    controller: /*textEditingController*/ widget.controller,
                     focusNode: fieldFocusNode,
                     contextMenuBuilder: (context, editableTextState) {
                       final List<ContextMenuButtonItem> buttonItems =

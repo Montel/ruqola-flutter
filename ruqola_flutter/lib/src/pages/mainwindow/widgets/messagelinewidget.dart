@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messagecompleterline.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter/services.dart'; // Pour ContextMenuController
 
 class MessagelineWidget extends StatefulWidget {
   final Rocketchataccount account;
@@ -22,26 +20,10 @@ class MessagelineWidget extends StatefulWidget {
 class MessagelineWidgetState extends State<MessagelineWidget> {
   final _controller = TextEditingController();
 
-  void insertEmoji(String emoji) {
-    final text = _controller.text;
-    final selection = _controller.selection;
-    final newText = text.replaceRange(
-      selection.start,
-      selection.end,
-      emoji,
-    );
-    final newSelection = TextSelection.collapsed(offset: selection.start + emoji.length);
-    _controller.text = newText;
-    _controller.selection = newSelection;
-  }
-
-  void showEmojiPicker() {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return EmojiPicker();
-      },
-    );
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,9 +44,10 @@ class MessagelineWidgetState extends State<MessagelineWidget> {
                   ),
                   onPressed: () {
                     if (SharedValue.currentRoomId.value.isNotEmpty) {
+                      print("DDDDDDDDDDSDFSDFDSFSDFSDFSDF ${_controller.text}");
                       if (_controller.text.isNotEmpty && value.isNotEmpty) {
                         widget.account.sendMessage(value, _controller.text);
-                        _controller.text = "";
+                        _controller.clear();
                       }
                     }
                   },
