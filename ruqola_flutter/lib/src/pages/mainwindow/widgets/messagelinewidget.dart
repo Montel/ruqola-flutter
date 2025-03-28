@@ -5,15 +5,15 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/services.dart'; // Pour ContextMenuController
 import 'package:provider/provider.dart';
 
-class Messageline extends StatefulWidget {
+class MessagelineWidget extends StatefulWidget {
   final Rocketchataccount account;
-  const Messageline(this.account, {super.key});
+  const MessagelineWidget(this.account, {super.key});
 
   @override
-  MessagelineState createState() => MessagelineState();
+  MessagelineWidgetState createState() => MessagelineWidgetState();
 }
 
-class MessagelineState extends State<Messageline> {
+class MessagelineWidgetState extends State<MessagelineWidget> {
   final _controller = TextEditingController();
 
   void insertEmoji(String emoji) {
