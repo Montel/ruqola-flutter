@@ -97,3 +97,6 @@ export 'src/invitations/invitations.dart';
 
 // Emoji
 export 'src/emoticons/customemoji.dart';
+
+// Discussions
+export 'src/discussions/discussion.dart';
