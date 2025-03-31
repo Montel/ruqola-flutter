@@ -60,16 +60,17 @@ extension StatusExt on Status {
 }
 
 class User {
-  User({
-    this.userid = "",
-    this.name = "",
-    this.username = "",
-    this.statusText = "",
-    this.bio = "",
-    this.nickname = "",
-    this.active = false,
-    this.status = Status.unknown,
-  });
+  User(
+      {this.userid = '',
+      this.name = '',
+      this.username = '',
+      this.statusText = '',
+      this.bio = '',
+      this.nickname = '',
+      this.active = true,
+      this.status = Status.unknown,
+      this.requirePasswordChange = false,
+      this.typeUser = ''});
 
   bool isValid() {
     return userid.isNotEmpty;
@@ -82,19 +83,24 @@ class User {
   final String? statusText;
   final String? bio;
   final String? nickname;
-  final bool? active;
+  final bool active;
+  final bool requirePasswordChange;
   final Status status;
+  final String typeUser;
   // TODO add more
+  // TODO add roles/i18nroles
 
   factory User.fromJson(Map<String, dynamic> json) {
-    final userid = json['_id'] as String;
-    final name = json['name'] as String?;
-    final username = json['username'] as String?;
-    final statusText = json['statusText'] as String?;
-    final bio = json['bio'] as String?;
-    final active = json['active'] as bool;
+    final userid = json['_id'] ?? '';
+    final name = json['name'] ?? '';
+    final username = json['username'] ?? '';
+    final statusText = json['statusText'] ?? '';
+    final bio = json['bio'] ?? '';
+    final active = json['active'] ?? true;
     final statusStr = json['status'] ?? '';
+    final typeUser = json['type'] ?? '';
     final Status status = StatusExt.statusFromString(statusStr);
+    final bool requirePasswordChange = json['requirePasswordChange'] ?? false;
 
     return User(
         userid: userid,
@@ -103,7 +109,9 @@ class User {
         statusText: statusText,
         bio: bio,
         active: active,
-        status: status);
+        status: status,
+        requirePasswordChange: requirePasswordChange,
+        typeUser: typeUser);
   }
   @override
   bool operator ==(Object other) {
@@ -115,7 +123,9 @@ class User {
         other.bio == bio &&
         other.nickname == nickname &&
         other.active == active &&
-        other.status == status;
+        other.status == status &&
+        other.typeUser == typeUser &&
+        other.requirePasswordChange == requirePasswordChange;
   }
 
   @override
@@ -127,11 +137,13 @@ class User {
         bio.hashCode ^
         nickname.hashCode ^
         active.hashCode ^
-        status.hashCode;
+        status.hashCode ^
+        typeUser.hashCode ^
+        requirePasswordChange.hashCode;
   }
 
   @override
   String toString() {
-    return 'User(userid :$userid, name: $name, username: $username, statusText: $statusText, bio: $bio, nickname: $nickname, active: $active, status: $status)';
+    return 'User(userid :$userid, name: $name, username: $username, statusText: $statusText, bio: $bio, nickname: $nickname, active: $active, status: $status, requirePasswordChange: $requirePasswordChange, type: $typeUser)';
   }
 }
