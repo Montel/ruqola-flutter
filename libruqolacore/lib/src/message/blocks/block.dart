@@ -85,6 +85,12 @@ class Block {
   BlockAccessory? blockAccessory;
   // VideoConferenceInfo videoConferenceInfo;
 
+  Block.defaultValues()
+      : callId = '',
+        sectionText = '',
+        blockType = BlockType.unknown,
+        blockId = '';
+
   @override
   String toString() {
     return "Block(blockActions: $blockActions blockId: $blockId callId: $callId appId: $appId, sectionText: $sectionText blockType: $blockType, blockAccessory: $blockAccessory)";
