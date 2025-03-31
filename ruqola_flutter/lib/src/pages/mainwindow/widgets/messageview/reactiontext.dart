@@ -26,7 +26,7 @@ class ReactionTextState extends State<ReactionText> {
   Widget build(BuildContext context) {
     return DecoratedBox(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 220, 244, 3),
+          color: const Color.fromARGB(255, 220, 244, 3), // Fix color
           border: Border.all(
             width: 1.0,
           ),
