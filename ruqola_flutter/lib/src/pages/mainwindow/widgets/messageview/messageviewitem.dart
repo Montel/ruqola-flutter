@@ -37,6 +37,9 @@ class MessageViewItemState extends State<MessageViewItem> {
             print("${widget.message}");
           } else if (value == MenuMessageType.markAsFavorite.index) {
             // TODO
+            print("Mark as favorite");
+          } else if (value == MenuMessageType.followMessage.index) {
+            print("Mark as follow message");
           }
         }, itemBuilder: (BuildContext context) {
           // Define the menu items for the PopupMenuButton
