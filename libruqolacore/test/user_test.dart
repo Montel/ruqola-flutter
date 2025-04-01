@@ -21,6 +21,7 @@ void main() {
       expect(user.active, true);
       expect(user.requirePasswordChange, false);
       expect(user.typeUser.isEmpty, true);
+      expect(user.roles.isEmpty, true);
     });
 
     test('Compare enum Status Value', () {

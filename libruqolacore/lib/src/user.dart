@@ -70,7 +70,8 @@ class User {
       this.active = true,
       this.status = Status.unknown,
       this.requirePasswordChange = false,
-      this.typeUser = ''});
+      this.typeUser = '',
+      this.roles = const []});
 
   bool isValid() {
     return userid.isNotEmpty;
@@ -87,7 +88,7 @@ class User {
   final bool requirePasswordChange;
   final Status status;
   final String typeUser;
-  // TODO add more
+  final List<String> roles;
   // TODO add roles/i18nroles
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -101,6 +102,14 @@ class User {
     final typeUser = json['type'] ?? '';
     final Status status = StatusExt.statusFromString(statusStr);
     final bool requirePasswordChange = json['requirePasswordChange'] ?? false;
+    final List<String> roles = [];
+    final rolesJson = json["roles"];
+    if (rolesJson != null) {
+      for (var item in rolesJson) {
+        var fileInfo = item;
+        roles.add(fileInfo);
+      }
+    }
 
     return User(
         userid: userid,
@@ -111,7 +120,8 @@ class User {
         active: active,
         status: status,
         requirePasswordChange: requirePasswordChange,
-        typeUser: typeUser);
+        typeUser: typeUser,
+        roles: roles);
   }
   @override
   bool operator ==(Object other) {
@@ -125,7 +135,8 @@ class User {
         other.active == active &&
         other.status == status &&
         other.typeUser == typeUser &&
-        other.requirePasswordChange == requirePasswordChange;
+        other.requirePasswordChange == requirePasswordChange &&
+        other.roles == roles;
   }
 
   @override
@@ -139,11 +150,12 @@ class User {
         active.hashCode ^
         status.hashCode ^
         typeUser.hashCode ^
+        roles.hashCode ^
         requirePasswordChange.hashCode;
   }
 
   @override
   String toString() {
-    return 'User(userid :$userid, name: $name, username: $username, statusText: $statusText, bio: $bio, nickname: $nickname, active: $active, status: $status, requirePasswordChange: $requirePasswordChange, type: $typeUser)';
+    return 'User(userid :$userid, name: $name, username: $username, statusText: $statusText, bio: $bio, nickname: $nickname, active: $active, status: $status, requirePasswordChange: $requirePasswordChange, type: $typeUser, roles: $roles)';
   }
 }
