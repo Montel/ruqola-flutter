@@ -14,7 +14,11 @@ export 'src/room.dart';
 export 'src/accountsettings.dart';
 export 'src/rocketchataccount.dart';
 export 'src/rocketchataccountmodels.dart';
-export 'src/ownuserpreferences.dart';
+
+// Ownuser
+export 'src/ownuser/ownuserpreferences.dart';
+export 'src/ownuser/ownuser.dart';
+export 'src/ownuser/servicepassword.dart';
 
 // Message
 export 'src/message/messageattachmentfield.dart';
