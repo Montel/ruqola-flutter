@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 import 'package:libruqolacore/src/ownuser/ownuserpreferences.dart';
+import 'package:libruqolacore/src/ownuser/servicepassword.dart';
 
 class OwnUser {
   final String userId = '';
@@ -16,7 +17,7 @@ class OwnUser {
   final String statusDefault = '';
   final String nickName = '';
   final List<String> roles = [];
-  // TODO ServicePassword mServicePassword;
+  ServicePassword mServicePassword = ServicePassword.defaultValues();
   OwnUserPreferences ownUserPreferences = OwnUserPreferences();
   double mUtcOffset = 0.0;
 }
