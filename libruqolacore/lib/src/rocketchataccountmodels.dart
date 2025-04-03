@@ -5,7 +5,7 @@
  */
 import 'package:libddpapi/libddpapi.dart';
 import 'package:libruqolacore/src/message/message.dart';
-import 'package:libruqolacore/src/ownuserpreferences.dart';
+import 'package:libruqolacore/src/ownuser/ownuserpreferences.dart';
 import 'package:libruqolacore/src/room.dart';
 import 'package:libruqolacore/src/user.dart';
 import 'package:flutter/material.dart';

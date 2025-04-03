@@ -9,9 +9,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('Room', () {
-    final room = libruqolacore.Room();
-
     test('Test Initial Rooms values', () {
+      final room = libruqolacore.Room();
       expect(room.roomId.isEmpty, true);
       expect(room.name.isEmpty, true);
       expect(room.fName, null);
@@ -21,7 +20,7 @@ void main() {
       expect(room.numberMessages, 0);
       expect(room.channelType, libruqolacore.RoomType.unknown);
       expect(room.roles, null);
-      expect(room.uids, null);
+      expect(room.uids.isEmpty, true);
       expect(room.userNames, null);
       expect(room.threadUnread, null);
       expect(room.favorite, false);

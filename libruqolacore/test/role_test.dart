@@ -8,9 +8,9 @@ import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
 import 'package:test/test.dart';
 
 void main() {
-  final role = libruqolacore.Role();
   group('Role Info', () {
     test('Test Initial Role Info values', () {
+      final role = libruqolacore.Role();
       expect(role.isLeader, false);
       expect(role.isModerator, false);
       expect(role.isOwner, false);

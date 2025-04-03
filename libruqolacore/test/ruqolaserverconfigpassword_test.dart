@@ -8,9 +8,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('RuqolaServerConfigPassword', () {
-    final serverConfigPassword = libruqolacore.RuqolaServerConfigPassword();
-
     test('Test Initial RuqolaServerConfigPassword values', () {
+      final serverConfigPassword = libruqolacore.RuqolaServerConfigPassword();
       expect(serverConfigPassword.accountsPasswordPolicyEnabled, false);
       expect(serverConfigPassword.accountsPasswordPolicyForbidRepeatingCharacters, true);
       expect(serverConfigPassword.accountsPasswordPolicyAtLeastOneLowercase, true);

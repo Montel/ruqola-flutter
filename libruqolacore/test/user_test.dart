@@ -9,9 +9,8 @@ import 'libruqolacoretest.dart';
 
 void main() {
   group('User', () {
-    final user = libruqolacore.User();
-
     test('Test User Initial values', () {
+      final user = libruqolacore.User();
       expect(user.userid.isEmpty, true);
       expect(user.name?.isEmpty, true);
       expect(user.username?.isEmpty, true);

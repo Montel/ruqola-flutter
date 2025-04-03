@@ -9,9 +9,9 @@ import 'package:test/test.dart';
 import 'libruqolacoretest.dart';
 
 void main() {
-  final licensesmanager = libruqolacore.LicensesManager();
   group('Licenses Info', () {
     test('Test Initial Licenses Info values', () {
+      final licensesmanager = libruqolacore.LicensesManager();
       expect(licensesmanager.licenses.isEmpty, true);
     });
 

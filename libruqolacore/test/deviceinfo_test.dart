@@ -9,9 +9,8 @@ import 'libruqolacoretest.dart';
 
 void main() {
   group('Device Info', () {
-    final info = Deviceinfo();
-
     test('Test Initial values', () {
+      final info = Deviceinfo();
       expect(info.identifier.isEmpty, true);
       expect(info.host.isEmpty, true);
       expect(info.sessionId.isEmpty, true);

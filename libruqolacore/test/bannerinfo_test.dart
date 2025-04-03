@@ -8,9 +8,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('Banner info', () {
-    final bannerinfo = BannerInfo.defaultValues();
-
     test('Test Initial values', () {
+      final bannerinfo = BannerInfo.defaultValues();
       expect(bannerinfo.textArguments.isEmpty, true);
       expect(bannerinfo.text.isEmpty, true);
       expect(bannerinfo.title.isEmpty, true);

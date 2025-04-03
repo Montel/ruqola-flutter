@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import 'package:libruqolacore/src/ownuserpreferences.dart';
+import 'package:libruqolacore/src/ownuser/ownuserpreferences.dart';
 import 'package:test/test.dart';
 
 import 'libruqolacoretest.dart';
@@ -12,7 +12,7 @@ import 'libruqolacoretest.dart';
 void main() {
   group('ownuserpreferences', () {
     test('Test Initial OwnUserPreferences', () {
-      Ownuserpreferences owner = Ownuserpreferences();
+      OwnUserPreferences owner = OwnUserPreferences();
       expect(owner.highlightWords, null);
       expect(owner.emailNotificationMode, null);
       expect(owner.desktopNotifications, null);
@@ -40,7 +40,7 @@ void main() {
 
     test('parse ownerPreferences json', () {
       final data = extractJsonData("ownuserpreferences", "ownuserpreferences1.json");
-      final ownerPreferences = Ownuserpreferences.fromJson(data);
+      final ownerPreferences = OwnUserPreferences.fromJson(data);
       expect(ownerPreferences.idleTimeLimit, 300);
       expect(ownerPreferences.convertAsciiEmoji, true);
       expect(ownerPreferences.notificationsSoundVolume, 100);
@@ -60,22 +60,22 @@ void main() {
     });
 
     test('parse convertStringToRoomListDisplay json', () {
-      expect(Ownuserpreferences.convertStringToRoomListDisplay(""), RoomListDisplay.unknown);
-      expect(Ownuserpreferences.convertStringToRoomListDisplay("blabla"), RoomListDisplay.unknown);
-      expect(Ownuserpreferences.convertStringToRoomListDisplay("medium"), RoomListDisplay.medium);
-      expect(Ownuserpreferences.convertStringToRoomListDisplay("condensed"),
+      expect(OwnUserPreferences.convertStringToRoomListDisplay(""), RoomListDisplay.unknown);
+      expect(OwnUserPreferences.convertStringToRoomListDisplay("blabla"), RoomListDisplay.unknown);
+      expect(OwnUserPreferences.convertStringToRoomListDisplay("medium"), RoomListDisplay.medium);
+      expect(OwnUserPreferences.convertStringToRoomListDisplay("condensed"),
           RoomListDisplay.condensed);
       expect(
-          Ownuserpreferences.convertStringToRoomListDisplay("extended"), RoomListDisplay.extended);
+          OwnUserPreferences.convertStringToRoomListDisplay("extended"), RoomListDisplay.extended);
     });
 
     test('parse convertStringToRoomListSortOrder json', () {
-      expect(Ownuserpreferences.convertStringToRoomListSortOrder(""), RoomListSortOrder.unknown);
+      expect(OwnUserPreferences.convertStringToRoomListSortOrder(""), RoomListSortOrder.unknown);
       expect(
-          Ownuserpreferences.convertStringToRoomListSortOrder("blabla"), RoomListSortOrder.unknown);
-      expect(Ownuserpreferences.convertStringToRoomListSortOrder("activity"),
+          OwnUserPreferences.convertStringToRoomListSortOrder("blabla"), RoomListSortOrder.unknown);
+      expect(OwnUserPreferences.convertStringToRoomListSortOrder("activity"),
           RoomListSortOrder.byLastMessage);
-      expect(Ownuserpreferences.convertStringToRoomListSortOrder("alphabetical"),
+      expect(OwnUserPreferences.convertStringToRoomListSortOrder("alphabetical"),
           RoomListSortOrder.alphabetically);
     });
   });

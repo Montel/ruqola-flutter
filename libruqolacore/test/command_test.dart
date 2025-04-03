@@ -8,9 +8,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('Command', () {
-    final command = Command();
-
     test('Test Initial values', () {
+      final command = Command();
       expect(command.permissions.isEmpty, true);
       expect(command.params.isEmpty, true);
       expect(command.commandName.isEmpty, true);
