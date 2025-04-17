@@ -5,12 +5,43 @@
  */
 
 class Role {
-  String userId = '';
-  String userName = '';
-  bool isModerator = false;
-  bool isLeader = false;
-  bool isOwner = false;
+  final String userId;
+  final String userName;
+  final bool isModerator;
+  final bool isLeader;
+  final bool isOwner;
 
+  Role.defaultValues()
+      : userId = '',
+        userName = '',
+        isModerator = false,
+        isLeader = false,
+        isOwner = false;
+
+  Role({
+    required this.userId,
+    required this.userName,
+    required this.isModerator,
+    required this.isLeader,
+    required this.isOwner,
+  });
+
+/*
+  factory Role.fromJson(Map<String, dynamic> json) {
+    final name = json["name"] ?? '';
+    final lastTokenPart = json["lastTokenPart"] ?? '';
+    final bypassTwoFactor = json["bypassTwoFactor"] ?? false;
+
+    final createdAt = DateTime.parse(json["createdAt"].toString()).millisecondsSinceEpoch;
+
+    return Role(
+      name: name,
+      lastTokenPart: lastTokenPart,
+      createdAt: createdAt,
+      bypassTwoFactor: bypassTwoFactor,
+    );
+  }
+*/
   bool isValid() {
     return userId.isNotEmpty;
   }
