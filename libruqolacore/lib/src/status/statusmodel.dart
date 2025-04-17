@@ -38,8 +38,10 @@ class StatusModel with ChangeNotifier {
   List<DisplayStatusInfo> listStatus = [];
 
   void setCurrentStatus(Status status) {
-    currentStatus = status;
-    notifyListeners();
+    if (currentStatus != status) {
+      currentStatus = status;
+      notifyListeners();
+    }
   }
 
   List<DisplayStatusInfo> sortedList() {
