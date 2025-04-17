@@ -27,30 +27,5 @@ class Permission {
   int get hashCode {
     return roles.hashCode ^ identifier.hashCode ^ updatedAt.hashCode;
   }
-
-  /*
-  int mUpdatedAt = -1;
-  List<String> mRolesStr;
-  List<String> mRoles;
-  String mIdentifier;
-  */
-/*
-  Permission();
-  List<String> permissions = [];
-  String params = '';
-  String commandName = '';
-  String description = '';
-  String translatedDescription = '';
-  String translatedParams = '';
-  bool providesPreview = false;
-  bool clientOnly = false;
-
-  factory Permission.fromJson(Map<String, dynamic> json) {
-    return Command();
-  }
-
-
-
-
-  */
+  // TODO parse
 }
