@@ -28,4 +28,5 @@ class Roles {
   String toString() {
     return 'Roles(roles: $roles)';
   }
+  // TODO parse it
 }

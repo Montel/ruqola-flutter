@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 void main() {
   group('Role Info', () {
     test('Test Initial Role Info values', () {
-      final role = libruqolacore.Role();
+      final role = libruqolacore.Role.defaultValues();
       expect(role.isLeader, false);
       expect(role.isModerator, false);
       expect(role.isOwner, false);
