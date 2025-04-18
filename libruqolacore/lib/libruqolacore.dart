@@ -47,9 +47,11 @@ export 'src/receivertypingnotification.dart';
 export 'src/ruqolaserverconfigpassword.dart';
 export 'src/ruqolaserverconfig.dart';
 
+// Roles
 export 'src/roles/role.dart';
 export 'src/roles/roles.dart';
 export 'src/roles/roleinfo.dart';
+export 'src/roles/rolesmodel.dart';
 
 // Manager
 export 'src/manager/licensesmanager.dart';

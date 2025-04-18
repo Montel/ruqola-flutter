@@ -148,7 +148,6 @@ class Rocketchataccount {
   }
 
   Future<void> sendMessage(String roomId, String message) async {
-    print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD sen message");
     if (message.startsWith('/')) {
       _runCommand(roomId, message /* threadid*/);
     } else {
@@ -343,6 +342,17 @@ class Rocketchataccount {
     _listEmojiCustom();
     _customUserStatus();
     _loadCommands();
+    _loadRoles();
+  }
+
+  Future<void> _loadRoles() async {
+    librocketchatrestapi.RolesList listRoles = librocketchatrestapi.RolesList();
+    listRoles.serverUrl = settings.serverUrl;
+    listRoles.userId = settings.userId;
+    listRoles.authToken = settings.authToken;
+    var resultLoadCommands = await listRoles.start();
+    print("result load roles: $resultLoadCommands");
+    // TODO commandModel.parseCommands(resultLoadCommands.result!);
   }
 
   Future<void> _loadCommands() async {

@@ -235,6 +235,7 @@ RoomModel::Section RoomModel::section(Room *r) const
   }
 
   void updateRooms(Map<String, dynamic> roomData) {
+    print("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
     String rId = roomData["rid"] ?? '';
     if (rId.isEmpty) {
       rId = roomData["_id"] ?? '';

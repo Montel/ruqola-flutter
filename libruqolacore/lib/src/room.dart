@@ -397,6 +397,7 @@ class Room with ChangeNotifier {
     parseDisplaySystemMessage(map);
     avatarETag = map["avatarETag"] ?? '';
     teamInfo = TeamInfo.fromJson(map);
+    print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS $teamInfo");
     notifyListeners();
   }
 
