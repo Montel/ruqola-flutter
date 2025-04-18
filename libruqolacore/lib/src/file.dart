@@ -14,6 +14,7 @@ class File {
     this.typeGroup = '',
     this.fileIdentifier = '',
     this.path = '',
+    this.roomId = '',
   });
   String userid;
   String description;
@@ -23,6 +24,7 @@ class File {
   String typeGroup;
   String fileIdentifier;
   String path;
+  String roomId;
 
   /// https://codewithandrea.com/articles/parse-json-dart/
   factory File.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class File {
     final fileIdentifier = json['_id'] ?? '';
     final typeGroup = json['typeGroup'] ?? '';
     final path = json['path'] ?? '';
+    final roomId = json['rid'] ?? '';
     return File(
       userid: userid,
       description: description,
@@ -43,12 +46,13 @@ class File {
       typeGroup: typeGroup,
       fileIdentifier: fileIdentifier,
       path: path,
+      roomId: roomId,
     );
   }
 
   @override
   String toString() {
-    return "File(userId: $userid\ndescription: $description filename: $filename mimetype: $mimetype url: $url fileIdentifier: $fileIdentifier typeGroup: $typeGroup path: $path)";
+    return "File(roomId: $roomId\nuserId: $userid\ndescription: $description filename: $filename mimetype: $mimetype url: $url fileIdentifier: $fileIdentifier typeGroup: $typeGroup path: $path)";
   }
 
   @override
@@ -63,6 +67,7 @@ class File {
         other.url == url &&
         other.typeGroup == typeGroup &&
         other.fileIdentifier == fileIdentifier &&
+        other.roomId == roomId &&
         other.path == path;
   }
 
@@ -75,6 +80,7 @@ class File {
         url.hashCode ^
         typeGroup.hashCode ^
         fileIdentifier.hashCode ^
+        roomId.hashCode ^
         path.hashCode;
   }
 }

@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('File', () {
-    test('Test Initial values', () {
+    test('Test File Initial values', () {
       final file = File();
       expect(file.description.isEmpty, true);
       expect(file.userid.isEmpty, true);
@@ -18,6 +18,7 @@ void main() {
       expect(file.typeGroup.isEmpty, true);
       expect(file.fileIdentifier.isEmpty, true);
       expect(file.path.isEmpty, true);
+      expect(file.roomId.isEmpty, true);
     });
   });
 }
