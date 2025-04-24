@@ -5,11 +5,11 @@
  */
 
 class Role {
-  final String userId;
-  final String userName;
-  final bool isModerator;
-  final bool isLeader;
-  final bool isOwner;
+  String userId;
+  String userName;
+  bool isModerator;
+  bool isLeader;
+  bool isOwner;
 
   Role.defaultValues()
       : userId = '',
@@ -26,24 +26,48 @@ class Role {
     required this.isOwner,
   });
 
-/*
   factory Role.fromJson(Map<String, dynamic> json) {
-    final name = json["name"] ?? '';
-    final lastTokenPart = json["lastTokenPart"] ?? '';
-    final bypassTwoFactor = json["bypassTwoFactor"] ?? false;
+    var userObj = json["u"];
+    String userId = '';
+    String userName = '';
+    bool isOwner = false;
+    bool isLeader = false;
+    bool isModerator = false;
+    if (userObj != null) {
+      userId = userObj["_id"] ?? '';
+      userName = userObj["username"] ?? '';
+    }
 
-    final createdAt = DateTime.parse(json["createdAt"].toString()).millisecondsSinceEpoch;
+    final roleArray = json["roles"];
+    if (roleArray != null) {
+      for (var entry in roleArray.entries) {
+        if (entry == "moderator") {
+          isModerator = true;
+        } else if (entry == "leader") {
+          isLeader = true;
+        } else if (entry == "owner") {
+          isOwner = true;
+        } else {
+          print("Unknown role name $entry");
+        }
+      }
+    }
 
     return Role(
-      name: name,
-      lastTokenPart: lastTokenPart,
-      createdAt: createdAt,
-      bypassTwoFactor: bypassTwoFactor,
+      userId: userId,
+      userName: userName,
+      isModerator: isModerator,
+      isLeader: isLeader,
+      isOwner: isOwner,
     );
   }
-*/
+
   bool isValid() {
     return userId.isNotEmpty;
+  }
+
+  bool hasARole() {
+    return isModerator || isLeader || isOwner;
   }
 
   @override

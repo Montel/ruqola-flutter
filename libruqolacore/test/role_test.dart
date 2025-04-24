@@ -18,6 +18,30 @@ void main() {
       expect(role.userId.isEmpty, true);
       expect(role.isValid(), false);
     });
+
+    test('Test Role Valid', () {
+      libruqolacore.Role role = libruqolacore.Role.defaultValues();
+      expect(role.isValid(), false);
+      role.isOwner = true;
+      expect(role.isValid(), false);
+      role.isOwner = false;
+      expect(role.isValid(), false);
+
+      role.isLeader = true;
+      expect(role.isValid(), false);
+      role.isLeader = false;
+      expect(role.isValid(), false);
+
+      role.isModerator = true;
+      expect(role.isValid(), false);
+      role.isModerator = false;
+      expect(role.isValid(), false);
+
+      role.userId = "foo";
+      expect(role.isValid(), true);
+      role.userId = "";
+      expect(role.isValid(), false);
+    });
   });
 
   // TODO add test loading elements
