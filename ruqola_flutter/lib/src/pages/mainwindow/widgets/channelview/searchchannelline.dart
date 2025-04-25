@@ -11,18 +11,24 @@ class SearchChannelLine extends StatelessWidget {
   });
 
   final _controller = TextEditingController();
-  void clearLine() {
+  void _clearLine() {
     _controller.clear();
+  }
+
+  void _onTextChanged(String text) {
+    print('Text changed: $text');
+    // Add your custom logic here
   }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
         controller: _controller,
+        onChanged: _onTextChanged,
         decoration: InputDecoration(
           labelText: 'Search Channel', // I18n!
           suffixIcon: IconButton(
-            onPressed: clearLine,
+            onPressed: _clearLine,
             icon: const Icon(Icons.clear),
           ),
           prefixIcon: Icon(Icons.search),
