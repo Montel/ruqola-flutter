@@ -5,11 +5,11 @@
  */
 
 class Role {
-  String userId;
-  String userName;
-  bool isModerator;
-  bool isLeader;
-  bool isOwner;
+  String userId = '';
+  String userName = '';
+  bool isModerator = false;
+  bool isLeader = false;
+  bool isOwner = false;
 
   Role.defaultValues()
       : userId = '',
