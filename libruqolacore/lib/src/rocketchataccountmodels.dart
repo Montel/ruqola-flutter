@@ -157,10 +157,13 @@ RoomModel::Section RoomModel::section(Room *r) const
     for (var room in rooms) {
       if (room.open) {
         final String sectionName = section(room).name;
-        if (!groupedRooms.containsKey(sectionName)) {
-          groupedRooms[sectionName] = [];
+        if (filter.isEmpty || room.name.contains(filter)) {
+          // TODO use fname ???
+          if (!groupedRooms.containsKey(sectionName)) {
+            groupedRooms[sectionName] = [];
+          }
+          groupedRooms[sectionName]!.add(room);
         }
-        groupedRooms[sectionName]!.add(room);
       }
     }
     var sortedByKeyMap = Map.fromEntries(
