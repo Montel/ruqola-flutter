@@ -17,6 +17,7 @@ class Rocketchataccount {
   final AccountSettings settings = AccountSettings();
   final Rocketchataccountmodels models = Rocketchataccountmodels();
   final StatusModel statusModel = StatusModel();
+  final RolesModel rolesModel = RolesModel();
   final Receivertypingnotification receiverTypingNotification = Receivertypingnotification();
   CustomUserStatusModel customUserStatusModel = CustomUserStatusModel.defaultValues();
 
