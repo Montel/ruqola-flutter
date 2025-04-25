@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 import 'package:flutter/material.dart';
+import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
 
 class SearchChannelLine extends StatelessWidget {
   SearchChannelLine({
@@ -16,8 +17,7 @@ class SearchChannelLine extends StatelessWidget {
   }
 
   void _onTextChanged(String text) {
-    print('Text changed: $text');
-    // Add your custom logic here
+    SharedValue.filterChannel.value = text;
   }
 
   @override

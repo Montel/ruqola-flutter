@@ -8,4 +8,5 @@ import 'package:flutter/material.dart';
 
 class SharedValue with ChangeNotifier {
   static final ValueNotifier<String> currentRoomId = ValueNotifier<String>("");
+  static final ValueNotifier<String> filterChannel = ValueNotifier<String>("");
 }

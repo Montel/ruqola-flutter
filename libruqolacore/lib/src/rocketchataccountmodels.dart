@@ -149,7 +149,7 @@ RoomModel::Section RoomModel::section(Room *r) const
   }
 
   Map<String, List<Room>> sortedRoomsWithType(
-      [RoomListSortOrder list = RoomListSortOrder.alphabetically, String filter = ""]) {
+      {RoomListSortOrder list = RoomListSortOrder.alphabetically, final String filter = ""}) {
     Map<String, List<Room>> groupedRooms = {};
 
     rooms.sort((a, b) => compare(a, b, list));
