@@ -447,8 +447,10 @@ class Rocketchataccount {
     } else if (eventname.endsWith("/otr")) {
       // TODO mRocketChatAccount->parseOtr(contents);
     } else if (eventname.endsWith("/message")) {
-      print("INSERT MESSAGE");
+      /// ERROR here when server return error.
+
       var listElement = changedElement.message.fields!.args!.args![0];
+      print("INSERT MESSAGE $listElement");
       var roomData = listElement[0];
       models.addMessage(roomData);
       /*
