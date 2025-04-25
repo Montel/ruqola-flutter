@@ -43,6 +43,52 @@ void main() {
       role.userId = "";
       expect(role.isValid(), false);
     });
+
+    test('Test Has Role', () {
+      libruqolacore.Role role = libruqolacore.Role.defaultValues();
+      role.userId = "foo";
+      expect(role.hasARole(), false);
+      role.isOwner = true;
+      expect(role.hasARole(), true);
+      role.isLeader = true;
+      expect(role.hasARole(), true);
+      role.isModerator = true;
+      expect(role.hasARole(), true);
+      role.isOwner = false;
+      expect(role.hasARole(), true);
+      role.isLeader = false;
+      expect(role.hasARole(), true);
+      role.isModerator = false;
+      expect(role.hasARole(), false);
+    });
+
+    test('role1.json', () {
+      final data = extractJsonData("rolesforroom", "role1.json");
+      final f = libruqolacore.Role.fromJson(data);
+
+      libruqolacore.Role expectRoleInfo = libruqolacore.Role.defaultValues();
+      expectRoleInfo.userId = "id1";
+      expectRoleInfo.isOwner = true;
+      expectRoleInfo.isModerator = true;
+      expectRoleInfo.isLeader = true;
+      expectRoleInfo.userName = "bla";
+
+      expect(f, expectRoleInfo);
+    });
+
+    test('role2.json', () {
+      final data = extractJsonData("rolesforroom", "role2.json");
+      final f = libruqolacore.Role.fromJson(data);
+
+      libruqolacore.Role expectRoleInfo = libruqolacore.Role.defaultValues();
+      expectRoleInfo.userId = "id2";
+      expectRoleInfo.isOwner = true;
+      expectRoleInfo.isModerator = false;
+      expectRoleInfo.isLeader = true;
+      expectRoleInfo.userName = "bla";
+
+      expect(f, expectRoleInfo);
+    });
   });
 
   // TODO add test loading elements

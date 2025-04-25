@@ -40,7 +40,7 @@ class Role {
 
     final roleArray = json["roles"];
     if (roleArray != null) {
-      for (var entry in roleArray.entries) {
+      for (var entry in roleArray) {
         if (entry == "moderator") {
           isModerator = true;
         } else if (entry == "leader") {
