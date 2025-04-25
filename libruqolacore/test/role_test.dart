@@ -6,6 +6,7 @@
 
 import 'package:libruqolacore/libruqolacore.dart' as libruqolacore;
 import 'package:test/test.dart';
+import 'libruqolacoretest.dart';
 
 void main() {
   group('Role Info', () {
