@@ -11,17 +11,22 @@ class SearchChannelLine extends StatelessWidget {
   });
 
   final _controller = TextEditingController();
+  void clearLine() {
+    _controller.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+        controller: _controller,
         decoration: InputDecoration(
-      labelText: 'Search Channel', // I18n!
-      suffixIcon: IconButton(
-        onPressed: _controller.clear,
-        icon: const Icon(Icons.clear),
-      ),
-      prefixIcon: Icon(Icons.search),
-      border: OutlineInputBorder(),
-    ));
+          labelText: 'Search Channel', // I18n!
+          suffixIcon: IconButton(
+            onPressed: clearLine,
+            icon: const Icon(Icons.clear),
+          ),
+          prefixIcon: Icon(Icons.search),
+          border: OutlineInputBorder(),
+        ));
   }
 }
