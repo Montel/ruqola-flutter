@@ -61,4 +61,9 @@ class PreviewCommand {
   int get hashCode {
     return id.hashCode ^ value.hashCode ^ type.hashCode;
   }
+
+  @override
+  String toString() {
+    return 'PreviewCommand(id: $id, value: $value, type: $type)';
+  }
 }
