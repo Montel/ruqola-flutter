@@ -13,6 +13,6 @@ class Invitations {
 
   @override
   String toString() {
-    return 'Invitation(invitations: $invitations)';
+    return 'Invitations(invitations: $invitations)';
   }
 }
