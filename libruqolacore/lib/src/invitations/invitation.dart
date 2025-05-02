@@ -13,6 +13,13 @@ class Invitation {
   int uses = 0;
   int maxUses = 0;
 
+  Invitation.defaultValues()
+      : userIdentifier = '',
+        identifier = '',
+        roomId = '',
+        uses = 0,
+        maxUses = 0;
+
   Invitation(
       {required this.identifier,
       required this.userIdentifier,

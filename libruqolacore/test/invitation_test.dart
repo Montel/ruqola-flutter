@@ -9,7 +9,11 @@ import 'package:test/test.dart';
 void main() {
   group('Invitation', () {
     test('Test Initial values', () {
-      // TODO
+      Invitation invitation = Invitation.defaultValues();
+      expect(invitation.identifier.isEmpty, true);
+      expect(invitation.roomId.isEmpty, true);
+      expect(invitation.uses, 0);
+      expect(invitation.maxUses, 0);
     });
   });
 }
