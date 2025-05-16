@@ -106,3 +106,6 @@ export 'src/emoticons/customemoji.dart';
 
 // Discussions
 export 'src/discussions/discussion.dart';
+
+// Error
+export 'src/errornotification.dart';
