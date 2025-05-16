@@ -188,17 +188,16 @@ class Rocketchataccount {
 
       librocketchatrestapi.MethodCallInfo info =
           librocketchatrestapi.MethodCallInfo(methodName, false, generatedLoadHistory);
+      print("info*** $info");
       librocketchatrestapi.MethodCall loadHistory = librocketchatrestapi.MethodCall(info);
       loadHistory.serverUrl = settings.serverUrl;
       loadHistory.userId = settings.userId;
       loadHistory.authToken = settings.authToken;
       var resultHistory = await loadHistory.start();
       if (resultHistory.success != null) {
-        if (resultHistory.errorMessage != null) {
+        if (!resultHistory.success!) {
           print("ERROR ::::::::: ${resultHistory.errorMessage}");
         } else {
-          print(
-              "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS ${resultHistory}");
           // Decode message from result
           final resultMessage = jsonDecode(resultHistory.result!['message']);
           if (resultMessage != null) {
