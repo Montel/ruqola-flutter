@@ -194,13 +194,19 @@ class Rocketchataccount {
       loadHistory.authToken = settings.authToken;
       var resultHistory = await loadHistory.start();
       if (resultHistory.success != null) {
-        // Decode message from result
-        final resultMessage = jsonDecode(resultHistory.result!['message']);
-        if (resultMessage != null) {
-          final result = resultMessage!['result'];
-          final messagesArray = result['messages'];
-          // TODO fix string as utf8
-          models.processIncomingMessages(messagesArray);
+        if (resultHistory.errorMessage != null) {
+          print("ERROR ::::::::: ${resultHistory.errorMessage}");
+        } else {
+          print(
+              "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS ${resultHistory}");
+          // Decode message from result
+          final resultMessage = jsonDecode(resultHistory.result!['message']);
+          if (resultMessage != null) {
+            final result = resultMessage!['result'];
+            final messagesArray = result['messages'];
+            // TODO fix string as utf8
+            models.processIncomingMessages(messagesArray);
+          }
         }
       }
     }
