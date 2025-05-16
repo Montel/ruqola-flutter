@@ -19,6 +19,7 @@ class Rocketchataccount {
   final StatusModel statusModel = StatusModel();
   final RolesModel rolesModel = RolesModel();
   final Receivertypingnotification receiverTypingNotification = Receivertypingnotification();
+  final ErrorNotification errorNotification = ErrorNotification();
   CustomUserStatusModel customUserStatusModel = CustomUserStatusModel.defaultValues();
 
 // Add command model
