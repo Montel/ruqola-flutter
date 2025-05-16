@@ -62,6 +62,7 @@ class StatusComboboxState extends State<StatusCombobox> {
           leadingIcon: Icon(statusIcons[info.status] ?? Icons.help_outline))),
     );
 
+    // TODO fix combobox not editable!
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -72,6 +73,7 @@ class StatusComboboxState extends State<StatusCombobox> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownMenu<Status>(
+                    enableFilter: false,
                     initialSelection: dropdownValue,
                     onSelected: (Status? value) {
                       // This is called when the user selects an item.
