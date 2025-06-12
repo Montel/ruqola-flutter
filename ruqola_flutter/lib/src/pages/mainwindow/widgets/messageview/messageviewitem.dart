@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reactiontext.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum MenuMessageType {
   dumpMessageInfo,
@@ -69,6 +70,11 @@ class MessageViewItemState extends State<MessageViewItem> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MarkdownBody(
+              onTapLink: (text, href, title) {
+                if (href != null) {
+                  _launchURL(href);
+                }
+              },
               data: widget.message.text,
               styleSheet: MarkdownStyleSheet(
                 codeblockDecoration: BoxDecoration(
@@ -87,5 +93,13 @@ class MessageViewItemState extends State<MessageViewItem> {
               ),
           ],
         ));
+  }
+}
+
+void _launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
