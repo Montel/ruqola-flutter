@@ -39,12 +39,14 @@ class ReactionTextState extends State<ReactionText> {
                       // Remove emoji or add it.
                       print("click on it")
                     },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(EmojiParser().get(widget.reaction.reactionName).code),
-                    Text(widget.reaction.userNames.length.toString())
-                  ],
-                ))));
+                child: SizedBox(
+                    width: 40, // don't hardcode it
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(EmojiParser().get(widget.reaction.reactionName).code),
+                        Text(widget.reaction.userNames.length.toString())
+                      ],
+                    )))));
   }
 }
