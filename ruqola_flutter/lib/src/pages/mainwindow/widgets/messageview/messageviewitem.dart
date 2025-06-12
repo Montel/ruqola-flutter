@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reactiontext.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 enum MenuMessageType {
   dumpMessageInfo,
@@ -67,7 +68,7 @@ class MessageViewItemState extends State<MessageViewItem> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText(widget.message.text),
+            MarkdownBody(data: widget.message.text),
             if (widget.message.reactions.isNotEmpty)
               Wrap(
                 spacing: 10,
