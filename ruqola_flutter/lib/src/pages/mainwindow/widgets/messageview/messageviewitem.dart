@@ -68,7 +68,15 @@ class MessageViewItemState extends State<MessageViewItem> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MarkdownBody(data: widget.message.text),
+            MarkdownBody(
+              data: widget.message.text,
+              styleSheet: MarkdownStyleSheet(
+                codeblockDecoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+              ),
+            ),
             if (widget.message.reactions.isNotEmpty)
               Wrap(
                 spacing: 10,
