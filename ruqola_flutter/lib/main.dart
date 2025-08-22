@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ruqola_flutter/src/pages/home/desktop.dart';
 import 'package:libruqolacore/libruqolacore.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +64,16 @@ class MainWidgetState extends State<RuqolaMainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        AppLocalizations.delegate, // Généré automatiquement
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // Anglais
+        Locale('fr'), // Français
+      ],
       theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         body: HomePageDesktop(),
