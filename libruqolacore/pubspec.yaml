@@ -34,11 +34,7 @@ dev_dependencies:
 
 dependency_overrides:
   # Waiting on: https://github.com/juliansteenbakker/flutter_secure_storage/pull/923
-  flutter_secure_storage_linux:
-    git:
-      url: https://github.com/m-berto/flutter_secure_storage.git
-      path: flutter_secure_storage_linux
-      ref: patch-2
+  flutter_secure_storage_linux: ^9.2.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
