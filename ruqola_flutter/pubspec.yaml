@@ -70,14 +70,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
 
-dependency_overrides:
-  # Waiting on: https://github.com/juliansteenbakker/flutter_secure_storage/pull/923
-  flutter_secure_storage_linux:
-    git:
-      url: https://github.com/m-berto/flutter_secure_storage.git
-      path: flutter_secure_storage_linux
-      ref: patch-2
-
 flutter_icons:
   android: false
   ios: true
