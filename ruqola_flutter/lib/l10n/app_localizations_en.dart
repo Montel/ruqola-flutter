@@ -9,11 +9,5 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get flagCode => 'en';
-
-  @override
-  String get welcomeMessage => 'Bienvenue';
-
-  @override
-  String get startMessage => 'Êtes vous prêt(e)s pour apprendre le français ?';
+  String get helloWorld => 'Hello, World!';
 }

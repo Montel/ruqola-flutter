@@ -1,5 +1,7 @@
 {
-    "flagCode": "en",
-    "welcomeMessage": "Bienvenue",
-    "startMessage": "Êtes vous prêt(e)s pour apprendre le français ?"
+  "@@locale": "en",
+  "helloWorld": "Hello, World!",
+  "@helloWorld": {
+    "description": "A simple greeting"
+  }
 }

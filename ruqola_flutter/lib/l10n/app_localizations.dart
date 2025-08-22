@@ -93,23 +93,11 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @flagCode.
+  /// A simple greeting
   ///
   /// In en, this message translates to:
-  /// **'en'**
-  String get flagCode;
-
-  /// No description provided for @welcomeMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Bienvenue'**
-  String get welcomeMessage;
-
-  /// No description provided for @startMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Êtes vous prêt(e)s pour apprendre le français ?'**
-  String get startMessage;
+  /// **'Hello, World!'**
+  String get helloWorld;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
