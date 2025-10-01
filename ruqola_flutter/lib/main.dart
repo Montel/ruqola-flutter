@@ -8,15 +8,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ruqola_flutter/src/pages/home/desktop.dart';
 import 'package:libruqolacore/libruqolacore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// TODO fixme translation
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized(); // Initialisation obligatoire
   final Rocketchataccount account = Rocketchataccount();
-  runApp(
-    MultiProvider(
+  runApp(EasyLocalization(
+    supportedLocales: [
+      const Locale('fr', 'FR'),
+      const Locale('en', 'US'),
+    ],
+    path: 'assets/translations',
+    fallbackLocale: const Locale('fr', 'FR'),
+    child: MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => account.receiverTypingNotification,
@@ -43,7 +49,7 @@ Future<void> main() async {
       ],
       child: RuqolaMainApp(account),
     ),
-  );
+  ));
 }
 
 class RuqolaMainApp extends StatefulWidget {
