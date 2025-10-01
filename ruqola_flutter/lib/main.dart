@@ -13,7 +13,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized(); // Initialisation obligatoire
+  // command for updating translations
+  // flutter pub run easy_localization:generate -S assets/translations/
+
+  await EasyLocalization.ensureInitialized(); // Necessary to init it
   final Rocketchataccount account = Rocketchataccount();
   runApp(EasyLocalization(
     supportedLocales: [
@@ -71,16 +74,9 @@ class MainWidgetState extends State<RuqolaMainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: const [
-        // AppLocalizations.delegate, // Généré automatiquement
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'), // Anglais
-        Locale('fr'), // Français
-      ],
+      localizationsDelegates: context.localizationDelegates, // NEcessary
+      supportedLocales: context.supportedLocales, // Supported Languages
+      locale: context.locale, // Current Language
       theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         body: HomePageDesktop(),

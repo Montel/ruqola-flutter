@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/messageview/reactiontext.dart';
@@ -48,7 +49,7 @@ class MessageViewItemState extends State<MessageViewItem> {
           return <PopupMenuEntry<int>>[
             PopupMenuItem<int>(
               value: MenuMessageType.markAsFavorite.index,
-              child: Text("Mark as Favorite"), //I18n
+              child: Text("Mark as Favorite".tr()), //I18n
             ),
             PopupMenuItem<int>(
               value: MenuMessageType.followMessage.index,

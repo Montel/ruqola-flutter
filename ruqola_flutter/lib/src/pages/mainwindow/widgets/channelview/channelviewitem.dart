@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:libruqolacore/libruqolacore.dart';
 import 'package:ruqola_flutter/src/pages/mainwindow/widgets/sharedvalue.dart';
@@ -61,20 +62,20 @@ class ChannelViewItemState extends State<ChannelViewItem> {
                   return <PopupMenuEntry<int>>[
                     PopupMenuItem<int>(
                       value: MenuChannelType.markAsRead.index,
-                      child: Text("Mark As Read"),
+                      child: Text('mark_as_read'.tr()),
                     ),
                     PopupMenuItem<int>(
                       value: MenuChannelType.changeFavorite.index,
-                      child: Text("Add as Favorite"), // TOOD change it if it's always favorite
+                      child: Text('add_as_favorite'.tr()), // TODO change it if it's always favorite
                     ),
                     PopupMenuItem<int>(
                       value: MenuChannelType.closeChannel.index,
-                      child: Text("Quit Channel"),
+                      child: Text('quit_channel'.tr()),
                     ),
                     PopupMenuDivider(),
                     PopupMenuItem<int>(
                       value: MenuChannelType.dumpRoomInfo.index,
-                      child: Text("Dump info"),
+                      child: Text('dump_info'.tr()),
                     ),
                   ];
                 },
@@ -94,16 +95,16 @@ class ChannelViewItemState extends State<ChannelViewItem> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Quit Channel'), // I18n
-          content: const Text(
-            'Do you want to quit this channel ?', // I18n
+          title: Text('quit_channel'.tr()), // I18n
+          content: Text(
+            'quit_channel_confirmation'.tr(), // I18n
           ),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.labelLarge,
               ),
-              child: const Text('Cancel'), //I18n
+              child: Text('cancel'.tr()), //I18n
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -112,7 +113,7 @@ class ChannelViewItemState extends State<ChannelViewItem> {
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.labelLarge,
               ),
-              child: const Text('Ok'), //I18n
+              child: Text('ok'.tr()), //I18n
               onPressed: () {
                 Navigator.of(context).pop();
                 // Allow to close roomId

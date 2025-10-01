@@ -1,0 +1,11 @@
+output_dir: assets/translations/
+file_format: json
+base_locale: fr-FR
+locales:
+  - fr-FR
+  - en-US
+  - es-ES
+key_prefix: ""
+ignore:
+  - test/
+  - .git/
