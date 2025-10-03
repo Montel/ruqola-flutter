@@ -50,22 +50,22 @@ class AvatarInfo {
       return '';
     }
     String serverUrl = serverRcUrl;
-    String subFolder = '';
+    StringBuffer subFolder = StringBuffer('');
     switch (avatarType) {
       case AvatarType.room:
-        subFolder = "/room";
+        subFolder.write("/room");
         break;
       case AvatarType.unknown:
       case AvatarType.user:
       case AvatarType.userAndRoom:
         break;
     }
-    subFolder += '/$identifier';
-    subFolder += "?format=png";
+    subFolder.write('/$identifier');
+    subFolder.write("?format=png");
     if (etag.isNotEmpty) {
-      subFolder += "&etag=$etag";
+      subFolder.write("&etag=$etag");
     }
-    subFolder += "&size=22";
+    subFolder.write("&size=22");
     if (!serverUrl.startsWith("https://") && !serverUrl.startsWith("http://")) {
       serverUrl = "https:/$serverUrl";
     }

@@ -33,14 +33,16 @@ void main() {
     test('Test generate url', () {
       {
         AvatarInfo avatarInfo = AvatarInfo();
-        expect(avatarInfo.avatarUrl(''), Uri());
+        expect(avatarInfo.avatarUrl(''), Uri().toString());
       }
       {
         AvatarInfo avatarInfo = AvatarInfo();
         avatarInfo.identifier = "user1";
         avatarInfo.avatarType = AvatarType.user;
-        expect(avatarInfo.avatarUrl('http://www.kde.org'),
-            Uri.parse("http://www.kde.org/avatar/${avatarInfo.identifier}?format=png&size=22"));
+        expect(
+            avatarInfo.avatarUrl('http://www.kde.org'),
+            Uri.parse("http://www.kde.org/avatar/${avatarInfo.identifier}?format=png&size=22")
+                .toString());
       }
       {
         AvatarInfo avatarInfo = AvatarInfo();
@@ -51,7 +53,8 @@ void main() {
         expect(
             avatarInfo.avatarUrl('http://www.kde.org'),
             Uri.parse(
-                "http://www.kde.org/avatar/${avatarInfo.identifier}?format=png&etag=${avatarInfo.etag}&size=22"));
+                    "http://www.kde.org/avatar/${avatarInfo.identifier}?format=png&etag=${avatarInfo.etag}&size=22")
+                .toString());
       }
       {
         AvatarInfo avatarInfo = AvatarInfo();
@@ -59,19 +62,8 @@ void main() {
         avatarInfo.avatarType = AvatarType.room;
         expect(
             avatarInfo.avatarUrl('http://www.kde.org'),
-            Uri.parse(
-                "http://www.kde.org/avatar/room/${avatarInfo.identifier}?format=png&size=22"));
-      }
-      {
-        AvatarInfo avatarInfo = AvatarInfo();
-        avatarInfo.identifier = "room1";
-        avatarInfo.avatarType = AvatarType.room;
-        avatarInfo.etag = "etagIdentifier";
-
-        expect(
-            avatarInfo.avatarUrl('http://www.kde.org'),
-            Uri.parse(
-                "http://www.kde.org/avatar/room/${avatarInfo.identifier}?format=png&etag=${avatarInfo.etag}&size=22"));
+            Uri.parse("http://www.kde.org/avatar/room/${avatarInfo.identifier}?format=png&size=22")
+                .toString());
       }
       {
         AvatarInfo avatarInfo = AvatarInfo();
@@ -82,7 +74,20 @@ void main() {
         expect(
             avatarInfo.avatarUrl('http://www.kde.org'),
             Uri.parse(
-                "http://www.kde.org/avatar/room/${avatarInfo.identifier}?format=png&etag=${avatarInfo.etag}&size=22"));
+                    "http://www.kde.org/avatar/room/${avatarInfo.identifier}?format=png&etag=${avatarInfo.etag}&size=22")
+                .toString());
+      }
+      {
+        AvatarInfo avatarInfo = AvatarInfo();
+        avatarInfo.identifier = "room1";
+        avatarInfo.avatarType = AvatarType.room;
+        avatarInfo.etag = "etagIdentifier";
+
+        expect(
+            avatarInfo.avatarUrl('http://www.kde.org'),
+            Uri.parse(
+                    "http://www.kde.org/avatar/room/${avatarInfo.identifier}?format=png&etag=${avatarInfo.etag}&size=22")
+                .toString());
       }
     });
   });
