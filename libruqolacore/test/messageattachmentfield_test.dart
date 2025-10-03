@@ -12,8 +12,8 @@ void main() {
     final messageAttachmentField = libruqolacore.MessageAttachmentField();
 
     test('Test Initial MessageAttachmentField values', () {
-      expect(messageAttachmentField.value, null);
-      expect(messageAttachmentField.title, null);
+      expect(messageAttachmentField.value, '');
+      expect(messageAttachmentField.title, '');
     });
   });
 }
