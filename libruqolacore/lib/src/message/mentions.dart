@@ -9,7 +9,7 @@ class Mentions {
 
   Mentions({required this.mentions});
   factory Mentions.fromJson(Map<String, dynamic> json) {
-    Map<String, String> mentionsMap = {};
+    var mentionsMap = <String, String>{};
     json.forEach((key, value) {
       if (value is String) {
         mentionsMap[key] = value;

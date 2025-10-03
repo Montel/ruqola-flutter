@@ -15,7 +15,7 @@ enum ContentType {
 class Messageurl {
   Messageurl();
   factory Messageurl.fromJson(Map<String, dynamic> json) {
-    Messageurl messageUrl = Messageurl();
+    var messageUrl = Messageurl();
     // TODO
     return messageUrl;
   }

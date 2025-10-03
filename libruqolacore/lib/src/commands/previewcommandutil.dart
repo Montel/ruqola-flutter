@@ -8,7 +8,7 @@ import 'package:libruqolacore/src/commands/previewcommand.dart';
 
 class PreviewCommandUtil {
   static List<PreviewCommand> fromJson(Map<String, dynamic> json) {
-    List<PreviewCommand> commands = [];
+    var commands = <PreviewCommand>[];
     var previewObj = json["preview"];
     if (previewObj != null) {
       var items = previewObj["items"];
