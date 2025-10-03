@@ -8,8 +8,8 @@ class Invitation {
   String userIdentifier = '';
   String identifier = '';
   String roomId = '';
-  // QDateTime mExpireDateTime;
-  // QDateTime mCreateDateTime;
+  int expireDateTime = -1;
+  int createDateTime = -1;
   int uses = 0;
   int maxUses = 0;
 
@@ -18,22 +18,36 @@ class Invitation {
         identifier = '',
         roomId = '',
         uses = 0,
-        maxUses = 0;
+        maxUses = 0,
+        createDateTime = -1,
+        expireDateTime = -1;
 
   Invitation(
       {required this.identifier,
       required this.userIdentifier,
       required this.roomId,
       required this.uses,
-      required this.maxUses});
+      required this.maxUses,
+      required this.createDateTime,
+      required this.expireDateTime});
 
-// Verify it
   factory Invitation.fromJson(Map<String, dynamic> json) {
     final String identifier = json["_id"] ?? '';
     final String userIdentifier = json["userId"] ?? '';
     final String roomId = json["rid"] ?? '';
     final int uses = json["uses"] ?? 0;
     final int maxUses = json["maxUses"] ?? 0;
+    int createDateTime = -1;
+    var createdAtObj = json["createdAt"];
+    if (createdAtObj != null) {
+      createDateTime = DateTime.parse(createdAtObj.toString()).millisecondsSinceEpoch;
+    }
+
+    int expireDateTime = -1;
+    var expiresObj = json["expires"];
+    if (expiresObj != null) {
+      expireDateTime = DateTime.parse(expiresObj.toString()).millisecondsSinceEpoch;
+    }
 
     return Invitation(
       identifier: identifier,
@@ -41,6 +55,8 @@ class Invitation {
       roomId: roomId,
       uses: uses,
       maxUses: maxUses,
+      createDateTime: createDateTime,
+      expireDateTime: expireDateTime,
     );
   }
 
@@ -66,6 +82,6 @@ class Invitation {
 
   @override
   String toString() {
-    return 'Invitation(userIdentifier: $userIdentifier, identifier: $identifier, roomId: $roomId, uses: $uses, maxUses: $maxUses)';
+    return 'Invitation(userIdentifier: $userIdentifier, identifier: $identifier, roomId: $roomId, uses: $uses, maxUses: $maxUses, expireDateTime: $expireDateTime, createDateTime: $createDateTime)';
   }
 }
