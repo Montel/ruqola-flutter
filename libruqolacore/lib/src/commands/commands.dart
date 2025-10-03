@@ -21,7 +21,7 @@ class Commands {
   });
 
   List<String> listOfCommands() {
-    List<String> lst = [];
+    var lst = <String>[];
     for (var a in listCommands) {
       lst.add(a.commandName);
     }

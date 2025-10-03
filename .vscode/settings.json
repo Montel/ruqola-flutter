@@ -1,3 +1,6 @@
 {
-    "dart.lineLength": 100
+    "dart.lineLength": 100,
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }

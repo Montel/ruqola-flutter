@@ -50,7 +50,7 @@ class Messageattachment {
   }
 
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> json = <String, dynamic>{};
+    var json = <String, dynamic>{};
     if (mDescription != null && mDescription!.isEmpty) {
       json["description"] = mDescription;
     }

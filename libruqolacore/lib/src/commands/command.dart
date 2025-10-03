@@ -20,9 +20,9 @@ class Command {
   bool clientOnly = false;
 
   factory Command.fromJson(Map<String, dynamic> json) {
-    final bool providesPreview = json["providesPreview"] ?? false;
-    final bool clientOnly = json["clientOnly"] ?? false;
-    final String params = json["params"] ?? '';
+    final providesPreview = json["providesPreview"] ?? false;
+    final clientOnly = json["clientOnly"] ?? false;
+    final params = json["params"] ?? '';
     String commandResult = json["command"] ?? '';
     final String description = json["description"] ?? '';
     if (commandResult.isNotEmpty) {

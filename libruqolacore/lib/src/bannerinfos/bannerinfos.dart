@@ -16,7 +16,7 @@ class Bannerinfos {
 
   Bannerinfos({required this.banners});
   factory Bannerinfos.fromJson(Map<String, dynamic> json) {
-    List<BannerInfo> banners = [];
+    var banners = <BannerInfo>[];
     final bannerJSon = json["banners"];
     if (bannerJSon != null) {
       for (var item in bannerJSon) {
