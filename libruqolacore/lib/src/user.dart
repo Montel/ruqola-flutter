@@ -73,7 +73,7 @@ class User {
       this.typeUser = '',
       this.roles = const []});
 
-  bool isValid() {
+  bool get isValid {
     return userid.isNotEmpty;
   }
 
