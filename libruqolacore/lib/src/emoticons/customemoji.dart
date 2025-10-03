@@ -39,7 +39,7 @@ class CustomEmoji {
       aliasList = List<String>.from(json["aliases"]);
     }
 
-    // TODO updateAt + aliases
+    // TODO updateAt
 
     return CustomEmoji(
         emojiIdentifier: emojiIdentifier,

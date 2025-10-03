@@ -13,7 +13,7 @@ class Replies {
   factory Replies.fromJson(Map<String, dynamic> json) {
     var repliesJson = json["replies"];
     if (repliesJson != null) {
-      final List<String> replies = List<String>.from(repliesJson);
+      final replies = List<String>.from(repliesJson);
       return Replies(replies: replies);
     }
     return Replies();
