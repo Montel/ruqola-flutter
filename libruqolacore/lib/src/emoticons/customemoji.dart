@@ -26,22 +26,27 @@ class CustomEmoji {
       {required this.emojiIdentifier,
       required this.extension,
       required this.name,
-      required this.identifier});
+      required this.identifier,
+      required this.aliases});
 
   factory CustomEmoji.fromJson(Map<String, dynamic> json) {
     final String identifier = json["_id"] ?? '';
     final String extension = json["extension"] ?? '';
     final String name = json["name"] ?? '';
     final String emojiIdentifier = ':$name:';
+    List<String> aliasList = [];
     if (json.containsKey("aliases")) {
-      var alias = json["aliases"];
-      // TODO
+      aliasList = List<String>.from(json["aliases"]);
     }
 
     // TODO updateAt + aliases
 
     return CustomEmoji(
-        emojiIdentifier: emojiIdentifier, extension: extension, name: name, identifier: identifier);
+        emojiIdentifier: emojiIdentifier,
+        extension: extension,
+        name: name,
+        identifier: identifier,
+        aliases: aliasList);
   }
 
   @override
